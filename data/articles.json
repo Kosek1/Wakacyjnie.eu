@@ -1,5 +1,31 @@
 [
   {
+    "slug": "gdzie-zobaczyc-dzikie-zwierzeta-w-afryce",
+    "title": "Gdzie zobaczyć dzikie zwierzęta w Afryce? Przewodnik po najlepszych parkach na safari",
+    "excerpt": "Słonie, lwy, żyrafy i tysiące flamingów w jednym kadrze — sprawdzamy, które parki narodowe dają największą szansę na spotkanie Wielkiej Piątki.",
+    "tag": "Natura",
+    "tagColor": "#2f7d4f",
+    "image": "https://picsum.photos/seed/africa-safari-elephants/700/440",
+    "gradient": "linear-gradient(160deg,#c99a4a,#8f9c5c 55%,#5c6b45)",
+    "date": "2026-08-20",
+    "dateLabel": "20 sierpnia 2026",
+    "readTime": "6 min",
+    "url": "artykuly/gdzie-zobaczyc-dzikie-zwierzeta-w-afryce.html"
+  },
+  {
+    "slug": "kocham-claudie",
+    "title": "Redakcja wyznaje: kochamy Claudię",
+    "excerpt": "Krótki, testowy wpis — bo dobra podróż zaczyna się od dobrej pomocy przy planowaniu.",
+    "tag": "Test",
+    "tagColor": "#c65a2e",
+    "image": "https://picsum.photos/seed/kocham-claudie-wo/700/440",
+    "gradient": "linear-gradient(160deg,#c65a2e,#eeab84 60%,#fbe3d6)",
+    "date": "2026-08-19",
+    "dateLabel": "19 sierpnia 2026",
+    "readTime": "1 min",
+    "url": "artykuly/kocham-claudie.html"
+  },
+  {
     "slug": "test-czy-automatyzacja-dziala",
     "title": "Test: czy nowy artykuł pojawia się na stronie głównej automatycznie?",
     "excerpt": "To jest testowy wpis, który sprawdza, czy dodanie pliku do repozytorium na GitHubie wystarczy, żeby nowy news pojawił się na stronie po wdrożeniu przez Netlify.",
