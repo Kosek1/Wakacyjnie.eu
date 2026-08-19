@@ -1,0 +1,80 @@
+[
+  {
+    "slug": "balkany-bija-rekordy-popularnosci",
+    "title": "Bałkany biją rekordy popularności — dlaczego Czarnogóra i Albania kradną show Chorwacji",
+    "excerpt": "Tańsze noclegi i mniej tłumów przyciągają coraz więcej polskich turystów na południe kontynentu.",
+    "tag": "Kierunki",
+    "tagColor": "#3454c7",
+    "image": "https://picsum.photos/seed/montenegro-bay/700/440",
+    "gradient": "linear-gradient(160deg,#6f93b8,#cfd9c8 60%,#e7ded0)",
+    "date": "2026-08-16",
+    "dateLabel": "16 sierpnia 2026",
+    "readTime": "4 min",
+    "url": "artykuly/balkany-bija-rekordy-popularnosci.html"
+  },
+  {
+    "slug": "msz-ostrzezenia-polnocna-afryka",
+    "title": "MSZ aktualizuje ostrzeżenia dla podróżujących do północnej Afryki",
+    "excerpt": "Nowe wytyczne dotyczą m.in. rejonów przygranicznych — sprawdź, zanim zarezerwujesz wycieczkę.",
+    "tag": "Bezpieczeństwo",
+    "tagColor": "#a02f2f",
+    "image": "https://picsum.photos/seed/morocco-desert/700/440",
+    "gradient": "linear-gradient(160deg,#caa06a,#e7ded0 60%,#f3f1ec)",
+    "date": "2026-08-15",
+    "dateLabel": "15 sierpnia 2026",
+    "readTime": "3 min",
+    "url": "artykuly/msz-ostrzezenia-polnocna-afryka.html"
+  },
+  {
+    "slug": "nowe-polaczenia-lotnicze-z-polski",
+    "title": "Nowe połączenia lotnicze z Polski — sprawdź, dokąd polecisz bezpośrednio od jesieni",
+    "excerpt": "Kilku przewoźników ogłosiło nowe trasy z Warszawy, Krakowa i Gdańska.",
+    "tag": "Loty",
+    "tagColor": "#345a44",
+    "image": "https://picsum.photos/seed/airplane-wing-sky/700/440",
+    "gradient": "linear-gradient(160deg,#4f7cff,#a9c6de 60%,#e7ded0)",
+    "date": "2026-08-14",
+    "dateLabel": "14 sierpnia 2026",
+    "readTime": "3 min",
+    "url": "artykuly/nowe-polaczenia-lotnicze-z-polski.html"
+  },
+  {
+    "slug": "etias-przesuniety-ponownie",
+    "title": "ETIAS przesunięty ponownie — kiedy naprawdę wejdzie w życie?",
+    "excerpt": "System autoryzacji podróży dla ruchu bezwizowego do UE znów czeka na nową datę startu.",
+    "tag": "Formalności",
+    "tagColor": "#6d3fc9",
+    "image": "https://picsum.photos/seed/airport-terminal/700/440",
+    "gradient": "linear-gradient(160deg,#8b5cf6,#c9c6f0 60%,#ece8f9)",
+    "date": "2026-08-13",
+    "dateLabel": "13 sierpnia 2026",
+    "readTime": "5 min",
+    "url": "artykuly/etias-przesuniety-ponownie.html"
+  },
+  {
+    "slug": "sezon-huraganow-karaiby",
+    "title": "Sezon huraganów na Karaibach — na co uważać, planując wyjazd w tym okresie",
+    "excerpt": "Sierpień i wrzesień to szczyt sezonu — sprawdzamy, jak podróżować bezpiecznie.",
+    "tag": "Pogoda",
+    "tagColor": "#b34a22",
+    "image": "https://picsum.photos/seed/caribbean-palm-storm/700/440",
+    "gradient": "linear-gradient(160deg,#ff9457,#ffcaa3 60%,#fff0e8)",
+    "date": "2026-08-12",
+    "dateLabel": "12 sierpnia 2026",
+    "readTime": "4 min",
+    "url": "artykuly/sezon-huraganow-karaiby.html"
+  },
+  {
+    "slug": "slow-travel-zyskuje-popularnosc",
+    "title": "Podróże „slow travel” zyskują na popularności — mniej miejsc, więcej czasu",
+    "excerpt": "Zamiast zwiedzać pięć miast w tydzień, coraz więcej osób wybiera jedno miejsce na dłużej.",
+    "tag": "Trendy",
+    "tagColor": "#33455e",
+    "image": "https://picsum.photos/seed/european-old-town/700/440",
+    "gradient": "linear-gradient(160deg,#33455e,#7d859c 60%,#c7cedb)",
+    "date": "2026-08-11",
+    "dateLabel": "11 sierpnia 2026",
+    "readTime": "5 min",
+    "url": "artykuly/slow-travel-zyskuje-popularnosc.html"
+  }
+]

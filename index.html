@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wakacyjny Organizer — Zaplanuj wyjazd bez chaosu</title>
+<meta name="description" content="Newsy, ciekawostki i wszystko przed Twoim wyjazdem — a gdy już wiesz dokąd, Wakacyjny Organizer pomoże Ci to poukładać: plan podróży, listy pakowania i wspólny budżet w jednej aplikacji." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          display: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui'],
+        },
+        colors: {
+          ink: {
+            950: '#141310',
+            900: '#1c1a16',
+            800: '#2a2722',
+            700: '#3e3a32',
+            600: '#5c5648',
+            500: '#7a7364',
+            400: '#a39c8c',
+            300: '#c7c0b1',
+            200: '#e2ddd0',
+            100: '#efebe1',
+            50: '#faf8f3',
+          },
+          accent: {
+            50: '#fdf3ee',
+            100: '#fbe3d6',
+            300: '#eeab84',
+            500: '#c65a2e',
+            600: '#b34a22',
+            700: '#953b1a',
+          },
+          leaf: {
+            500: '#3f6a52',
+            600: '#345a44',
+          },
+        },
+        boxShadow: {
+          soft: '0 1px 2px rgba(20,19,16,0.04), 0 12px 28px -8px rgba(20,19,16,0.10)',
+          softer: '0 1px 1px rgba(20,19,16,0.03), 0 6px 16px -6px rgba(20,19,16,0.08)',
+          lifted: '0 30px 70px -20px rgba(20,19,16,0.35)',
+        },
+        transitionTimingFunction: {
+          out: 'cubic-bezier(0.23, 1, 0.32, 1)',
+          inout: 'cubic-bezier(0.77, 0, 0.175, 1)',
+        },
+        borderRadius: {
+          '4xl': '2rem',
+        },
+      },
+    },
+  };
+</script>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+<style>
+  :root{
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  html{ scroll-behavior: smooth; }
+  body{ font-family:'Inter', sans-serif; background:#faf8f3; }
+  h1,h2,h3,h4,h5,.font-display{ font-family:'Plus Jakarta Sans', sans-serif; }
+
+  ::selection{ background:#eeab84; color:#1c1a16; }
+
+  /* focus ring — visible, calm */
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline: 2px solid #c65a2e;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* reveal-on-scroll */
+  .reveal{ opacity:0; transform: translateY(14px); transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out); }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ transition: opacity 200ms ease !important; transform:none !important; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  /* press feedback for interactive controls */
+  .pressable{ transition: transform 160ms var(--ease-out); }
+  .pressable:active{ transform: scale(0.97); }
+
+  /* range slider */
+  input[type="range"]{ -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:99px; background:#e2ddd0; outline:none; }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%;
+    background:#c65a2e; border:3px solid #fff; box-shadow:0 1px 4px rgba(20,19,16,0.35);
+    cursor:pointer; transition: transform 160ms var(--ease-out);
+  }
+  input[type="range"]:active::-webkit-slider-thumb{ transform: scale(1.15); }
+  input[type="range"]::-moz-range-thumb{
+    width:16px; height:16px; border-radius:50%; background:#c65a2e; border:3px solid #fff;
+    box-shadow:0 1px 4px rgba(20,19,16,0.35); cursor:pointer;
+  }
+
+  /* ranking bars */
+  .rank-bar-fill{ transition: width 620ms var(--ease-out); }
+
+  /* quiz */
+  .quiz-step{ display:none; }
+  .quiz-step.active{ display:block; }
+  .quiz-result-panel{ display:none; }
+  .quiz-result-panel.active{ display:grid; }
+
+  /* showcase tabs */
+  .app-screen{ position:absolute; inset:0; opacity:0; transform: scale(1.02); filter: blur(6px); transition: opacity 480ms var(--ease-in-out), transform 480ms var(--ease-in-out), filter 480ms var(--ease-in-out); pointer-events:none; }
+  .app-screen.active{ opacity:1; transform: scale(1); filter: blur(0); pointer-events:auto; }
+  .showcase-progress > div{ height:100%; width:0%; background:#eeab84; }
+  .showcase-progress > div.filling{ animation: fillbar 5000ms linear forwards; }
+  .showcase-progress > div.filled{ width:100%; }
+  @keyframes fillbar{ from{ width:0%; } to{ width:100%; } }
+
+  /* mobile menu */
+  #mobileMenu{ transform: translateY(-8px); opacity:0; pointer-events:none; transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out); }
+  #mobileMenu.open{ transform: translateY(0); opacity:1; pointer-events:auto; }
+
+  .trip-card{ background-size:cover; background-position:center; }
+  .glass-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+  /* subtle float animation for hero decorative chips */
+  @keyframes floaty{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
+  .float-slow{ animation: floaty 6s var(--ease-in-out) infinite; }
+  .float-slower{ animation: floaty 8s var(--ease-in-out) infinite; animation-delay: .8s; }
+</style>
+</head>
+<body class="text-ink-900 antialiased">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-ink-900 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">Przejdź do treści</a>
+
+<!-- NAV -->
+<header id="site-header" class="sticky top-0 z-50 bg-[#faf8f3]/80 backdrop-blur-md border-b border-ink-900/[0.06]">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <nav class="flex items-center justify-between h-16 sm:h-[72px]">
+      <a href="#top" class="flex items-center gap-2.5 shrink-0">
+        <span class="grid place-items-center w-8 h-8 rounded-lg bg-ink-900 text-white">
+          <i data-lucide="palmtree" class="w-4 h-4"></i>
+        </span>
+        <span class="font-display font-bold text-[17px] tracking-tight">Wakacyjny Organizer</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-9 text-[13.5px] font-medium text-ink-600">
+        <a href="#newsy" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="#ciekawostki" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="#aplikacja" class="hover:text-ink-900 transition-colors duration-160">Aplikacja</a>
+        <a href="#poradniki" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="#pobierz" class="pressable hidden sm:inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white text-[13.5px] font-semibold px-4 py-2.5 rounded-full shadow-softer transition-colors duration-160">
+          Pobierz aplikację
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+        <button id="menuBtn" aria-label="Otwórz menu" aria-expanded="false" class="pressable md:hidden grid place-items-center w-10 h-10 rounded-full border border-ink-900/10">
+          <i data-lucide="menu" class="w-4.5 h-4.5"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden absolute inset-x-0 top-full bg-[#faf8f3]/95 backdrop-blur-md border-b border-ink-900/[0.06] shadow-soft">
+    <div class="max-w-7xl mx-auto px-5 py-5 flex flex-col gap-1 text-[15px] font-medium">
+      <a href="#newsy" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Newsy</a>
+      <a href="#ciekawostki" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Ciekawostki</a>
+      <a href="#aplikacja" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Aplikacja</a>
+      <a href="#poradniki" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poradniki</a>
+      <a href="#pobierz" class="mt-2 text-center bg-ink-900 text-white px-3 py-3 rounded-full font-semibold">Pobierz aplikację</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section id="top" class="relative overflow-hidden pt-14 sm:pt-20 pb-16 sm:pb-24">
+    <div class="pointer-events-none absolute -top-24 right-0 w-[520px] h-[520px] rounded-full bg-accent-100/60 blur-3xl"></div>
+    <div class="pointer-events-none absolute top-40 -left-32 w-[420px] h-[420px] rounded-full bg-leaf-500/10 blur-3xl"></div>
+
+    <div class="relative max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-14 lg:gap-10 items-center">
+      <div>
+        <div class="reveal inline-flex items-center gap-2 bg-white border border-ink-900/10 rounded-full pl-1.5 pr-4 py-1.5 text-[12.5px] font-semibold text-ink-700 shadow-softer">
+          <span class="grid place-items-center w-6 h-6 rounded-full bg-accent-500 text-white"><i data-lucide="sparkles" class="w-3 h-3"></i></span>
+          Wydanie letnie · 17 sierpnia 2026
+        </div>
+
+        <h1 class="reveal mt-6 font-display font-extrabold tracking-tight text-[clamp(2.2rem,5.2vw,3.6rem)] leading-[1.06] text-ink-950">
+          Newsy, ciekawostki i porządek przed każdym wyjazdem.
+        </h1>
+
+        <p class="reveal mt-5 text-[17px] sm:text-lg text-ink-600 max-w-xl leading-relaxed">
+          Codzienna dawka wiadomości podróżniczych — a gdy już wiesz dokąd i kiedy, Wakacyjny Organizer pomoże Ci to wszystko poukładać: plan, pakowanie i budżet w jednej aplikacji.
+        </p>
+
+        <div class="reveal mt-8 flex flex-wrap items-center gap-3">
+          <a href="#pobierz" class="pressable inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white font-semibold text-[14.5px] px-6 py-3.5 rounded-full shadow-soft transition-colors duration-160">
+            Pobierz aplikację
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+          <a href="#newsy" class="pressable inline-flex items-center gap-2 bg-white hover:bg-ink-50 border border-ink-900/12 text-ink-900 font-semibold text-[14.5px] px-6 py-3.5 rounded-full transition-colors duration-160">
+            Czytaj newsy
+          </a>
+        </div>
+
+        <div class="reveal mt-10 flex flex-wrap gap-x-9 gap-y-4">
+          <div>
+            <div class="font-display font-extrabold text-2xl text-ink-950">120+</div>
+            <div class="text-[12px] text-ink-500 mt-0.5">krajów w bazie</div>
+          </div>
+          <div>
+            <div class="font-display font-extrabold text-2xl text-ink-950">30+</div>
+            <div class="text-[12px] text-ink-500 mt-0.5">newsów co tydzień</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div>
+              <div class="font-display font-extrabold text-2xl text-ink-950 flex items-center gap-1">4.8 <i data-lucide="star" class="w-4 h-4 text-accent-500 fill-accent-500"></i></div>
+              <div class="text-[12px] text-ink-500 mt-0.5">ocena aplikacji</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- phone mockup -->
+      <div class="reveal relative flex justify-center lg:justify-end">
+        <div class="relative w-[290px] sm:w-[310px]">
+          <div class="rounded-[2.6rem] bg-gradient-to-br from-ink-800 to-ink-950 p-3 shadow-lifted">
+            <div class="rounded-[2.1rem] overflow-hidden bg-ink-50 aspect-[9/18.3] flex flex-col">
+              <div class="px-5 pt-6 pb-3 flex items-start justify-between">
+                <div class="font-display font-extrabold text-[19px] leading-tight text-ink-950">Wakacyjny<br>Organizer</div>
+                <div class="flex items-center gap-2">
+                  <span class="grid place-items-center w-8 h-8 rounded-full bg-white shadow-softer"><i data-lucide="trophy" class="w-3.5 h-3.5 text-ink-700"></i></span>
+                  <span class="grid place-items-center w-8 h-8 rounded-full bg-ink-950 text-white"><i data-lucide="plus" class="w-4 h-4"></i></span>
+                </div>
+              </div>
+              <div class="px-5 text-[12px] text-ink-600">Witaj, Wojtek! Gdzie tym razem lecimy?</div>
+
+              <div class="mx-5 mt-3 rounded-2xl bg-gradient-to-br from-[#33465f] to-[#263449] text-white p-3.5 flex items-center gap-3 shadow-softer">
+                <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/15 shrink-0"><i data-lucide="ticket" class="w-4 h-4"></i></span>
+                <div class="leading-tight">
+                  <div class="text-[11.5px] font-bold">Dołącz do podróży</div>
+                  <div class="text-[10px] text-[#c7cedb] mt-0.5">Wpisz 6-znakowy kod zaproszenia</div>
+                </div>
+              </div>
+
+              <div class="px-5 mt-4 flex items-baseline justify-between">
+                <h5 class="font-display font-extrabold text-[16px] text-ink-950">Nadchodzące</h5>
+                <span class="text-[11px] font-semibold text-ink-600">Nowa ›</span>
+              </div>
+              <div class="px-5 text-[10.5px] text-ink-400 mt-0.5">3 podróże</div>
+
+              <div class="px-5 mt-3">
+                <div class="trip-card relative rounded-2xl h-[148px] overflow-hidden text-white" style="background-image:linear-gradient(160deg,#6f93b8,#cfd9c8 60%,#e7ded0);">
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#0f141fcc] via-transparent to-transparent"></div>
+                  <span class="absolute top-2.5 left-2.5 text-lg">🇧🇪</span>
+                  <span class="absolute top-2.5 right-2.5 bg-[#f7efe2] text-[#3a2f22] text-[9.5px] font-bold px-2.5 py-1 rounded-full">Wyjazd dziś!</span>
+                  <div class="absolute left-3.5 right-3.5 bottom-2.5">
+                    <div class="font-display font-extrabold text-[16px]">Antwerpia</div>
+                    <div class="text-[10px] text-ink-100/90 mt-0.5">Belgia · 16 sie 2026</div>
+                    <div class="h-[3px] rounded-full bg-white/25 mt-2 overflow-hidden"><div class="h-full w-[15%] bg-white rounded-full"></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-auto flex border-t border-ink-900/[0.06] px-2 py-3 bg-white">
+                <div class="flex-1 flex flex-col items-center gap-1 text-[9px] font-semibold text-ink-950"><i data-lucide="plane" class="w-4 h-4"></i>Plan</div>
+                <div class="flex-1 flex flex-col items-center gap-1 text-[9px] text-ink-400"><i data-lucide="map-pin" class="w-4 h-4"></i>Miejsca</div>
+                <div class="flex-1 flex flex-col items-center gap-1 text-[9px] text-ink-400"><i data-lucide="compass" class="w-4 h-4"></i>Odkrywaj</div>
+                <div class="flex-1 flex flex-col items-center gap-1 text-[9px] text-ink-400"><i data-lucide="scan-line" class="w-4 h-4"></i>Paszport</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="float-slow glass-chip absolute -left-10 -top-6 bg-white/90 border border-ink-900/10 rounded-2xl px-3.5 py-2.5 shadow-soft hidden sm:flex items-center gap-2">
+            <span class="grid place-items-center w-7 h-7 rounded-full bg-leaf-500/10 text-leaf-600"><i data-lucide="wallet" class="w-3.5 h-3.5"></i></span>
+            <div class="leading-tight">
+              <div class="text-[10.5px] font-bold text-ink-950">Budżet grupy</div>
+              <div class="text-[9.5px] text-ink-500">na bieżąco</div>
+            </div>
+          </div>
+
+          <div class="float-slower glass-chip absolute -right-6 bottom-24 bg-white/90 border border-ink-900/10 rounded-2xl px-3.5 py-2.5 shadow-soft hidden sm:flex items-center gap-2">
+            <span class="grid place-items-center w-7 h-7 rounded-full bg-accent-500/10 text-accent-600"><i data-lucide="check-check" class="w-3.5 h-3.5"></i></span>
+            <div class="leading-tight">
+              <div class="text-[10.5px] font-bold text-ink-950">Lista pakowania</div>
+              <div class="text-[9.5px] text-ink-500">8/8 gotowe</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RANKING WIDGET -->
+  <section class="pb-6">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="reveal bg-white border border-ink-900/[0.07] rounded-4xl p-6 sm:p-8 shadow-soft">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+          <div>
+            <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-600 mb-1.5">Gdzie jest teraz najtaniej?</div>
+            <h3 class="font-display font-bold text-lg sm:text-xl text-ink-950">Koszt tygodnia w popularnych kierunkach</h3>
+          </div>
+          <div id="rankToggle" class="inline-flex bg-ink-100/70 rounded-full p-1 text-[12.5px] font-semibold">
+            <button class="pressable on px-4 py-2 rounded-full transition-colors duration-160" data-metric="total">Razem</button>
+            <button class="pressable px-4 py-2 rounded-full transition-colors duration-160" data-metric="flight">Loty</button>
+            <button class="pressable px-4 py-2 rounded-full transition-colors duration-160" data-metric="hotel">Noclegi</button>
+          </div>
+        </div>
+        <div id="rankList" class="flex flex-col divide-y divide-ink-900/[0.06]"></div>
+        <div class="mt-5 text-[11.5px] text-ink-400">Szacunkowe ceny dla 1 osoby, tydzień pobytu, sierpień 2026 · dane poglądowe redakcji</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS GRID -->
+  <section id="newsy" class="py-20 sm:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="reveal flex items-end justify-between gap-6 mb-3 flex-wrap">
+        <div>
+          <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-600 mb-2">Dział newsy</div>
+          <h2 class="font-display font-extrabold text-[clamp(1.6rem,3vw,2.3rem)] text-ink-950 tracking-tight">Najświeższe wakacyjne wiadomości</h2>
+        </div>
+        <p class="text-ink-500 max-w-sm text-[15px]">To, co warto wiedzieć, zanim zapakujesz walizkę.</p>
+      </div>
+
+      <div id="newsGrid" class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- karty artykułów wstawiane automatycznie przez script.js na podstawie data/articles.json -->
+      </div>
+      <p id="newsEmpty" class="hidden mt-10 text-center text-ink-400 text-[14px]">Brak artykułów do wyświetlenia — dodaj pierwszy w <code>data/articles.json</code>.</p>
+    </div>
+  </section>
+
+  <!-- FACTS -->
+  <section id="ciekawostki" class="py-20 sm:py-28 bg-ink-100/50">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="reveal text-center max-w-2xl mx-auto mb-14">
+        <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-600 mb-2">Dział ciekawostki</div>
+        <h2 class="font-display font-extrabold text-[clamp(1.6rem,3vw,2.3rem)] text-ink-950 tracking-tight">Codzienna dawka inspiracji podróżniczej</h2>
+        <p class="text-ink-500 mt-3 text-[15px]">Zanim zaplanujesz kolejny wyjazd, poznaj kilka faktów, które mogą Cię zaskoczyć.</p>
+      </div>
+
+      <blockquote class="reveal text-center max-w-2xl mx-auto mb-14">
+        <p class="font-display italic font-medium text-[clamp(1.15rem,2.4vw,1.5rem)] text-ink-900 leading-snug">„Podróż to jedyna rzecz, za którą płacisz, a która czyni Cię bogatszym.”</p>
+        <footer class="mt-3 text-[11.5px] uppercase tracking-wide text-ink-400 font-semibold">Anonimowy podróżnik, cytowany w naszej redakcji nagminnie</footer>
+      </blockquote>
+
+      <div class="grid sm:grid-cols-2 gap-x-10 gap-y-1">
+        <div class="reveal flex items-start gap-4 py-4 border-b border-ink-900/[0.07]">
+          <span class="text-2xl leading-none mt-0.5">🇮🇸</span>
+          <div><h4 class="font-display font-bold text-[14.5px] text-ink-950 mb-1">Islandia</h4>
+          <p class="text-[13.5px] text-ink-500 leading-relaxed">Islandia nie ma linii kolejowych — to jeden z niewielu krajów w Europie bez sieci kolejowej.</p></div>
+        </div>
+        <div class="reveal flex items-start gap-4 py-4 border-b border-ink-900/[0.07]">
+          <span class="text-2xl leading-none mt-0.5">🇯🇵</span>
+          <div><h4 class="font-display font-bold text-[14.5px] text-ink-950 mb-1">Japonia</h4>
+          <p class="text-[13.5px] text-ink-500 leading-relaxed">W Japonii jest ponad 5 milionów automatów sprzedających — jeden na około 25 mieszkańców.</p></div>
+        </div>
+        <div class="reveal flex items-start gap-4 py-4 border-b border-ink-900/[0.07]">
+          <span class="text-2xl leading-none mt-0.5">🇳🇴</span>
+          <div><h4 class="font-display font-bold text-[14.5px] text-ink-950 mb-1">Norwegia</h4>
+          <p class="text-[13.5px] text-ink-500 leading-relaxed">Latem w północnej Norwegii słońce nie zachodzi nawet przez kilka tygodni z rzędu.</p></div>
+        </div>
+        <div class="reveal flex items-start gap-4 py-4 border-b border-ink-900/[0.07]">
+          <span class="text-2xl leading-none mt-0.5">🇬🇷</span>
+          <div><h4 class="font-display font-bold text-[14.5px] text-ink-950 mb-1">Grecja</h4>
+          <p class="text-[13.5px] text-ink-500 leading-relaxed">W Grecji jest ponad 6000 wysp, ale zamieszkanych jest zaledwie około 227 z nich.</p></div>
+        </div>
+        <div class="reveal flex items-start gap-4 py-4 border-b border-ink-900/[0.07] sm:border-b-0">
+          <span class="text-2xl leading-none mt-0.5">🇲🇦</span>
+          <div><h4 class="font-display font-bold text-[14.5px] text-ink-950 mb-1">Maroko</h4>
+          <p class="text-[13.5px] text-ink-500 leading-relaxed">Medina w Fezie to jeden z największych na świecie obszarów miejskich wolnych od samochodów.</p></div>
+        </div>
+        <div class="reveal flex items-start gap-4 py-4 border-b border-ink-900/[0.07] sm:border-b-0">
+          <span class="text-2xl leading-none mt-0.5">🇳🇿</span>
+          <div><h4 class="font-display font-bold text-[14.5px] text-ink-950 mb-1">Nowa Zelandia</h4>
+          <p class="text-[13.5px] text-ink-500 leading-relaxed">Na jednego mieszkańca Nowej Zelandii przypada więcej owiec niż ludzi — mniej więcej sześć do jednego.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="py-20 sm:py-28">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8">
+      <div class="reveal text-center mb-10">
+        <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-600 mb-2">Quiz redakcji</div>
+        <h2 class="font-display font-extrabold text-[clamp(1.6rem,3vw,2.3rem)] text-ink-950 tracking-tight">Gdzie powinieneś pojechać w tym roku?</h2>
+        <p class="text-ink-500 mt-3 text-[15px]">Trzy pytania, jedna rekomendacja. Odpowiedz szczerze.</p>
+      </div>
+
+      <div id="quizBox" class="reveal bg-white border border-ink-900/[0.07] rounded-4xl p-6 sm:p-10 shadow-soft">
+        <div id="quizProgress" class="flex gap-2 mb-8">
+          <span data-step="0" class="flex-1 h-1.5 rounded-full bg-ink-100 overflow-hidden"><span class="block h-full w-0 bg-accent-500 transition-all duration-300 ease-out"></span></span>
+          <span data-step="1" class="flex-1 h-1.5 rounded-full bg-ink-100 overflow-hidden"><span class="block h-full w-0 bg-accent-500 transition-all duration-300 ease-out"></span></span>
+          <span data-step="2" class="flex-1 h-1.5 rounded-full bg-ink-100 overflow-hidden"><span class="block h-full w-0 bg-accent-500 transition-all duration-300 ease-out"></span></span>
+        </div>
+
+        <div class="quiz-step active" data-step="0">
+          <h3 class="font-display font-bold text-[clamp(1.15rem,2.4vw,1.4rem)] text-ink-950 mb-6">Jak wygląda Twój idealny poranek na wakacjach?</h3>
+          <div class="grid sm:grid-cols-3 gap-3">
+            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="2" data-miasto="0" data-gory="0">Kawa z widokiem na morze, potem nic więcej</button>
+            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="0" data-miasto="2" data-gory="0">Śniadanie na targu i zwiedzanie starówki</button>
+            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="0" data-miasto="0" data-gory="2">Wschód słońca na szlaku, jeszcze przed śniadaniem</button>
+          </div>
+        </div>
+
+        <div class="quiz-step" data-step="1">
+          <h3 class="font-display font-bold text-[clamp(1.15rem,2.4vw,1.4rem)] text-ink-950 mb-6">Co pakujesz do walizki w pierwszej kolejności?</h3>
+          <div class="grid sm:grid-cols-3 gap-3">
+            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="2" data-miasto="0" data-gory="0">Strój kąpielowy i okulary przeciwsłoneczne</button>
+            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="0" data-miasto="2" data-gory="0">Wygodne buty do chodzenia i aparat</button>
+            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="0" data-miasto="0" data-gory="2">Kurtkę przeciwdeszczową i mapę szlaków</button>
+          </div>
+        </div>
+
+        <div class="quiz-step" data-step="2">
+          <h3 class="font-display font-bold text-[clamp(1.15rem,2.4vw,1.4rem)] text-ink-950 mb-6">Wieczorem najchętniej…</h3>
+          <div class="grid sm:grid-cols-3 gap-3">
+            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="2" data-miasto="1" data-gory="0">Siedzisz w plażowym barze do zachodu słońca</button>
+            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="0" data-miasto="2" data-gory="0">Szukasz najlepszej lokalnej restauracji</button>
+            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="0" data-miasto="0" data-gory="2">Patrzysz na gwiazdy z dala od miasta</button>
+          </div>
+        </div>
+
+        <div class="quiz-result-panel grid sm:grid-cols-2 gap-8 items-center" id="quizResult">
+          <div class="relative aspect-[4/3] rounded-3xl overflow-hidden bg-ink-100" id="quizResultMedia"></div>
+          <div>
+            <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-600 mb-2" id="quizResultLabel">Twoja rekomendacja</div>
+            <h3 class="font-display font-extrabold text-[clamp(1.4rem,3vw,1.9rem)] text-ink-950 mb-3" id="quizResultTitle">Chorwacja</h3>
+            <p class="text-[14.5px] text-ink-600 leading-relaxed mb-5" id="quizResultText"></p>
+            <button id="quizRestart" class="pressable inline-flex items-center gap-2 text-[13px] font-bold text-ink-900 border-b-2 border-ink-900 pb-0.5">
+              Zacznij od nowa <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="funkcje" class="py-20 sm:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="reveal text-center max-w-2xl mx-auto mb-14">
+        <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-600 mb-2">Funkcje</div>
+        <h2 class="font-display font-extrabold text-[clamp(1.6rem,3vw,2.3rem)] text-ink-950 tracking-tight">Wszystko, czego potrzebujesz przed wyjazdem</h2>
+        <p class="text-ink-500 mt-3 text-[15px]">Jedna aplikacja zamiast pięciu notatników, arkuszy i grup na czacie.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-6">
+        <div class="reveal bg-white border border-ink-900/[0.07] rounded-3xl p-7 hover:shadow-soft hover:-translate-y-1 transition-all duration-300 ease-out">
+          <span class="grid place-items-center w-11 h-11 rounded-2xl bg-accent-50 text-accent-600 mb-5"><i data-lucide="calendar-range" class="w-5 h-5"></i></span>
+          <h3 class="font-display font-bold text-[16.5px] text-ink-950 mb-2">Plan podróży</h3>
+          <p class="text-[13.5px] text-ink-500 leading-relaxed">Układaj dni, atrakcje i rezerwacje na osi czasu — wszystko widoczne na pierwszy rzut oka.</p>
+        </div>
+        <div class="reveal bg-white border border-ink-900/[0.07] rounded-3xl p-7 hover:shadow-soft hover:-translate-y-1 transition-all duration-300 ease-out">
+          <span class="grid place-items-center w-11 h-11 rounded-2xl bg-leaf-500/10 text-leaf-600 mb-5"><i data-lucide="list-checks" class="w-5 h-5"></i></span>
+          <h3 class="font-display font-bold text-[16.5px] text-ink-950 mb-2">Listy pakowania</h3>
+          <p class="text-[13.5px] text-ink-500 leading-relaxed">Gotowe szablony list dostosowane do kierunku i pory roku, które możesz odhaczać na bieżąco.</p>
+        </div>
+        <div class="reveal bg-white border border-ink-900/[0.07] rounded-3xl p-7 hover:shadow-soft hover:-translate-y-1 transition-all duration-300 ease-out">
+          <span class="grid place-items-center w-11 h-11 rounded-2xl bg-[#e9edff] text-[#3454c7] mb-5"><i data-lucide="wallet" class="w-5 h-5"></i></span>
+          <h3 class="font-display font-bold text-[16.5px] text-ink-950 mb-2">Budżet podróży</h3>
+          <p class="text-[13.5px] text-ink-500 leading-relaxed">Śledź wydatki w czasie rzeczywistym i dziel koszty ze współtowarzyszami podróży.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="jak-to-dziala" class="py-20 sm:py-28 bg-ink-100/50">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="reveal text-center max-w-2xl mx-auto mb-14">
+        <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-600 mb-2">Instrukcja</div>
+        <h2 class="font-display font-extrabold text-[clamp(1.6rem,3vw,2.3rem)] text-ink-950 tracking-tight">Od pomysłu do walizki w trzech krokach</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-10">
+        <div class="reveal">
+          <div class="grid place-items-center w-10 h-10 rounded-full bg-ink-950 text-white font-display font-bold text-[14px] mb-5">1</div>
+          <h3 class="font-display font-bold text-[15.5px] text-ink-950 mb-2">Dodaj podróż</h3>
+          <p class="text-[13.5px] text-ink-500 leading-relaxed">Wpisz kierunek i daty — aplikacja sama zaproponuje listę pakowania i checklistę formalności.</p>
+        </div>
+        <div class="reveal">
+          <div class="grid place-items-center w-10 h-10 rounded-full bg-ink-950 text-white font-display font-bold text-[14px] mb-5">2</div>
+          <h3 class="font-display font-bold text-[15.5px] text-ink-950 mb-2">Zaplanuj szczegóły</h3>
+          <p class="text-[13.5px] text-ink-500 leading-relaxed">Dodawaj rezerwacje, atrakcje i budżet — wszystko trzyma się w jednym, uporządkowanym miejscu.</p>
+        </div>
+        <div class="reveal">
+          <div class="grid place-items-center w-10 h-10 rounded-full bg-ink-950 text-white font-display font-bold text-[14px] mb-5">3</div>
+          <h3 class="font-display font-bold text-[15.5px] text-ink-950 mb-2">Pakuj się i jedź</h3>
+          <p class="text-[13.5px] text-ink-500 leading-relaxed">Odhaczaj listę, sprawdzaj plan offline i skup się na tym, co najważniejsze — na podróży.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APP SHOWCASE -->
+  <section id="aplikacja" class="py-20 sm:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="reveal bg-ink-950 rounded-4xl p-7 sm:p-14 text-white relative overflow-hidden">
+        <div class="pointer-events-none absolute -top-20 -right-20 w-72 h-72 rounded-full bg-accent-500/10 blur-3xl"></div>
+        <div class="relative grid lg:grid-cols-[1fr_340px] gap-12 items-center">
+          <div>
+            <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-300 mb-3">Zajrzyj do środka</div>
+            <h2 class="font-display font-extrabold text-[clamp(1.7rem,3.2vw,2.3rem)] tracking-tight mb-4">Poznaj aplikację od środka</h2>
+            <p class="text-ink-300 text-[15px] leading-relaxed max-w-md mb-8">Cztery ekrany, jedna spójna podróż — od szczegółów wyjazdu, przez dokumenty i zadania, po wspólny budżet.</p>
+
+            <div id="showcaseTabs" class="flex flex-col">
+              <button class="showcase-tab pressable text-left flex items-start gap-4 py-4 border-t border-white/10" data-index="0">
+                <span class="showcase-tab-icon font-display italic text-[14px] text-ink-500 w-6 shrink-0 pt-0.5 transition-colors duration-200">01</span>
+                <span class="flex-1">
+                  <span class="block showcase-tab-title font-semibold text-[14px] text-ink-300 mb-1 transition-colors duration-200">Szczegóły podróży</span>
+                  <span class="showcase-tab-desc block text-[12.5px] text-ink-500 leading-relaxed max-h-0 opacity-0 overflow-hidden transition-all duration-300">Pogoda, lokalne atrakcje i postęp przygotowań w jednym miejscu.</span>
+                  <span class="showcase-progress block h-px bg-white/10 mt-2.5 overflow-hidden"><div></div></span>
+                </span>
+              </button>
+              <button class="showcase-tab pressable text-left flex items-start gap-4 py-4 border-t border-white/10" data-index="1">
+                <span class="showcase-tab-icon font-display italic text-[14px] text-ink-500 w-6 shrink-0 pt-0.5 transition-colors duration-200">02</span>
+                <span class="flex-1">
+                  <span class="block showcase-tab-title font-semibold text-[14px] text-ink-300 mb-1 transition-colors duration-200">Dokumenty w jednym miejscu</span>
+                  <span class="showcase-tab-desc block text-[12.5px] text-ink-500 leading-relaxed max-h-0 opacity-0 overflow-hidden transition-all duration-300">Bilety, ubezpieczenie i wizy uporządkowane w gotowych kategoriach.</span>
+                  <span class="showcase-progress block h-px bg-white/10 mt-2.5 overflow-hidden"><div></div></span>
+                </span>
+              </button>
+              <button class="showcase-tab pressable text-left flex items-start gap-4 py-4 border-t border-white/10" data-index="2">
+                <span class="showcase-tab-icon font-display italic text-[14px] text-ink-500 w-6 shrink-0 pt-0.5 transition-colors duration-200">03</span>
+                <span class="flex-1">
+                  <span class="block showcase-tab-title font-semibold text-[14px] text-ink-300 mb-1 transition-colors duration-200">Szybkie dodawanie zadań</span>
+                  <span class="showcase-tab-desc block text-[12.5px] text-ink-500 leading-relaxed max-h-0 opacity-0 overflow-hidden transition-all duration-300">Zadania osobiste i wspólne, otagowane kategorią w kilka sekund.</span>
+                  <span class="showcase-progress block h-px bg-white/10 mt-2.5 overflow-hidden"><div></div></span>
+                </span>
+              </button>
+              <button class="showcase-tab pressable text-left flex items-start gap-4 py-4 border-t border-b border-white/10" data-index="3">
+                <span class="showcase-tab-icon font-display italic text-[14px] text-ink-500 w-6 shrink-0 pt-0.5 transition-colors duration-200">04</span>
+                <span class="flex-1">
+                  <span class="block showcase-tab-title font-semibold text-[14px] text-ink-300 mb-1 transition-colors duration-200">Budżet grupowy</span>
+                  <span class="showcase-tab-desc block text-[12.5px] text-ink-500 leading-relaxed max-h-0 opacity-0 overflow-hidden transition-all duration-300">Zbieraj wpłaty i śledź wydatki wspólnej puli na bieżąco.</span>
+                  <span class="showcase-progress block h-px bg-white/10 mt-2.5 overflow-hidden"><div></div></span>
+                </span>
+              </button>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="#" class="pressable inline-flex items-center gap-2.5 bg-white text-ink-950 px-4 py-2.5 rounded-xl font-semibold" aria-label="Pobierz z App Store">
+                <i data-lucide="apple" class="w-4 h-4"></i>
+                <span class="leading-tight text-left"><span class="block text-[9px] text-ink-500">Pobierz w</span><span class="block text-[13px] font-bold">App Store</span></span>
+              </a>
+              <a href="#" class="pressable inline-flex items-center gap-2.5 bg-white text-ink-950 px-4 py-2.5 rounded-xl font-semibold" aria-label="Pobierz z Google Play">
+                <i data-lucide="play" class="w-4 h-4"></i>
+                <span class="leading-tight text-left"><span class="block text-[9px] text-ink-500">Dostępne w</span><span class="block text-[13px] font-bold">Google Play</span></span>
+              </a>
+            </div>
+          </div>
+
+          <div class="flex justify-center">
+            <div class="w-[270px]">
+              <div class="rounded-[2.4rem] bg-gradient-to-br from-ink-800 to-ink-950 p-2.5 shadow-lifted">
+                <div class="relative rounded-[2rem] overflow-hidden bg-white aspect-[9/17.6]">
+
+                  <div class="app-screen active" data-screen="0">
+                    <div class="flex flex-col h-full">
+                      <div class="relative h-[54%] p-3.5 flex flex-col text-white" style="background:linear-gradient(180deg,rgba(20,30,45,.15),rgba(10,16,26,.75)),linear-gradient(150deg,#6a93c2,#a9c3b3 55%,#e7ded0);">
+                        <div class="flex items-center justify-between">
+                          <span class="grid place-items-center w-6 h-6 rounded-full bg-white/25 text-[10px]">‹</span>
+                          <div class="flex gap-1.5 items-center">
+                            <span class="bg-white/20 rounded-full px-2.5 py-1 text-[8.5px] font-bold">Organizator</span>
+                            <span class="grid place-items-center w-6 h-6 rounded-full bg-white/25"><i data-lucide="trash-2" class="w-3 h-3"></i></span>
+                          </div>
+                        </div>
+                        <div class="mt-auto text-[15px]">🇭🇷</div>
+                        <h4 class="font-display font-extrabold text-[17px] mt-1 leading-none">Chorwacja</h4>
+                        <div class="text-[9px] opacity-90 mt-1">📍 Split</div>
+                        <div class="text-[8.5px] opacity-85 mt-0.5">Niedziela, 16 Sierpnia 2026</div>
+                        <div class="self-start bg-[#f7efe2] text-[#3a2f22] text-[8.5px] font-bold px-2.5 py-1 rounded-full mt-2">Wyjazd dziś!</div>
+                        <div class="h-[3px] rounded-full bg-white/30 mt-2.5 overflow-hidden"><div class="h-full w-0 bg-white"></div></div>
+                        <div class="text-[8px] opacity-85 mt-1">0/8 zadań</div>
+                      </div>
+                      <div class="p-3 flex flex-col gap-2">
+                        <div class="flex items-center justify-between border border-ink-100 rounded-xl px-2.5 py-2">
+                          <div class="flex items-center gap-1.5"><span>☁️</span><div><div class="text-[13px] font-extrabold leading-none">30°C</div><div class="text-[7.5px] text-[#5c7db8] mt-0.5">Pochmurno</div></div></div>
+                          <div class="flex gap-2 text-[7px] text-ink-400 text-center"><div>MAX<b class="block text-[9px] text-ink-900">31°</b></div><div>MIN<b class="block text-[9px] text-ink-900">24°</b></div></div>
+                        </div>
+                        <div class="rounded-xl p-2.5 flex items-center gap-2 text-white" style="background:linear-gradient(135deg,#20293a,#171f2c);">
+                          <span class="grid place-items-center w-6 h-6 rounded-lg bg-white/10"><i data-lucide="compass" class="w-3 h-3"></i></span>
+                          <div><div class="text-[9px] font-bold">Eksploruj Split</div><div class="text-[7.5px] text-[#aab2c5]">50 atrakcji i ukrytych perełek</div></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="app-screen" data-screen="1">
+                    <div class="p-4 flex flex-col gap-2.5 h-full">
+                      <div class="font-bold text-[12px] text-ink-950">← Nowy dokument</div>
+                      <div>
+                        <label class="block text-[9px] font-bold text-ink-700 mb-1.5">Tytuł</label>
+                        <input placeholder="np. Bilet lotniczy do Krakowa" disabled class="w-full border border-ink-100 rounded-lg px-2.5 py-2 text-[9px] text-ink-400">
+                      </div>
+                      <label class="block text-[9px] font-bold text-ink-700 mb-1">Wybierz kategorię</label>
+                      <div class="flex flex-col gap-1.5">
+                        <div class="flex items-center gap-2 border-2 border-[#6f95ff] bg-[#eef2ff] rounded-lg px-2.5 py-2"><span class="grid place-items-center w-5.5 h-5.5 rounded-md bg-white text-[10px]">✈️</span><div><b class="block text-[8.5px] text-[#3454c7]">Transport & Bilety</b><span class="text-[7px] text-ink-400">Loty, karty pokładowe, pociągi</span></div></div>
+                        <div class="flex items-center gap-2 border border-ink-100 rounded-lg px-2.5 py-2"><span class="grid place-items-center w-5.5 h-5.5 rounded-md bg-ink-50 text-[10px]">🛡️</span><div><b class="block text-[8.5px] text-ink-900">Ubezpieczenie</b><span class="text-[7px] text-ink-400">Polisa, numery alarmowe</span></div></div>
+                        <div class="flex items-center gap-2 border border-ink-100 rounded-lg px-2.5 py-2"><span class="grid place-items-center w-5.5 h-5.5 rounded-md bg-ink-50 text-[10px]">🏨</span><div><b class="block text-[8.5px] text-ink-900">Noclegi</b><span class="text-[7px] text-ink-400">Vouchery, Airbnb</span></div></div>
+                      </div>
+                      <div class="mt-auto bg-ink-950 text-white text-center text-[9.5px] font-bold py-2.5 rounded-xl">✓ Zapisz dokument</div>
+                    </div>
+                  </div>
+
+                  <div class="app-screen" data-screen="2">
+                    <div class="absolute inset-0 bg-ink-50/60 p-3.5 blur-[1px]">
+                      <div class="h-2 bg-ink-100 rounded w-4/5 mb-2"></div>
+                      <div class="h-2 bg-ink-100 rounded w-full mb-2"></div>
+                      <div class="h-2 bg-ink-100 rounded w-3/5"></div>
+                    </div>
+                    <div class="absolute inset-x-0 bottom-0 bg-white rounded-t-3xl p-4 shadow-[0_-12px_30px_rgba(0,0,0,0.12)]">
+                      <div class="w-8 h-1 bg-ink-100 rounded-full mx-auto mb-3"></div>
+                      <h4 class="font-display font-bold text-[13px] text-ink-950 mb-2.5">Dodaj zadanie</h4>
+                      <label class="block text-[8.5px] font-bold text-ink-700 mb-1.5">Typ zadania</label>
+                      <div class="flex gap-1.5 mb-2.5">
+                        <div class="flex-1 text-center py-1.5 rounded-lg bg-ink-950 text-white text-[8.5px] font-bold">Osobiste</div>
+                        <div class="flex-1 text-center py-1.5 rounded-lg border border-ink-100 text-[8.5px] font-bold text-ink-700">Wspólne</div>
+                      </div>
+                      <label class="block text-[8.5px] font-bold text-ink-700 mb-1.5">Tytuł</label>
+                      <input placeholder="np. Kupić adapter do gniazdka" disabled class="w-full border border-ink-100 rounded-lg px-2.5 py-1.5 text-[8.5px] text-ink-400 mb-2.5">
+                      <div class="flex flex-wrap gap-1.5">
+                        <span class="text-[7.5px] px-2 py-1 rounded-full bg-ink-950 text-white">Przygotowanie</span>
+                        <span class="text-[7.5px] px-2 py-1 rounded-full border border-ink-100 text-ink-600">Dokumenty</span>
+                        <span class="text-[7.5px] px-2 py-1 rounded-full border border-ink-100 text-ink-600">Zdrowie</span>
+                        <span class="text-[7.5px] px-2 py-1 rounded-full border border-ink-100 text-ink-600">Transport</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="app-screen" data-screen="3">
+                    <div class="text-white p-3.5" style="background:linear-gradient(135deg,#0f3d47,#12202f);">
+                      <div class="flex items-center gap-1.5 font-extrabold text-[12px]">‹ 👛 Budżet Grupy</div>
+                      <div class="text-[10px] font-bold mt-1">🇭🇷 Chorwacja</div>
+                      <div class="text-[8px] opacity-85">📍 Split</div>
+                    </div>
+                    <div class="p-3.5 flex flex-col gap-2.5">
+                      <div class="border border-ink-100 rounded-xl p-3 text-center">
+                        <div class="text-[8px] font-bold text-ink-400">Dostępne środki</div>
+                        <div class="text-[15px] font-extrabold mt-1 text-ink-950">0 zł</div>
+                      </div>
+                      <div class="flex gap-2">
+                        <div class="flex-1 border border-ink-100 rounded-xl p-2 text-center">
+                          <span class="grid place-items-center w-5 h-5 rounded-full bg-[#e3f7e9] text-[#2fa860] text-[9px] mx-auto mb-1">↓</span>
+                          <div class="text-[7.5px] font-bold text-ink-400">Zebrano</div>
+                          <div class="text-[10px] font-extrabold text-ink-950 mt-0.5">0 zł</div>
+                        </div>
+                        <div class="flex-1 border border-ink-100 rounded-xl p-2 text-center">
+                          <span class="grid place-items-center w-5 h-5 rounded-full bg-[#fce6e6] text-[#e5484d] text-[9px] mx-auto mb-1">↑</span>
+                          <div class="text-[7.5px] font-bold text-ink-400">Wydano</div>
+                          <div class="text-[10px] font-extrabold text-[#e5484d] mt-0.5">0 zł</div>
+                        </div>
+                      </div>
+                      <div class="flex gap-2">
+                        <div class="flex-1 text-center py-2 rounded-xl bg-[#2fa860] text-white text-[8.5px] font-bold">🤝 Dorzuć do puli</div>
+                        <div class="flex-1 text-center py-2 rounded-xl bg-ink-950 text-white text-[8.5px] font-bold">↑ Wydaj z puli</div>
+                      </div>
+                      <div class="text-center pt-1 text-ink-400">
+                        <div class="text-[22px]">💰</div>
+                        <b class="block text-[9px] text-ink-950 mt-1">Brak transakcji</b>
+                        <p class="text-[7.5px] leading-relaxed mt-1">Dorzuć do puli lub zapisz pierwszy wydatek, aby zacząć śledzić budżet.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDES + CALCULATOR -->
+  <section id="poradniki" class="py-20 sm:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="reveal text-center max-w-2xl mx-auto mb-14">
+        <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-600 mb-2">Poradniki</div>
+        <h2 class="font-display font-extrabold text-[clamp(1.6rem,3vw,2.3rem)] text-ink-950 tracking-tight">Praktyczna wiedza na już</h2>
+        <p class="text-ink-500 mt-3 text-[15px]">Krótkie przewodniki, które przydadzą się tuż przed wyjazdem — wszystkie dostępne też w aplikacji.</p>
+      </div>
+
+      <div class="max-w-3xl mx-auto flex flex-col">
+        <a href="#aplikacja" class="reveal group flex items-center gap-5 py-5 border-b border-ink-900/[0.08]">
+          <span class="font-display italic text-accent-600 text-[15px] w-8 shrink-0">01</span>
+          <div class="flex-1">
+            <h3 class="font-display font-bold text-[15px] text-ink-950 mb-1">Jak spakować walizkę w 10 minut</h3>
+            <p class="text-[13px] text-ink-500">Gotowa lista pakowania, którą odhaczysz jednym kliknięciem w Wakacyjnym Organizerze.</p>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-ink-400 group-hover:translate-x-1 group-hover:text-ink-900 transition-all duration-200 shrink-0"></i>
+        </a>
+        <a href="#kalkulator" class="reveal group flex items-center gap-5 py-5 border-b border-ink-900/[0.08]">
+          <span class="font-display italic text-accent-600 text-[15px] w-8 shrink-0">02</span>
+          <div class="flex-1">
+            <h3 class="font-display font-bold text-[15px] text-ink-950 mb-1">Budżetowanie podróży: ile naprawdę kosztuje tydzień wyjazdu</h3>
+            <p class="text-[13px] text-ink-500">Śledź wydatki na bieżąco i dziel koszty ze współtowarzyszami — albo policz je od razu poniżej.</p>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-ink-400 group-hover:translate-x-1 group-hover:text-ink-900 transition-all duration-200 shrink-0"></i>
+        </a>
+        <a href="#aplikacja" class="reveal group flex items-center gap-5 py-5">
+          <span class="font-display italic text-accent-600 text-[15px] w-8 shrink-0">03</span>
+          <div class="flex-1">
+            <h3 class="font-display font-bold text-[15px] text-ink-950 mb-1">Checklista dokumentów przed wylotem spoza UE</h3>
+            <p class="text-[13px] text-ink-500">Bilety, ubezpieczenie i wizy w jednym miejscu, żeby nic nie zostało w domu.</p>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-ink-400 group-hover:translate-x-1 group-hover:text-ink-900 transition-all duration-200 shrink-0"></i>
+        </a>
+      </div>
+
+      <!-- CALCULATOR -->
+      <div id="kalkulator" class="reveal mt-16 max-w-4xl mx-auto bg-white border border-ink-900/[0.07] rounded-4xl p-7 sm:p-10 shadow-soft grid sm:grid-cols-2 gap-10 items-center">
+        <div>
+          <h3 class="font-display font-bold text-[18px] text-ink-950 mb-1.5">Kalkulator budżetu podróży</h3>
+          <p class="text-[13.5px] text-ink-500 mb-7">Interaktywna szacunkowa wycena — dopasuj parametry pod swój wyjazd.</p>
+
+          <div class="mb-6">
+            <label class="flex justify-between text-[11.5px] font-bold uppercase tracking-wide text-ink-500 mb-2.5">Liczba dni <b id="calcDaysVal" class="text-ink-900">7</b></label>
+            <input type="range" id="calcDays" min="2" max="21" value="7">
+          </div>
+          <div class="mb-6">
+            <label class="flex justify-between text-[11.5px] font-bold uppercase tracking-wide text-ink-500 mb-2.5">Liczba osób <b id="calcPeopleVal" class="text-ink-900">2</b></label>
+            <input type="range" id="calcPeople" min="1" max="6" value="2">
+          </div>
+          <div>
+            <label class="block text-[11.5px] font-bold uppercase tracking-wide text-ink-500 mb-2.5">Styl podróży</label>
+            <div id="calcStyle" class="inline-flex bg-ink-100/70 rounded-full p-1 text-[12px] font-semibold w-full">
+              <button data-mult="150" class="pressable on flex-1 px-3 py-2 rounded-full transition-colors duration-160">Budżetowo</button>
+              <button data-mult="280" class="pressable flex-1 px-3 py-2 rounded-full transition-colors duration-160">Standardowo</button>
+              <button data-mult="480" class="pressable flex-1 px-3 py-2 rounded-full transition-colors duration-160">Komfortowo</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center sm:border-l sm:border-ink-900/10 sm:pl-10 pt-8 sm:pt-0 border-t sm:border-t-0 border-ink-900/10">
+          <div class="text-[11px] font-bold uppercase tracking-wide text-ink-400 mb-2.5">Szacunkowy koszt całkowity</div>
+          <div class="font-display font-extrabold text-[clamp(2.2rem,5vw,3.2rem)] text-accent-600 leading-none"><span id="calcAmount">2 100</span><small class="text-[20px] font-semibold"> zł</small></div>
+          <div class="text-[12px] text-ink-400 mt-3" id="calcSub">7 dni · 2 osoby · ok. 150 zł/os./dzień</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="pobierz" class="py-20 sm:py-28">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8">
+      <div class="reveal bg-ink-950 rounded-4xl px-8 py-16 sm:py-20 text-center relative overflow-hidden">
+        <div class="pointer-events-none absolute -bottom-24 left-1/2 -translate-x-1/2 w-[500px] h-[300px] rounded-full bg-accent-500/15 blur-3xl"></div>
+        <h2 class="relative font-display font-extrabold text-[clamp(1.8rem,4vw,2.6rem)] text-white tracking-tight mb-4">Twoja następna podróż zasługuje na porządek</h2>
+        <p class="relative text-ink-300 text-[15.5px] max-w-md mx-auto mb-9">Pobierz Wakacyjny Organizer i zaplanuj wyjazd w kilka minut, nie godzin.</p>
+        <div class="relative flex flex-wrap justify-center gap-3">
+          <a href="#" class="pressable inline-flex items-center gap-2.5 bg-white text-ink-950 px-5 py-3 rounded-xl font-semibold" aria-label="Pobierz z App Store">
+            <i data-lucide="apple" class="w-4.5 h-4.5"></i>
+            <span class="leading-tight text-left"><span class="block text-[9.5px] text-ink-500">Pobierz w</span><span class="block text-[14px] font-bold">App Store</span></span>
+          </a>
+          <a href="#" class="pressable inline-flex items-center gap-2.5 bg-white text-ink-950 px-5 py-3 rounded-xl font-semibold" aria-label="Pobierz z Google Play">
+            <i data-lucide="play" class="w-4.5 h-4.5"></i>
+            <span class="leading-tight text-left"><span class="block text-[9.5px] text-ink-500">Dostępne w</span><span class="block text-[14px] font-bold">Google Play</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="border-t border-ink-900/[0.07] py-12">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex flex-wrap items-center justify-between gap-6 mb-8">
+      <a href="#top" class="flex items-center gap-2.5">
+        <span class="grid place-items-center w-8 h-8 rounded-lg bg-ink-900 text-white"><i data-lucide="palmtree" class="w-4 h-4"></i></span>
+        <span class="font-display font-bold text-[16px] text-ink-950">Wakacyjny Organizer</span>
+      </a>
+      <div class="flex flex-wrap gap-x-7 gap-y-2 text-[12.5px] font-medium text-ink-500">
+        <a href="#newsy" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="#ciekawostki" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="#aplikacja" class="hover:text-ink-900 transition-colors duration-160">Aplikacja</a>
+        <a href="#poradniki" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="#pobierz" class="hover:text-ink-900 transition-colors duration-160">Pobierz</a>
+      </div>
+    </div>
+    <div class="pt-6 border-t border-ink-900/[0.07] flex flex-wrap justify-between gap-3 text-[12px] text-ink-400">
+      <span>© 2026 Wakacyjny Organizer. Wszelkie prawa zastrzeżone.</span>
+      <span class="flex gap-4"><a href="#" class="hover:text-ink-700 transition-colors duration-160">Redakcja</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Reklama</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Regulamin</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // lucide icons
+  window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+  window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });
+
+  // mobile menu
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.innerHTML = open ? '<i data-lucide="x" class="w-4.5 h-4.5"></i>' : '<i data-lucide="menu" class="w-4.5 h-4.5"></i>';
+      if (window.lucide) lucide.createIcons();
+    });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.innerHTML = '<i data-lucide="menu" class="w-4.5 h-4.5"></i>';
+      if (window.lucide) lucide.createIcons();
+    }));
+  })();
+
+  // scroll reveal with stagger — exposed as window.observeReveal so dynamically
+  // inserted cards (e.g. news articles loaded from JSON) can opt in after render.
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const group = el.parentElement ? el.parentElement.querySelectorAll('.reveal') : [el];
+        const idx = Array.from(group).indexOf(el);
+        el.style.transitionDelay = Math.min(idx * 60, 240) + 'ms';
+        el.classList.add('in');
+        revealIO.unobserve(el);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '-40px' });
+  window.observeReveal = function (el) {
+    if (reducedMotion) { el.classList.add('in'); return; }
+    revealIO.observe(el);
+  };
+  document.querySelectorAll('.reveal').forEach(el => window.observeReveal(el));
+
+  // load news articles from data/articles.json and render them into #newsGrid
+  (function () {
+    const grid = document.getElementById('newsGrid');
+    const empty = document.getElementById('newsEmpty');
+    if (!grid) return;
+
+    const TAG_COLORS = {
+      'Kierunki': '#3454c7',
+      'Bezpieczeństwo': '#a02f2f',
+      'Loty': '#345a44',
+      'Formalności': '#6d3fc9',
+      'Pogoda': '#b34a22',
+      'Trendy': '#33455e',
+    };
+
+    fetch('data/articles.json', { cache: 'no-store' })
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(articles => {
+        if (!Array.isArray(articles) || !articles.length) { empty.classList.remove('hidden'); return; }
+
+        // najnowsze najpierw
+        articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        grid.innerHTML = articles.map((a, i) => {
+          const color = a.tagColor || TAG_COLORS[a.tag] || '#c65a2e';
+          const gradient = a.gradient || 'linear-gradient(160deg,#8c9db3,#d8d2c4 60%,#f3f1ec)';
+          return `
+          <article class="reveal group bg-white border border-ink-900/[0.07] rounded-3xl overflow-hidden hover:shadow-soft hover:-translate-y-1 transition-all duration-300 ease-out">
+            <a href="${a.url}" class="block">
+              <div class="relative aspect-[16/10] overflow-hidden" style="background-image:${gradient};background-size:cover;">
+                ${a.image ? `<img src="${a.image}" alt="" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">` : ''}
+              </div>
+              <div class="p-5">
+                <span class="inline-block text-[11px] font-bold uppercase tracking-wide mb-2" style="color:${color}">${a.tag || ''}</span>
+                <h3 class="font-display font-bold text-[15.5px] leading-snug text-ink-950 mb-2">${a.title}</h3>
+                <p class="text-[13px] text-ink-500 leading-relaxed mb-3">${a.excerpt || ''}</p>
+                <div class="text-[11px] text-ink-400 uppercase tracking-wide">${a.readTime || ''} · ${a.dateLabel || ''}</div>
+              </div>
+            </a>
+          </article>`;
+        }).join('');
+
+        grid.querySelectorAll('.reveal').forEach(el => window.observeReveal(el));
+      })
+      .catch(err => {
+        console.warn('Nie udało się wczytać artykułów:', err);
+        empty.classList.remove('hidden');
+      });
+  })();
+
+  // interactive ranking widget
+  (function () {
+    const list = document.getElementById('rankList');
+    const toggle = document.getElementById('rankToggle');
+    if (!list || !toggle) return;
+
+    const DATA = [
+      { name: 'Podgorica', flag: '🇲🇪', flight: 480, hotel: 1200 },
+      { name: 'Tirana', flag: '🇦🇱', flight: 520, hotel: 1050 },
+      { name: 'Split', flag: '🇭🇷', flight: 610, hotel: 1750 },
+      { name: 'Faro', flag: '🇵🇹', flight: 590, hotel: 1620 },
+      { name: 'Ateny', flag: '🇬🇷', flight: 640, hotel: 1580 },
+      { name: 'Palma', flag: '🇪🇸', flight: 720, hotel: 1980 },
+    ];
+    let metric = 'total';
+    function valueFor(d) { return metric === 'flight' ? d.flight : metric === 'hotel' ? d.hotel : d.flight + d.hotel; }
+
+    function render() {
+      const sorted = [...DATA].sort((a, b) => valueFor(a) - valueFor(b));
+      const max = Math.max(...sorted.map(valueFor));
+      list.innerHTML = sorted.map((d, i) => `
+        <div class="flex items-center gap-4 py-3">
+          <span class="font-display italic text-ink-400 text-[13px] w-6 shrink-0">${String(i + 1).padStart(2, '0')}</span>
+          <span class="text-[13.5px] font-semibold text-ink-900 w-32 shrink-0 truncate"><span class="mr-1.5">${d.flag}</span>${d.name}</span>
+          <span class="flex-1 h-2 bg-ink-100 rounded-full overflow-hidden"><span class="rank-bar-fill block h-full bg-accent-500 rounded-full" style="width:0%" data-w="${(valueFor(d) / max * 100).toFixed(0)}"></span></span>
+          <span class="text-[12.5px] text-ink-500 w-20 text-right tabular-nums shrink-0">${valueFor(d).toLocaleString('pl-PL')} zł</span>
+        </div>
+      `).join('');
+      requestAnimationFrame(() => {
+        list.querySelectorAll('.rank-bar-fill').forEach(el => { el.style.width = el.dataset.w + '%'; });
+      });
+    }
+
+    toggle.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        toggle.querySelectorAll('button').forEach(b => { b.classList.remove('on', 'bg-ink-900', 'text-white'); });
+        btn.classList.add('on', 'bg-ink-900', 'text-white');
+        metric = btn.dataset.metric;
+        render();
+      });
+    });
+    toggle.querySelector('button.on').classList.add('bg-ink-900', 'text-white');
+    render();
+  })();
+
+  // interactive destination quiz
+  (function () {
+    const box = document.getElementById('quizBox');
+    if (!box) return;
+    const steps = Array.from(box.querySelectorAll('.quiz-step'));
+    const progressEls = Array.from(box.querySelectorAll('#quizProgress > span'));
+    const result = document.getElementById('quizResult');
+    const scores = { plaza: 0, miasto: 0, gory: 0 };
+    let stepIndex = 0;
+
+    const OUTCOMES = {
+      plaza: { title: 'Chorwacja', label: 'Twoja rekomendacja · Plaża', text: 'Krystalicznie czyste wybrzeże Adriatyku, ciepła woda do października i dziesiątki wysp w zasięgu promu. Idealne miejsce, żeby zwolnić i nic nie robić.', img: 'https://picsum.photos/seed/croatia-beach-quiz/700/560' },
+      miasto: { title: 'Lizbona, Portugalia', label: 'Twoja rekomendacja · Miasto', text: 'Strome uliczki, tramwaje, świetna kuchnia i jedne z najniższych cen wśród stolic Europy Zachodniej. Miasto stworzone do zwiedzania pieszo.', img: 'https://picsum.photos/seed/lisbon-street-quiz/700/560' },
+      gory: { title: 'Norwegia', label: 'Twoja rekomendacja · Góry', text: 'Fiordy, szlaki bez końca i niebo, które latem prawie nie ciemnieje. Wymagająca, ale niezapomniana podróż dla miłośników natury.', img: 'https://picsum.photos/seed/norway-fjord-quiz/700/560' },
+    };
+
+    function showStep(i) {
+      steps.forEach(s => s.classList.toggle('active', Number(s.dataset.step) === i));
+      progressEls.forEach(p => {
+        const bar = p.querySelector('span');
+        bar.style.width = Number(p.dataset.step) < i ? '100%' : '0%';
+      });
+      result.classList.remove('active');
+      stepIndex = i;
+    }
+
+    function finish() {
+      steps.forEach(s => s.classList.remove('active'));
+      progressEls.forEach(p => { p.querySelector('span').style.width = '100%'; });
+      const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+      const outcome = OUTCOMES[winner];
+      document.getElementById('quizResultLabel').textContent = outcome.label;
+      document.getElementById('quizResultTitle').textContent = outcome.title;
+      document.getElementById('quizResultText').textContent = outcome.text;
+      document.getElementById('quizResultMedia').innerHTML = `<img src="${outcome.img}" alt="${outcome.title}" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover">`;
+      result.classList.add('active');
+    }
+
+    box.querySelectorAll('.quiz-opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        scores.plaza += Number(btn.dataset.plaza || 0);
+        scores.miasto += Number(btn.dataset.miasto || 0);
+        scores.gory += Number(btn.dataset.gory || 0);
+        if (stepIndex < steps.length - 1) showStep(stepIndex + 1); else finish();
+      });
+    });
+
+    const restartBtn = document.getElementById('quizRestart');
+    if (restartBtn) restartBtn.addEventListener('click', () => { scores.plaza = 0; scores.miasto = 0; scores.gory = 0; showStep(0); });
+    showStep(0);
+  })();
+
+  // app showcase auto-rotating tabs
+  (function () {
+    const tabs = Array.from(document.querySelectorAll('#showcaseTabs .showcase-tab'));
+    const screens = Array.from(document.querySelectorAll('.app-screen'));
+    if (!tabs.length || !screens.length) return;
+    const DURATION = 5000;
+    let current = 0, timer = null;
+
+    function setProgressState(i) {
+      tabs.forEach((tab, idx) => {
+        const bar = tab.querySelector('.showcase-progress > div');
+        bar.classList.remove('filling', 'filled');
+        void bar.offsetWidth;
+        if (idx < i) bar.classList.add('filled');
+        if (idx === i && !reducedMotion) bar.classList.add('filling');
+        if (idx === i && reducedMotion) bar.classList.add('filled');
+      });
+    }
+    function show(i) {
+      current = (i + tabs.length) % tabs.length;
+      tabs.forEach((tab, idx) => {
+        const on = idx === current;
+        tab.querySelector('.showcase-tab-icon').classList.toggle('text-accent-300', on);
+        tab.querySelector('.showcase-tab-icon').classList.toggle('text-ink-500', !on);
+        tab.querySelector('.showcase-tab-title').classList.toggle('text-white', on);
+        tab.querySelector('.showcase-tab-title').classList.toggle('text-ink-300', !on);
+        const desc = tab.querySelector('.showcase-tab-desc');
+        desc.style.maxHeight = on ? '60px' : '0px';
+        desc.style.opacity = on ? '1' : '0';
+        desc.style.marginTop = on ? '3px' : '0px';
+      });
+      screens.forEach((scr) => scr.classList.toggle('active', Number(scr.dataset.screen) === current));
+      setProgressState(current);
+    }
+    function advance() { show(current + 1); }
+    function restart() { clearInterval(timer); if (!reducedMotion) timer = setInterval(advance, DURATION); }
+    tabs.forEach((tab) => tab.addEventListener('click', () => { show(Number(tab.dataset.index)); restart(); }));
+    show(0);
+    restart();
+  })();
+
+  // interactive budget calculator
+  (function () {
+    const daysInput = document.getElementById('calcDays');
+    const peopleInput = document.getElementById('calcPeople');
+    const styleBox = document.getElementById('calcStyle');
+    if (!daysInput || !peopleInput || !styleBox) return;
+    const amountEl = document.getElementById('calcAmount');
+    const subEl = document.getElementById('calcSub');
+    const daysValEl = document.getElementById('calcDaysVal');
+    const peopleValEl = document.getElementById('calcPeopleVal');
+    let perDay = 150;
+
+    function styleLabel() { return styleBox.querySelector('button.on').textContent; }
+    function update() {
+      const days = Number(daysInput.value);
+      const people = Number(peopleInput.value);
+      daysValEl.textContent = days;
+      peopleValEl.textContent = people;
+      const total = perDay * days * people;
+      amountEl.textContent = total.toLocaleString('pl-PL');
+      subEl.textContent = `${days} dni · ${people} ${people === 1 ? 'osoba' : 'osoby'} · ${styleLabel().toLowerCase()} · ok. ${perDay} zł/os./dzień`;
+    }
+    daysInput.addEventListener('input', update);
+    peopleInput.addEventListener('input', update);
+    styleBox.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        styleBox.querySelectorAll('button').forEach(b => b.classList.remove('on', 'bg-ink-900', 'text-white'));
+        btn.classList.add('on', 'bg-ink-900', 'text-white');
+        perDay = Number(btn.dataset.mult);
+        update();
+      });
+    });
+    styleBox.querySelector('button.on').classList.add('bg-ink-900', 'text-white');
+    update();
+  })();
+</script>
+
+</body>
+</html>
