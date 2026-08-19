@@ -1,5 +1,18 @@
 [
   {
+    "slug": "test-czy-automatyzacja-dziala",
+    "title": "Test: czy nowy artykuł pojawia się na stronie głównej automatycznie?",
+    "excerpt": "To jest testowy wpis, który sprawdza, czy dodanie pliku do repozytorium na GitHubie wystarczy, żeby nowy news pojawił się na stronie po wdrożeniu przez Netlify.",
+    "tag": "Test",
+    "tagColor": "#c65a2e",
+    "image": "https://picsum.photos/seed/test-artykul-wo/700/440",
+    "gradient": "linear-gradient(160deg,#c65a2e,#eeab84 60%,#fbe3d6)",
+    "date": "2026-08-19",
+    "dateLabel": "19 sierpnia 2026",
+    "readTime": "1 min",
+    "url": "artykuly/test-czy-automatyzacja-dziala.html"
+  },
+  {
     "slug": "balkany-bija-rekordy-popularnosci",
     "title": "Bałkany biją rekordy popularności — dlaczego Czarnogóra i Albania kradną show Chorwacji",
     "excerpt": "Tańsze noclegi i mniej tłumów przyciągają coraz więcej polskich turystów na południe kontynentu.",
