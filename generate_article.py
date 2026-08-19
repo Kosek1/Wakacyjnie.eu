@@ -22,6 +22,7 @@ Ten skrypt NIE modyfikuje data/articles.json — to osobny, prosty plik,
 który celowo łatwo edytować ręcznie albo z pomocą Claude'a.
 """
 import html
+import json
 import re
 from pathlib import Path
 
@@ -53,6 +54,10 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
 <html lang="pl">
 {head}
 <body class="text-ink-900 antialiased bg-[#faf8f3]">
+<!-- Metadane tego artykułu — czyta je build.js przy każdym wdrożeniu na Netlify,
+     żeby automatycznie zbudować data/articles.json (kartę na stronie głównej).
+     Nie trzeba niczego innego wgrywać ani edytować — wystarczy ten jeden plik. -->
+<script type="application/json" id="article-meta">{meta_json}</script>
 {header}
 
 <main>
@@ -123,6 +128,9 @@ def make_head(title, description):
     return h
 
 
+CARD_IMAGE_SUFFIX = "/700/440"  # mniejszy rozmiar do kart na stronie głównej
+
+
 def build_article(a):
     body_html = "\n        ".join(f"<p>{p}</p>" for p in a["body"])
     image_tag = ""
@@ -131,8 +139,29 @@ def build_article(a):
             f'<img src="{a["image"]}" alt="" loading="lazy" onerror="this.remove()" '
             f'class="absolute inset-0 w-full h-full object-cover">'
         )
+
+    # metadane, które build.js wyciągnie z tej strony i wpisze do data/articles.json —
+    # to jest jedyne miejsce prawdy o tym artykule, nie trzeba nic dublować ręcznie.
+    card_image = a.get("image", "")
+    if card_image:
+        card_image = re.sub(r"/\d+/\d+$", CARD_IMAGE_SUFFIX, card_image)
+    meta = {
+        "slug": a["slug"],
+        "title": a["title"],
+        "excerpt": a["excerpt"],
+        "tag": a["tag"],
+        "tagColor": a.get("tagColor", "#c65a2e"),
+        "image": card_image,
+        "gradient": a.get("gradient", "linear-gradient(160deg,#8c9db3,#d8d2c4 60%,#f3f1ec)"),
+        "date": a["date"],
+        "dateLabel": a.get("dateLabel", ""),
+        "readTime": a.get("readTime", ""),
+        "url": f"artykuly/{a['slug']}.html",
+    }
+
     out = ARTICLE_TEMPLATE.format(
         head=make_head(a["title"], a["excerpt"]),
+        meta_json=json.dumps(meta, ensure_ascii=False),
         header=HEADER,
         footer=FOOTER,
         tag=a["tag"],
@@ -151,6 +180,58 @@ def build_article(a):
 
 ARTICLES = [
     {
+        "slug": "gdzie-zobaczyc-dzikie-zwierzeta-w-afryce",
+        "title": "Gdzie zobaczyć dzikie zwierzęta w Afryce? Przewodnik po najlepszych parkach na safari",
+        "excerpt": "Słonie, lwy, żyrafy i tysiące flamingów w jednym kadrze — sprawdzamy, które parki narodowe dają największą szansę na spotkanie Wielkiej Piątki.",
+        "tag": "Natura",
+        "tagColor": "#2f7d4f",
+        "image": "https://picsum.photos/seed/africa-safari-elephants/1200/700",
+        "gradient": "linear-gradient(160deg,#c99a4a,#8f9c5c 55%,#5c6b45)",
+        "date": "2026-08-20",
+        "dateLabel": "20 sierpnia 2026",
+        "readTime": "6 min",
+        "body": [
+            "Afryka pozostaje najpopularniejszym kierunkiem safari na świecie, a serce tej turystyki to wciąż wschodnia i południowa część kontynentu. Najbardziej znane parki narodowe — Serengeti w Tanzanii, sąsiadująca z nim Maasai Mara w Kenii oraz Kruger w RPA — oferują największą koncentrację dużych ssaków na kilometr kwadratowy, co przekłada się na realnie wysoką szansę zobaczenia tzw. Wielkiej Piątki: lwa, słonia, nosorożca, bawołu i lamparta.",
+            "Najlepszy moment na wyjazd zależy od tego, co chcemy zobaczyć. Wielka Migracja — coroczna wędrówka ponad dwóch milionów zebr i antylop gnu między Serengeti a Maasai Mara — osiąga punkt kulminacyjny zwykle między lipcem a wrześniem, kiedy stada przeprawiają się przez rzekę Mara, jedną z najbardziej dramatycznych scen w przyrodzie. Z kolei pora sucha (czerwiec–październik w większości regionów) ułatwia obserwacje zwierząt, które w tym czasie gromadzą się przy nielicznych źródłach wody.",
+            "Warto też zajrzeć poza najbardziej oczywiste kierunki. Delta Okavango w Botswanie oferuje safari wodne łodzią zamiast klasycznego jeepa, park Etosha w Namibii słynie z rozświetlonych słońcem solnisk, przy których łatwo o spotkanie ze słoniami i lwami, a rezerwat Ngorongoro w Tanzanii — dawny krater wulkanu — to jeden z niewielu obszarów, gdzie w jednym miejscu można zobaczyć niemal wszystkie gatunki charakterystyczne dla afrykańskiej sawanny, łącznie z rzadkimi nosorożcami czarnymi.",
+            "Planując wyjazd, dobrze wybrać park w towarzystwie lokalnego, licencjonowanego przewodnika i unikać samodzielnych wypraw poza wyznaczone trasy — to nie tylko kwestia bezpieczeństwa, ale i ochrony samych zwierząt przed nadmiernym niepokojeniem. Coraz więcej parków oferuje też opcje odpowiedzialnej turystyki, wspierające lokalne społeczności i programy ochrony gatunków zagrożonych, takich jak nosorożec czarny czy dziki pies afrykański.",
+        ],
+    },
+    {
+        "slug": "kocham-claudie",
+        "title": "Redakcja wyznaje: kochamy Claudię",
+        "excerpt": "Krótki, testowy wpis — bo dobra podróż zaczyna się od dobrej pomocy przy planowaniu.",
+        "tag": "Test",
+        "tagColor": "#c65a2e",
+        "image": "https://picsum.photos/seed/kocham-claudie-wo/1200/700",
+        "gradient": "linear-gradient(160deg,#c65a2e,#eeab84 60%,#fbe3d6)",
+        "date": "2026-08-19",
+        "dateLabel": "19 sierpnia 2026",
+        "readTime": "1 min",
+        "body": [
+            "To bardzo krótki, próbny wpis: kochamy Claudię.",
+            "Bez niej ta strona nie miałaby ani newsów, ani aplikacji do organizowania wakacji.",
+            "Koniec testu — możesz śmiało usunąć ten artykuł, gdy tylko potwierdzisz, że się pojawił.",
+        ],
+    },
+    {
+        "slug": "test-czy-automatyzacja-dziala",
+        "title": "Test: czy nowy artykuł pojawia się na stronie głównej automatycznie?",
+        "excerpt": "To jest testowy wpis, który sprawdza, czy dodanie pliku do repozytorium na GitHubie wystarczy, żeby nowy news pojawił się na stronie po wdrożeniu przez Netlify.",
+        "tag": "Test",
+        "tagColor": "#c65a2e",
+        "image": "https://picsum.photos/seed/test-artykul-wo/1200/700",
+        "gradient": "linear-gradient(160deg,#c65a2e,#eeab84 60%,#fbe3d6)",
+        "date": "2026-08-19",
+        "dateLabel": "19 sierpnia 2026",
+        "readTime": "1 min",
+        "body": [
+            "Jeśli widzisz tę stronę pod adresem /artykuly/test-czy-automatyzacja-dziala.html, a karta z tym artykułem pojawiła się też na górze listy newsów na stronie głównej — to znaczy, że cały mechanizm działa dokładnie tak, jak powinien.",
+            "Kolejne artykuły będziemy dodawać dokładnie w ten sam sposób: nowy plik w folderze artykuly/ plus nowy wpis w data/articles.json, wgrane razem do repozytorium na GitHubie.",
+            "Ten wpis możesz spokojnie usunąć z repozytorium, gdy już potwierdzisz, że wszystko działa — wystarczy skasować plik artykuly/test-czy-automatyzacja-dziala.html oraz odpowiadający mu obiekt w data/articles.json.",
+        ],
+    },
+    {
         "slug": "balkany-bija-rekordy-popularnosci",
         "title": "Bałkany biją rekordy popularności — dlaczego Czarnogóra i Albania kradną show Chorwacji",
         "excerpt": "Tańsze noclegi i mniej tłumów przyciągają coraz więcej polskich turystów na południe kontynentu.",
@@ -158,6 +239,7 @@ ARTICLES = [
         "tagColor": "#3454c7",
         "image": "https://picsum.photos/seed/montenegro-bay/1200/700",
         "gradient": "linear-gradient(160deg,#6f93b8,#cfd9c8 60%,#e7ded0)",
+        "date": "2026-08-16",
         "dateLabel": "16 sierpnia 2026",
         "readTime": "4 min",
         "body": [
@@ -174,6 +256,7 @@ ARTICLES = [
         "tagColor": "#a02f2f",
         "image": "https://picsum.photos/seed/morocco-desert/1200/700",
         "gradient": "linear-gradient(160deg,#caa06a,#e7ded0 60%,#f3f1ec)",
+        "date": "2026-08-15",
         "dateLabel": "15 sierpnia 2026",
         "readTime": "3 min",
         "body": [
@@ -190,6 +273,7 @@ ARTICLES = [
         "tagColor": "#345a44",
         "image": "https://picsum.photos/seed/airplane-wing-sky/1200/700",
         "gradient": "linear-gradient(160deg,#4f7cff,#a9c6de 60%,#e7ded0)",
+        "date": "2026-08-14",
         "dateLabel": "14 sierpnia 2026",
         "readTime": "3 min",
         "body": [
@@ -206,6 +290,7 @@ ARTICLES = [
         "tagColor": "#6d3fc9",
         "image": "https://picsum.photos/seed/airport-terminal/1200/700",
         "gradient": "linear-gradient(160deg,#8b5cf6,#c9c6f0 60%,#ece8f9)",
+        "date": "2026-08-13",
         "dateLabel": "13 sierpnia 2026",
         "readTime": "5 min",
         "body": [
@@ -222,6 +307,7 @@ ARTICLES = [
         "tagColor": "#b34a22",
         "image": "https://picsum.photos/seed/caribbean-palm-storm/1200/700",
         "gradient": "linear-gradient(160deg,#ff9457,#ffcaa3 60%,#fff0e8)",
+        "date": "2026-08-12",
         "dateLabel": "12 sierpnia 2026",
         "readTime": "4 min",
         "body": [
@@ -238,6 +324,7 @@ ARTICLES = [
         "tagColor": "#33455e",
         "image": "https://picsum.photos/seed/european-old-town/1200/700",
         "gradient": "linear-gradient(160deg,#33455e,#7d859c 60%,#c7cedb)",
+        "date": "2026-08-11",
         "dateLabel": "11 sierpnia 2026",
         "readTime": "5 min",
         "body": [
