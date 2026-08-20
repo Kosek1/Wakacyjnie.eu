@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wietnam: kraj, który ma wszystko — od zatoki Ha Long po tarasy ryżowe Sapa — Wakacyjny Organizer</title>
+<meta name="description" content="Wapienne skały wyrastające z morza, lampiony odbijające się w kanałach Hoi An, zielone tarasy ryżowe w górach i najlepsza kuchnia uliczna Azji — sprawdzamy, dlaczego Wietnam zasługuje na miejsce na szczycie listy wymarzonych kierunków." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          display: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui'],
+        },
+        colors: {
+          ink: {
+            950: '#141310',
+            900: '#1c1a16',
+            800: '#2a2722',
+            700: '#3e3a32',
+            600: '#5c5648',
+            500: '#7a7364',
+            400: '#a39c8c',
+            300: '#c7c0b1',
+            200: '#e2ddd0',
+            100: '#efebe1',
+            50: '#faf8f3',
+          },
+          accent: {
+            50: '#fdf3ee',
+            100: '#fbe3d6',
+            300: '#eeab84',
+            500: '#c65a2e',
+            600: '#b34a22',
+            700: '#953b1a',
+          },
+          leaf: {
+            500: '#3f6a52',
+            600: '#345a44',
+          },
+        },
+        boxShadow: {
+          soft: '0 1px 2px rgba(20,19,16,0.04), 0 12px 28px -8px rgba(20,19,16,0.10)',
+          softer: '0 1px 1px rgba(20,19,16,0.03), 0 6px 16px -6px rgba(20,19,16,0.08)',
+          lifted: '0 30px 70px -20px rgba(20,19,16,0.35)',
+        },
+        transitionTimingFunction: {
+          out: 'cubic-bezier(0.23, 1, 0.32, 1)',
+          inout: 'cubic-bezier(0.77, 0, 0.175, 1)',
+        },
+        borderRadius: {
+          '4xl': '2rem',
+        },
+      },
+    },
+  };
+</script>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+<style>
+  :root{
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  html{ scroll-behavior: smooth; }
+  body{ font-family:'Inter', sans-serif; background:#faf8f3; }
+  h1,h2,h3,h4,h5,.font-display{ font-family:'Plus Jakarta Sans', sans-serif; }
+
+  ::selection{ background:#eeab84; color:#1c1a16; }
+
+  /* focus ring — visible, calm */
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline: 2px solid #c65a2e;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* reveal-on-scroll */
+  .reveal{ opacity:0; transform: translateY(14px); transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out); }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ transition: opacity 200ms ease !important; transform:none !important; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  /* press feedback for interactive controls */
+  .pressable{ transition: transform 160ms var(--ease-out); }
+  .pressable:active{ transform: scale(0.97); }
+
+  /* range slider */
+  input[type="range"]{ -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:99px; background:#e2ddd0; outline:none; }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%;
+    background:#c65a2e; border:3px solid #fff; box-shadow:0 1px 4px rgba(20,19,16,0.35);
+    cursor:pointer; transition: transform 160ms var(--ease-out);
+  }
+  input[type="range"]:active::-webkit-slider-thumb{ transform: scale(1.15); }
+  input[type="range"]::-moz-range-thumb{
+    width:16px; height:16px; border-radius:50%; background:#c65a2e; border:3px solid #fff;
+    box-shadow:0 1px 4px rgba(20,19,16,0.35); cursor:pointer;
+  }
+
+  /* ranking bars */
+  .rank-bar-fill{ transition: width 620ms var(--ease-out); }
+
+  /* quiz */
+  .quiz-step{ display:none; }
+  .quiz-step.active{ display:block; }
+  .quiz-result-panel{ display:none; }
+  .quiz-result-panel.active{ display:grid; }
+
+  /* showcase tabs */
+  .app-screen{ position:absolute; inset:0; opacity:0; transform: scale(1.02); filter: blur(6px); transition: opacity 480ms var(--ease-in-out), transform 480ms var(--ease-in-out), filter 480ms var(--ease-in-out); pointer-events:none; }
+  .app-screen.active{ opacity:1; transform: scale(1); filter: blur(0); pointer-events:auto; }
+  .showcase-progress > div{ height:100%; width:0%; background:#eeab84; }
+  .showcase-progress > div.filling{ animation: fillbar 5000ms linear forwards; }
+  .showcase-progress > div.filled{ width:100%; }
+  @keyframes fillbar{ from{ width:0%; } to{ width:100%; } }
+
+  /* mobile menu */
+  #mobileMenu{ transform: translateY(-8px); opacity:0; pointer-events:none; transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out); }
+  #mobileMenu.open{ transform: translateY(0); opacity:1; pointer-events:auto; }
+
+  .trip-card{ background-size:cover; background-position:center; }
+  .glass-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+  /* subtle float animation for hero decorative chips */
+  @keyframes floaty{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
+  .float-slow{ animation: floaty 6s var(--ease-in-out) infinite; }
+  .float-slower{ animation: floaty 8s var(--ease-in-out) infinite; animation-delay: .8s; }
+</style>
+</head>
+<body class="text-ink-900 antialiased bg-[#faf8f3]">
+<!-- Metadane tego artykułu — czyta je build.js na Netlify przy każdym
+     wdrożeniu, żeby automatycznie zbudować data/articles.json (karty na
+     stronie głównej). Nie edytuj tego bloku ręcznie. -->
+<script type="application/json" id="article-meta">{"slug": "wietnam-najpiekniejsze-miejsca", "title": "Wietnam: kraj, który ma wszystko — od zatoki Ha Long po tarasy ryżowe Sapa", "excerpt": "Wapienne skały wyrastające z morza, lampiony odbijające się w kanałach Hoi An, zielone tarasy ryżowe w górach i najlepsza kuchnia uliczna Azji — sprawdzamy, dlaczego Wietnam zasługuje na miejsce na szczycie listy wymarzonych kierunków.", "tag": "Kierunki", "tagColor": "#3454c7", "image": "https://images.pexels.com/photos/36551013/pexels-photo-36551013.jpeg?auto=compress&cs=tinysrgb&w=1200", "gradient": "linear-gradient(160deg,#0f4c5c,#3a9188 55%,#d9e8d3)", "date": "2026-08-20", "dateLabel": "20 sierpnia 2026", "readTime": "9 min", "url": "artykuly/wietnam-najpiekniejsze-miejsca.html"}</script>
+<header id="site-header" class="sticky top-0 z-50 bg-[#faf8f3]/80 backdrop-blur-md border-b border-ink-900/[0.06]">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <nav class="flex items-center justify-between h-16 sm:h-[72px]">
+      <a href="../index.html" class="flex items-center gap-2.5 shrink-0">
+        <span class="grid place-items-center w-8 h-8 rounded-lg bg-ink-900 text-white">
+          <i data-lucide="palmtree" class="w-4 h-4"></i>
+        </span>
+        <span class="font-display font-bold text-[17px] tracking-tight">Wakacyjny Organizer</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-9 text-[13.5px] font-medium text-ink-600">
+        <a href="../index.html#newsy" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="../index.html#ciekawostki" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="../index.html#aplikacja" class="hover:text-ink-900 transition-colors duration-160">Aplikacja</a>
+        <a href="../index.html#poradniki" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="../index.html#pobierz" class="pressable hidden sm:inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white text-[13.5px] font-semibold px-4 py-2.5 rounded-full shadow-softer transition-colors duration-160">
+          Pobierz aplikację
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+        <button id="menuBtn" aria-label="Otwórz menu" aria-expanded="false" class="pressable md:hidden grid place-items-center w-10 h-10 rounded-full border border-ink-900/10">
+          <i data-lucide="menu" class="w-4.5 h-4.5"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden absolute inset-x-0 top-full bg-[#faf8f3]/95 backdrop-blur-md border-b border-ink-900/[0.06] shadow-soft">
+    <div class="max-w-7xl mx-auto px-5 py-5 flex flex-col gap-1 text-[15px] font-medium">
+      <a href="../index.html#newsy" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Newsy</a>
+      <a href="../index.html#ciekawostki" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Ciekawostki</a>
+      <a href="../index.html#aplikacja" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Aplikacja</a>
+      <a href="../index.html#poradniki" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poradniki</a>
+      <a href="../index.html#pobierz" class="mt-2 text-center bg-ink-900 text-white px-3 py-3 rounded-full font-semibold">Pobierz aplikację</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <article class="py-14 sm:py-20">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      <a href="../index.html#newsy" class="flex w-fit items-center gap-2 text-[13px] font-semibold text-ink-500 hover:text-ink-900 transition-colors duration-160 mb-8">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Wróć do newsów
+      </a>
+
+      <span class="inline-block text-[11.5px] font-bold uppercase tracking-wide mb-3" style="color:#3454c7">Kierunki</span>
+      <h1 class="font-display font-extrabold tracking-tight text-[clamp(1.7rem,4.2vw,2.6rem)] leading-[1.12] text-ink-950 mb-4">Wietnam: kraj, który ma wszystko — od zatoki Ha Long po tarasy ryżowe Sapa</h1>
+      <div class="text-[12.5px] text-ink-400 uppercase tracking-wide mb-8">9 min · 20 sierpnia 2026 · Redakcja WO</div>
+
+      <div class="relative aspect-[16/9] rounded-3xl overflow-hidden border border-ink-900/[0.07] mb-10" style="background-image:linear-gradient(160deg,#0f4c5c,#3a9188 55%,#d9e8d3);background-size:cover;">
+        <img src="https://images.pexels.com/photos/36551013/pexels-photo-36551013.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover">
+      </div>
+
+      <div class="prose-article text-[16px] leading-[1.75] text-ink-700 space-y-5">
+        <p>Wietnam bywa niedoceniany w cieniu popularniejszej Tajlandii, a to błąd — ten wąski, rozciągnięty na ponad 1600 kilometrów kraj mieści w sobie więcej kontrastów niż niejeden kontynent. Na północy góry spowite mgłą i zielone tarasy ryżowe, w środkowej części cesarskie miasta i lampionowe uliczki, na południu gęsta sieć kanałów Delty Mekongu i tropikalne plaże. Do tego kuchnia uznawana przez wielu krytyków kulinarnych za najlepszą w Azji Południowo-Wschodniej — i ceny, które nawet w 2026 roku wciąż należą do najniższych w regionie.</p>
+        <p>Zatoka Ha Long na północnym wschodzie kraju to najbardziej rozpoznawalny krajobraz Wietnamu i jeden z nielicznych widoków, które w rzeczywistości robią jeszcze większe wrażenie niż na zdjęciach. Niemal dwa tysiące wapiennych wysp i skałek wyrasta prosto ze szmaragdowej wody Zatoki Tonkińskiej, tworząc scenerię znaną z filmów o Jamesie Bondzie. Najlepiej zwiedzać ją na dwudniowym rejsie zabytkową dżonką, z noclegiem na pokładzie, kajakowaniem między skałami i wizytą w jednej z licznych jaskiń, takich jak Hang Sung Sot — Jaskinia Zaskoczenia. Mniej zatłoczoną alternatywą jest sąsiednia zatoka Lan Ha, z niemal identycznym krajobrazem, ale wyraźnie mniejszym ruchem turystycznym.</p>
+        <p><figure class="my-2"><img src="https://images.pexels.com/photos/36551013/pexels-photo-36551013.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Wapienne skały wyrastające z wody w zatoce Ha Long w Wietnamie" loading="lazy" class="w-full rounded-2xl object-cover aspect-[16/9]"><figcaption class="mt-2 text-[13px] text-ink-400">Zatoka Ha Long — niemal dwa tysiące wapiennych wysp na wodach Zatoki Tonkińskiej.</figcaption></figure></p>
+        <p>Hoi An w środkowej części kraju to dawny port handlowy, który przez wieki przyjmował kupców z Chin, Japonii i Europy — i właśnie ta mieszanka kultur ukształtowała jego charakterystyczną architekturę, dziś wpisaną na listę UNESCO. Po zmroku setki kolorowych lampionów rozświetlają wąskie uliczki starówki i odbijają się w wodach rzeki Thu Bon, a mieszkańcy puszczają na wodę małe papierowe łódeczki ze świeczkami. W noc pełni księżyca, podczas comiesięcznego Lantern Festival, całe miasto gasi światła elektryczne na rzecz samych lampionów — to jeden z najbardziej malowniczych wieczorów, jakie można spędzić w Azji.</p>
+        <p><figure class="my-2"><img src="https://images.pexels.com/photos/6558641/pexels-photo-6558641.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Kolorowe lampiony na nocnym targu w Hoi An" loading="lazy" class="w-full rounded-2xl object-cover aspect-[16/9]"><figcaption class="mt-2 text-[13px] text-ink-400">Nocny targ w Hoi An — setki lampionów rozświetlających starówkę wpisaną na listę UNESCO.</figcaption></figure></p>
+        <p>Zupełnie inny Wietnam czeka w górach na dalekiej północy. Sapa i okoliczne wioski w prowincji Lào Cai słyną z tarasowych pól ryżowych wyrzeźbionych w zboczach gór przez pokolenia mniejszości etnicznych Hmong i Dao. Najlepszy moment na trekking wśród tarasów to wrzesień, kiedy ryż dojrzewa i zbocza mienią się złotem, choć równie efektowne są one w maju i czerwcu, zaraz po zalaniu pól wodą, gdy odbija się w nich niebo. Punktem widokowym samym w sobie jest też Fansipan — najwyższy szczyt Indochin (3143 m n.p.m.), na który można wjechać kolejką linową, jedną z najdłuższych na świecie.</p>
+        <p><figure class="my-2"><img src="https://images.pexels.com/photos/27629365/pexels-photo-27629365.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Zielone tarasy ryżowe w górach w okolicach Sapa w Wietnamie" loading="lazy" class="w-full rounded-2xl object-cover aspect-[16/9]"><figcaption class="mt-2 text-[13px] text-ink-400">Tarasy ryżowe w prowincji Lào Cai koło Sapa — krajobraz kształtowany przez pokolenia górskich społeczności.</figcaption></figure></p>
+        <p>Hanoi, tysiącletnia stolica kraju, to miasto, w którym warto się po prostu zgubić na kilka godzin. Stara Dzielnica z 36 uliczkami, z których każda tradycyjnie handlowała jednym rodzajem towaru, dziś tętni skuterami, straganami i knajpkami serwującymi pho na plastikowych stołeczkach ustawionych wprost na chodniku. To właśnie w Hanoi i okolicach powstała najsłynniejsza wietnamska zupa, a miska aromatycznego bulionu z makaronem ryżowym kosztuje na ulicy zwykle 30–50 tysięcy dongów, czyli mniej niż 5 złotych. Wieczorem warto zajrzeć na Jezioro Zwrócenia Miecza, gdzie lokalsi grają w badmintona i tańczą, gdy tylko zrobi się chłodniej.</p>
+        <p><figure class="my-2"><img src="https://images.pexels.com/photos/2977435/pexels-photo-2977435.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Kolorowy uliczny targ z warzywami i sprzedawcami w Hanoi" loading="lazy" class="w-full rounded-2xl object-cover aspect-[16/9]"><figcaption class="mt-2 text-[13px] text-ink-400">Uliczny targ w Hanoi — codzienny rytm stolicy i serce wietnamskiej kuchni ulicznej.</figcaption></figure></p>
+        <p>W centrum kraju leży Hue, dawna cesarska stolica dynastii Nguyen, gdzie za murami Cytadeli kryją się pałace, świątynie i grobowce cesarzy otoczone stawami z lotosami. To miejsce spokojniejsze niż turystyczne Hoi An, ale równie ważne historycznie — najlepiej zwiedzać je rankiem, zanim upał i tłumy dadzą się we znaki. Na południu z kolei rozciąga się Delta Mekongu, gęsta sieć kanałów, pływających targów i wiosek żyjących z uprawy ryżu i owoców — rejs łodzią przez wioskę Cai Rang, gdzie handlarze zawieszają próbki towaru na długich bambusowych tykach zamiast szyldów, to jedno z bardziej autentycznych doświadczeń, jakie oferuje ten kraj.</p>
+        <p>Dla miłośników plaż Wietnam ma równie mocne karty — Phu Quoc na południowym zachodzie, z białym piaskiem i wodą w odcieniach turkusu, w ostatnich latach zyskał status luksusowej wyspiarskiej destynacji z bezpośrednimi lotami z kilku europejskich stolic, a Nha Trang na wybrzeżu centralnym łączy miejskie życie z jedną z najlepszych w kraju scen nurkowych. Mniej znana, ale równie piękna jest Con Dao — archipelag, który dzięki dawnemu statusowi więziennej wyspy uniknął masowej zabudowy i dziś jest rajem dla żółwi morskich składających jaja na dziewiczych plażach.</p>
+        <p>Podróż z Polski do Wietnamu trwa zwykle 12–15 godzin z jedną przesiadką, najczęściej w Doha, Stambule lub Dubaju, a obywatele Polski mogą wjechać na pobyt turystyczny do 45 dni bez wizy. Przy dłuższych lub bardziej złożonych trasach warto rozważyć e-wizę, którą wyrabia się online w kilka dni. Wewnątrz kraju najwygodniej łączyć tanie loty krajowe — Hanoi, Da Nang i Ho Chi Minh City są dobrze skomunikowane — z legendarnym nocnym pociągiem Reunification Express, kursującym wzdłuż całego wybrzeża i oferującym jedne z najładniejszych widoków z okna, jakie może zaoferować kolej w Azji.</p>
+        <p>Podobnie jak w przypadku Tajlandii, o zaskakująco dużym budżetowym komforcie decyduje tu cena. Nocleg w bardzo dobrym hotelu butikowym to koszt rzędu 100–180 złotych za dobę, godzinny masaż wietnamski kosztuje 25–40 złotych, a obiad w dobrej restauracji z lokalną kuchnią rzadko przekracza 20 złotych na osobę. To sprawia, że nawet trzytygodniowy wyjazd z przelotami można spokojnie zmieścić w budżecie, który w Europie starcza na tydzień w popularnym kurorcie.</p>
+        <p>Klimat Wietnamu jest trudniejszy do uogólnienia niż tajski, bo kraj rozciąga się przez kilkanaście stopni szerokości geograficznej — północ (Hanoi, Sapa, Ha Long) ma wyraźną, chłodniejszą zimę, środek kraju (Hoi An, Hue, Da Nang) rządzi się własnym rytmem monsunowym z najbardziej deszczowym okresem jesienią, a południe (Ho Chi Minh City, Delta Mekongu, Phu Quoc) jest tropikalnie ciepłe przez cały rok, z porą suchą i deszczową zamiast klasycznych czterech pór roku. Poniższe zestawienie odnosi się do najczęściej odwiedzanego regionu centralnego i północnego, obejmującego Hanoi, Ha Long i Hoi An.</p>
+        <p><div class="overflow-x-auto my-2"><table class="w-full text-left text-[14px] border-collapse"><thead><tr class="border-b border-ink-900/15 text-ink-500 text-[12px] uppercase tracking-wide"><th class="py-2 pr-3">Miesiąc</th><th class="py-2 pr-3">Temp. dzień</th><th class="py-2 pr-3">Temp. noc</th><th class="py-2 pr-3">Opady</th><th class="py-2">Charakterystyka</th></tr></thead><tbody class="divide-y divide-ink-900/8"><tr><td class="py-2 pr-3 font-semibold">Styczeń</td><td class="py-2 pr-3">20°C</td><td class="py-2 pr-3">14°C</td><td class="py-2 pr-3">niskie</td><td class="py-2">chłodno i mgliście na północy, sucho w centrum</td></tr><tr><td class="py-2 pr-3 font-semibold">Luty</td><td class="py-2 pr-3">21°C</td><td class="py-2 pr-3">15°C</td><td class="py-2 pr-3">niskie</td><td class="py-2">wciąż chłodno, mało słońca na północy</td></tr><tr><td class="py-2 pr-3 font-semibold">Marzec</td><td class="py-2 pr-3">24°C</td><td class="py-2 pr-3">18°C</td><td class="py-2 pr-3">niskie</td><td class="py-2">robi się cieplej, komfortowo</td></tr><tr><td class="py-2 pr-3 font-semibold">Kwiecień</td><td class="py-2 pr-3">28°C</td><td class="py-2 pr-3">21°C</td><td class="py-2 pr-3">umiarkowane</td><td class="py-2">ciepło, wciąż suchy okres na północy</td></tr><tr><td class="py-2 pr-3 font-semibold">Maj</td><td class="py-2 pr-3">32°C</td><td class="py-2 pr-3">24°C</td><td class="py-2 pr-3">rosnące</td><td class="py-2">gorąco, zielone, zalane tarasy ryżowe</td></tr><tr><td class="py-2 pr-3 font-semibold">Czerwiec</td><td class="py-2 pr-3">33°C</td><td class="py-2 pr-3">26°C</td><td class="py-2 pr-3">wysokie</td><td class="py-2">upalnie i parno, popołudniowe ulewy</td></tr><tr><td class="py-2 pr-3 font-semibold">Lipiec</td><td class="py-2 pr-3">33°C</td><td class="py-2 pr-3">26°C</td><td class="py-2 pr-3">wysokie</td><td class="py-2">gorąco, sezon burzowy w pełni</td></tr><tr><td class="py-2 pr-3 font-semibold">Sierpień</td><td class="py-2 pr-3">32°C</td><td class="py-2 pr-3">26°C</td><td class="py-2 pr-3">wysokie</td><td class="py-2">wilgotno, ryzyko tajfunów rośnie</td></tr><tr><td class="py-2 pr-3 font-semibold">Wrzesień</td><td class="py-2 pr-3">31°C</td><td class="py-2 pr-3">25°C</td><td class="py-2 pr-3">najwyższe</td><td class="py-2">szczyt sezonu tajfunów, złote tarasy w Sapa</td></tr><tr><td class="py-2 pr-3 font-semibold">Październik</td><td class="py-2 pr-3">28°C</td><td class="py-2 pr-3">22°C</td><td class="py-2 pr-3">wysokie</td><td class="py-2">wciąż niestabilnie, ale coraz spokojniej</td></tr><tr><td class="py-2 pr-3 font-semibold">Listopad</td><td class="py-2 pr-3">25°C</td><td class="py-2 pr-3">19°C</td><td class="py-2 pr-3">malejące</td><td class="py-2">idealna pogoda, koniec sezonu deszczowego</td></tr><tr><td class="py-2 pr-3 font-semibold">Grudzień</td><td class="py-2 pr-3">21°C</td><td class="py-2 pr-3">15°C</td><td class="py-2 pr-3">niskie</td><td class="py-2">chłodno, sucho, przejrzyste niebo</td></tr></tbody></table></div></p>
+        <p>Najlepszym momentem na zwiedzanie północy i centrum Wietnamu — czyli Ha Long, Hanoi, Sapa i Hoi An w jednej podróży — jest okres od października do grudnia oraz marzec–kwiecień: temperatury są wtedy łagodne, wilgotność niższa, a ryzyko tajfunów, które najczęściej uderzają w wybrzeże środkowe między sierpniem a listopadem, wyraźnie mniejsze. Jeśli plan obejmuje też południe kraju — Ho Chi Minh City, Deltę Mekongu czy Phu Quoc — najlepszą porą jest tamtejsza sucha pora, trwająca od grudnia do kwietnia, kiedy niemal nie pada, a upały są bardziej znośne niż w szczycie lata.</p>
+        <p>Wietnam to kraj, który nagradza tych, którzy dają mu więcej niż tydzień — im dłużej się go zwiedza, tym bardziej widać, jak bardzo różni się północ od południa i jak niewiele mają ze sobą wspólnego górskie wioski Sapa z tropikalną Deltą Mekongu. Planując taką trasę, w aplikacji Wakacyjny Organizer łatwo rozpiszesz wieloetapowy plan podróży między miastami, dodasz listę pakowania uwzględniającą zarówno chłodniejsze noce w górach, jak i tropikalny upał wybrzeża, oraz rozliczysz wspólny budżet z resztą grupy — bez chaosu, który zwykle towarzyszy planowaniu podróży przez pół kraju.</p>
+      </div>
+
+      <div class="mt-14 pt-8 border-t border-ink-900/[0.08] flex flex-wrap items-center justify-between gap-4">
+        <a href="../index.html#newsy" class="pressable inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white font-semibold text-[13.5px] px-5 py-3 rounded-full transition-colors duration-160">
+          Zobacz więcej newsów
+        </a>
+        <a href="../index.html#pobierz" class="pressable inline-flex items-center gap-2 bg-white hover:bg-ink-50 border border-ink-900/12 text-ink-900 font-semibold text-[13.5px] px-5 py-3 rounded-full transition-colors duration-160">
+          Pobierz aplikację
+        </a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="border-t border-ink-900/[0.07] py-12">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex flex-wrap items-center justify-between gap-6 mb-8">
+      <a href="../index.html" class="flex items-center gap-2.5">
+        <span class="grid place-items-center w-8 h-8 rounded-lg bg-ink-900 text-white"><i data-lucide="palmtree" class="w-4 h-4"></i></span>
+        <span class="font-display font-bold text-[16px] text-ink-950">Wakacyjny Organizer</span>
+      </a>
+      <div class="flex flex-wrap gap-x-7 gap-y-2 text-[12.5px] font-medium text-ink-500">
+        <a href="../index.html#newsy" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="../index.html#ciekawostki" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="../index.html#aplikacja" class="hover:text-ink-900 transition-colors duration-160">Aplikacja</a>
+        <a href="../index.html#poradniki" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="../index.html#pobierz" class="hover:text-ink-900 transition-colors duration-160">Pobierz</a>
+      </div>
+    </div>
+    <div class="pt-6 border-t border-ink-900/[0.07] flex flex-wrap justify-between gap-3 text-[12px] text-ink-400">
+      <span>© 2026 Wakacyjny Organizer. Wszelkie prawa zastrzeżone.</span>
+      <span class="flex gap-4"><a href="#" class="hover:text-ink-700 transition-colors duration-160">Redakcja</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Reklama</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Regulamin</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+  window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.innerHTML = open ? '<i data-lucide="x" class="w-4.5 h-4.5"></i>' : '<i data-lucide="menu" class="w-4.5 h-4.5"></i>';
+      if (window.lucide) lucide.createIcons();
+    });
+  })();
+  document.querySelectorAll('.pressable').forEach(function (el) {
+    el.classList.add('transition-transform');
+  });
+</script>
+</body>
+</html>
