@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tajlandia: dlaczego to najpiękniejsze miejsce na wakacje, jakie znajdziesz — Wakacyjny Organizer</title>
+<meta name="description" content="Turkusowe zatoki między wapiennymi skałami, złote świątynie, dymiące garnki z pad thai i ceny, przy których europejskie kurorty wyglądają jak inna planeta — sprawdzamy, dlaczego Tajlandia wygrywa z każdym innym kierunkiem." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          display: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui'],
+        },
+        colors: {
+          ink: {
+            950: '#141310',
+            900: '#1c1a16',
+            800: '#2a2722',
+            700: '#3e3a32',
+            600: '#5c5648',
+            500: '#7a7364',
+            400: '#a39c8c',
+            300: '#c7c0b1',
+            200: '#e2ddd0',
+            100: '#efebe1',
+            50: '#faf8f3',
+          },
+          accent: {
+            50: '#fdf3ee',
+            100: '#fbe3d6',
+            300: '#eeab84',
+            500: '#c65a2e',
+            600: '#b34a22',
+            700: '#953b1a',
+          },
+          leaf: {
+            500: '#3f6a52',
+            600: '#345a44',
+          },
+        },
+        boxShadow: {
+          soft: '0 1px 2px rgba(20,19,16,0.04), 0 12px 28px -8px rgba(20,19,16,0.10)',
+          softer: '0 1px 1px rgba(20,19,16,0.03), 0 6px 16px -6px rgba(20,19,16,0.08)',
+          lifted: '0 30px 70px -20px rgba(20,19,16,0.35)',
+        },
+        transitionTimingFunction: {
+          out: 'cubic-bezier(0.23, 1, 0.32, 1)',
+          inout: 'cubic-bezier(0.77, 0, 0.175, 1)',
+        },
+        borderRadius: {
+          '4xl': '2rem',
+        },
+      },
+    },
+  };
+</script>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+<style>
+  :root{
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  html{ scroll-behavior: smooth; }
+  body{ font-family:'Inter', sans-serif; background:#faf8f3; }
+  h1,h2,h3,h4,h5,.font-display{ font-family:'Plus Jakarta Sans', sans-serif; }
+
+  ::selection{ background:#eeab84; color:#1c1a16; }
+
+  /* focus ring — visible, calm */
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline: 2px solid #c65a2e;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* reveal-on-scroll */
+  .reveal{ opacity:0; transform: translateY(14px); transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out); }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ transition: opacity 200ms ease !important; transform:none !important; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  /* press feedback for interactive controls */
+  .pressable{ transition: transform 160ms var(--ease-out); }
+  .pressable:active{ transform: scale(0.97); }
+
+  /* range slider */
+  input[type="range"]{ -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:99px; background:#e2ddd0; outline:none; }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%;
+    background:#c65a2e; border:3px solid #fff; box-shadow:0 1px 4px rgba(20,19,16,0.35);
+    cursor:pointer; transition: transform 160ms var(--ease-out);
+  }
+  input[type="range"]:active::-webkit-slider-thumb{ transform: scale(1.15); }
+  input[type="range"]::-moz-range-thumb{
+    width:16px; height:16px; border-radius:50%; background:#c65a2e; border:3px solid #fff;
+    box-shadow:0 1px 4px rgba(20,19,16,0.35); cursor:pointer;
+  }
+
+  /* ranking bars */
+  .rank-bar-fill{ transition: width 620ms var(--ease-out); }
+
+  /* quiz */
+  .quiz-step{ display:none; }
+  .quiz-step.active{ display:block; }
+  .quiz-result-panel{ display:none; }
+  .quiz-result-panel.active{ display:grid; }
+
+  /* showcase tabs */
+  .app-screen{ position:absolute; inset:0; opacity:0; transform: scale(1.02); filter: blur(6px); transition: opacity 480ms var(--ease-in-out), transform 480ms var(--ease-in-out), filter 480ms var(--ease-in-out); pointer-events:none; }
+  .app-screen.active{ opacity:1; transform: scale(1); filter: blur(0); pointer-events:auto; }
+  .showcase-progress > div{ height:100%; width:0%; background:#eeab84; }
+  .showcase-progress > div.filling{ animation: fillbar 5000ms linear forwards; }
+  .showcase-progress > div.filled{ width:100%; }
+  @keyframes fillbar{ from{ width:0%; } to{ width:100%; } }
+
+  /* mobile menu */
+  #mobileMenu{ transform: translateY(-8px); opacity:0; pointer-events:none; transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out); }
+  #mobileMenu.open{ transform: translateY(0); opacity:1; pointer-events:auto; }
+
+  .trip-card{ background-size:cover; background-position:center; }
+  .glass-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+  /* subtle float animation for hero decorative chips */
+  @keyframes floaty{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
+  .float-slow{ animation: floaty 6s var(--ease-in-out) infinite; }
+  .float-slower{ animation: floaty 8s var(--ease-in-out) infinite; animation-delay: .8s; }
+</style>
+</head>
+<body class="text-ink-900 antialiased bg-[#faf8f3]">
+<!-- Metadane tego artykułu — czyta je build.js na Netlify przy każdym
+     wdrożeniu, żeby automatycznie zbudować data/articles.json (karty na
+     stronie głównej). Nie edytuj tego bloku ręcznie. -->
+<script type="application/json" id="article-meta">{"slug": "tajlandia-najpiekniejsze-wakacje", "title": "Tajlandia: dlaczego to najpiękniejsze miejsce na wakacje, jakie znajdziesz", "excerpt": "Turkusowe zatoki między wapiennymi skałami, złote świątynie, dymiące garnki z pad thai i ceny, przy których europejskie kurorty wyglądają jak inna planeta — sprawdzamy, dlaczego Tajlandia wygrywa z każdym innym kierunkiem.", "tag": "Kierunki", "tagColor": "#3454c7", "image": "https://images.pexels.com/photos/35126795/pexels-photo-35126795.jpeg?auto=compress&cs=tinysrgb&w=1200", "gradient": "linear-gradient(160deg,#0e7490,#5eead4 55%,#fef3c7)", "date": "2026-08-20", "dateLabel": "20 sierpnia 2026", "readTime": "9 min", "url": "artykuly/tajlandia-najpiekniejsze-wakacje.html"}</script>
+<header id="site-header" class="sticky top-0 z-50 bg-[#faf8f3]/80 backdrop-blur-md border-b border-ink-900/[0.06]">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <nav class="flex items-center justify-between h-16 sm:h-[72px]">
+      <a href="../index.html" class="flex items-center gap-2.5 shrink-0">
+        <span class="grid place-items-center w-8 h-8 rounded-lg bg-ink-900 text-white">
+          <i data-lucide="palmtree" class="w-4 h-4"></i>
+        </span>
+        <span class="font-display font-bold text-[17px] tracking-tight">Wakacyjny Organizer</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-9 text-[13.5px] font-medium text-ink-600">
+        <a href="../index.html#newsy" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="../index.html#ciekawostki" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="../index.html#aplikacja" class="hover:text-ink-900 transition-colors duration-160">Aplikacja</a>
+        <a href="../index.html#poradniki" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="../index.html#pobierz" class="pressable hidden sm:inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white text-[13.5px] font-semibold px-4 py-2.5 rounded-full shadow-softer transition-colors duration-160">
+          Pobierz aplikację
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+        <button id="menuBtn" aria-label="Otwórz menu" aria-expanded="false" class="pressable md:hidden grid place-items-center w-10 h-10 rounded-full border border-ink-900/10">
+          <i data-lucide="menu" class="w-4.5 h-4.5"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden absolute inset-x-0 top-full bg-[#faf8f3]/95 backdrop-blur-md border-b border-ink-900/[0.06] shadow-soft">
+    <div class="max-w-7xl mx-auto px-5 py-5 flex flex-col gap-1 text-[15px] font-medium">
+      <a href="../index.html#newsy" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Newsy</a>
+      <a href="../index.html#ciekawostki" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Ciekawostki</a>
+      <a href="../index.html#aplikacja" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Aplikacja</a>
+      <a href="../index.html#poradniki" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poradniki</a>
+      <a href="../index.html#pobierz" class="mt-2 text-center bg-ink-900 text-white px-3 py-3 rounded-full font-semibold">Pobierz aplikację</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <article class="py-14 sm:py-20">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      <a href="../index.html#newsy" class="flex w-fit items-center gap-2 text-[13px] font-semibold text-ink-500 hover:text-ink-900 transition-colors duration-160 mb-8">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Wróć do newsów
+      </a>
+
+      <span class="inline-block text-[11.5px] font-bold uppercase tracking-wide mb-3" style="color:#3454c7">Kierunki</span>
+      <h1 class="font-display font-extrabold tracking-tight text-[clamp(1.7rem,4.2vw,2.6rem)] leading-[1.12] text-ink-950 mb-4">Tajlandia: dlaczego to najpiękniejsze miejsce na wakacje, jakie znajdziesz</h1>
+      <div class="text-[12.5px] text-ink-400 uppercase tracking-wide mb-8">9 min · 20 sierpnia 2026 · Redakcja WO</div>
+
+      <div class="relative aspect-[16/9] rounded-3xl overflow-hidden border border-ink-900/[0.07] mb-10" style="background-image:linear-gradient(160deg,#0e7490,#5eead4 55%,#fef3c7);background-size:cover;">
+        <img src="https://images.pexels.com/photos/35126795/pexels-photo-35126795.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover">
+      </div>
+
+      <div class="prose-article text-[16px] leading-[1.75] text-ink-700 space-y-5">
+        <p>Trudno wskazać drugi kraj, w którym w ciągu jednego wyjazdu da się leżeć na białej plaży otoczonej wapiennymi klifami, wspinać po górskich ścieżkach wśród mgieł, zwiedzać złote świątynie i zjeść kolację za równowartość dziesięciu złotych — a wszystko to bez uszczerbku na jakości. Tajlandia od lat zajmuje czołowe miejsca w rankingach najchętniej odwiedzanych krajów Azji Południowo-Wschodniej i nie jest to przypadek: to kierunek, który równie dobrze sprawdza się na romantyczny miesiąc miodowy, rodzinny wypoczynek z dziećmi, jak i na miesiąc pracy zdalnej z laptopem na tarasie z widokiem na ocean.</p>
+        <p>Wybrzeże Andamańskie na zachodzie kraju to prawdopodobnie najbardziej fotogeniczny fragment Azji. Krabi, Ao Nang i archipelag Phi Phi słyną z pionowych wapiennych formacji wyrastających prosto z turkusowej wody — to właśnie tu, w zatoce Maya Bay, kręcono „Plażę” z Leonardo DiCaprio. Nieco dalej na północ leżą Wyspy Similan, uznawane za jedno z dziesięciu najlepszych miejsc do nurkowania na świecie, z widocznością sięgającą 30 metrów i rafami pełnymi żółwi morskich oraz mant. Dla tych, którzy szukają spokojniejszego klimatu, dobrym wyborem jest Koh Lanta lub mniej zatłoczona Koh Yao Noi, skąd widać zachody słońca nad Phuketem bez tłumu turystów w kadrze.</p>
+        <p><figure class="my-2"><img src="https://images.pexels.com/photos/35126795/pexels-photo-35126795.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Turkusowe wody i wapienne klify w Krabi na wybrzeżu Andamańskim" loading="lazy" class="w-full rounded-2xl object-cover aspect-[16/9]"><figcaption class="mt-2 text-[13px] text-ink-400">Wapienne klify i turkusowa woda w Krabi — jeden z najbardziej charakterystycznych krajobrazów wybrzeża Andamańskiego.</figcaption></figure></p>
+        <p>Bangkok bywa dla przyjezdnych szokiem — to metropolia licząca ponad dziesięć milionów mieszkańców, gdzie neony centrów handlowych sąsiadują z pozłacanymi dachami świątyń sprzed kilkuset lat. Wat Arun, czyli Świątynia Świtu, najlepiej prezentuje się o zachodzie słońca z drugiego brzegu rzeki Chao Phraya, kiedy jej porcelanowa mozaika mieni się w ostatnich promieniach dnia. Warto też zajrzeć do Wat Pho z 46-metrowym posągiem leżącego Buddy oraz na Wat Phra Kaew na terenie Wielkiego Pałacu Królewskiego. Wieczorem miasto zmienia rytm — targi nocne w Chinatown i bary na dachach wieżowców w dzielnicy Sukhumvit pokazują zupełnie inne, energetyczne oblicze stolicy.</p>
+        <p><figure class="my-2"><img src="https://images.pexels.com/photos/35981279/pexels-photo-35981279.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Świątynia Wat Arun w Bangkoku o zachodzie słońca nad rzeką Chao Phraya" loading="lazy" class="w-full rounded-2xl object-cover aspect-[16/9]"><figcaption class="mt-2 text-[13px] text-ink-400">Wat Arun, czyli Świątynia Świtu, o zachodzie słońca — jeden z symboli Bangkoku.</figcaption></figure></p>
+        <p>Zupełnie inne oblicze kraju pokazuje północ. Chiang Mai, dawna stolica królestwa Lanna, leży w otoczeniu zalesionych gór i jest punktem wyjścia do trekkingów, spływów bambusowymi tratwami i odwiedzin etycznych schronisk dla słoni, gdzie zwierzęta można obserwować i karmić bez jazdy na ich grzbietach. Nad miastem góruje Wat Phra That Doi Suthep — świątynia na szczycie góry, do której prowadzi 306 schodów strzeżonych przez rzeźby wielogłowych węży naga. W listopadzie i grudniu region przyciąga dodatkowo chłodniejszym, wręcz górskim klimatem — temperatury w nocy potrafią spaść nawet do kilkunastu stopni, co jest sporym zaskoczeniem dla osób kojarzących Tajlandię wyłącznie z tropikalnym upałem.</p>
+        <p><figure class="my-2"><img src="https://images.pexels.com/photos/32258975/pexels-photo-32258975.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Złota pagoda świątyni Wat Phra That Doi Suthep w Chiang Mai wśród gór" loading="lazy" class="w-full rounded-2xl object-cover aspect-[16/9]"><figcaption class="mt-2 text-[13px] text-ink-400">Wat Phra That Doi Suthep nad Chiang Mai — złota świątynia w otoczeniu gór północnej Tajlandii.</figcaption></figure></p>
+        <p>Kuchnia tajska to osobny powód, dla którego warto się tu wybrać. Pad thai, zupa tom yum goong, curry massaman czy mango sticky rice kosztują na ulicznych stoiskach zwykle równowartość 6–12 złotych za porcję, a smak często bije na głowę dania serwowane w europejskich restauracjach tajskich. Warto wstać wcześnie i odwiedzić pływający targ — Damnoen Saduak pod Bangkokiem czy mniejszy, bardziej autentyczny Amphawa, gdzie sprzedawczynie w tradycyjnych kapeluszach wciąż handlują owocami i gotowanymi na łódkach daniami prosto z wody.</p>
+        <p><figure class="my-2"><img src="https://images.pexels.com/photos/4318360/pexels-photo-4318360.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Kolorowy pływający targ w okolicach Bangkoku ze sprzedawcami owoców na łodziach" loading="lazy" class="w-full rounded-2xl object-cover aspect-[16/9]"><figcaption class="mt-2 text-[13px] text-ink-400">Pływający targ pod Bangkokiem — codzienny handel prowadzony z łodzi, tak jak przed dekadami.</figcaption></figure></p>
+        <p>Tajlandię od dekad nazywa się „Krainą Uśmiechu” i to nie jest tylko hasło z folderu biura podróży. Buddyzm, wyznawany przez ponad 90 procent mieszkańców, przekłada się na codzienną życzliwość i spokój, który udziela się też turystom. Warto trafić na jedno z wielkich świąt: Songkran w połowie kwietnia to tajski Nowy Rok obchodzony jako trzydniowa bitwa wodna na ulicach całego kraju, a Loy Krathong w listopadzie, kiedy tysiące papierowych łódeczek z kwiatami i świecami spływają nocą po rzekach, należy do najbardziej wzruszających widoków, jakie można zobaczyć w Azji.</p>
+        <p>Poza plażami i miastami kraj oferuje zaskakująco dziką przyrodę. Park Narodowy Khao Sok chroni jeden z najstarszych lasów deszczowych świata, starszy od Amazonii, z jeziorem Cheow Lan otoczonym wapiennymi wieżami przypominającymi Guilin w Chinach. Na wschodnim wybrzeżu, w rejonie Koh Tao, znajdują się jedne z najtańszych na świecie kursów nurkowania z certyfikatem PADI, a wodospady takie jak Erawan w prowincji Kanchanaburi, z siedmioma kaskadami spadającymi do szmaragdowych basenów, są celem popularnych jednodniowych wycieczek z Bangkoku.</p>
+        <p>To wszystko przy budżecie, który w Europie kojarzy się raczej z tanim city breakiem niż z trzytygodniowym wyjazdem. Nocleg w przyzwoitym hotelu na wyspie to wydatek rzędu 100–200 złotych za dobę, masaż tajski w salonie kosztuje 30–50 złotych za godzinę, a wewnętrzny lot z Bangkoku na Phuket można znaleźć za mniej niż 150 złotych. Jednocześnie kraj oferuje też skrajnie luksusowy segment — pięciogwiazdkowe resorty na Koh Samui czy w Phang Nga potrafią konkurować standardem z Malediwami, tyle że za ułamek ceny.</p>
+        <p>Podróż z Polski wymaga zwykle jednego przystanku — bezpośrednich lotów z Warszawy do Bangkoku na razie nie ma, ale połączenia z przesiadką w Dosze, Stambule czy Abu Zabi trwają łącznie 13–16 godzin. Obywatele Polski mogą wjechać do Tajlandii bez wizy na pobyt turystyczny do 60 dni, warto jednak zawsze sprawdzić aktualne przepisy tuż przed wylotem, bo w ostatnich latach limity i procedury (m.in. elektroniczny formularz TDAC) kilkukrotnie się zmieniały. Po lądowaniu najwygodniej poruszać się wewnętrznymi lotami między regionami, pociągami nocnymi na trasie Bangkok–Chiang Mai oraz lokalnymi promami między wyspami.</p>
+        <p>Klimat Tajlandii dzieli się zasadniczo na trzy pory: chłodną i suchą (listopad–luty), gorącą (marzec–maj) oraz deszczową, czyli monsunową (czerwiec–październik). To uproszczenie dobrze sprawdza się dla Bangkoku i wybrzeża Andamańskiego (Phuket, Krabi, Phi Phi), które są najczęściej odwiedzanymi regionami kraju — warto jednak pamiętać, że wyspy po wschodniej stronie, na Zatoce Tajlandzkiej (Koh Samui, Koh Phangan, Koh Tao), rządzą się nieco innym rytmem i ich najbardziej deszczowy okres przypada dopiero na listopad i grudzień.</p>
+        <p><div class="overflow-x-auto my-2"><table class="w-full text-left text-[14px] border-collapse"><thead><tr class="border-b border-ink-900/15 text-ink-500 text-[12px] uppercase tracking-wide"><th class="py-2 pr-3">Miesiąc</th><th class="py-2 pr-3">Temp. dzień</th><th class="py-2 pr-3">Temp. noc</th><th class="py-2 pr-3">Opady</th><th class="py-2">Charakterystyka</th></tr></thead><tbody class="divide-y divide-ink-900/8"><tr><td class="py-2 pr-3 font-semibold">Styczeń</td><td class="py-2 pr-3">32°C</td><td class="py-2 pr-3">22°C</td><td class="py-2 pr-3">niskie</td><td class="py-2">sucho, słonecznie — szczyt sezonu</td></tr><tr><td class="py-2 pr-3 font-semibold">Luty</td><td class="py-2 pr-3">33°C</td><td class="py-2 pr-3">24°C</td><td class="py-2 pr-3">bardzo niskie</td><td class="py-2">nadal idealnie, coraz cieplej</td></tr><tr><td class="py-2 pr-3 font-semibold">Marzec</td><td class="py-2 pr-3">34°C</td><td class="py-2 pr-3">25°C</td><td class="py-2 pr-3">niskie</td><td class="py-2">start gorącej pory, wciąż sucho</td></tr><tr><td class="py-2 pr-3 font-semibold">Kwiecień</td><td class="py-2 pr-3">35°C</td><td class="py-2 pr-3">26°C</td><td class="py-2 pr-3">niskie</td><td class="py-2">najgoręcej w roku, Songkran</td></tr><tr><td class="py-2 pr-3 font-semibold">Maj</td><td class="py-2 pr-3">34°C</td><td class="py-2 pr-3">26°C</td><td class="py-2 pr-3">rosnące</td><td class="py-2">pierwsze burze, start monsunu</td></tr><tr><td class="py-2 pr-3 font-semibold">Czerwiec</td><td class="py-2 pr-3">33°C</td><td class="py-2 pr-3">25°C</td><td class="py-2 pr-3">umiarkowane</td><td class="py-2">krótkie, popołudniowe ulewy</td></tr><tr><td class="py-2 pr-3 font-semibold">Lipiec</td><td class="py-2 pr-3">32°C</td><td class="py-2 pr-3">25°C</td><td class="py-2 pr-3">umiarkowane</td><td class="py-2">wilgotno, wciąż sporo słońca</td></tr><tr><td class="py-2 pr-3 font-semibold">Sierpień</td><td class="py-2 pr-3">32°C</td><td class="py-2 pr-3">25°C</td><td class="py-2 pr-3">wysokie</td><td class="py-2">regularne opady, zielono i wilgotno</td></tr><tr><td class="py-2 pr-3 font-semibold">Wrzesień</td><td class="py-2 pr-3">32°C</td><td class="py-2 pr-3">24°C</td><td class="py-2 pr-3">najwyższe</td><td class="py-2">szczyt monsunu na zachodnim wybrzeżu</td></tr><tr><td class="py-2 pr-3 font-semibold">Październik</td><td class="py-2 pr-3">31°C</td><td class="py-2 pr-3">24°C</td><td class="py-2 pr-3">wysokie</td><td class="py-2">końcówka monsunu, coraz spokojniej</td></tr><tr><td class="py-2 pr-3 font-semibold">Listopad</td><td class="py-2 pr-3">31°C</td><td class="py-2 pr-3">23°C</td><td class="py-2 pr-3">malejące</td><td class="py-2">start pory suchej na zachodzie</td></tr><tr><td class="py-2 pr-3 font-semibold">Grudzień</td><td class="py-2 pr-3">31°C</td><td class="py-2 pr-3">21°C</td><td class="py-2 pr-3">niskie</td><td class="py-2">chłodne noce, komfortowe dni</td></tr></tbody></table></div></p>
+        <p>Najlepszym momentem na wyjazd do Tajlandii jest okres od połowy listopada do lutego — wtedy temperatury w ciągu dnia oscylują wokół 31–33°C, wilgotność jest najniższa w roku, a szanse na deszcz minimalne, co czyni te miesiące idealnymi zarówno na plażowanie na Andamanach, jak i na trekkingi w górach północy. Grudzień i styczeń to jednocześnie szczyt sezonu turystycznego i najwyższe ceny noclegów, więc dobrym kompromisem bywa listopad lub druga połowa lutego, kiedy jest równie pięknie, a tłumów i cen mniej. Jeśli celem jest głównie wschodnie wybrzeże — Koh Samui czy Koh Phangan — warto przesunąć termin na luty–kwiecień, bo to właśnie wtedy ten rejon ma najmniej opadów, w przeciwieństwie do reszty kraju.</p>
+        <p>Niezależnie od tego, którą część Tajlandii się wybierze, trudno wyjechać stamtąd rozczarowanym — a jeszcze trudniej nie zacząć od razu planować kolejnego wyjazdu. Jeśli szykujesz się na własną wyprawę, w aplikacji Wakacyjny Organizer rozpiszesz plan podróży dzień po dniu, dodasz listę pakowania dopasowaną do tropikalnego klimatu i podzielisz wspólny budżet ze współpodróżnikami — bez arkuszy kalkulacyjnych i chaosu w wiadomościach.</p>
+      </div>
+
+      <div class="mt-14 pt-8 border-t border-ink-900/[0.08] flex flex-wrap items-center justify-between gap-4">
+        <a href="../index.html#newsy" class="pressable inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white font-semibold text-[13.5px] px-5 py-3 rounded-full transition-colors duration-160">
+          Zobacz więcej newsów
+        </a>
+        <a href="../index.html#pobierz" class="pressable inline-flex items-center gap-2 bg-white hover:bg-ink-50 border border-ink-900/12 text-ink-900 font-semibold text-[13.5px] px-5 py-3 rounded-full transition-colors duration-160">
+          Pobierz aplikację
+        </a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="border-t border-ink-900/[0.07] py-12">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex flex-wrap items-center justify-between gap-6 mb-8">
+      <a href="../index.html" class="flex items-center gap-2.5">
+        <span class="grid place-items-center w-8 h-8 rounded-lg bg-ink-900 text-white"><i data-lucide="palmtree" class="w-4 h-4"></i></span>
+        <span class="font-display font-bold text-[16px] text-ink-950">Wakacyjny Organizer</span>
+      </a>
+      <div class="flex flex-wrap gap-x-7 gap-y-2 text-[12.5px] font-medium text-ink-500">
+        <a href="../index.html#newsy" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="../index.html#ciekawostki" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="../index.html#aplikacja" class="hover:text-ink-900 transition-colors duration-160">Aplikacja</a>
+        <a href="../index.html#poradniki" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="../index.html#pobierz" class="hover:text-ink-900 transition-colors duration-160">Pobierz</a>
+      </div>
+    </div>
+    <div class="pt-6 border-t border-ink-900/[0.07] flex flex-wrap justify-between gap-3 text-[12px] text-ink-400">
+      <span>© 2026 Wakacyjny Organizer. Wszelkie prawa zastrzeżone.</span>
+      <span class="flex gap-4"><a href="#" class="hover:text-ink-700 transition-colors duration-160">Redakcja</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Reklama</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Regulamin</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+  window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.innerHTML = open ? '<i data-lucide="x" class="w-4.5 h-4.5"></i>' : '<i data-lucide="menu" class="w-4.5 h-4.5"></i>';
+      if (window.lucide) lucide.createIcons();
+    });
+  })();
+  document.querySelectorAll('.pressable').forEach(function (el) {
+    el.classList.add('transition-transform');
+  });
+</script>
+</body>
+</html>
