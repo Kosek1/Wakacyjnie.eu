@@ -205,7 +205,7 @@
   <section id="top" class="relative overflow-hidden pt-14 sm:pt-20 pb-16 sm:pb-24">
     <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       <div class="absolute inset-0" style="background:linear-gradient(135deg,#ffd9a8 0%,#ffb570 22%,#f2c98a 42%,#a9d9d2 68%,#4fb8b3 100%);"></div>
-      <img src="plaza-hero.jpg" alt="Rajska plaża z palmami i turkusową wodą"
+      <img src="plazahero.jpg" alt="Rajska plaża z palmami i turkusową wodą"
            onerror="this.style.display='none'"
            class="absolute inset-0 w-full h-full object-cover" />
       <div class="absolute inset-0 bg-gradient-to-b from-ink-50/0 via-transparent to-ink-50/70"></div>
@@ -777,6 +777,12 @@
     revealIO.observe(el);
   };
   document.querySelectorAll('.reveal').forEach(el => window.observeReveal(el));
+
+  // safety net: if IntersectionObserver never fires for some reason (slow load,
+  // element geometry edge case, etc.) content must not stay invisible forever.
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in'));
+  }, 1200);
 
   // live weather badge in hero — Majorka, przez darmowe (bez klucza) Open-Meteo API
   (function () {
