@@ -1009,7 +1009,10 @@
     const seeAll = document.getElementById('newsSeeAll');
     if (!grid) return;
 
-    const PREVIEW_LIMIT = 3;
+    // Na komputerze/tablecie pokazujemy 5 newsów, na telefonie tylko 3
+    // (patrz extraClass niżej — karty 4. i 5. są ukryte poniżej breakpointu lg).
+    const PREVIEW_LIMIT = 5;
+    const MOBILE_LIMIT = 3;
 
     const TAG_COLORS = {
       'Kierunki': '#3454c7',
@@ -1057,8 +1060,9 @@
         const color = a.tagColor || TAG_COLORS[a.tag] || '#e8752e';
         const gradient = a.gradient || 'linear-gradient(160deg,#8c9db3,#d8d2c4 60%,#f3f1ec)';
         const featured = i === 0;
+        const desktopOnly = i >= MOBILE_LIMIT ? 'hidden lg:block' : '';
         return `
-        <article class="reveal group bg-white border border-ink-900/[0.07] rounded-3xl overflow-hidden hover:shadow-soft hover:-translate-y-1 transition-all duration-300 ease-out ${featured ? 'sm:col-span-2 lg:col-span-2' : ''}">
+        <article class="reveal group bg-white border border-ink-900/[0.07] rounded-3xl overflow-hidden hover:shadow-soft hover:-translate-y-1 transition-all duration-300 ease-out ${featured ? 'sm:col-span-2 lg:col-span-2' : ''} ${desktopOnly}">
           <a href="${a.url}" class="${featured ? 'grid sm:grid-cols-2 h-full' : 'block'}">
             <div class="relative ${featured ? 'aspect-[16/10] sm:aspect-auto sm:h-full sm:min-h-[220px]' : 'aspect-[16/10]'} overflow-hidden" style="background-image:${gradient};background-size:cover;">
               ${featured ? `<span class="absolute top-3.5 left-3.5 z-10 bg-white/95 text-ink-900 text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full shadow-softer">Najnowsze</span>` : ''}
