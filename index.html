@@ -35,16 +35,22 @@
             50: '#faf8f3',
           },
           accent: {
-            50: '#fdf3ee',
-            100: '#fbe3d6',
-            300: '#eeab84',
-            500: '#c65a2e',
-            600: '#b34a22',
-            700: '#953b1a',
+            50: '#fff4e9',
+            100: '#ffe2c4',
+            300: '#ffb570',
+            500: '#e8752e',
+            600: '#c85f1e',
+            700: '#a14a17',
           },
           leaf: {
             500: '#3f6a52',
             600: '#345a44',
+          },
+          teal: {
+            50: '#eaf7f6',
+            100: '#cdeeec',
+            500: '#4fb8b3',
+            600: '#3b9a95',
           },
         },
         boxShadow: {
@@ -75,11 +81,11 @@
   body{ font-family:'Inter', sans-serif; background:#faf8f3; }
   h1,h2,h3,h4,h5,.font-display{ font-family:'Plus Jakarta Sans', sans-serif; }
 
-  ::selection{ background:#eeab84; color:#1c1a16; }
+  ::selection{ background:#ffb570; color:#1c1a16; }
 
   /* focus ring — visible, calm */
   a:focus-visible, button:focus-visible, input:focus-visible{
-    outline: 2px solid #c65a2e;
+    outline: 2px solid #e8752e;
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -102,12 +108,12 @@
   input[type="range"]{ -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:99px; background:#e2ddd0; outline:none; }
   input[type="range"]::-webkit-slider-thumb{
     -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%;
-    background:#c65a2e; border:3px solid #fff; box-shadow:0 1px 4px rgba(20,19,16,0.35);
+    background:#e8752e; border:3px solid #fff; box-shadow:0 1px 4px rgba(20,19,16,0.35);
     cursor:pointer; transition: transform 160ms var(--ease-out);
   }
   input[type="range"]:active::-webkit-slider-thumb{ transform: scale(1.15); }
   input[type="range"]::-moz-range-thumb{
-    width:16px; height:16px; border-radius:50%; background:#c65a2e; border:3px solid #fff;
+    width:16px; height:16px; border-radius:50%; background:#e8752e; border:3px solid #fff;
     box-shadow:0 1px 4px rgba(20,19,16,0.35); cursor:pointer;
   }
 
@@ -123,7 +129,7 @@
   /* showcase tabs */
   .app-screen{ position:absolute; inset:0; opacity:0; transform: scale(1.02); filter: blur(6px); transition: opacity 480ms var(--ease-in-out), transform 480ms var(--ease-in-out), filter 480ms var(--ease-in-out); pointer-events:none; }
   .app-screen.active{ opacity:1; transform: scale(1); filter: blur(0); pointer-events:auto; }
-  .showcase-progress > div{ height:100%; width:0%; background:#eeab84; }
+  .showcase-progress > div{ height:100%; width:0%; background:#ffb570; }
   .showcase-progress > div.filling{ animation: fillbar 5000ms linear forwards; }
   .showcase-progress > div.filled{ width:100%; }
   @keyframes fillbar{ from{ width:0%; } to{ width:100%; } }
@@ -139,6 +145,16 @@
   @keyframes floaty{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
   .float-slow{ animation: floaty 6s var(--ease-in-out) infinite; }
   .float-slower{ animation: floaty 8s var(--ease-in-out) infinite; animation-delay: .8s; }
+
+  /* flying parrot decoration in the hero background */
+  .parrot-fly{ position:absolute; left:-10%; top:58%; filter: drop-shadow(0 6px 10px rgba(20,19,16,0.18)); animation: parrotFly 22s var(--ease-in-out) infinite; }
+  @keyframes parrotFly{
+    0%   { left:-10%; top:60%; transform: translateY(0) rotate(-4deg); }
+    20%  { left:18%;  top:38%; transform: translateY(-14px) rotate(2deg); }
+    45%  { left:50%;  top:20%; transform: translateY(8px) rotate(-3deg); }
+    70%  { left:80%;  top:34%; transform: translateY(-10px) rotate(3deg); }
+    100% { left:112%; top:18%; transform: translateY(0) rotate(-4deg); }
+  }
 </style>
 </head>
 <body class="text-ink-900 antialiased">
@@ -187,11 +203,26 @@
 
   <!-- HERO -->
   <section id="top" class="relative overflow-hidden pt-14 sm:pt-20 pb-16 sm:pb-24">
-    <div class="pointer-events-none absolute -top-24 right-0 w-[520px] h-[520px] rounded-full bg-accent-100/60 blur-3xl"></div>
-    <div class="pointer-events-none absolute top-40 -left-32 w-[420px] h-[420px] rounded-full bg-leaf-500/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div class="absolute inset-0" style="background:linear-gradient(135deg,#ffd9a8 0%,#ffb570 22%,#f2c98a 42%,#a9d9d2 68%,#4fb8b3 100%);"></div>
+      <img src="plaza-hero.jpg" alt="Rajska plaża z palmami i turkusową wodą"
+           onerror="this.style.display='none'"
+           class="absolute inset-0 w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-ink-50/0 via-transparent to-ink-50/70"></div>
+      <div class="hidden sm:block motion-reduce:hidden parrot-fly">
+        <svg viewBox="0 0 100 60" width="64" height="38" fill="none">
+          <g transform="translate(50 30) rotate(-6) translate(-50 -30)">
+            <path d="M8 34c10-4 18-3 24 2 4-8 14-13 24-11-6 2-11 6-13 11 9-1 17 2 22 8-9-2-17-1-23 3-7-9-19-13-30-11-2-1-3-2-4-2z" fill="#e8752e"/>
+            <path d="M32 25c6-6 15-9 23-7-5 3-9 7-10 12-5-3-9-4-13-5z" fill="#4fb8b3"/>
+            <circle cx="58" cy="24" r="3" fill="#1c1a16"/>
+            <path d="M63 23c3-1 6 0 7 2-1 2-4 3-7 2-1-1-1-3 0-4z" fill="#1c1a16"/>
+          </g>
+        </svg>
+      </div>
+    </div>
 
     <div class="relative max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-14 lg:gap-10 items-center">
-      <div>
+      <div class="bg-white/78 backdrop-blur-md border border-white/60 rounded-4xl p-6 sm:p-9 shadow-soft">
         <div id="weatherBadge" class="reveal inline-flex items-center gap-2 bg-white border border-ink-900/10 rounded-full pl-1.5 pr-4 py-1.5 text-[12.5px] font-semibold text-ink-700 shadow-softer">
           <span id="weatherBadgeIcon" class="grid place-items-center w-6 h-6 rounded-full bg-accent-500 text-white"><i data-lucide="sun" class="w-3 h-3"></i></span>
           <span id="weatherBadgeText">Sprawdzamy pogodę na Majorce…</span>
@@ -438,7 +469,7 @@
           <p class="text-[13.5px] text-ink-500 leading-relaxed">Gotowe szablony list dostosowane do kierunku i pory roku, które możesz odhaczać na bieżąco.</p>
         </div>
         <div class="reveal bg-white border border-ink-900/[0.07] rounded-3xl p-7 hover:shadow-soft hover:-translate-y-1 transition-all duration-300 ease-out">
-          <span class="grid place-items-center w-11 h-11 rounded-2xl bg-[#e9edff] text-[#3454c7] mb-5"><i data-lucide="wallet" class="w-5 h-5"></i></span>
+          <span class="grid place-items-center w-11 h-11 rounded-2xl bg-teal-100 text-teal-600 mb-5"><i data-lucide="wallet" class="w-5 h-5"></i></span>
           <h3 class="font-display font-bold text-[16.5px] text-ink-950 mb-2">Budżet podróży</h3>
           <p class="text-[13.5px] text-ink-500 leading-relaxed">Śledź wydatki w czasie rzeczywistym i dziel koszty ze współtowarzyszami podróży.</p>
         </div>
@@ -802,7 +833,7 @@
       'Bezpieczeństwo': '#a02f2f',
       'Loty': '#345a44',
       'Formalności': '#6d3fc9',
-      'Pogoda': '#b34a22',
+      'Pogoda': '#c85f1e',
       'Trendy': '#33455e',
     };
 
@@ -815,7 +846,7 @@
         articles.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         grid.innerHTML = articles.map((a, i) => {
-          const color = a.tagColor || TAG_COLORS[a.tag] || '#c65a2e';
+          const color = a.tagColor || TAG_COLORS[a.tag] || '#e8752e';
           const gradient = a.gradient || 'linear-gradient(160deg,#8c9db3,#d8d2c4 60%,#f3f1ec)';
           const featured = i === 0;
           return `
