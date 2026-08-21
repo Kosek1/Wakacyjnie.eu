@@ -468,6 +468,12 @@
       </div>
 
       <div id="winterGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+      <div id="winterShowMoreWrap" class="mt-7 flex justify-center hidden">
+        <button id="winterShowMore" class="pressable inline-flex items-center gap-2 bg-white hover:bg-ink-50 border border-ink-900/[0.12] text-ink-900 font-semibold text-[13.5px] px-6 py-3 rounded-full shadow-softer transition-colors duration-160">
+          Zobacz więcej
+          <i data-lucide="chevron-down" class="w-4 h-4"></i>
+        </button>
+      </div>
       <p class="mt-6 text-[11.5px] text-ink-400 max-w-2xl">Temperatury i ceny orientacyjne (szacunek za tydzień pobytu dla 1 osoby) — nie jesteśmy biurem podróży, więc traktuj je jako punkt wyjścia do własnych poszukiwań, nie gotową ofertę.</p>
     </div>
   </section>
@@ -1135,130 +1141,130 @@
 
     const DESTINATIONS = [
       // Magia Północy
-      { name: 'Tromsø', country: 'Norwegia', flag: '\U0001F1F3\U0001F1F4', category: 'north', featured: true, photo: 37433315,
+      { name: 'Tromsø', country: 'Norwegia', flag: '🇳🇴', category: 'north', featured: true, photo: 37433315,
         tagline: 'Nocne niebo nad Tromsø rozświetla zorza polarna niemal co druga bezchmurna noc zimą — jedno z najpewniejszych miejsc w Europie, by ją zobaczyć na własne oczy.',
         temp: '-4°C', price: '2800 zł', attraction: 'Zorza polarna', attractionIcon: 'sparkles' },
-      { name: 'Rovaniemi', country: 'Finlandia', flag: '\U0001F1EB\U0001F1EE', category: 'north', photo: 34803461,
+      { name: 'Rovaniemi', country: 'Finlandia', flag: '🇫🇮', category: 'north', photo: 34803461,
         tagline: 'Oficjalne miasto Świętego Mikołaja, psie zaprzęgi i śnieg gwarantowany od listopada do kwietnia — zimowa bajka bez przesady.',
         temp: '-8°C', price: '2600 zł', attraction: 'Kraina Mikołaja', attractionIcon: 'gift' },
-      { name: 'Reykjavik', country: 'Islandia', flag: '\U0001F1EE\U0001F1F8', category: 'north', photo: 1009136,
+      { name: 'Reykjavik', country: 'Islandia', flag: '🇮🇸', category: 'north', photo: 1009136,
         tagline: 'Zorza, gejzery i lodowce w zasięgu jednodniowej wycieczki ze stolicy — Islandia zimą wygląda jak z innej planety.',
         temp: '-1°C', price: '3400 zł', attraction: 'Zorza i gejzery', attractionIcon: 'sparkles' },
-      { name: 'Kiruna', country: 'Szwecja', flag: '\U0001F1F8\U0001F1EA', category: 'north', photo: 35775285,
+      { name: 'Kiruna', country: 'Szwecja', flag: '🇸🇪', category: 'north', photo: 35775285,
         tagline: 'Śpisz w pokoju wyrzeźbionym w lodzie, budzisz się w -20°C i jesz śniadanie przy kominku — Kiruna to zimowa atrakcja sama w sobie.',
         temp: '-12°C', price: '3100 zł', attraction: 'Słynny hotel z lodu', attractionIcon: 'snowflake' },
-      { name: 'Longyearbyen', country: 'Norwegia (Svalbard)', flag: '\U0001F1F3\U0001F1F4', category: 'north', photo: 26690638,
+      { name: 'Longyearbyen', country: 'Norwegia (Svalbard)', flag: '🇳🇴', category: 'north', photo: 26690638,
         tagline: 'Najdalej na północ wysunięta osada świata z regularnym transportem — polarna noc, foki i lodowce na wyciągnięcie ręki.',
         temp: '-14°C', price: '4200 zł', attraction: 'Polarna noc', attractionIcon: 'moon' },
-      { name: 'Wyspy Owcze', country: 'Dania', flag: '\U0001F1EB\U0001F1F4', category: 'north', photo: 29051076,
+      { name: 'Wyspy Owcze', country: 'Dania', flag: '🇫🇴', category: 'north', photo: 29051076,
         tagline: 'Zielone fiordy przechodzące w śnieg, owce na każdym zboczu i cisza, jakiej nie znajdziesz nigdzie indziej w Europie.',
         temp: '2°C', price: '3300 zł', attraction: 'Dzikie fiordy', attractionIcon: 'mountain' },
-      { name: 'Abisko', country: 'Szwecja', flag: '\U0001F1F8\U0001F1EA', category: 'north', photo: 28320453,
+      { name: 'Abisko', country: 'Szwecja', flag: '🇸🇪', category: 'north', photo: 28320453,
         tagline: 'Park Narodowy Abisko ma jeden z najbardziej stabilnych, bezchmurnych klimatów w Laponii — miejscowi nazywają to "błękitną dziurą".',
         temp: '-15°C', price: '3000 zł', attraction: 'Park narodowy zorzy', attractionIcon: 'sparkles' },
-      { name: 'Nuuk', country: 'Grenlandia', flag: '\U0001F1EC\U0001F1F1', category: 'north', photo: 34150023,
+      { name: 'Nuuk', country: 'Grenlandia', flag: '🇬🇱', category: 'north', photo: 34150023,
         tagline: 'Lodowce, górskie fiordy i najmniej zatłoczona stolica świata — podróż dla tych, którzy szukają czegoś naprawdę dalekiego.',
         temp: '-10°C', price: '4600 zł', attraction: 'Lodowce', attractionIcon: 'mountain-snow' },
-      { name: 'Yellowknife', country: 'Kanada', flag: '\U0001F1E8\U0001F1E6', category: 'north', photo: 28344022,
+      { name: 'Yellowknife', country: 'Kanada', flag: '🇨🇦', category: 'north', photo: 28344022,
         tagline: 'Jedno z najlepszych miejsc na świecie do oglądania zorzy — czyste, suche powietrze i noce, które trwają prawie wiecznie.',
         temp: '-20°C', price: '4900 zł', attraction: 'Zorza nad jeziorami', attractionIcon: 'sparkles' },
-      { name: 'Jukkasjärvi', country: 'Szwecja', flag: '\U0001F1F8\U0001F1EA', category: 'north', photo: 34911269,
+      { name: 'Jukkasjärvi', country: 'Szwecja', flag: '🇸🇪', category: 'north', photo: 34911269,
         tagline: 'Małą wioskę koło Kiruny rozsławiły psie zaprzęgi i renifery — najbardziej "laponska" z możliwych baz wypadowych.',
         temp: '-13°C', price: '3200 zł', attraction: 'Psie zaprzęgi', attractionIcon: 'dog' },
 
       // Narty i Śnieg
-      { name: 'Chamonix', country: 'Francja', flag: '\U0001F1EB\U0001F1F7', category: 'ski', photo: 30514664,
+      { name: 'Chamonix', country: 'Francja', flag: '🇫🇷', category: 'ski', photo: 30514664,
         tagline: 'U stóp Mont Blanc, z widokiem na najwyższy szczyt Alp — trasy dla każdego poziomu i klimat, który co roku ściąga narciarzy z całej Europy.',
         temp: '-2°C', price: '3200 zł', attraction: 'Narciarstwo', attractionIcon: 'mountain-snow' },
-      { name: 'Zakopane', country: 'Polska', flag: '\U0001F1F5\U0001F1F1', category: 'ski', photo: 29828026,
+      { name: 'Zakopane', country: 'Polska', flag: '🇵🇱', category: 'ski', photo: 29828026,
         tagline: 'Najbliżej, najtaniej i bez konieczności znajomości obcego języka — Tatry zimą to sprawdzony klasyk na krótki wypad.',
         temp: '-3°C', price: '1200 zł', attraction: 'Narty w Tatrach', attractionIcon: 'mountain-snow' },
-      { name: 'St. Moritz', country: 'Szwajcaria', flag: '\U0001F1E8\U0001F1ED', category: 'ski', photo: 30100951,
+      { name: 'St. Moritz', country: 'Szwajcaria', flag: '🇨🇭', category: 'ski', photo: 30100951,
         tagline: 'Kolebka turystyki narciarskiej — zamarznięte jezioro, luksusowe hotele i trasy, które pamiętają pierwsze zimowe igrzyska.',
         temp: '-5°C', price: '3600 zł', attraction: 'Alpejski luksus', attractionIcon: 'gem' },
-      { name: 'Innsbruck', country: 'Austria', flag: '\U0001F1E6\U0001F1F9', category: 'ski', photo: 30808755,
+      { name: 'Innsbruck', country: 'Austria', flag: '🇦🇹', category: 'ski', photo: 30808755,
         tagline: 'Miasto dwukrotnych igrzysk olimpijskich, gdzie stok zaczyna się dosłownie na granicy centrum — narty i historia w jednym.',
         temp: '-2°C', price: '2400 zł', attraction: 'Narty i historia', attractionIcon: 'mountain-snow' },
-      { name: 'Whistler', country: 'Kanada', flag: '\U0001F1E8\U0001F1E6', category: 'ski', photo: 5727513,
+      { name: 'Whistler', country: 'Kanada', flag: '🇨🇦', category: 'ski', photo: 5727513,
         tagline: 'Największy obszar narciarski Ameryki Północnej — dwie góry, jeden bilet i trasy, które starczą na cały urlop.',
         temp: '-6°C', price: '4800 zł', attraction: 'Trasy dla każdego', attractionIcon: 'mountain-snow' },
-      { name: 'Andorra', country: 'Andora', flag: '\U0001F1E6\U0001F1E9', category: 'ski', photo: 20529386,
+      { name: 'Andorra', country: 'Andora', flag: '🇦🇩', category: 'ski', photo: 20529386,
         tagline: 'Narty w Pirenejach bez dużych cen zachodnich Alp — do tego bezcłowe zakupy po zjeździe z ostatniego wyciągu.',
         temp: '-3°C', price: '2000 zł', attraction: 'Tańsze Alpy', attractionIcon: 'mountain-snow' },
-      { name: 'Kitzbühel', country: 'Austria', flag: '\U0001F1E6\U0001F1F9', category: 'ski', photo: 5756701,
+      { name: 'Kitzbühel', country: 'Austria', flag: '🇦🇹', category: 'ski', photo: 5756701,
         tagline: 'Gospodarz kultowego zjazdu Hahnenkamm — jedna z najbardziej rozpoznawalnych tras narciarskich na świecie.',
         temp: '-4°C', price: '2900 zł', attraction: 'Kultowe trasy', attractionIcon: 'mountain-snow' },
-      { name: 'Cortina d’Ampezzo', country: 'Włochy', flag: '\U0001F1EE\U0001F1F9', category: 'ski', photo: 29794385,
+      { name: 'Cortina d’Ampezzo', country: 'Włochy', flag: '🇮🇹', category: 'ski', photo: 29794385,
         tagline: 'Perła Dolomitów — różowe skały o zachodzie słońca i trasy uznawane za jedne z najpiękniejszych widokowo w Europie.',
         temp: '-3°C', price: '2700 zł', attraction: 'Widoki na Dolomity', attractionIcon: 'mountain-snow' },
-      { name: 'Jasná', country: 'Słowacja', flag: '\U0001F1F8\U0001F1F0', category: 'ski', photo: 36523568,
+      { name: 'Jasná', country: 'Słowacja', flag: '🇸🇰', category: 'ski', photo: 36523568,
         tagline: 'Największy ośrodek w Tatrach Słowackich — podobny klimat co Zakopane, ale więcej tras i zwykle krótsze kolejki.',
         temp: '-3°C', price: '1400 zł', attraction: 'Tatry bez tłumów', attractionIcon: 'mountain-snow' },
-      { name: 'Aspen', country: 'USA', flag: '\U0001F1FA\U0001F1F8', category: 'ski', photo: 8459739,
+      { name: 'Aspen', country: 'USA', flag: '🇺🇸', category: 'ski', photo: 8459739,
         tagline: 'Góry Skaliste w wersji premium — puszysty śnieg, rozległe trasy i klimat znany z hollywoodzkich produkcji.',
         temp: '-6°C', price: '5200 zł', attraction: 'Narty premium', attractionIcon: 'mountain-snow' },
 
       // Ucieczka do słońca
-      { name: 'Teneryfa', country: 'Hiszpania', flag: '\U0001F1EA\U0001F1F8', category: 'sun', photo: 13593499,
+      { name: 'Teneryfa', country: 'Hiszpania', flag: '🇪🇸', category: 'sun', photo: 13593499,
         tagline: 'Kanary to jedno z niewielu miejsc w zasięgu lotu z Polski, gdzie w styczniu spokojnie opalisz się na plaży — wieczna wiosna przez cały rok.',
         temp: '22°C', price: '2100 zł', attraction: 'Plaże cały rok', attractionIcon: 'sun' },
-      { name: 'Gran Canaria', country: 'Hiszpania', flag: '\U0001F1EA\U0001F1F8', category: 'sun', photo: 8791201,
+      { name: 'Gran Canaria', country: 'Hiszpania', flag: '🇪🇸', category: 'sun', photo: 8791201,
         tagline: 'Miniaturowy kontynent — pustynne wydmy, góry i turkusowe plaże w odległości kilkudziesięciu minut jazdy od siebie.',
         temp: '21°C', price: '2000 zł', attraction: 'Wieczna wiosna', attractionIcon: 'sun' },
-      { name: 'Fuerteventura', country: 'Hiszpania', flag: '\U0001F1EA\U0001F1F8', category: 'sun', photo: 36541108,
+      { name: 'Fuerteventura', country: 'Hiszpania', flag: '🇪🇸', category: 'sun', photo: 36541108,
         tagline: 'Najdłuższe plaże Wysp Kanaryjskich i stały wiatr, który uwielbiają kitesurferzy — raj dla szukających spokoju.',
         temp: '21°C', price: '2200 zł', attraction: 'Rajskie plaże', attractionIcon: 'wind' },
-      { name: 'Dubaj', country: 'ZEA', flag: '\U0001F1E6\U0001F1EA', category: 'sun', photo: 28730135,
+      { name: 'Dubaj', country: 'ZEA', flag: '🇦🇪', category: 'sun', photo: 28730135,
         tagline: 'Pustynne safari za dnia, tarasy widokowe i lokale pod gołym niebem wieczorem — zimowe słońce w wersji premium.',
         temp: '24°C', price: '3100 zł', attraction: 'Pustynne safari', attractionIcon: 'sunset' },
-      { name: 'Hurghada', country: 'Egipt', flag: '\U0001F1EA\U0001F1EC', category: 'sun', photo: 10037505,
+      { name: 'Hurghada', country: 'Egipt', flag: '🇪🇬', category: 'sun', photo: 10037505,
         tagline: 'Jedno z najtańszych "all inclusive" w pełnym słońcu i ciepłej wodzie Morza Czerwonego — klasyk polskiej zimowej ucieczki.',
         temp: '23°C', price: '2300 zł', attraction: 'Rafa Morza Czerwonego', attractionIcon: 'waves' },
-      { name: 'Malediwy', country: 'Malediwy', flag: '\U0001F1F2\U0001F1FB', category: 'sun', photo: 1287455,
+      { name: 'Malediwy', country: 'Malediwy', flag: '🇲🇻', category: 'sun', photo: 1287455,
         tagline: 'Domki na wodzie, turkusowa laguna i cisza przerywana tylko szumem fal — definicja rajskiej wyspy z folderu.',
         temp: '29°C', price: '6500 zł', attraction: 'Domki na wodzie', attractionIcon: 'waves' },
-      { name: 'Phuket', country: 'Tajlandia', flag: '\U0001F1F9\U0001F1ED', category: 'sun', photo: 4679438,
+      { name: 'Phuket', country: 'Tajlandia', flag: '🇹🇭', category: 'sun', photo: 4679438,
         tagline: 'Plaże, uliczne jedzenie i wyspy w zasięgu jednodniowej wycieczki łodzią — daleko, ale wciąż w budżecie.',
         temp: '30°C', price: '3800 zł', attraction: 'Plaże i kuchnia', attractionIcon: 'sun' },
-      { name: 'Malta', country: 'Malta', flag: '\U0001F1F2\U0001F1F9', category: 'sun', photo: 37825314,
+      { name: 'Malta', country: 'Malta', flag: '🇲🇹', category: 'sun', photo: 37825314,
         tagline: 'Łagodna zima, historyczna Valletta i błękitna laguna — najcieplejszy zakątek Unii Europejskiej.',
         temp: '16°C', price: '1900 zł', attraction: 'Historia nad morzem', attractionIcon: 'landmark' },
-      { name: 'Madera', country: 'Portugalia', flag: '\U0001F1F5\U0001F1F9', category: 'sun', photo: 28880208,
+      { name: 'Madera', country: 'Portugalia', flag: '🇵🇹', category: 'sun', photo: 28880208,
         tagline: 'Wyspa wiecznej wiosny na Atlantyku — górskie szlaki nad chmurami rano, kolacja nad oceanem wieczorem.',
         temp: '19°C', price: '2000 zł', attraction: 'Wiosna w zimie', attractionIcon: 'sun' },
-      { name: 'Cypr', country: 'Cypr', flag: '\U0001F1E8\U0001F1FE', category: 'sun', photo: 373409,
+      { name: 'Cypr', country: 'Cypr', flag: '🇨🇾', category: 'sun', photo: 373409,
         tagline: 'Najcieplejsza wyspa Morza Śródziemnego zimą — w styczniu wciąż da się usiąść na plaży bez kurtki.',
         temp: '17°C', price: '1800 zł', attraction: 'Ciepła zima', attractionIcon: 'sun' },
 
       // Egzotyka
-      { name: 'Zanzibar', country: 'Tanzania', flag: '\U0001F1F9\U0001F1FF', category: 'exotic', photo: 14667378,
+      { name: 'Zanzibar', country: 'Tanzania', flag: '🇹🇿', category: 'exotic', photo: 14667378,
         tagline: 'Turkusowa woda, białe plaże i pełne przypraw targi — egzotyczna ucieczka od polskiej zimy, o której marzysz już od listopada.',
         temp: '28°C', price: '3800 zł', attraction: 'Rafa koralowa', attractionIcon: 'waves' },
-      { name: 'Bali', country: 'Indonezja', flag: '\U0001F1EE\U0001F1E9', category: 'exotic', photo: 19137460,
+      { name: 'Bali', country: 'Indonezja', flag: '🇮🇩', category: 'exotic', photo: 19137460,
         tagline: 'Ryżowe tarasy, świątynie i plaże surferów w jednym miejscu — wyspa, która od lat rządzi listami "kierunków marzeń".',
         temp: '29°C', price: '4200 zł', attraction: 'Świątynie i plaże', attractionIcon: 'palmtree' },
-      { name: 'Sri Lanka', country: 'Sri Lanka', flag: '\U0001F1F1\U0001F1F0', category: 'exotic', photo: 319912,
+      { name: 'Sri Lanka', country: 'Sri Lanka', flag: '🇱🇰', category: 'exotic', photo: 319912,
         tagline: 'Plantacje herbaty w górach, słonie i plaże w jednej podróży — egzotyka bez konieczności latania na drugą półkulę.',
         temp: '28°C', price: '3900 zł', attraction: 'Herbata i plaże', attractionIcon: 'leaf' },
-      { name: 'Cancún', country: 'Meksyk', flag: '\U0001F1F2\U0001F1FD', category: 'exotic', photo: 3651084,
+      { name: 'Cancún', country: 'Meksyk', flag: '🇲🇽', category: 'exotic', photo: 3651084,
         tagline: 'Karaibskie plaże Jukatanu i ruiny Majów w jednej podróży — popularny, ale wciąż robiący wrażenie kierunek.',
         temp: '27°C', price: '4500 zł', attraction: 'Szlakiem Majów', attractionIcon: 'landmark' },
-      { name: 'Kostaryka', country: 'Kostaryka', flag: '\U0001F1E8\U0001F1F7', category: 'exotic', photo: 13501101,
+      { name: 'Kostaryka', country: 'Kostaryka', flag: '🇨🇷', category: 'exotic', photo: 13501101,
         tagline: 'Dżungla, wulkany i plaże na obu wybrzeżach — kierunek dla tych, którzy chcą więcej niż leżaka i drinka.',
         temp: '26°C', price: '5200 zł', attraction: 'Dzika przyroda', attractionIcon: 'leaf' },
-      { name: 'Wietnam', country: 'Wietnam', flag: '\U0001F1FB\U0001F1F3', category: 'exotic', photo: 13008674,
+      { name: 'Wietnam', country: 'Wietnam', flag: '🇻🇳', category: 'exotic', photo: 13008674,
         tagline: 'Wapienne skały wystające z turkusowej wody Zatoki Ha Long to jeden z najbardziej rozpoznawalnych widoków Azji.',
         temp: '22°C', price: '3600 zł', attraction: 'Zatoka Ha Long', attractionIcon: 'mountain' },
-      { name: 'Mauritius', country: 'Mauritius', flag: '\U0001F1F2\U0001F1FA', category: 'exotic', photo: 34190261,
+      { name: 'Mauritius', country: 'Mauritius', flag: '🇲🇺', category: 'exotic', photo: 34190261,
         tagline: 'Luksusowe resorty na Oceanie Indyjskim, góra Le Morne w tle i plaże, które rzadko są zatłoczone.',
         temp: '27°C', price: '5800 zł', attraction: 'Luksus na oceanie', attractionIcon: 'waves' },
-      { name: 'Seszele', country: 'Seszele', flag: '\U0001F1F8\U0001F1E8', category: 'exotic', photo: 5044865,
+      { name: 'Seszele', country: 'Seszele', flag: '🇸🇨', category: 'exotic', photo: 5044865,
         tagline: 'Granitowe głazy wystające z białego piasku to wizytówka Seszeli — jedne z najbardziej fotogenicznych plaż świata.',
         temp: '28°C', price: '6200 zł', attraction: 'Granitowe plaże', attractionIcon: 'waves' },
-      { name: 'Kartagena', country: 'Kolumbia', flag: '\U0001F1E8\U0001F1F4', category: 'exotic', photo: 6381158,
+      { name: 'Kartagena', country: 'Kolumbia', flag: '🇨🇴', category: 'exotic', photo: 6381158,
         tagline: 'Kolorowe kolonialne uliczki, karaibskie wybrzeże i klimat, który zainspirował niejedną powieść — Ameryka Południowa od nowej strony.',
         temp: '30°C', price: '4400 zł', attraction: 'Kolorowe stare miasto', attractionIcon: 'palette' },
-      { name: 'Kenia', country: 'Kenia', flag: '\U0001F1F0\U0001F1EA', category: 'exotic', photo: 13932855,
+      { name: 'Kenia', country: 'Kenia', flag: '🇰🇪', category: 'exotic', photo: 13932855,
         tagline: 'Wielka Migracja, sawanna Masai Mara i słonie na wyciągnięcie obiektywu — safari, o którym opowiada się latami.',
         temp: '27°C', price: '5500 zł', attraction: 'Safari', attractionIcon: 'paw-print' },
     ];
@@ -1287,9 +1293,42 @@
         </div>`;
     }
 
+    const showMoreWrap = document.getElementById('winterShowMoreWrap');
+    const showMoreBtn = document.getElementById('winterShowMore');
+    const ALL_LIMIT = 5;
+    let currentFilter = 'all';
+    let allExpanded = false;
+
     grid.innerHTML = DESTINATIONS.map(cardHtml).join('');
     if (window.lucide) lucide.createIcons();
     grid.querySelectorAll('.winter-card').forEach(el => window.observeReveal(el));
+
+    function applyFilter() {
+      const cards = Array.from(grid.querySelectorAll('.winter-card'));
+      const matching = cards.filter(el => currentFilter === 'all' || el.dataset.category === currentFilter);
+      const limited = currentFilter === 'all' && !allExpanded;
+      const visibleSet = limited ? new Set(matching.slice(0, ALL_LIMIT)) : new Set(matching);
+
+      cards.forEach(el => {
+        const shouldShow = visibleSet.has(el);
+        if (shouldShow) {
+          el.style.display = '';
+          requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('is-hidden')));
+        } else {
+          el.classList.add('is-hidden');
+          window.setTimeout(() => { if (el.classList.contains('is-hidden')) el.style.display = 'none'; }, 400);
+        }
+      });
+
+      showMoreWrap.classList.toggle('hidden', !(limited && matching.length > ALL_LIMIT));
+    }
+
+    applyFilter();
+
+    showMoreBtn.addEventListener('click', () => {
+      allExpanded = true;
+      applyFilter();
+    });
 
     filters.querySelectorAll('button').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1300,17 +1339,9 @@
         btn.classList.add('on', 'bg-ink-900', 'text-white');
         btn.classList.remove('bg-ink-100/70', 'text-ink-700');
 
-        const filter = btn.dataset.filter;
-        grid.querySelectorAll('.winter-card').forEach(el => {
-          const match = filter === 'all' || el.dataset.category === filter;
-          if (match) {
-            el.style.display = '';
-            requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('is-hidden')));
-          } else {
-            el.classList.add('is-hidden');
-            window.setTimeout(() => { if (el.classList.contains('is-hidden')) el.style.display = 'none'; }, 400);
-          }
-        });
+        currentFilter = btn.dataset.filter;
+        allExpanded = false;
+        applyFilter();
       });
     });
   })();
