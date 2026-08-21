@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300" width="320" height="300" role="img" aria-label="OgarnijWakacje.pl">
+  <title>OgarnijWakacje.pl</title>
+  <defs>
+    <radialGradient id="ow-glow-fav" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="45%" stop-color="#FFC77A" stop-opacity="0.55"/>
+      <stop offset="72%" stop-color="#FFB86B" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#FFB86B" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ow-sun-fav" cx="0.38" cy="0.32" r="0.78">
+      <stop offset="0%" stop-color="#FFE1A3"/>
+      <stop offset="55%" stop-color="#FDBE73"/>
+      <stop offset="100%" stop-color="#F2954F"/>
+    </radialGradient>
+    <linearGradient id="ow-trunk-fav" x1="90" y1="262" x2="196" y2="130" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3A2317"/>
+      <stop offset="60%" stop-color="#5A3823"/>
+      <stop offset="100%" stop-color="#6E462B"/>
+    </linearGradient>
+    <linearGradient id="ow-leaf-a-fav" x1="0" y1="0" x2="115" y2="-32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#14503A"/>
+      <stop offset="100%" stop-color="#227652"/>
+    </linearGradient>
+    <linearGradient id="ow-leaf-b-fav" x1="0" y1="0" x2="115" y2="-32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1E6B4B"/>
+      <stop offset="100%" stop-color="#35946A"/>
+    </linearGradient>
+    <path id="ow-frond-fav"
+          d="M0 0
+             C30 -26 72 -38 115 -32
+             C104 -16 96 -21 88 -10
+             C82 -17 76 -12 66 -3
+             C60 -10 54 -6 44 2
+             C38 -4 32 0 22 5
+             C14 2 8 4 0 0 Z"/>
+  </defs>
+  <circle cx="152" cy="142" r="118" fill="url(#ow-glow-fav)"/>
+  <circle cx="152" cy="142" r="76" fill="url(#ow-sun-fav)"/>
+  <path d="M44 266 C104 238 182 241 240 262 C176 253 106 257 44 266 Z" fill="#4A2E1E"/>
+  <path d="M92 262 C110 236 132 206 152 176 C164 158 174 146 182 136
+           L196 143 C186 157 174 173 162 193 C144 221 124 245 112 266 Z"
+        fill="url(#ow-trunk-fav)"/>
+  <g transform="translate(186,138)">
+    <use href="#ow-frond-fav" transform="rotate(-178) scale(0.92)" fill="url(#ow-leaf-a-fav)"/>
+    <use href="#ow-frond-fav" transform="rotate(-148)"             fill="url(#ow-leaf-b-fav)"/>
+    <use href="#ow-frond-fav" transform="rotate(-115) scale(0.95)" fill="url(#ow-leaf-a-fav)"/>
+    <use href="#ow-frond-fav" transform="rotate(-80)"              fill="url(#ow-leaf-b-fav)"/>
+    <use href="#ow-frond-fav" transform="rotate(-45)"              fill="url(#ow-leaf-a-fav)"/>
+    <use href="#ow-frond-fav" transform="rotate(-12) scale(0.95)"  fill="url(#ow-leaf-b-fav)"/>
+    <use href="#ow-frond-fav" transform="rotate(22) scale(0.82)"   fill="url(#ow-leaf-a-fav)"/>
+    <circle cx="0" cy="0" r="6" fill="#14503A"/>
+  </g>
+</svg>
