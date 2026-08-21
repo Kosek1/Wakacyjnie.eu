@@ -94,6 +94,10 @@
   .reveal{ opacity:0; transform: translateY(14px); transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out); }
   .reveal.in{ opacity:1; transform: translateY(0); }
 
+  /* cookie consent banner */
+  #cookieBanner{ opacity:0; transform: translateY(16px); transition: opacity 260ms var(--ease-out), transform 260ms var(--ease-out); }
+  #cookieBanner.in{ opacity:1; transform: translateY(0); }
+
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
     .reveal{ transition: opacity 200ms ease !important; transform:none !important; }
@@ -169,11 +173,12 @@
         <img src="logo.svg" alt="OgarnijWakacje.pl" class="h-12 sm:h-14 w-auto" />
       </a>
 
-      <div class="hidden md:flex items-center gap-9 text-[13.5px] font-medium text-ink-600">
-        <a href="#newsy" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
-        <a href="#ciekawostki" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+      <div class="hidden md:flex items-center gap-8 text-[13.5px] font-medium text-ink-600">
+        <a href="newsy.html" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
+        <a href="ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
         <a href="#aplikacja" class="hover:text-ink-900 transition-colors duration-160">Aplikacja</a>
-        <a href="#poradniki" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
       </div>
 
       <div class="flex items-center gap-2">
@@ -190,10 +195,11 @@
 
   <div id="mobileMenu" class="md:hidden absolute inset-x-0 top-full bg-[#faf8f3]/95 backdrop-blur-md border-b border-ink-900/[0.06] shadow-soft">
     <div class="max-w-7xl mx-auto px-5 py-5 flex flex-col gap-1 text-[15px] font-medium">
-      <a href="#newsy" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Newsy</a>
-      <a href="#ciekawostki" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Ciekawostki</a>
+      <a href="newsy.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Newsy</a>
+      <a href="miejsca.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Miejsca</a>
+      <a href="ciekawostki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Ciekawostki</a>
+      <a href="poradniki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poradniki</a>
       <a href="#aplikacja" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Aplikacja</a>
-      <a href="#poradniki" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poradniki</a>
       <a href="#pobierz" class="mt-2 text-center bg-ink-900 text-white px-3 py-3 rounded-full font-semibold">Zapisz się do beta</a>
     </div>
   </div>
@@ -303,19 +309,33 @@
         <div>
           <div class="inline-flex items-center gap-2 text-[11.5px] font-bold uppercase tracking-wide text-accent-600 mb-2">
             <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-500 opacity-60"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-accent-500"></span></span>
-            Dział newsy
+            Baza wiedzy
           </div>
-          <h2 class="font-display font-extrabold text-[clamp(1.6rem,3vw,2.3rem)] text-ink-950 tracking-tight">Najświeższe wakacyjne wiadomości</h2>
+          <h2 class="font-display font-extrabold text-[clamp(1.6rem,3vw,2.3rem)] text-ink-950 tracking-tight">Wszystko, co warto wiedzieć przed wyjazdem</h2>
         </div>
         <p class="text-ink-500 max-w-sm text-[15px]">To, co warto wiedzieć, zanim zapakujesz walizkę.</p>
       </div>
+      <p class="reveal mt-2 text-ink-500 text-[14.5px] max-w-2xl leading-relaxed">Newsy z ostatniej chwili, inspiracje na kolejny kierunek, ciekawostki o krajach i praktyczne poradniki — wszystko w jednym miejscu. Wybierz kategorię, która Cię teraz interesuje.</p>
 
-      <div id="newsGrid" class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- karty artykułów wstawiane automatycznie przez script.js na podstawie data/articles.json -->
+      <div id="contentTabs" class="reveal mt-6 inline-flex flex-wrap gap-1.5 bg-ink-100/70 rounded-full p-1.5 text-[13px] font-semibold">
+        <button class="pressable on px-4 py-2.5 rounded-full transition-colors duration-160" data-category="newsy">Najnowsze wiadomości</button>
+        <button class="pressable px-4 py-2.5 rounded-full transition-colors duration-160" data-category="miejsca">Miejsca</button>
+        <button class="pressable px-4 py-2.5 rounded-full transition-colors duration-160" data-category="ciekawostki">Ciekawostki</button>
+        <button class="pressable px-4 py-2.5 rounded-full transition-colors duration-160" data-category="poradniki">Poradniki</button>
+      </div>
+
+      <div id="newsGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- karty artykułów wstawiane automatycznie przez script.js na podstawie data/articles.json, filtrowane wg zakładki -->
       </div>
       <div id="newsEmpty" class="hidden mt-10 border border-dashed border-ink-900/15 rounded-3xl py-14 text-center">
         <span class="grid place-items-center w-12 h-12 rounded-2xl bg-ink-100 text-ink-400 mx-auto mb-4"><i data-lucide="newspaper" class="w-5 h-5"></i></span>
-        <p class="text-ink-400 text-[14px]">Brak artykułów do wyświetlenia — dodaj pierwszy w <code>data/articles.json</code>.</p>
+        <p id="newsEmptyText" class="text-ink-400 text-[14px]">Brak artykułów do wyświetlenia — dodaj pierwszy w folderze <code>artykuly/</code>.</p>
+      </div>
+      <div class="mt-9 flex justify-center">
+        <a id="newsSeeAll" href="newsy.html" class="pressable inline-flex items-center gap-2 bg-white hover:bg-ink-50 border border-ink-900/12 text-ink-900 font-semibold text-[13.5px] px-6 py-3 rounded-full transition-colors duration-160">
+          Zobacz wszystkie: <span id="newsSeeAllLabel">Najnowsze wiadomości</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
       </div>
     </div>
   </section>
@@ -718,19 +738,37 @@
         <img src="logo.svg" alt="OgarnijWakacje.pl" class="h-11 w-auto" />
       </a>
       <div class="flex flex-wrap gap-x-7 gap-y-2 text-[12.5px] font-medium text-ink-500">
-        <a href="#newsy" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
-        <a href="#ciekawostki" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="newsy.html" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
+        <a href="ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
         <a href="#aplikacja" class="hover:text-ink-900 transition-colors duration-160">Aplikacja</a>
-        <a href="#poradniki" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
         <a href="#pobierz" class="hover:text-ink-900 transition-colors duration-160">Beta</a>
       </div>
     </div>
     <div class="pt-6 border-t border-ink-900/[0.07] flex flex-wrap justify-between gap-3 text-[12px] text-ink-400">
       <span>© 2026 OgarnijWakacje.pl. Wszelkie prawa zastrzeżone.</span>
-      <span class="flex gap-4"><a href="#" class="hover:text-ink-700 transition-colors duration-160">Redakcja</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Reklama</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Regulamin</a></span>
+      <span class="flex gap-4"><a href="#" class="hover:text-ink-700 transition-colors duration-160">Redakcja</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Reklama</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Regulamin</a><a href="#" id="cookieSettingsLink" class="hover:text-ink-700 transition-colors duration-160">Ustawienia cookies</a></span>
     </div>
   </div>
 </footer>
+
+<!-- COOKIE CONSENT (RODO) -->
+<div id="cookieBanner" class="hidden fixed inset-x-0 bottom-0 z-[60] p-4 sm:p-6" role="dialog" aria-live="polite" aria-label="Zgoda na pliki cookie">
+  <div class="max-w-3xl mx-auto bg-white border border-ink-900/10 rounded-3xl shadow-[0_25px_70px_-20px_rgba(20,19,16,0.35)] p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+    <div class="flex items-start gap-3 flex-1">
+      <span class="grid place-items-center w-9 h-9 rounded-full bg-accent-100 text-accent-600 shrink-0"><i data-lucide="cookie" class="w-4.5 h-4.5"></i></span>
+      <p class="text-[13.5px] text-ink-600 leading-relaxed">
+        Używamy plików cookie niezbędnych do działania strony oraz — po Twojej zgodzie — do analizy ruchu i poprawy jakości treści. Możesz zaakceptować wszystkie albo tylko niezbędne. Więcej w
+        <a href="#" class="underline hover:text-ink-900">polityce prywatności</a>.
+      </p>
+    </div>
+    <div class="flex items-center gap-2.5 shrink-0">
+      <button id="cookieReject" class="pressable px-4 py-2.5 rounded-full text-[13px] font-semibold text-ink-700 border border-ink-900/12 hover:bg-ink-50 transition-colors duration-160">Tylko niezbędne</button>
+      <button id="cookieAccept" class="pressable px-4 py-2.5 rounded-full text-[13px] font-semibold bg-ink-900 hover:bg-ink-950 text-white transition-colors duration-160">Akceptuję</button>
+    </div>
+  </div>
+</div>
 
 <script>
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -828,11 +866,26 @@
       });
   })();
 
-  // load news articles from data/articles.json and render them into #newsGrid
+  // load articles from data/articles.json, split into 4 tabs (Najnowsze wiadomości /
+  // Miejsca / Ciekawostki / Poradniki) and render the active one into #newsGrid
   (function () {
     const grid = document.getElementById('newsGrid');
     const empty = document.getElementById('newsEmpty');
+    const emptyText = document.getElementById('newsEmptyText');
+    const tabs = document.getElementById('contentTabs');
+    const seeAll = document.getElementById('newsSeeAll');
+    const seeAllLabel = document.getElementById('newsSeeAllLabel');
     if (!grid) return;
+
+    // strona główna pokazuje tylko podgląd — pełna, przefiltrowana lista żyje
+    // na dedykowanej podstronie każdej kategorii
+    const PREVIEW_LIMIT = 3;
+    const CATEGORY_PAGES = {
+      newsy: { href: 'newsy.html', label: 'Najnowsze wiadomości' },
+      miejsca: { href: 'miejsca.html', label: 'Miejsca' },
+      ciekawostki: { href: 'ciekawostki.html', label: 'Ciekawostki' },
+      poradniki: { href: 'poradniki.html', label: 'Poradniki' },
+    };
 
     const TAG_COLORS = {
       'Kierunki': '#3454c7',
@@ -841,41 +894,104 @@
       'Formalności': '#6d3fc9',
       'Pogoda': '#c85f1e',
       'Trendy': '#33455e',
+      'Natura': '#2f7d4f',
+      'Aplikacja': '#0f766e',
     };
+
+    // artykuły starsze niż wprowadzenie zakładek nie mają jeszcze własnego pola
+    // "category" — dopóki użytkownik nie doda go ręcznie w artykule, domyślną
+    // kategorię wyznaczamy na podstawie tematycznego tagu, żeby nic "nie zniknęło".
+    const TAG_TO_CATEGORY = {
+      'Kierunki': 'miejsca',
+      'Aplikacja': 'newsy',
+      'Bezpieczeństwo': 'newsy',
+      'Loty': 'newsy',
+      'Formalności': 'poradniki',
+      'Pogoda': 'ciekawostki',
+      'Trendy': 'ciekawostki',
+      'Natura': 'ciekawostki',
+    };
+
+    const EMPTY_TEXT = {
+      newsy: 'Brak najnowszych wiadomości — wróć tu wkrótce.',
+      miejsca: 'Brak jeszcze artykułów o miejscach — pierwszy pojawi się tu wkrótce.',
+      ciekawostki: 'Brak jeszcze ciekawostek — pierwsza pojawi się tu wkrótce.',
+      poradniki: 'Brak jeszcze poradników — pierwszy pojawi się tu wkrótce.',
+    };
+
+    let allArticles = [];
+    let activeCategory = 'newsy';
+
+    function categoryOf(a) {
+      return a.category || TAG_TO_CATEGORY[a.tag] || 'newsy';
+    }
+
+    function render() {
+      const matches = allArticles.filter(a => categoryOf(a) === activeCategory);
+      const list = matches.slice(0, PREVIEW_LIMIT);
+
+      if (seeAll && seeAllLabel) {
+        const page = CATEGORY_PAGES[activeCategory] || CATEGORY_PAGES.newsy;
+        seeAll.href = page.href;
+        seeAllLabel.textContent = page.label;
+        seeAll.classList.toggle('hidden', matches.length === 0);
+      }
+
+      if (!list.length) {
+        grid.innerHTML = '';
+        emptyText.textContent = EMPTY_TEXT[activeCategory] || EMPTY_TEXT.newsy;
+        empty.classList.remove('hidden');
+        return;
+      }
+      empty.classList.add('hidden');
+
+      grid.innerHTML = list.map((a, i) => {
+        const color = a.tagColor || TAG_COLORS[a.tag] || '#e8752e';
+        const gradient = a.gradient || 'linear-gradient(160deg,#8c9db3,#d8d2c4 60%,#f3f1ec)';
+        const featured = i === 0;
+        return `
+        <article class="reveal group bg-white border border-ink-900/[0.07] rounded-3xl overflow-hidden hover:shadow-soft hover:-translate-y-1 transition-all duration-300 ease-out ${featured ? 'sm:col-span-2 lg:col-span-2' : ''}">
+          <a href="${a.url}" class="${featured ? 'grid sm:grid-cols-2 h-full' : 'block'}">
+            <div class="relative ${featured ? 'aspect-[16/10] sm:aspect-auto sm:h-full sm:min-h-[220px]' : 'aspect-[16/10]'} overflow-hidden" style="background-image:${gradient};background-size:cover;">
+              ${featured ? `<span class="absolute top-3.5 left-3.5 z-10 bg-white/95 text-ink-900 text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full shadow-softer">Najnowsze</span>` : ''}
+              ${a.image ? `<img src="${a.image}" alt="" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">` : ''}
+            </div>
+            <div class="${featured ? 'p-6 sm:p-7 flex flex-col justify-center' : 'p-5'}">
+              <span class="inline-flex w-fit items-center text-[11px] font-bold uppercase tracking-wide mb-2.5 px-2.5 py-1 rounded-full" style="color:${color};background-color:${color}17;">${a.tag || ''}</span>
+              <h3 class="font-display font-bold ${featured ? 'text-[19px] sm:text-[21px]' : 'text-[15.5px]'} leading-snug text-ink-950 mb-2">${a.title}</h3>
+              <p class="${featured ? 'text-[14.5px]' : 'text-[13px]'} text-ink-500 leading-relaxed mb-3">${a.excerpt || ''}</p>
+              <div class="text-[11px] text-ink-400 uppercase tracking-wide">${a.readTime || ''} · ${a.dateLabel || ''}</div>
+            </div>
+          </a>
+        </article>`;
+      }).join('');
+
+      grid.querySelectorAll('.reveal').forEach(el => window.observeReveal(el));
+    }
+
+    if (tabs) {
+      tabs.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.dataset.category === activeCategory) return;
+          tabs.querySelectorAll('button').forEach(b => b.classList.remove('on', 'bg-ink-900', 'text-white'));
+          btn.classList.add('on', 'bg-ink-900', 'text-white');
+          activeCategory = btn.dataset.category;
+          render();
+        });
+      });
+      tabs.querySelector('button.on').classList.add('bg-ink-900', 'text-white');
+    }
 
     fetch('data/articles.json', { cache: 'no-store' })
       .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(articles => {
-        if (!Array.isArray(articles) || !articles.length) { empty.classList.remove('hidden'); return; }
-
-        // najnowsze najpierw
-        articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        grid.innerHTML = articles.map((a, i) => {
-          const color = a.tagColor || TAG_COLORS[a.tag] || '#e8752e';
-          const gradient = a.gradient || 'linear-gradient(160deg,#8c9db3,#d8d2c4 60%,#f3f1ec)';
-          const featured = i === 0;
-          return `
-          <article class="reveal group bg-white border border-ink-900/[0.07] rounded-3xl overflow-hidden hover:shadow-soft hover:-translate-y-1 transition-all duration-300 ease-out ${featured ? 'sm:col-span-2 lg:col-span-2' : ''}">
-            <a href="${a.url}" class="${featured ? 'grid sm:grid-cols-2 h-full' : 'block'}">
-              <div class="relative ${featured ? 'aspect-[16/10] sm:aspect-auto sm:h-full sm:min-h-[220px]' : 'aspect-[16/10]'} overflow-hidden" style="background-image:${gradient};background-size:cover;">
-                ${featured ? `<span class="absolute top-3.5 left-3.5 z-10 bg-white/95 text-ink-900 text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full shadow-softer">Najnowsze</span>` : ''}
-                ${a.image ? `<img src="${a.image}" alt="" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">` : ''}
-              </div>
-              <div class="${featured ? 'p-6 sm:p-7 flex flex-col justify-center' : 'p-5'}">
-                <span class="inline-flex w-fit items-center text-[11px] font-bold uppercase tracking-wide mb-2.5 px-2.5 py-1 rounded-full" style="color:${color};background-color:${color}17;">${a.tag || ''}</span>
-                <h3 class="font-display font-bold ${featured ? 'text-[19px] sm:text-[21px]' : 'text-[15.5px]'} leading-snug text-ink-950 mb-2">${a.title}</h3>
-                <p class="${featured ? 'text-[14.5px]' : 'text-[13px]'} text-ink-500 leading-relaxed mb-3">${a.excerpt || ''}</p>
-                <div class="text-[11px] text-ink-400 uppercase tracking-wide">${a.readTime || ''} · ${a.dateLabel || ''}</div>
-              </div>
-            </a>
-          </article>`;
-        }).join('');
-
-        grid.querySelectorAll('.reveal').forEach(el => window.observeReveal(el));
+        if (!Array.isArray(articles)) throw new Error('Nieprawidłowy format danych');
+        allArticles = articles.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+        render();
       })
       .catch(err => {
         console.warn('Nie udało się wczytać artykułów:', err);
+        emptyText.textContent = 'Nie udało się wczytać artykułów — spróbuj odświeżyć stronę.';
         empty.classList.remove('hidden');
       });
   })();
@@ -1052,6 +1168,45 @@
     });
     styleBox.querySelector('button.on').classList.add('bg-ink-900', 'text-white');
     update();
+  })();
+
+  // cookie consent banner (RODO/GDPR) — pokazuje się raz, dopóki użytkownik
+  // nie wybierze opcji; wybór zapamiętywany lokalnie, można go zmienić w
+  // dowolnym momencie linkiem "Ustawienia cookies" w stopce.
+  (function () {
+    const KEY = 'ow_cookie_consent';
+    const banner = document.getElementById('cookieBanner');
+    if (!banner) return;
+    const acceptBtn = document.getElementById('cookieAccept');
+    const rejectBtn = document.getElementById('cookieReject');
+    const settingsLink = document.getElementById('cookieSettingsLink');
+
+    function show() {
+      banner.classList.remove('hidden');
+      if (window.lucide) lucide.createIcons();
+      requestAnimationFrame(() => banner.classList.add('in'));
+    }
+    function hide() {
+      banner.classList.remove('in');
+      setTimeout(() => banner.classList.add('hidden'), reducedMotion ? 0 : 260);
+    }
+    function setConsent(value) {
+      try { localStorage.setItem(KEY, value); } catch (e) { /* prywatny tryb przeglądania itp. */ }
+      hide();
+    }
+
+    let stored = null;
+    try { stored = localStorage.getItem(KEY); } catch (e) {}
+    if (!stored) show();
+
+    acceptBtn.addEventListener('click', () => setConsent('accepted'));
+    rejectBtn.addEventListener('click', () => setConsent('rejected'));
+    if (settingsLink) {
+      settingsLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        show();
+      });
+    }
   })();
 </script>
 
