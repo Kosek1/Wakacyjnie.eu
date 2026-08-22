@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nightjet z Interrailem: jak nie przepłacić za kuszetkę — OgarnijWakacje.pl</title>
+<meta name="description" content="Jeden błędny klik w formularzu ÖBB potrafi zawyżyć cenę kuszetki o kilkadziesiąt euro — pokazujemy dokładnie, jak poprawnie dodać zniżkę Interrail/Eurail i wybrać właściwą klasę na nocny pociąg." />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          display: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui'],
+        },
+        colors: {
+          ink: {
+            950: '#141310',
+            900: '#1c1a16',
+            800: '#2a2722',
+            700: '#3e3a32',
+            600: '#5c5648',
+            500: '#7a7364',
+            400: '#a39c8c',
+            300: '#c7c0b1',
+            200: '#e2ddd0',
+            100: '#efebe1',
+            50: '#faf8f3',
+          },
+          accent: {
+            50: '#fff4e9',
+            100: '#ffe2c4',
+            300: '#ffb570',
+            500: '#e8752e',
+            600: '#c85f1e',
+            700: '#a14a17',
+          },
+          leaf: {
+            500: '#3f6a52',
+            600: '#345a44',
+          },
+          teal: {
+            50: '#eaf7f6',
+            100: '#cdeeec',
+            500: '#4fb8b3',
+            600: '#3b9a95',
+          },
+        },
+        boxShadow: {
+          soft: '0 1px 2px rgba(20,19,16,0.04), 0 12px 28px -8px rgba(20,19,16,0.10)',
+          softer: '0 1px 1px rgba(20,19,16,0.03), 0 6px 16px -6px rgba(20,19,16,0.08)',
+          lifted: '0 30px 70px -20px rgba(20,19,16,0.35)',
+        },
+        transitionTimingFunction: {
+          out: 'cubic-bezier(0.23, 1, 0.32, 1)',
+          inout: 'cubic-bezier(0.77, 0, 0.175, 1)',
+        },
+        borderRadius: {
+          '4xl': '2rem',
+        },
+      },
+    },
+  };
+</script>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+<style>
+  :root{
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  html{ scroll-behavior: smooth; }
+  body{ font-family:'Inter', sans-serif; background:#faf8f3; }
+  h1,h2,h3,h4,h5,.font-display{ font-family:'Plus Jakarta Sans', sans-serif; }
+
+  ::selection{ background:#ffb570; color:#1c1a16; }
+
+  /* focus ring — visible, calm */
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline: 2px solid #e8752e;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* reveal-on-scroll */
+  .reveal{ opacity:0; transform: translateY(14px); transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out); }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  /* cookie consent banner */
+  #cookieBanner{ opacity:0; transform: translateY(16px); transition: opacity 260ms var(--ease-out), transform 260ms var(--ease-out); }
+  #cookieBanner.in{ opacity:1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ transition: opacity 200ms ease !important; transform:none !important; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  /* press feedback for interactive controls */
+  .pressable{ transition: transform 160ms var(--ease-out); }
+  .pressable:active{ transform: scale(0.97); }
+
+  /* range slider */
+  input[type="range"]{ -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:99px; background:#e2ddd0; outline:none; }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%;
+    background:#e8752e; border:3px solid #fff; box-shadow:0 1px 4px rgba(20,19,16,0.35);
+    cursor:pointer; transition: transform 160ms var(--ease-out);
+  }
+  input[type="range"]:active::-webkit-slider-thumb{ transform: scale(1.15); }
+  input[type="range"]::-moz-range-thumb{
+    width:16px; height:16px; border-radius:50%; background:#e8752e; border:3px solid #fff;
+    box-shadow:0 1px 4px rgba(20,19,16,0.35); cursor:pointer;
+  }
+
+  /* ranking bars */
+
+  /* quiz */
+  .quiz-step{ display:none; }
+  .quiz-step.active{ display:block; }
+  .quiz-result-panel{ display:none; }
+  .quiz-result-panel.active{ display:grid; }
+
+  /* showcase tabs */
+  .app-screen{ position:absolute; inset:0; opacity:0; transform: scale(1.02); filter: blur(6px); transition: opacity 480ms var(--ease-in-out), transform 480ms var(--ease-in-out), filter 480ms var(--ease-in-out); pointer-events:none; }
+  .app-screen.active{ opacity:1; transform: scale(1); filter: blur(0); pointer-events:auto; }
+  .showcase-progress > div{ height:100%; width:0%; background:#ffb570; }
+  .showcase-progress > div.filling{ animation: fillbar 5000ms linear forwards; }
+  .showcase-progress > div.filled{ width:100%; }
+  @keyframes fillbar{ from{ width:0%; } to{ width:100%; } }
+
+  /* mobile menu */
+  #mobileMenu{ transform: translateY(-8px); opacity:0; pointer-events:none; transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out); }
+  #mobileMenu.open{ transform: translateY(0); opacity:1; pointer-events:auto; }
+
+  .trip-card{ background-size:cover; background-position:center; }
+  .glass-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+  /* subtle float animation for hero decorative chips */
+  @keyframes floaty{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
+  .float-slow{ animation: floaty 6s var(--ease-in-out) infinite; }
+  .float-slower{ animation: floaty 8s var(--ease-in-out) infinite; animation-delay: .8s; }
+
+  /* flying parrot decoration in the hero background */
+  .parrot-fly{ position:absolute; left:-10%; top:58%; filter: drop-shadow(0 6px 10px rgba(20,19,16,0.18)); animation: parrotFly 22s var(--ease-in-out) infinite; }
+  @keyframes parrotFly{
+    0%   { left:-10%; top:60%; transform: translateY(0) rotate(-4deg); }
+    20%  { left:18%;  top:38%; transform: translateY(-14px) rotate(2deg); }
+    45%  { left:50%;  top:20%; transform: translateY(8px) rotate(-3deg); }
+    70%  { left:80%;  top:34%; transform: translateY(-10px) rotate(3deg); }
+    100% { left:112%; top:18%; transform: translateY(0) rotate(-4deg); }
+  }
+
+  /* animated weather badge icon */
+  #weatherBadgeIcon svg{ overflow: visible; }
+  .wx-sun{ transform-origin: 16px 16px; animation: wxSpin 26s linear infinite; }
+  @keyframes wxSpin{ to{ transform: rotate(360deg); } }
+  .wx-glow{ animation: wxGlow 3.2s var(--ease-in-out) infinite; transform-origin: 16px 16px; }
+  @keyframes wxGlow{ 0%,100%{ opacity:.55; transform: scale(1); } 50%{ opacity:.9; transform: scale(1.12); } }
+  .wx-cloud{ animation: wxSway 6s var(--ease-in-out) infinite; transform-origin: 16px 20px; }
+  @keyframes wxSway{ 0%,100%{ transform: translateX(-1.5px); } 50%{ transform: translateX(1.5px); } }
+  .wx-drop{ animation: wxDrop 1.3s linear infinite; }
+  @keyframes wxDrop{ 0%{ transform: translateY(-2px); opacity:0; } 25%{ opacity:1; } 90%{ opacity:0; } 100%{ transform: translateY(7px); opacity:0; } }
+  .wx-flake{ animation: wxFlake 2.6s linear infinite; }
+  @keyframes wxFlake{ 0%{ transform: translate(0,-2px); opacity:0; } 20%{ opacity:1; } 90%{ opacity:0; } 100%{ transform: translate(2px,8px); opacity:0; } }
+  .wx-fog-line{ animation: wxFog 3.4s var(--ease-in-out) infinite; }
+  @keyframes wxFog{ 0%,100%{ transform: translateX(-1.5px); opacity:.55; } 50%{ transform: translateX(1.5px); opacity:1; } }
+  .wx-bolt{ animation: wxBolt 2s ease-in-out infinite; }
+  @keyframes wxBolt{ 0%,45%,100%{ opacity:.35; } 50%,58%{ opacity:1; } 65%{ opacity:.35; } }
+
+  /* vintage postcard treatment for the hero card */
+  .postcard-card{
+    position:relative;
+    background:
+      radial-gradient(ellipse at center, transparent 60%, rgba(120,86,38,.05) 100%),
+      radial-gradient(circle at 18% 28%, rgba(120,86,38,.035) 0, transparent 3px) 0 0/150px 150px,
+      radial-gradient(circle at 66% 74%, rgba(120,86,38,.03) 0, transparent 3px) 0 0/170px 170px,
+      radial-gradient(circle at 82% 18%, rgba(120,86,38,.035) 0, transparent 3px) 0 0/130px 130px,
+      radial-gradient(circle at 30% 88%, rgba(120,86,38,.03) 0, transparent 3px) 0 0/190px 190px,
+      #ffffff;
+    box-shadow: 0 0 0 2px #b8863f, 0 0 0 8px #ffffff, 0 0 0 10px #b8863f, 0 25px 70px -20px rgba(20,19,16,.35);
+  }
+  .postcard-corner{ position:absolute; width:30px; height:30px; opacity:.85; z-index:1; }
+  .postcard-watermark{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:.06; z-index:-1; }
+  .postcard-stamp{
+    position:absolute; top:18px; right:18px; width:78px; z-index:2;
+    background:#ffffff; border:2px dashed #b8863f; border-radius:2px;
+    padding:8px 6px 7px; text-align:center; transform:rotate(6deg);
+    box-shadow: 2px 3px 6px rgba(70,45,15,.25);
+  }
+  .postcard-postmark{
+    position:absolute; top:40px; right:66px; z-index:3; width:82px; height:82px;
+    opacity:.8; transform:rotate(-12deg); mix-blend-mode:multiply; pointer-events:none;
+  }
+
+  /* WINTER 2026 destinations — bento grid */
+  .winter-card{ position:relative; border-radius:1.75rem; overflow:hidden; background:#0b1830; box-shadow: 0 1px 1px rgba(20,19,16,0.03), 0 6px 16px -6px rgba(20,19,16,0.08); transition: transform 420ms var(--ease-out), box-shadow 420ms var(--ease-out), opacity 380ms var(--ease-out); }
+  .winter-card:hover{ transform: translateY(-6px); box-shadow: 0 25px 60px -20px rgba(11,24,48,0.45); }
+  .winter-card img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition: transform 700ms var(--ease-out); }
+  .winter-card:hover img{ transform: scale(1.07); }
+  .winter-card .winter-scrim{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(11,20,38,0.05) 0%, rgba(11,20,38,0.18) 42%, rgba(8,15,30,0.92) 100%); }
+  .winter-card .winter-ring{ position:absolute; inset:0; border-radius:1.75rem; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); transition: box-shadow 420ms var(--ease-out); pointer-events:none; }
+  .winter-card:hover .winter-ring{ box-shadow: inset 0 0 0 1.5px rgba(255,181,112,0.55); }
+  .winter-card.is-hidden{ opacity:0; transform: scale(0.94); pointer-events:none; }
+  .winter-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22); }
+  .winter-cta{ transition: transform 280ms var(--ease-out); }
+  .winter-card:hover .winter-cta{ transform: translateX(3px); }
+</style>
+</head>
+<body class="text-ink-900 antialiased bg-[#faf8f3]">
+<!-- Metadane tego poradnika — czyta je build.js na Netlify przy każdym
+     wdrożeniu, żeby zbudować data/articles.json. category="poradniki"
+     kieruje go na podstronę poradniki.html zamiast do newsów. -->
+<script type="application/json" id="article-meta">{"slug":"pociagi-nocne-europa-interrail-nightjet","title":"Nightjet z Interrailem: jak nie przepłacić za kuszetkę","excerpt":"Jeden błędny klik w formularzu ÖBB potrafi zawyżyć cenę kuszetki o kilkadziesiąt euro — pokazujemy dokładnie, jak poprawnie dodać zniżkę Interrail/Eurail i wybrać właściwą klasę na nocny pociąg.","tag":"Poradnik","tagColor":"#3b9a95","category":"poradniki","image":"https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=700","gradient":"linear-gradient(160deg,#3454c7,#5c5648 55%,#faf8f3)","date":"2026-08-22","dateLabel":"22 sierpnia 2026","readTime":"10 min","url":"artykuly/pociagi-nocne-europa-interrail-nightjet.html"}</script>
+<header id="site-header" class="sticky top-0 z-50 bg-[#faf8f3]/80 backdrop-blur-md border-b border-ink-900/[0.06]">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <nav class="flex items-center justify-between h-16 sm:h-[72px]">
+      <a href="../index.html" class="flex items-center gap-2.5 shrink-0">
+        <img src="../logo.svg" alt="OgarnijWakacje.pl" class="h-12 sm:h-14 w-auto" />
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-[13.5px] font-medium text-ink-600">
+        <a href="../newsy.html" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="../miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
+        <a href="../ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="../poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="../index.html#aplikacja" class="hover:text-ink-900 transition-colors duration-160">Aplikacja</a>
+        <a href="../poznaj-aplikacje.html" class="hover:text-ink-900 transition-colors duration-160">Poznaj aplikację</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="../index.html#pobierz" class="pressable hidden sm:inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white text-[13.5px] font-semibold px-4 py-2.5 rounded-full shadow-softer transition-colors duration-160">
+          Zapisz się do beta
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+        <button id="menuBtn" aria-label="Otwórz menu" aria-expanded="false" class="pressable md:hidden grid place-items-center w-10 h-10 rounded-full border border-ink-900/10">
+          <i data-lucide="menu" class="w-4.5 h-4.5"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden absolute inset-x-0 top-full bg-[#faf8f3]/95 backdrop-blur-md border-b border-ink-900/[0.06] shadow-soft">
+    <div class="max-w-7xl mx-auto px-5 py-5 flex flex-col gap-1 text-[15px] font-medium">
+      <a href="../newsy.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Newsy</a>
+      <a href="../miejsca.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Miejsca</a>
+      <a href="../ciekawostki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Ciekawostki</a>
+      <a href="../poradniki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poradniki</a>
+      <a href="../index.html#aplikacja" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Aplikacja</a>
+      <a href="../poznaj-aplikacje.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poznaj aplikację</a>
+      <a href="../index.html#pobierz" class="mt-2 text-center bg-ink-900 text-white px-3 py-3 rounded-full font-semibold">Zapisz się do beta</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <article class="py-14 sm:py-20">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      <a href="../poradniki.html" class="flex w-fit items-center gap-2 text-[13px] font-semibold text-ink-500 hover:text-ink-900 transition-colors duration-160 mb-8">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Wróć do poradników
+      </a>
+
+      <span class="inline-block text-[11.5px] font-bold uppercase tracking-wide mb-3" style="color:#3b9a95">Poradnik</span>
+      <h1 class="font-display font-extrabold tracking-tight text-[clamp(1.9rem,4.6vw,3rem)] leading-[1.1] text-ink-950 mb-4">Nightjet z Interrailem: jak nie przepłacić za kuszetkę</h1>
+      <div class="text-[12.5px] text-ink-400 uppercase tracking-wide mb-8">10 min czytania · 22 sierpnia 2026 · Redakcja OgarnijWakacje.pl</div>
+
+      <div class="relative aspect-[16/9] rounded-3xl overflow-hidden border border-ink-900/[0.07] mb-10" style="background-image:linear-gradient(160deg,#3454c7,#5c5648 55%,#faf8f3);background-size:cover;">
+        <img src="https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover">
+      </div>
+
+      <div class="text-[16px] leading-[1.75] text-ink-700 guide-prose">
+        <p>Jest dwudziesta trzecia w niedzielę, laptop otwarty na stronie shop.oebbtickets.at, a na ekranie wyskakuje cena za kuszetkę z Wiednia do Amsterdamu, która przewyższa cały budżet na resztę tygodnia. Posiadacz Interrail Global Pass wybrał w formularzu opcję "Seat reservation only", bo brzmiała najbliżej tego, czego szukał — miejsca do spania w pociągu, do którego ma już ważny bilet. System policzył mu jednak pełną cenę biletu jednorazowego plus dopłatę, tak jakby żadnego passu nie miał. To nie awaria strony ani wyjątek. To najczęstszy błąd, jaki popełniają Polacy rezerwujący Nightjety z Interrailem, i kosztuje on zwykle kilkadziesiąt do stu kilkudziesięciu euro więcej, niż powinien.</p>
+
+<p>Problem narasta, bo strona rezerwacyjna ÖBB nie tłumaczy, dlaczego jedna opcja pokazuje pełną cenę, a druga dopłatę. Formularz po prostu przyjmuje wybór i liczy według swojej logiki — bez ostrzeżenia, że coś poszło nie tak, i bez czerwonego komunikatu, który kazałby się zatrzymać. Osoba, która nigdy wcześniej nie rezerwowała miejsca sypialnego z passem, nie ma jak się domyślić, że winny jest jeden przełącznik ustawiony niewłaściwie na samym początku procesu, w profilu pasażera, a nie w samym formularzu wyszukiwania połączeń.</p>
+
+<p>Ten sam mechanizm dotyczy zarówno Interrail Pass (dla mieszkańców Europy), jak i Eurail Pass (dla podróżnych spoza Europy) — obie zniżki figurują w systemie ÖBB pod wspólną nazwą "Interrail/Eurail – Globalpass" i działają identycznie.</p>
+
+<h2>Dlaczego w ogóle jechać nocą, a nie samolotem</h2>
+
+<p>Nightjet z Wiednia do Amsterdamu rusza wieczorem z Wien Hauptbahnhof i wjeżdża na Amsterdam Centraal następnego dnia rano — bez przesiadki, bez dojazdu na lotnisko po drugiej stronie miasta, bez wstawania o czwartej. Podobnie działa relacja Berlin–Paryż czy Monachium–Rzym, gdzie pociąg wjeżdża prosto do centrum, dosłownie kilkaset metrów od hosteli i kawiarni, które i tak trzeba by odwiedzić następnego dnia. Różnica w porównaniu z lotem jest prosta do policzenia: nocleg, który i tak trzeba by opłacić, zamienia się w bilet kolejowy, a cały dzień, który zwykle idzie na dojazdy i odprawę, zostaje wolny na zwiedzanie.</p>
+
+<p>Sieć ÖBB Nightjet rozrosła się w ostatnich latach na tyle, że można nią spiąć spory kawałek Europy bez samolotu w ogóle — Wiedeń, Zurych, Monachium, Rzym, Wenecję, Berlin, Hamburg, Amsterdam, Bruksellę czy Paryż. Dla kogoś jadącego z Interrailem albo Eurailem to naturalny szkielet trasy: dzień na zwiedzanie miasta, wieczorem pociąg, rano już w kolejnym miejscu, z całym dniem przed sobą zamiast po drodze zmarnowanym na lotnisku.</p>
+
+<h2>Jak poprawnie zarezerwować miejsce sypialne z Interrailem</h2>
+
+<p>Sam bilet Interrail czy Eurail Global Pass nie daje prawa do miejsca w kuszetce ani w wagonie sypialnym — daje prawo do przejazdu, a miejsce leżące trzeba dokupić osobno jako rezerwację. Problem w tym, że strona ÖBB (shop.oebbtickets.at) i nightjet.com pokazują dwie różne ścieżki rezerwacji, które wyglądają podobnie, ale prowadzą do zupełnie innego wyniku finansowego.</p>
+
+<h3>Krok po kroku</h3>
+
+<ul class="checklist">
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Załóż profil pasażera na stronie rezerwacyjnej.</b> Zanim zaczniesz szukać połączenia, wejdź w ustawienia konta lub profil podróżnego i dodaj tam zniżkę.</span></li>
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Dodaj kartę zniżkową o nazwie "Interrail/Eurail – Globalpass".</b> To dokładna nazwa opcji w systemie ÖBB — bez niej algorytm nie ma jak rozpoznać, że masz już opłacony przejazd.</span></li>
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Wyszukaj połączenie i wybierz standardowy bilet jednorazowy.</b> Nie "tylko rezerwację miejsca", tylko zwykły proces zakupu biletu — tak jakby się kupowało pełny bilet od zera.</span></li>
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>System sam odejmie cenę przejazdu.</b> Po dodaniu passu do profilu strona rozpoznaje, że masz już opłacone przemieszczanie się, i pokazuje wyłącznie dopłatę za miejsce sypialne — czyli realną kwotę, którą masz zapłacić.</span></li>
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Sprawdź podsumowanie zamówienia przed płatnością.</b> Powinna tam figurować wyłącznie dopłata do kuszetki lub wagonu sypialnego, rzędu kilkunastu do kilkudziesięciu euro — nie cena całego biletu.</span></li>
+</ul>
+
+<div class="tip"><b>Najczęstszy błąd przy rezerwacji:</b> na stronie ÖBB w polu wyboru rodzaju rezerwacji NIE wybieraj opcji "Seat reservation only" jako posiadacz Interrail/Eurail. Ta opcja jest przeznaczona dla pasażerów kupujących zwykłe miejsce siedzące razem z osobnym biletem od zera — nie rozpoznaje żadnego passu i nie pozwoli poprawnie doliczyć dopłaty do miejsca sypialnego. Zamiast tego zawsze przechodź przez standardowy proces zakupu biletu, mając wcześniej dodaną zniżkę Interrail/Eurail w profilu — dopiero wtedy system pokaże właściwą, niższą cenę za sam nocleg w pociągu.</div>
+
+<p>Ten sam mechanizm działa identycznie niezależnie od tego, czy rezerwujesz przez aplikację ÖBB Tickets, przez nightjet.com, czy przez stronę stacjonarną w kasie na dworcu w Wiedniu czy Monachium — w każdym przypadku obsługa albo system musi "widzieć" pass w profilu, zanim zacznie liczyć cenę. Warto też pamiętać, że rezerwacje na popularne relacje, zwłaszcza Wiedeń–Rzym czy Monachium–Paryż latem, wyprzedają się nawet trzy–cztery miesiące naprzód, więc lepiej nie zostawiać tego na tydzień przed wyjazdem.</p>
+
+<p>Ceny dopłat rosną stopniowo w miarę wyprzedawania się miejsc — kontyngent na kuszetki i wagony sypialne w każdym pociągu jest ograniczony i podzielony na progi cenowe, podobnie jak w liniach lotniczych. Rezerwacja miesiąc przed wyjazdem na trasę Berlin–Paryż może kosztować dwadzieścia kilka euro za miejsce w kuszetce, a tydzień przed wyjazdem na tej samej trasie – już czterdzieści kilka, jeśli w ogóle zostały wolne miejsca. Data otwarcia rezerwacji różni się w zależności od trasy, ale zwykle to około sześciu miesięcy naprzód, więc warto sprawdzać stronę nightjet.com regularnie, jeśli podróż planowana jest z dużym wyprzedzeniem.</p>
+
+<p>Osobna pułapka czeka tych, którzy próbują kupić bilet przez ogólnoeuropejskie wyszukiwarki połączeń zamiast bezpośrednio przez ÖBB. Część z nich w ogóle nie obsługuje logiki zniżki Interrail/Eurail i pokazuje tylko cenę pełną, sugerując, że dopłata do kuszetki jest znacznie droższa, niż jest naprawdę. Najpewniejszym źródłem poprawnej ceny pozostaje rezerwacja bezpośrednio na shop.oebbtickets.at, w aplikacji ÖBB Tickets albo na nightjet.com — z profilem pasażera ustawionym tak, jak opisano wyżej.</p>
+
+<p>W praktyce najlepiej zrobić to od razu po zakupie samego passu Interrail lub Eurail — profil z dodaną zniżką zostaje zapamiętany na koncie i przy każdej kolejnej rezerwacji w trakcie tej samej podróży formularz już sam podpowiada właściwe ceny, bez konieczności powtarzania kroku od nowa.</p>
+
+<h2>Miejsce siedzące, kuszetka, wagon sypialny czy mini-cabin</h2>
+
+<p>Cztery poziomy komfortu w Nightjecie różnią się nie tylko ceną, ale i tym, ile snu realnie da się złapać. Wybór zależy głównie od długości trasy i budżetu, a nie od tego, "co brzmi lepiej" w opisie.</p>
+
+<h3>Miejsce siedzące (Sitzwagen)</h3>
+
+<p>Najtańsza opcja — zwykły fotel, taki jak w dziennym pociągu, tylko że jedzie się nim przez noc. Sensowna na krótszych odcinkach, do sześciu–siedmiu godzin, albo gdy budżet jest naprawdę napięty. Na dłuższych trasach, jak Wiedeń–Amsterdam trwający kilkanaście godzin, sen na siedząco potrafi zniweczyć cały następny dzień zwiedzania.</p>
+
+<h3>Kuszetka (Liegewagen / Couchette)</h3>
+
+<p>Dzielony przedział, zwykle na cztery lub sześć osób, z rozkładanymi leżankami. Pościel bywa skromniejsza niż w wagonie sypialnym — czasem tylko koc i poduszka zamiast pełnej pościeli — a przedział dzieli się z obcymi ludźmi, których nie zna się wcześniej. To rozsądny środek między ceną a wygodą, popularny wśród podróżujących z plecakiem.</p>
+
+<h3>Wagon sypialny (Schlafwagen)</h3>
+
+<p>Prywatny przedział, zwykle dla jednej, dwóch lub trzech osób, z pełną pościelą, czasem umywalką w przedziale i śniadaniem wliczonym w cenę. Najwyższy standard klasyczny w ofercie Nightjet — dla kogoś, kto chce obudzić się wypoczęty i gotowy na zwiedzanie od razu po zejściu z pociągu.</p>
+
+<h3>Mini-cabin</h3>
+
+<p>Nowość w części składów ÖBB — pojedyncze, zamykane na klucz kapsuły, trochę jak miniaturowa kabina na promie. Więcej prywatności niż w kuszetce, ale bez luksusu klasycznego wagonu sypialnego i bez dzielenia przestrzeni z innymi pasażerami. Dobry wybór dla podróżujących solo, którzy chcą spać spokojnie, ale nie chcą płacić za cały prywatny przedział sypialny.</p>
+
+<p>Przy wyborze klasy liczy się przede wszystkim długość odcinka i to, co czeka po wyjściu z pociągu. Na krótkiej trasie, jak Monachium–Zurych trwający kilka godzin, nawet miejsce siedzące wystarczy, bo większość czasu i tak przesypia się w fotelu bez większej straty jakości snu. Na długiej trasie, jak Wiedeń–Amsterdam czy Zurych–Rzym, warto zainwestować w kuszetkę lub mini-cabin, zwłaszcza jeśli następnego dnia czeka cały dzień zwiedzania i trzeba wysiąść wypoczętym. Dla par lub rodzin podróżujących razem wagon sypialny na dwie–trzy osoby często wychodzi taniej per osoba niż dwie–trzy oddzielne kuszetki w różnych przedziałach, więc zawsze warto porównać obie opcje przed kliknięciem "kup".</p>
+
+<h2>Gdy pociąg się spóźni albo trzeba się przesiąść między przewoźnikami</h2>
+
+<p>Nocne trasy często łączą sieci różnych operatorów — Nightjet ÖBB może przesiadać pasażera na skład włoskiego Trenitalia albo francuskiego SNCF w ramach jednej podróży sprzedanej jako połączenie. Jeśli pierwszy odcinek się spóźni i przez to przegapisz przesiadkę, chroni cię wtedy porozumienie AJC (Agreement on Journey Continuation) — umowa między europejskimi przewoźnikami kolejowymi, która zobowiązuje ich do zapewnienia dalszej podróży, nawet jeśli bilety na poszczególne odcinki formalnie sprzedał inny przewoźnik niż ten, który spowodował opóźnienie.</p>
+
+<p>W praktyce oznacza to, że w razie przegapionej przesiadki masz prawo poprosić obsługę na dworcu — najlepiej przy okienku danego przewoźnika lub punkcie informacji kolejowej — o przepisanie na najbliższe możliwe połączenie do celu podróży, bez dodatkowej opłaty. Warto zachować bilet oraz ewentualne potwierdzenie opóźnienia (np. zrzut ekranu z tablicy odjazdów albo z aplikacji przewoźnika) na wypadek, gdyby trzeba było się tym wykazać.</p>
+
+<p>Sytuacja typowa dla tras nocnych: Nightjet z Wiednia dojeżdża do Zurychu z opóźnieniem, a zaplanowana przesiadka na poranny pociąg do Paryża przepada o kilka minut. Bez AJC pasażer musiałby kupować nowy bilet na własny koszt. Z AJC obsługa na miejscu — zwykle przy okienku danego przewoźnika na dworcu w Zurychu — ma obowiązek posadzić go na kolejnym możliwym połączeniu do celu podróży bez dodatkowej opłaty, niezależnie od tego, który z przewoźników w łańcuchu podróży zawinił opóźnieniem. To rozwiązanie działa w obrębie sieci kolei należących do porozumienia, więc nie obejmuje automatycznie każdego małego regionalnego przewoźnika, ale pokrywa większość głównych relacji między dużymi miastami, które i tak najczęściej wybiera się przy planowaniu trasy Interrailem.</p>
+
+<h2>Checklista przed pierwszą nocą w pociągu</h2>
+
+<ul class="checklist">
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Zapisz numer przedziału i wagonu na telefonie, nie tylko na papierowym bilecie.</b> Peron bywa słabo oświetlony, a tablice na wagonach czasem trudno odczytać w biegu.</span></li>
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Bądź na peronie minimum piętnaście minut przed odjazdem.</b> Nocne składy bywają długie, a wagon sypialny może stać na samym końcu peronu.</span></li>
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Weź ze sobą linkę z kłódką na bagaż podręczny.</b> Torbę wartościową warto przypiąć do bagażnika lub konstrukcji przedziału na noc, zwłaszcza w kuszetce dzielonej z obcymi.</span></li>
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Miej przy sobie paszport lub dowód przez całą noc, nie w bagażu podręcznym na górnej półce.</b> Kontrole graniczne na trasach przez Szwajcarię czy Włochy zdarzają się o drugiej lub trzeciej w nocy.</span></li>
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Zabierz zatyczki do uszu i maskę na oczy.</b> Nawet w wagonie sypialnym słychać stukot kół i sąsiednie przedziały, a światła na stacjach po drodze potrafią obudzić.</span></li>
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Sprawdź w mailu potwierdzającym godzinę i miejsce wyjścia — nie polegaj wyłącznie na zapowiedziach w pociągu.</b> Na niektórych trasach obsługa budzi pasażerów około pół godziny przed stacją docelową, ale zdarza się, że trzeba pilnować tego samemu.</span></li>
+</ul>
+
+<p>Dobrze zarezerwowany Nightjet to jedna z niewielu sytuacji w podróżowaniu, gdzie oszczędność czasu i pieniędzy idą w parze — pod warunkiem, że formularz rezerwacji zostanie wypełniony w prawidłowej kolejności, z passem dodanym do profilu, zanim system zacznie liczyć cenę.</p>
+
+      </div>
+
+      <div class="mt-14 pt-8 border-t border-ink-900/[0.08] flex flex-wrap items-center justify-between gap-4">
+        <a href="../poradniki.html" class="pressable inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white font-semibold text-[13.5px] px-5 py-3 rounded-full transition-colors duration-160">
+          Zobacz więcej poradników
+        </a>
+        <a href="../index.html#pobierz" class="pressable inline-flex items-center gap-2 bg-white hover:bg-ink-50 border border-ink-900/12 text-ink-900 font-semibold text-[13.5px] px-5 py-3 rounded-full transition-colors duration-160">
+          Zapisz się do bety
+        </a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="border-t border-ink-900/[0.07] py-12">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex flex-wrap items-center justify-between gap-6 mb-8">
+      <a href="../index.html" class="flex items-center gap-2.5">
+        <img src="../logo.svg" alt="OgarnijWakacje.pl" class="h-11 w-auto" />
+      </a>
+      <div class="flex flex-wrap gap-x-7 gap-y-2 text-[12.5px] font-medium text-ink-500">
+        <a href="../newsy.html" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="../miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
+        <a href="../ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="../poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="../index.html#aplikacja" class="hover:text-ink-900 transition-colors duration-160">Aplikacja</a>
+        <a href="../poznaj-aplikacje.html" class="hover:text-ink-900 transition-colors duration-160">Poznaj aplikację</a>
+        <a href="../index.html#pobierz" class="hover:text-ink-900 transition-colors duration-160">Beta</a>
+      </div>
+    </div>
+    <div class="pt-6 border-t border-ink-900/[0.07] flex flex-wrap justify-between gap-3 text-[12px] text-ink-400">
+      <span>© 2026 OgarnijWakacje.pl. Wszelkie prawa zastrzeżone.</span>
+      <span class="flex gap-4"><a href="#" class="hover:text-ink-700 transition-colors duration-160">Redakcja</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Reklama</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Regulamin</a><a href="#" id="cookieSettingsLink" class="hover:text-ink-700 transition-colors duration-160">Ustawienia cookies</a></span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .guide-prose h2 { font-family:'Plus Jakarta Sans', sans-serif; font-weight:800; letter-spacing:-0.01em; color:#141310; font-size:clamp(1.25rem,2.4vw,1.55rem); margin-top:2.75rem; margin-bottom:0.9rem; }
+  .guide-prose h2:first-child { margin-top:0; }
+  .guide-prose h3 { font-family:'Plus Jakarta Sans', sans-serif; font-weight:700; color:#1c1a16; font-size:1.05rem; margin-top:1.75rem; margin-bottom:0.6rem; }
+  .guide-prose p { margin-bottom:1.1rem; }
+  .guide-prose ul.checklist { list-style:none; margin:0 0 1.4rem 0; padding:0; display:flex; flex-direction:column; gap:0.55rem; }
+  .guide-prose ul.checklist li { display:flex; align-items:flex-start; gap:0.65rem; font-size:15px; }
+  .guide-prose ul.checklist li .dot { flex-shrink:0; width:1.15rem; height:1.15rem; border-radius:9999px; background:#fff4e9; color:#c85f1e; display:grid; place-items:center; margin-top:0.15rem; }
+  .guide-prose ul.checklist li .dot i { width:12px; height:12px; }
+  .guide-prose ul.checklist li b { color:#141310; font-weight:600; }
+  .guide-prose .tip { background:#fff4e9; border:1px solid rgba(232,117,46,0.18); border-radius:1.25rem; padding:1.1rem 1.35rem; margin:1.4rem 0 1.8rem; font-size:14.5px; color:#5c5648; }
+  .guide-prose .tip b { color:#a14a17; }
+</style>
+
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+  window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.innerHTML = open ? '<i data-lucide="x" class="w-4.5 h-4.5"></i>' : '<i data-lucide="menu" class="w-4.5 h-4.5"></i>';
+      if (window.lucide) lucide.createIcons();
+    });
+  })();
+  document.querySelectorAll('.pressable').forEach(function (el) { el.classList.add('transition-transform'); });
+</script>
+
+</body>
+</html>

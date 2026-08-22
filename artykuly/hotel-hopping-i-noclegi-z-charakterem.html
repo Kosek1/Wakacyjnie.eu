@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hotel hopping i noclegi z charakterem — jak zaplanować pobyt bez logistycznego chaosu — OgarnijWakacje.pl</title>
+<meta name="description" content="Jak zmieniać kilka noclegów w trakcie jednego wyjazdu — od adaptowanych młynów i wież po budżetowe pokoje w drodze — bez problemów z minimalną liczbą nocy, bagażem i budżetem." />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          display: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui'],
+        },
+        colors: {
+          ink: {
+            950: '#141310',
+            900: '#1c1a16',
+            800: '#2a2722',
+            700: '#3e3a32',
+            600: '#5c5648',
+            500: '#7a7364',
+            400: '#a39c8c',
+            300: '#c7c0b1',
+            200: '#e2ddd0',
+            100: '#efebe1',
+            50: '#faf8f3',
+          },
+          accent: {
+            50: '#fff4e9',
+            100: '#ffe2c4',
+            300: '#ffb570',
+            500: '#e8752e',
+            600: '#c85f1e',
+            700: '#a14a17',
+          },
+          leaf: {
+            500: '#3f6a52',
+            600: '#345a44',
+          },
+          teal: {
+            50: '#eaf7f6',
+            100: '#cdeeec',
+            500: '#4fb8b3',
+            600: '#3b9a95',
+          },
+        },
+        boxShadow: {
+          soft: '0 1px 2px rgba(20,19,16,0.04), 0 12px 28px -8px rgba(20,19,16,0.10)',
+          softer: '0 1px 1px rgba(20,19,16,0.03), 0 6px 16px -6px rgba(20,19,16,0.08)',
+          lifted: '0 30px 70px -20px rgba(20,19,16,0.35)',
+        },
+        transitionTimingFunction: {
+          out: 'cubic-bezier(0.23, 1, 0.32, 1)',
+          inout: 'cubic-bezier(0.77, 0, 0.175, 1)',
+        },
+        borderRadius: {
+          '4xl': '2rem',
+        },
+      },
+    },
+  };
+</script>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+<style>
+  :root{
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  html{ scroll-behavior: smooth; }
+  body{ font-family:'Inter', sans-serif; background:#faf8f3; }
+  h1,h2,h3,h4,h5,.font-display{ font-family:'Plus Jakarta Sans', sans-serif; }
+
+  ::selection{ background:#ffb570; color:#1c1a16; }
+
+  /* focus ring — visible, calm */
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline: 2px solid #e8752e;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* reveal-on-scroll */
+  .reveal{ opacity:0; transform: translateY(14px); transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out); }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  /* cookie consent banner */
+  #cookieBanner{ opacity:0; transform: translateY(16px); transition: opacity 260ms var(--ease-out), transform 260ms var(--ease-out); }
+  #cookieBanner.in{ opacity:1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ transition: opacity 200ms ease !important; transform:none !important; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  /* press feedback for interactive controls */
+  .pressable{ transition: transform 160ms var(--ease-out); }
+  .pressable:active{ transform: scale(0.97); }
+
+  /* range slider */
+  input[type="range"]{ -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:99px; background:#e2ddd0; outline:none; }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%;
+    background:#e8752e; border:3px solid #fff; box-shadow:0 1px 4px rgba(20,19,16,0.35);
+    cursor:pointer; transition: transform 160ms var(--ease-out);
+  }
+  input[type="range"]:active::-webkit-slider-thumb{ transform: scale(1.15); }
+  input[type="range"]::-moz-range-thumb{
+    width:16px; height:16px; border-radius:50%; background:#e8752e; border:3px solid #fff;
+    box-shadow:0 1px 4px rgba(20,19,16,0.35); cursor:pointer;
+  }
+
+  /* ranking bars */
+
+  /* quiz */
+  .quiz-step{ display:none; }
+  .quiz-step.active{ display:block; }
+  .quiz-result-panel{ display:none; }
+  .quiz-result-panel.active{ display:grid; }
+
+  /* showcase tabs */
+  .app-screen{ position:absolute; inset:0; opacity:0; transform: scale(1.02); filter: blur(6px); transition: opacity 480ms var(--ease-in-out), transform 480ms var(--ease-in-out), filter 480ms var(--ease-in-out); pointer-events:none; }
+  .app-screen.active{ opacity:1; transform: scale(1); filter: blur(0); pointer-events:auto; }
+  .showcase-progress > div{ height:100%; width:0%; background:#ffb570; }
+  .showcase-progress > div.filling{ animation: fillbar 5000ms linear forwards; }
+  .showcase-progress > div.filled{ width:100%; }
+  @keyframes fillbar{ from{ width:0%; } to{ width:100%; } }
+
+  /* mobile menu */
+  #mobileMenu{ transform: translateY(-8px); opacity:0; pointer-events:none; transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out); }
+  #mobileMenu.open{ transform: translateY(0); opacity:1; pointer-events:auto; }
+
+  .trip-card{ background-size:cover; background-position:center; }
+  .glass-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+  /* subtle float animation for hero decorative chips */
+  @keyframes floaty{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
+  .float-slow{ animation: floaty 6s var(--ease-in-out) infinite; }
+  .float-slower{ animation: floaty 8s var(--ease-in-out) infinite; animation-delay: .8s; }
+
+  /* flying parrot decoration in the hero background */
+  .parrot-fly{ position:absolute; left:-10%; top:58%; filter: drop-shadow(0 6px 10px rgba(20,19,16,0.18)); animation: parrotFly 22s var(--ease-in-out) infinite; }
+  @keyframes parrotFly{
+    0%   { left:-10%; top:60%; transform: translateY(0) rotate(-4deg); }
+    20%  { left:18%;  top:38%; transform: translateY(-14px) rotate(2deg); }
+    45%  { left:50%;  top:20%; transform: translateY(8px) rotate(-3deg); }
+    70%  { left:80%;  top:34%; transform: translateY(-10px) rotate(3deg); }
+    100% { left:112%; top:18%; transform: translateY(0) rotate(-4deg); }
+  }
+
+  /* animated weather badge icon */
+  #weatherBadgeIcon svg{ overflow: visible; }
+  .wx-sun{ transform-origin: 16px 16px; animation: wxSpin 26s linear infinite; }
+  @keyframes wxSpin{ to{ transform: rotate(360deg); } }
+  .wx-glow{ animation: wxGlow 3.2s var(--ease-in-out) infinite; transform-origin: 16px 16px; }
+  @keyframes wxGlow{ 0%,100%{ opacity:.55; transform: scale(1); } 50%{ opacity:.9; transform: scale(1.12); } }
+  .wx-cloud{ animation: wxSway 6s var(--ease-in-out) infinite; transform-origin: 16px 20px; }
+  @keyframes wxSway{ 0%,100%{ transform: translateX(-1.5px); } 50%{ transform: translateX(1.5px); } }
+  .wx-drop{ animation: wxDrop 1.3s linear infinite; }
+  @keyframes wxDrop{ 0%{ transform: translateY(-2px); opacity:0; } 25%{ opacity:1; } 90%{ opacity:0; } 100%{ transform: translateY(7px); opacity:0; } }
+  .wx-flake{ animation: wxFlake 2.6s linear infinite; }
+  @keyframes wxFlake{ 0%{ transform: translate(0,-2px); opacity:0; } 20%{ opacity:1; } 90%{ opacity:0; } 100%{ transform: translate(2px,8px); opacity:0; } }
+  .wx-fog-line{ animation: wxFog 3.4s var(--ease-in-out) infinite; }
+  @keyframes wxFog{ 0%,100%{ transform: translateX(-1.5px); opacity:.55; } 50%{ transform: translateX(1.5px); opacity:1; } }
+  .wx-bolt{ animation: wxBolt 2s ease-in-out infinite; }
+  @keyframes wxBolt{ 0%,45%,100%{ opacity:.35; } 50%,58%{ opacity:1; } 65%{ opacity:.35; } }
+
+  /* vintage postcard treatment for the hero card */
+  .postcard-card{
+    position:relative;
+    background:
+      radial-gradient(ellipse at center, transparent 60%, rgba(120,86,38,.05) 100%),
+      radial-gradient(circle at 18% 28%, rgba(120,86,38,.035) 0, transparent 3px) 0 0/150px 150px,
+      radial-gradient(circle at 66% 74%, rgba(120,86,38,.03) 0, transparent 3px) 0 0/170px 170px,
+      radial-gradient(circle at 82% 18%, rgba(120,86,38,.035) 0, transparent 3px) 0 0/130px 130px,
+      radial-gradient(circle at 30% 88%, rgba(120,86,38,.03) 0, transparent 3px) 0 0/190px 190px,
+      #ffffff;
+    box-shadow: 0 0 0 2px #b8863f, 0 0 0 8px #ffffff, 0 0 0 10px #b8863f, 0 25px 70px -20px rgba(20,19,16,.35);
+  }
+  .postcard-corner{ position:absolute; width:30px; height:30px; opacity:.85; z-index:1; }
+  .postcard-watermark{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:.06; z-index:-1; }
+  .postcard-stamp{
+    position:absolute; top:18px; right:18px; width:78px; z-index:2;
+    background:#ffffff; border:2px dashed #b8863f; border-radius:2px;
+    padding:8px 6px 7px; text-align:center; transform:rotate(6deg);
+    box-shadow: 2px 3px 6px rgba(70,45,15,.25);
+  }
+  .postcard-postmark{
+    position:absolute; top:40px; right:66px; z-index:3; width:82px; height:82px;
+    opacity:.8; transform:rotate(-12deg); mix-blend-mode:multiply; pointer-events:none;
+  }
+
+  /* WINTER 2026 destinations — bento grid */
+  .winter-card{ position:relative; border-radius:1.75rem; overflow:hidden; background:#0b1830; box-shadow: 0 1px 1px rgba(20,19,16,0.03), 0 6px 16px -6px rgba(20,19,16,0.08); transition: transform 420ms var(--ease-out), box-shadow 420ms var(--ease-out), opacity 380ms var(--ease-out); }
+  .winter-card:hover{ transform: translateY(-6px); box-shadow: 0 25px 60px -20px rgba(11,24,48,0.45); }
+  .winter-card img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition: transform 700ms var(--ease-out); }
+  .winter-card:hover img{ transform: scale(1.07); }
+  .winter-card .winter-scrim{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(11,20,38,0.05) 0%, rgba(11,20,38,0.18) 42%, rgba(8,15,30,0.92) 100%); }
+  .winter-card .winter-ring{ position:absolute; inset:0; border-radius:1.75rem; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); transition: box-shadow 420ms var(--ease-out); pointer-events:none; }
+  .winter-card:hover .winter-ring{ box-shadow: inset 0 0 0 1.5px rgba(255,181,112,0.55); }
+  .winter-card.is-hidden{ opacity:0; transform: scale(0.94); pointer-events:none; }
+  .winter-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22); }
+  .winter-cta{ transition: transform 280ms var(--ease-out); }
+  .winter-card:hover .winter-cta{ transform: translateX(3px); }
+</style>
+</head>
+<body class="text-ink-900 antialiased bg-[#faf8f3]">
+<!-- Metadane tego poradnika — czyta je build.js na Netlify przy każdym
+     wdrożeniu, żeby zbudować data/articles.json. category="poradniki"
+     kieruje go na podstronę poradniki.html zamiast do newsów. -->
+<script type="application/json" id="article-meta">{"slug":"hotel-hopping-i-noclegi-z-charakterem","title":"Hotel hopping i noclegi z charakterem — jak zaplanować pobyt bez logistycznego chaosu","excerpt":"Jak zmieniać kilka noclegów w trakcie jednego wyjazdu — od adaptowanych młynów i wież po budżetowe pokoje w drodze — bez problemów z minimalną liczbą nocy, bagażem i budżetem.","tag":"Poradnik","tagColor":"#3b9a95","category":"poradniki","image":"https://images.pexels.com/photos/6444266/pexels-photo-6444266.jpeg?auto=compress&cs=tinysrgb&w=700","gradient":"linear-gradient(160deg,#953b1a,#eeab84 55%,#faf8f3)","date":"2026-08-22","dateLabel":"22 sierpnia 2026","readTime":"9 min","url":"artykuly/hotel-hopping-i-noclegi-z-charakterem.html"}</script>
+<header id="site-header" class="sticky top-0 z-50 bg-[#faf8f3]/80 backdrop-blur-md border-b border-ink-900/[0.06]">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <nav class="flex items-center justify-between h-16 sm:h-[72px]">
+      <a href="../index.html" class="flex items-center gap-2.5 shrink-0">
+        <img src="../logo.svg" alt="OgarnijWakacje.pl" class="h-12 sm:h-14 w-auto" />
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-[13.5px] font-medium text-ink-600">
+        <a href="../newsy.html" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="../miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
+        <a href="../ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="../poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="../index.html#aplikacja" class="hover:text-ink-900 transition-colors duration-160">Aplikacja</a>
+        <a href="../poznaj-aplikacje.html" class="hover:text-ink-900 transition-colors duration-160">Poznaj aplikację</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="../index.html#pobierz" class="pressable hidden sm:inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white text-[13.5px] font-semibold px-4 py-2.5 rounded-full shadow-softer transition-colors duration-160">
+          Zapisz się do beta
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+        <button id="menuBtn" aria-label="Otwórz menu" aria-expanded="false" class="pressable md:hidden grid place-items-center w-10 h-10 rounded-full border border-ink-900/10">
+          <i data-lucide="menu" class="w-4.5 h-4.5"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden absolute inset-x-0 top-full bg-[#faf8f3]/95 backdrop-blur-md border-b border-ink-900/[0.06] shadow-soft">
+    <div class="max-w-7xl mx-auto px-5 py-5 flex flex-col gap-1 text-[15px] font-medium">
+      <a href="../newsy.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Newsy</a>
+      <a href="../miejsca.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Miejsca</a>
+      <a href="../ciekawostki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Ciekawostki</a>
+      <a href="../poradniki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poradniki</a>
+      <a href="../index.html#aplikacja" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Aplikacja</a>
+      <a href="../poznaj-aplikacje.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poznaj aplikację</a>
+      <a href="../index.html#pobierz" class="mt-2 text-center bg-ink-900 text-white px-3 py-3 rounded-full font-semibold">Zapisz się do beta</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <article class="py-14 sm:py-20">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      <a href="../poradniki.html" class="flex w-fit items-center gap-2 text-[13px] font-semibold text-ink-500 hover:text-ink-900 transition-colors duration-160 mb-8">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Wróć do poradników
+      </a>
+
+      <span class="inline-block text-[11.5px] font-bold uppercase tracking-wide mb-3" style="color:#3b9a95">Poradnik</span>
+      <h1 class="font-display font-extrabold tracking-tight text-[clamp(1.9rem,4.6vw,3rem)] leading-[1.1] text-ink-950 mb-4">Hotel hopping i noclegi z charakterem — jak zaplanować pobyt bez logistycznego chaosu</h1>
+      <div class="text-[12.5px] text-ink-400 uppercase tracking-wide mb-8">9 min czytania · 22 sierpnia 2026 · Redakcja OgarnijWakacje.pl</div>
+
+      <div class="relative aspect-[16/9] rounded-3xl overflow-hidden border border-ink-900/[0.07] mb-10" style="background-image:linear-gradient(160deg,#953b1a,#eeab84 55%,#faf8f3);background-size:cover;">
+        <img src="https://images.pexels.com/photos/6444266/pexels-photo-6444266.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover">
+      </div>
+
+      <div class="text-[16px] leading-[1.75] text-ink-700 guide-prose">
+        <p>Pierwsza noc w wieży ciśnień przerobionej na apartament w Umbrii - kręcone schody, okrągła sypialnia na samej górze, widok na winnice przez okno, które sto lat temu było otworem wentylacyjnym. Druga noc w budżetowym pokoju przy dworcu w Perugii, bo następnego dnia trzeba wcześnie ruszać dalej. Trzecia w dawnym młynie wodnym nad rzeką, gdzie kamienne żarna stoją teraz w holu jako element wystroju, a szum wody zastępuje klimatyzację. Żadnej z tych nocy nie dałoby się odtworzyć w standardowym hotelu sieciowym - i o to właśnie chodzi w podróży, w której nocleg przestaje być tłem, a staje się jednym z powodów, dla których się jedzie.</p>
+
+<p>Ruch jest wyraźny: coraz więcej podróżnych traktuje miejsce noclegu nie jako logistyczny detal między atrakcjami, tylko jako część programu zwiedzania samą w sobie. Stąd rosnąca popularność zmieniania kilku różnych obiektów w trakcie jednego wyjazdu zamiast rezerwowania jednego hotelu na cały pobyt - praktyka, którą branża zaczęła nazywać hotel hoppingiem, a która w parze z modą na adaptowane zabytki daje zupełnie inny sposób planowania urlopu niż jeszcze pięć lat temu.</p>
+
+<h2>Czym jest hotel hopping i skąd się wziął</h2>
+
+<p>Mechanika jest prosta - zamiast jednego noclegu na siedem czy dziesięć dni, podróżny rezerwuje trzy, cztery, czasem pięć różnych obiektów, po jednej lub dwie noce w każdym. Nie chodzi o przemieszczanie się między miastami, choć często to też się dzieje - chodzi o świadome kolekcjonowanie różnych koncepcji noclegowych w ramach jednego regionu albo jednej trasy. Butikowy hotel z designerskim wnętrzem, potem agroturystyka w kamiennym gospodarstwie, potem kapsułowy hostel w centrum, potem domek na drzewie - każdy z innym charakterem, inną estetyką, innym rodzajem doświadczenia.</p>
+
+<p>Powód tej zmiany jest dość prozaiczny - social media i platformy rezerwacyjne pokazują dziś setki niepowtarzalnych obiektów w promieniu kilkudziesięciu kilometrów od siebie, więc pytanie "dlaczego mam spać w tym samym miejscu przez tydzień, skoro w promieniu godziny jazdy jest jeszcze pięć wartych zobaczenia" zaczęło się pojawiać naturalnie. Dodatkowo krótsze pobyty łatwiej wpasować w program zwiedzania - dwie noce w danej okolicy to zwykle wystarczająco dużo czasu, żeby zobaczyć to, po co się przyjechało, a jednocześnie na tyle mało, żeby nie znudzić się jednym widokiem za oknem.</p>
+
+<p>Jest w tym też element czysto praktyczny - hotel hopping pozwala testować różne typy zakwaterowania bez ryzyka, że utknie się na tydzień w miejscu, które okazało się rozczarowaniem. Jedna nieudana noc w hałaśliwym hostelu boli mniej niż nieudany tydzień w tym samym miejscu.</p>
+
+<h2>Salvaged Stays - kiedy nocleg jest byłym młynem albo wieżą</h2>
+
+<p>Obok hotel hoppingu rośnie osobny, ale ściśle powiązany trend - Salvaged Stays, czyli noclegi urządzone w budynkach, które pierwotnie miały zupełnie inne przeznaczenie. Dawny młyn wodny w Prowansji, wieża ciśnień w Umbrii, spichlerz na Mazurach, kaplica na wsi w Irlandii, XIX-wieczna stodoła w Bawarii - zamiast burzyć te budynki albo zostawiać je pustostanami, właściciele adaptują je na pokoje gościnne, często zachowując oryginalne elementy konstrukcji: belki stropowe, kamienne ściany, mechanizmy młyńskie jako dekorację, a nie tylko pamiątkę na zdjęciu.</p>
+
+<p>Różnica między dobrą adaptacją a marketingową sztuczką widać w szczegółach, które łatwo sprawdzić jeszcze przed rezerwacją. Autentyczny Salvaged Stay zwykle opisuje historię budynku konkretnie - rok budowy, pierwotną funkcję, nazwisko architekta odpowiedzialnego za przebudowę, czasem nawet dokumentację konserwatorską. Obiekt, który tylko podpina się pod modę, ogranicza się do haseł w stylu "urokliwy, zabytkowy klimat" bez żadnego konkretu, a na zdjęciach pokazuje głównie nowe, sterylne wnętrze, w którym z historii zostało jedynie nazwa w rodzaju "Stary Młyn".</p>
+
+<p>Warto też zwrócić uwagę na to, czy obiekt współpracuje z lokalnym konserwatorem zabytków albo regionalnym stowarzyszeniem ochrony dziedzictwa - taka informacja pojawia się zwykle w opisie obiektu na stronie własnej albo w wywiadach z właścicielami, rzadziej na samych platformach rezerwacyjnych. Sprawdzenie tego zajmuje pięć minut wyszukiwania nazwy obiektu plus słowo "renowacja" albo "konserwacja zabytków", a różnica jest spora - jedno miejsce inwestuje w utrzymanie unikalnej architektury regionu, drugie tylko wynajmuje jej estetykę na Instagram.</p>
+
+<div class="tip"><b>Jak odróżnić prawdziwy zabytek od udawanego:</b> poproś (mailem albo w wiadomości przez platformę rezerwacyjną) o rok powstania budynku i jego pierwotne przeznaczenie. Obiekt, który naprawdę dba o swoją historię, odpowie od ręki i z detalami - ten, który tylko gra klimatem, odpowie wymijająco albo w ogóle nie odpisze na to konkretne pytanie.</div>
+
+<h2>Logistyka - jak nie zamienić urlopu w harmonogram przeprowadzek</h2>
+
+<h3>Krótkie pobyty i minimalna liczba nocy</h3>
+
+<p>Część obiektów, zwłaszcza mniejszych i butikowych, ma ustawioną minimalną liczbę nocy w rezerwacji - często dwie, w sezonie letnim czasem trzy. Inne nie mają formalnego minimum, ale liczą wyższą stawkę za dobę przy pobycie jednonocnym, bo sprzątanie i wymiana pościeli generują ten sam koszt niezależnie od długości pobytu. Najprostszy sposób obejścia tego problemu to bezpośredni kontakt z właścicielem - mniejsze, niesieciowe obiekty (a to właśnie one dominują w Salvaged Stays) często mają większą elastyczność niż duże platformy sugerują, zwłaszcza poza szczytem sezonu albo w dni powszednie. Wiadomość w stylu "planuję jedną noc w drodze między X a Y, czy jest możliwość rezerwacji mimo minimum dwóch nocy" bywa skuteczniejsza niż próba ominięcia systemu rezerwacyjnego.</p>
+
+<p>Drugi sposób to układanie trasy tak, żeby pobyty jednonocne wypadały w większych miastach z bogatszą ofertą noclegową, a te dwu-trzynocne rezerwować w mniejszych, unikalnych obiektach, gdzie i tak chce się zostać dłużej, żeby faktycznie poczuć klimat miejsca, a nie tylko przespać się i jechać dalej.</p>
+
+<h3>Bagaż między zameldowaniami</h3>
+
+<p>Zmiana obiektu co jedną czy dwie noce oznacza więcej pakowania i rozpakowywania niż w klasycznym urlopie - to największa realna niedogodność hotel hoppingu, więc warto ją rozwiązać zawczasu, a nie improwizować na miejscu. W większych miastach europejskich (Rzym, Kraków, Praga, Lizbona) działają sieciowe przechowalnie bagażu w rodzaju Nannybag czy Radical Storage, z punktami w kawiarniach i sklepach blisko dworców i centrów - kosztują zwykle kilka euro za sztukę bagażu na dobę i pozwalają zostawić walizki na kilka godzin między wymeldowaniem z jednego obiektu a zameldowaniem w kolejnym.</p>
+
+<p>Tam, gdzie takich usług nie ma - a w mniejszych miejscowościach, gdzie stoją zaadaptowane młyny i wieże, zwykle ich nie ma - działa prostsza opcja: zapytanie o wcześniejsze zameldowanie albo późne wymeldowanie bezpośrednio u gospodarzy. Mniejsze obiekty częściej godzą się na zostawienie bagażu w recepcji czy w umówionym pomieszczeniu gospodarczym na kilka godzin, nawet jeśli pokój nie jest jeszcze gotowy - trzeba tylko zapytać wcześniej, a nie liczyć na to na miejscu bez uprzedzenia.</p>
+
+<h3>Programy lojalnościowe mimo zmiany obiektów</h3>
+
+<p>Hotel hopping z definicji utrudnia zbieranie punktów w programach lojalnościowych dużych sieci, bo większość noclegów to niezależne, kameralne obiekty spoza takich programów. Rozwiązanie praktyczne to nie rezygnacja z programów lojalnościowych, tylko świadome wpasowanie jednej czy dwóch nocy z całej trasy w hotel należący do sieci, z którą już się coś zbudowało - punkty czy status - i traktowanie reszty trasy jako osobnej kategorii wydatków, rozliczanej inaczej, na przykład kartą z cashbackiem na noclegi rezerwowane bezpośrednio u niezależnych właścicieli.</p>
+
+<p>Część niezależnych obiektów, zwłaszcza tych z charakterem, ma też własne, dużo prostsze programy - rabat przy trzeciej rezerwacji w tym samym miejscu, zniżka za polecenie, czasem tylko odręczna notatka gospodarza "wróć, to następnym razem dam ci lepszy pokój". W skali jednej podróży to nie zastąpi punktów lotniczych, ale w dłuższej perspektywie, jeśli wraca się w ten sam region co roku, buduje relację, która przekłada się na realne korzyści.</p>
+
+<h2>Budżet - jak połączyć jedną luksusową noc z kilkoma tańszymi</h2>
+
+<p>Klucz do tego, żeby hotel hopping nie rozsadził budżetu, to traktowanie całej trasy jako jednej puli, a nie osobnych, niezależnych decyzji przy każdej rezerwacji. Jedna noc w wieży ciśnień z prywatnym tarasem i winem od gospodarza może kosztować tyle, co trzy noce w prostym pokoju gościnnym nieopodal - i to jest w porządku, jeśli świadomie się to zaplanuje, a nie odkryje dopiero przy podsumowaniu wydatków po powrocie.</p>
+
+<p>Sprawdzony układ to model 1+3 albo 1+4 - jedna noc "flagowa", w obiekcie, który jest głównym powodem całej podróży (właśnie ten młyn, ta wieża, ten zabytkowy pałacyk), otoczona kilkoma nocami w prostszych, tańszych miejscach w tej samej okolicy. Taki układ ma dodatkową zaletę - noc w wyjątkowym miejscu wypada na koniec albo w środku trasy, jako punkt kulminacyjny, a nie na starcie, kiedy człowiek jeszcze nie zdążył się rozpakować mentalnie z codzienności.</p>
+
+<p>Warto też pilnować, żeby "tańsze" noce nie oznaczały automatycznie gorszych - w wielu regionach agroturystyki czy pokoje gościnne u prywatnych właścicieli kosztują wyraźnie mniej niż hotele sieciowe, a oferują więcej lokalnego charakteru niż standardowy pokój z klimatyzacją i telewizorem. Budżetowa noc w hotel hoppingu nie musi być kompromisem - często jest po prostu inną kategorią doświadczenia, nie gorszą, tylko skromniejszą.</p>
+
+<div class="tip"><b>Pułapka do uniknięcia:</b> nie licz kosztu noclegu w oderwaniu od kosztu przejazdu między obiektami. Trzy tanie noclegi rozrzucone po okolicy mogą w sumie kosztować więcej niż jeden droższy, jeśli dzienne przejazdy między nimi zjadają paliwo, czas i bilety - trasę warto układać geograficznie, nie tylko cenowo.</div>
+
+<h2>Checklista przed wyjazdem w stylu hotel hopping</h2>
+
+<ul class="checklist">
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Zaplanuj trasę geograficznie, nie tylko listą obiektów.</b> Sprawdź odległości między kolejnymi noclegami, zanim je zarezerwujesz - godzina drogi między dwoma punktami dziennie to górna granica, po której podróż zamienia się w przeprowadzkę.</span></li>
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Napisz bezpośrednio do właścicieli w sprawie pobytów jednonocnych.</b> Zwłaszcza przy mniejszych, niezależnych obiektach - często można ominąć minimum nocy albo dopłatę za krótki pobyt.</span></li>
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Sprawdź historię budynku przed rezerwacją Salvaged Stay.</b> Rok powstania, pierwotna funkcja, ewentualna współpraca z konserwatorem zabytków - to odróżnia autentyczną adaptację od marketingowej etykietki.</span></li>
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Znajdź przechowalnię bagażu albo umów się na wcześniejsze zameldowanie.</b> W większych miastach sprawdzą się sieciowe punkty typu Nannybag, w mniejszych - bezpośrednia prośba do gospodarzy.</span></li>
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Zaplanuj budżet w układzie 1+3 albo 1+4.</b> Jedna wyjątkowa, droższa noc otoczona kilkoma prostszymi - zamiast wyrównanego, ale mniej zapadającego w pamięć standardu przez cały wyjazd.</span></li>
+  <li><span class="dot"><i data-lucide="check"></i></span><span><b>Spakuj się modułowo.</b> Osobna mniejsza torba na rzeczy potrzebne na jedną-dwie noce ułatwia częste przepakowywanie się bardziej niż jedna duża walizka rozpakowywana od zera za każdym razem.</span></li>
+</ul>
+
+<p>Hotel hopping i Salvaged Stays w praktyce oznaczają więcej planowania niż klasyczny urlop z jednym hotelem na cały pobyt, ale w zamian dają coś, czego jeden nawet najlepszy obiekt nie zapewni - kolekcję kontrastów. Jedna noc w miejscu, które sto lat temu mełło zboże albo pilnowało poziomu wody w zbiorniku, a druga w prostym pokoju, gdzie liczy się tylko wygodne łóżko po długim dniu zwiedzania. To właśnie ten kontrast, nie pojedynczy piękny hotel, zostaje w pamięci najdłużej.</p>
+
+      </div>
+
+      <div class="mt-14 pt-8 border-t border-ink-900/[0.08] flex flex-wrap items-center justify-between gap-4">
+        <a href="../poradniki.html" class="pressable inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white font-semibold text-[13.5px] px-5 py-3 rounded-full transition-colors duration-160">
+          Zobacz więcej poradników
+        </a>
+        <a href="../index.html#pobierz" class="pressable inline-flex items-center gap-2 bg-white hover:bg-ink-50 border border-ink-900/12 text-ink-900 font-semibold text-[13.5px] px-5 py-3 rounded-full transition-colors duration-160">
+          Zapisz się do bety
+        </a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="border-t border-ink-900/[0.07] py-12">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex flex-wrap items-center justify-between gap-6 mb-8">
+      <a href="../index.html" class="flex items-center gap-2.5">
+        <img src="../logo.svg" alt="OgarnijWakacje.pl" class="h-11 w-auto" />
+      </a>
+      <div class="flex flex-wrap gap-x-7 gap-y-2 text-[12.5px] font-medium text-ink-500">
+        <a href="../newsy.html" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="../miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
+        <a href="../ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="../poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="../index.html#aplikacja" class="hover:text-ink-900 transition-colors duration-160">Aplikacja</a>
+        <a href="../poznaj-aplikacje.html" class="hover:text-ink-900 transition-colors duration-160">Poznaj aplikację</a>
+        <a href="../index.html#pobierz" class="hover:text-ink-900 transition-colors duration-160">Beta</a>
+      </div>
+    </div>
+    <div class="pt-6 border-t border-ink-900/[0.07] flex flex-wrap justify-between gap-3 text-[12px] text-ink-400">
+      <span>© 2026 OgarnijWakacje.pl. Wszelkie prawa zastrzeżone.</span>
+      <span class="flex gap-4"><a href="#" class="hover:text-ink-700 transition-colors duration-160">Redakcja</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Reklama</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Regulamin</a><a href="#" id="cookieSettingsLink" class="hover:text-ink-700 transition-colors duration-160">Ustawienia cookies</a></span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .guide-prose h2 { font-family:'Plus Jakarta Sans', sans-serif; font-weight:800; letter-spacing:-0.01em; color:#141310; font-size:clamp(1.25rem,2.4vw,1.55rem); margin-top:2.75rem; margin-bottom:0.9rem; }
+  .guide-prose h2:first-child { margin-top:0; }
+  .guide-prose h3 { font-family:'Plus Jakarta Sans', sans-serif; font-weight:700; color:#1c1a16; font-size:1.05rem; margin-top:1.75rem; margin-bottom:0.6rem; }
+  .guide-prose p { margin-bottom:1.1rem; }
+  .guide-prose ul.checklist { list-style:none; margin:0 0 1.4rem 0; padding:0; display:flex; flex-direction:column; gap:0.55rem; }
+  .guide-prose ul.checklist li { display:flex; align-items:flex-start; gap:0.65rem; font-size:15px; }
+  .guide-prose ul.checklist li .dot { flex-shrink:0; width:1.15rem; height:1.15rem; border-radius:9999px; background:#fff4e9; color:#c85f1e; display:grid; place-items:center; margin-top:0.15rem; }
+  .guide-prose ul.checklist li .dot i { width:12px; height:12px; }
+  .guide-prose ul.checklist li b { color:#141310; font-weight:600; }
+  .guide-prose .tip { background:#fff4e9; border:1px solid rgba(232,117,46,0.18); border-radius:1.25rem; padding:1.1rem 1.35rem; margin:1.4rem 0 1.8rem; font-size:14.5px; color:#5c5648; }
+  .guide-prose .tip b { color:#a14a17; }
+</style>
+
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+  window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.innerHTML = open ? '<i data-lucide="x" class="w-4.5 h-4.5"></i>' : '<i data-lucide="menu" class="w-4.5 h-4.5"></i>';
+      if (window.lucide) lucide.createIcons();
+    });
+  })();
+  document.querySelectorAll('.pressable').forEach(function (el) { el.classList.add('transition-transform'); });
+</script>
+
+</body>
+</html>
