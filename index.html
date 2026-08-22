@@ -149,6 +149,18 @@
   .float-slow{ animation: floaty 6s var(--ease-in-out) infinite; }
   .float-slower{ animation: floaty 8s var(--ease-in-out) infinite; animation-delay: .8s; }
 
+  /* "Poznaj aplikację" nav item — tiny phone + palm duo that wakes up on hover */
+  .app-nav-icons{ transform-origin: bottom left; }
+  .app-nav-phone, .app-nav-palm{
+    transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine){
+    .app-nav-link:hover .app-nav-phone{ transform: translateY(-3px) rotate(-8deg); box-shadow: 0 3px 8px rgba(232,117,46,0.22); }
+    .app-nav-link:hover .app-nav-palm{ transform: translateY(-4px) rotate(10deg); }
+    .app-nav-link:active .app-nav-phone{ transform: translateY(-1px) rotate(-4deg) scale(0.95); }
+    .app-nav-link:active .app-nav-palm{ transform: translateY(-2px) rotate(6deg) scale(0.95); }
+  }
+
   /* flying parrot decoration in the hero background */
   .parrot-fly{ position:absolute; left:-10%; top:58%; filter: drop-shadow(0 6px 10px rgba(20,19,16,0.18)); animation: parrotFly 22s var(--ease-in-out) infinite; }
   @keyframes parrotFly{
@@ -232,8 +244,17 @@
         <a href="miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
         <a href="ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
         <a href="poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
-        <a href="#aplikacja" class="hover:text-ink-900 transition-colors duration-160">Aplikacja</a>
-        <a href="poznaj-aplikacje.html" class="hover:text-ink-900 transition-colors duration-160">Poznaj aplikację</a>
+        <a href="poznaj-aplikacje.html" class="app-nav-link group relative inline-flex items-center gap-2 hover:text-ink-900 transition-colors duration-160">
+          Poznaj aplikację
+          <span class="app-nav-icons relative inline-flex items-center w-[30px] h-[20px] shrink-0" aria-hidden="true">
+            <span class="app-nav-phone absolute left-0 top-0 grid place-items-center w-[18px] h-[18px] rounded-[6px] bg-accent-50 text-accent-600 ring-1 ring-accent-500/15">
+              <i data-lucide="smartphone" class="w-2.5 h-2.5"></i>
+            </span>
+            <span class="app-nav-palm absolute left-[13px] top-[2px] grid place-items-center w-[15px] h-[15px] rounded-full bg-leaf-500/10 text-leaf-500">
+              <i data-lucide="palmtree" class="w-2.5 h-2.5"></i>
+            </span>
+          </span>
+        </a>
       </div>
 
       <div class="flex items-center gap-2">
@@ -254,8 +275,17 @@
       <a href="miejsca.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Miejsca</a>
       <a href="ciekawostki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Ciekawostki</a>
       <a href="poradniki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poradniki</a>
-      <a href="#aplikacja" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Aplikacja</a>
-      <a href="poznaj-aplikacje.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poznaj aplikację</a>
+      <a href="poznaj-aplikacje.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5 flex items-center gap-2">
+        Poznaj aplikację
+        <span class="relative inline-flex items-center w-[26px] h-[18px] shrink-0" aria-hidden="true">
+          <span class="absolute left-0 top-0 grid place-items-center w-4 h-4 rounded-[5px] bg-accent-50 text-accent-600 ring-1 ring-accent-500/15">
+            <i data-lucide="smartphone" class="w-2.5 h-2.5"></i>
+          </span>
+          <span class="absolute left-[11px] top-[1px] grid place-items-center w-3.5 h-3.5 rounded-full bg-leaf-500/10 text-leaf-500">
+            <i data-lucide="palmtree" class="w-2.5 h-2.5"></i>
+          </span>
+        </span>
+      </a>
       <a href="#pobierz" class="mt-2 text-center bg-ink-900 text-white px-3 py-3 rounded-full font-semibold">Zapisz się do beta</a>
     </div>
   </div>
@@ -859,7 +889,6 @@
         <a href="miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
         <a href="ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
         <a href="poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
-        <a href="#aplikacja" class="hover:text-ink-900 transition-colors duration-160">Aplikacja</a>
         <a href="poznaj-aplikacje.html" class="hover:text-ink-900 transition-colors duration-160">Poznaj aplikację</a>
         <a href="#pobierz" class="hover:text-ink-900 transition-colors duration-160">Beta</a>
       </div>
