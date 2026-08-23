@@ -554,56 +554,82 @@
 
   <!-- QUIZ -->
   <section id="quiz" class="py-20 sm:py-28">
-    <div class="max-w-4xl mx-auto px-5 sm:px-8">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8">
       <div class="reveal text-center mb-10">
         <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-600 mb-2">Quiz redakcji</div>
         <h2 class="font-display font-extrabold text-[clamp(1.6rem,3vw,2.3rem)] text-ink-950 tracking-tight">Gdzie powinieneś pojechać w tym roku?</h2>
-        <p class="text-ink-500 mt-3 text-[15px]">Trzy pytania, jedna rekomendacja. Odpowiedz szczerze.</p>
+        <p class="text-ink-500 mt-3 text-[15px] max-w-xl mx-auto leading-relaxed">10 pytań, ponad 20 kierunków w bazie i dopasowanie liczone jak w prawdziwym silniku rekomendacji. Odpowiedz szczerze — wynikiem podzielisz się z osobą, z którą jedziesz.</p>
       </div>
 
-      <div id="quizBox" class="reveal bg-white border border-ink-900/[0.07] rounded-4xl p-6 sm:p-10 shadow-soft">
-        <div id="quizProgress" class="flex gap-2 mb-8">
-          <span data-step="0" class="flex-1 h-1.5 rounded-full bg-ink-100 overflow-hidden"><span class="block h-full w-0 bg-accent-500 transition-all duration-300 ease-out"></span></span>
-          <span data-step="1" class="flex-1 h-1.5 rounded-full bg-ink-100 overflow-hidden"><span class="block h-full w-0 bg-accent-500 transition-all duration-300 ease-out"></span></span>
-          <span data-step="2" class="flex-1 h-1.5 rounded-full bg-ink-100 overflow-hidden"><span class="block h-full w-0 bg-accent-500 transition-all duration-300 ease-out"></span></span>
+      <div id="quizCard" class="reveal relative overflow-hidden rounded-4xl shadow-lifted">
+        <div id="quizBackdrop" class="absolute inset-0 bg-cover bg-center scale-110 blur-xl transition-[background-image] duration-500 ease-out" style="background-image:url('https://images.pexels.com/photos/30447885/pexels-photo-30447885.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600')"></div>
+        <div class="absolute inset-0 bg-black/10"></div>
+
+        <div class="relative flex items-center gap-2 px-6 sm:px-10 lg:px-14 pt-6 sm:pt-7">
+          <img src="logo.svg" alt="OgarnijWakacje.pl" class="h-7 sm:h-8 w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]" />
         </div>
 
-        <div class="quiz-step active" data-step="0">
-          <h3 class="font-display font-bold text-[clamp(1.15rem,2.4vw,1.4rem)] text-ink-950 mb-6">Jak wygląda Twój idealny poranek na wakacjach?</h3>
-          <div class="grid sm:grid-cols-3 gap-3">
-            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="2" data-miasto="0" data-gory="0">Kawa z widokiem na morze, potem nic więcej</button>
-            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="0" data-miasto="2" data-gory="0">Śniadanie na targu i zwiedzanie starówki</button>
-            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="0" data-miasto="0" data-gory="2">Wschód słońca na szlaku, jeszcze przed śniadaniem</button>
-          </div>
-        </div>
-
-        <div class="quiz-step" data-step="1">
-          <h3 class="font-display font-bold text-[clamp(1.15rem,2.4vw,1.4rem)] text-ink-950 mb-6">Co pakujesz do walizki w pierwszej kolejności?</h3>
-          <div class="grid sm:grid-cols-3 gap-3">
-            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="2" data-miasto="0" data-gory="0">Strój kąpielowy i okulary przeciwsłoneczne</button>
-            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="0" data-miasto="2" data-gory="0">Wygodne buty do chodzenia i aparat</button>
-            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="0" data-miasto="0" data-gory="2">Kurtkę przeciwdeszczową i mapę szlaków</button>
-          </div>
-        </div>
-
-        <div class="quiz-step" data-step="2">
-          <h3 class="font-display font-bold text-[clamp(1.15rem,2.4vw,1.4rem)] text-ink-950 mb-6">Wieczorem najchętniej…</h3>
-          <div class="grid sm:grid-cols-3 gap-3">
-            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="2" data-miasto="1" data-gory="0">Siedzisz w plażowym barze do zachodu słońca</button>
-            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="0" data-miasto="2" data-gory="0">Szukasz najlepszej lokalnej restauracji</button>
-            <button class="quiz-opt pressable text-left border border-ink-900/10 hover:border-ink-900/30 hover:bg-ink-50 rounded-2xl p-4 text-[13.5px] font-semibold text-ink-800 transition-colors duration-160" data-plaza="0" data-miasto="0" data-gory="2">Patrzysz na gwiazdy z dala od miasta</button>
-          </div>
-        </div>
-
-        <div class="quiz-result-panel grid sm:grid-cols-2 gap-8 items-center" id="quizResult">
-          <div class="relative aspect-[4/3] rounded-3xl overflow-hidden bg-ink-100" id="quizResultMedia"></div>
-          <div>
-            <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-600 mb-2" id="quizResultLabel">Twoja rekomendacja</div>
-            <h3 class="font-display font-extrabold text-[clamp(1.4rem,3vw,1.9rem)] text-ink-950 mb-3" id="quizResultTitle">Chorwacja</h3>
-            <p class="text-[14.5px] text-ink-600 leading-relaxed mb-5" id="quizResultText"></p>
-            <button id="quizRestart" class="pressable inline-flex items-center gap-2 text-[13px] font-bold text-ink-900 border-b-2 border-ink-900 pb-0.5">
-              Zacznij od nowa <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+        <!-- QUESTIONS -->
+        <div id="quizQuestions" class="relative p-6 sm:p-10 lg:p-14 pt-4 sm:pt-6 min-h-[520px] sm:min-h-[560px] flex flex-col">
+          <div class="flex items-center justify-between mb-6">
+            <span id="quizStepLabel" class="inline-flex bg-white/95 rounded-full shadow-soft px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-accent-600 w-fit">Pytanie 1 z 10</span>
+            <button id="quizBack" class="pressable hidden items-center gap-1.5 bg-white/95 rounded-full shadow-soft px-3 py-1.5 text-[12px] font-semibold text-ink-700 hover:text-ink-900 transition-colors duration-160">
+              <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i> Wstecz
             </button>
+          </div>
+          <div id="quizProgress" class="flex gap-1.5 mb-8"></div>
+
+          <div class="flex-1 flex flex-col justify-center">
+            <h3 id="quizQuestionText" class="inline-block bg-white/95 rounded-2xl shadow-soft px-5 py-4 sm:px-6 sm:py-5 font-display font-bold text-[clamp(1.2rem,3vw,1.7rem)] text-ink-950 tracking-tight mb-7 max-w-xl"></h3>
+            <div id="quizOptions" class="grid sm:grid-cols-3 gap-3"></div>
+          </div>
+        </div>
+
+        <!-- RESULT -->
+        <div id="quizResult" class="hidden relative p-6 sm:p-10 lg:p-14 pt-4 sm:pt-6">
+          <div id="quizSharedNotice" class="hidden mb-7 bg-white/95 shadow-soft border border-accent-500/15 rounded-2xl p-4 flex flex-wrap items-center gap-3"></div>
+
+          <div class="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-12 items-start">
+            <div>
+              <div class="bg-white/95 rounded-3xl shadow-soft p-5 sm:p-7 mb-6">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="grid place-items-center w-12 h-12 rounded-full bg-ink-50 border border-ink-900/10 text-ink-950 font-display font-extrabold text-[13px] shrink-0" id="quizMatchBadge">—</span>
+                  <div>
+                    <div class="text-[11px] font-bold uppercase tracking-wide text-accent-600" id="quizResultKicker">Twoja rekomendacja</div>
+                    <div class="text-[12px] text-ink-500" id="quizMatchLabel">dopasowanie do Twoich odpowiedzi</div>
+                  </div>
+                </div>
+                <h3 class="font-display font-extrabold text-[clamp(1.5rem,3.4vw,2.2rem)] text-ink-950 tracking-tight mb-1.5" id="quizResultTitle">—</h3>
+                <p class="text-[12.5px] text-accent-600 font-bold uppercase tracking-wide mb-4" id="quizResultTags">—</p>
+                <p class="text-[14.5px] text-ink-800 leading-relaxed mb-3 font-medium" id="quizResultIntro"></p>
+                <p class="text-[14px] text-ink-600 leading-relaxed mb-6" id="quizResultText"></p>
+
+                <div>
+                  <div class="text-[11px] font-bold uppercase tracking-wide text-ink-500 mb-3">3 nieoczywiste rzeczy do zrobienia na miejscu</div>
+                  <div id="quizActivities" class="flex flex-col gap-2"></div>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2.5">
+                <button id="quizShare" class="pressable inline-flex items-center gap-2 bg-white/95 hover:bg-white shadow-soft text-ink-900 text-[13px] font-semibold px-5 py-2.5 rounded-full transition-colors duration-160">
+                  <i data-lucide="share-2" class="w-3.5 h-3.5"></i> <span id="quizShareLabel">Udostępnij</span>
+                </button>
+                <a id="quizWhatsapp" href="#" target="_blank" rel="noopener" class="pressable inline-flex items-center gap-2 bg-white/95 hover:bg-white shadow-soft text-ink-900 text-[13px] font-semibold px-4 py-2.5 rounded-full transition-colors duration-160">
+                  <svg viewBox="0 0 24 24" class="w-4 h-4 shrink-0" fill="#25D366" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.012 2c-5.522 0-10 4.478-10 10 0 1.769.46 3.484 1.334 4.995L2 22l5.146-1.32A9.964 9.964 0 0 0 12.012 22c5.522 0 10-4.478 10-10s-4.478-10-10-10zm0 18.099a8.088 8.088 0 0 1-4.13-1.128l-.296-.176-3.06.783.82-2.982-.192-.306a8.086 8.086 0 0 1-1.234-4.29c0-4.475 3.647-8.122 8.122-8.122 4.474 0 8.122 3.647 8.122 8.122 0 4.475-3.648 8.122-8.152 8.122z"/></svg> WhatsApp
+                </a>
+                <button id="quizRestart" class="pressable inline-flex items-center gap-2 bg-white/95 shadow-soft rounded-full px-4 py-2.5 text-[13px] font-bold text-ink-700 hover:text-ink-950 transition-colors duration-160">
+                  Zacznij od nowa <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div class="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-soft mb-5" id="quizResultMedia"></div>
+              <div id="quizAltWrap">
+                <span class="inline-flex bg-white/95 rounded-full shadow-soft px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-ink-500 mb-3">Warto też rozważyć</span>
+                <div id="quizAlternatives" class="flex flex-col gap-2.5"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1370,56 +1396,335 @@
     });
   })();
 
-  // interactive destination quiz
+  // interactive destination-matching quiz — weighted vector recommendation engine
   (function () {
-    const box = document.getElementById('quizBox');
-    if (!box) return;
-    const steps = Array.from(box.querySelectorAll('.quiz-step'));
-    const progressEls = Array.from(box.querySelectorAll('#quizProgress > span'));
-    const result = document.getElementById('quizResult');
-    const scores = { plaza: 0, miasto: 0, gory: 0 };
-    let stepIndex = 0;
+    const card = document.getElementById('quizCard');
+    if (!card) return;
 
-    const OUTCOMES = {
-      plaza: { title: 'Chorwacja', label: 'Twoja rekomendacja · Plaża', text: 'Krystalicznie czyste wybrzeże Adriatyku, ciepła woda do października i dziesiątki wysp w zasięgu promu. Idealne miejsce, żeby zwolnić i nic nie robić.', img: 'https://picsum.photos/seed/croatia-beach-quiz/700/560' },
-      miasto: { title: 'Lizbona, Portugalia', label: 'Twoja rekomendacja · Miasto', text: 'Strome uliczki, tramwaje, świetna kuchnia i jedne z najniższych cen wśród stolic Europy Zachodniej. Miasto stworzone do zwiedzania pieszo.', img: 'https://picsum.photos/seed/lisbon-street-quiz/700/560' },
-      gory: { title: 'Norwegia', label: 'Twoja rekomendacja · Góry', text: 'Fiordy, szlaki bez końca i niebo, które latem prawie nie ciemnieje. Wymagająca, ale niezapomniana podróż dla miłośników natury.', img: 'https://picsum.photos/seed/norway-fjord-quiz/700/560' },
+    // ---- axis weights (priorytet klimatu/aktywności/krajobrazu/outdooru nad budżetem i socialem) ----
+    const W = { K: 1, A: 1, L: 1, Lurb: 0.7, B: 0.6, S: 0.7, Aout: 1.1 };
+    const AXES = Object.keys(W);
+    const DMAX = Math.sqrt(AXES.reduce((sum, k) => sum + W[k] * (k === 'Aout' ? 1 : 4), 0));
+
+    // trait phrases used to build the personalized opening sentence
+    const TRAITS = {
+      K:   { pos: 'gorące, słoneczne dni', neg: 'chłodne, orzeźwiające powietrze' },
+      A:   { pos: 'zwiedzanie i lokalną kulturę', neg: 'leniwy relaks bez planu dnia' },
+      L:   { pos: 'widok na ocean i palmy', neg: 'widok na góry' },
+      Lurb:{ pos: 'tętniące życiem miasto', neg: 'ucieczkę od zgiełku' },
+      B:   { pos: 'odrobinę luksusu', neg: 'budżetowy, autentyczny styl podróżowania' },
+      S:   { pos: 'energię tłumu i wydarzeń', neg: 'spokój i kameralność' },
+      Aout:{ pos: 'aktywność i przygodę na świeżym powietrzu', neg: 'odpoczynek bez wysiłku fizycznego' },
     };
 
-    function showStep(i) {
-      steps.forEach(s => s.classList.toggle('active', Number(s.dataset.step) === i));
-      progressEls.forEach(p => {
-        const bar = p.querySelector('span');
-        bar.style.width = Number(p.dataset.step) < i ? '100%' : '0%';
+    // ---- 10-question taxonomy from the recommendation-engine brief ----
+    const QUESTIONS = [
+      { q: 'Jaka temperatura jest dla Ciebie idealna na urlop?', opts: [
+        { t: 'Gorące słońce i tropikalne upały', d: { K: 1.0, L: 0.2 } },
+        { t: 'Rześkie, górskie powietrze lub śnieg', d: { K: -1.0, L: -0.4 } },
+        { t: 'Umiarkowana, przyjemna bryza', d: { K: 0.2, Aout: 0.2 } },
+      ]},
+      { q: 'Co najbardziej kręci Cię podczas urlopowego dnia?', opts: [
+        { t: 'Drinki z palemką, relaks i imprezy', d: { A: -0.8, S: 0.6, L: 0.3 } },
+        { t: 'Muzea, zabytki i lokalna historia', d: { A: 0.9, Lurb: 0.6 } },
+        { t: 'Górskie szlaki, spływy i sport', d: { Aout: 1.0, L: -0.6, S: -0.4 } },
+      ]},
+      { q: 'Jaki widok z okna noclegu wybierasz bez wahania?', opts: [
+        { t: 'Piaszczysta plaża i szumiące palmy', d: { L: 1.0, K: 0.3 } },
+        { t: 'Strzeliste, majestatyczne szczyty górskie', d: { L: -1.0, Aout: 0.4 } },
+        { t: 'Zabytkowa starówka lub nowoczesne skyline', d: { Lurb: 0.9, A: 0.4 } },
+      ]},
+      { q: 'Jakie jest Twoje podejście do budżetu podróżniczego?', opts: [
+        { t: 'Autentyczny styl backpackerski i oszczędność', d: { B: -0.9, S: -0.2 } },
+        { t: 'Zrównoważony komfort za dobrą cenę', d: {} },
+        { t: 'Bezkompromisowy luksus i prywatność', d: { B: 1.0, S: -0.3 } },
+      ]},
+      { q: 'Jaki typ wieczornej atmosfery preferujesz?', opts: [
+        { t: 'Kolacja w restauracji z oprawą sommeliera', d: { A: 0.5, B: 0.6, Lurb: 0.4 } },
+        { t: 'Tańce przy muzyce na żywo na plaży', d: { A: -0.7, S: 0.8, L: 0.5 } },
+        { t: 'Ognisko w głuszy lub wczesny sen przed świtem', d: { Aout: 0.8, S: -0.9, Lurb: -0.8 } },
+      ]},
+      { q: 'W jaki sposób najchętniej poznajesz nowe miejsca?', opts: [
+        { t: 'Próbując street foodu na lokalnych targach', d: { A: 0.3, B: -0.3, S: 0.5 } },
+        { t: 'Odwiedzając obiekty z listy UNESCO i galerie', d: { A: 1.0, Lurb: 0.3 } },
+        { t: 'Obserwując dziką przyrodę i unikalne gatunki', d: { Aout: 0.9, Lurb: -0.9 } },
+      ]},
+      { q: 'Z kim wyruszasz w tegoroczną podróż?', opts: [
+        { t: 'Samotna wyprawa i pełna niezależność', d: { S: -0.4, Aout: 0.3 } },
+        { t: 'Romantyczny wyjazd we dwoje', d: { B: 0.2, S: -0.3 } },
+        { t: 'Zgrana paczka przyjaciół lub rodzina', d: { S: 0.7, A: -0.2 } },
+      ]},
+      { q: 'Jaki styl przemieszczania się po celu podróży wybierasz?', opts: [
+        { t: 'Spacerowanie po pieszych uliczkach lub skuter', d: { Lurb: 0.2, A: 0.2 } },
+        { t: 'Wynajęty samochód 4x4 i bezdroża', d: { Aout: 0.9, Lurb: -0.8 } },
+        { t: 'Szybka kolej, taksówki i transport miejski', d: { A: 0.5, Lurb: 0.7 } },
+      ]},
+      { q: 'Co jest dla Ciebie wyznacznikiem udanego wyjazdu?', opts: [
+        { t: 'Niesamowite ujęcia i kadry fotograficzne', d: { L: 0.4, Lurb: 0.3 } },
+        { t: 'Głęboki reset i odcięcie od cyfryzacji', d: { S: -1.0, Lurb: -0.9 } },
+        { t: 'Udział w kultowym wydarzeniu sportowym lub festiwalu', d: { S: 1.0, A: 0.6 } },
+      ]},
+      { q: 'Ile czasu chcesz poświęcić na dotarcie na miejsce?', opts: [
+        { t: 'Krótki, wygodny lot w granicach kontynentu', d: { K: 0.1 } },
+        { t: 'Egzotyczna wyprawa na drugi koniec świata', d: { K: 0.7, L: 0.4 } },
+        { t: 'Samochodowy road-trip od drzwi domu', d: { Aout: 0.6, L: -0.2 } },
+      ]},
+    ];
+
+    // ---- destination matrix ----
+    const DESTINATIONS = [
+      { slug:'majorka-marbella', name:'Majorka / Marbella', country:'Hiszpania', vec:{K:.8,A:-.6,L:.9,Lurb:.3,B:.6,S:.7,Aout:.2}, tags:['Palmy','Plaże','Drinki','Nocne życie','Resorty'], img:'quiz-dest-majorka', blurb:'Wybrzeże Balearów i Costa del Sol to synonim wakacyjnego luzu — kluby plażowe, ciepła woda i zachody słońca sączone z drinkiem w dłoni, bez presji zwiedzania czegokolwiek.', activities:['Klub plażowy w Cala Comtessa o zachodzie słońca','Rejs katamaranem wzdłuż dzikich zatoczek Serra de Tramuntana','Kolacja w chiringuito z owocami morza prosto z rusztu'] },
+      { slug:'dolomity', name:'Cortina d’Ampezzo / Dolomity', country:'Włochy', vec:{K:-.8,A:.3,L:-1,Lurb:-.4,B:.7,S:.2,Aout:.9}, tags:['Góry','Śnieg','Narciarstwo','UNESCO'], img:'quiz-dest-dolomity', blurb:'Strzeliste, wapienne szczyty wpisane na listę UNESCO i gospodarz Zimowych Igrzysk 2026 — połączenie alpejskiego luksusu, świetnej kuchni i tras zjazdowych na każdym poziomie.', activities:['Wschód słońca na Tre Cime di Lavaredo przed tłumami','Kolacja w górskim rifugio z lokalnym serem i grappą','Przejazd historyczną koleją linową na Cinque Torri'] },
+      { slug:'kirgistan', name:'Pasmo Tien-Szan / Biszkek', country:'Kirgistan', vec:{K:-.2,A:.2,L:-.9,Lurb:-.8,B:-.8,S:-.7,Aout:1}, tags:['Dzika natura','Trekking','Silk Road'], img:'quiz-dest-kirgistan', blurb:'Jeden z ostatnich kierunków off-the-beaten-path w Azji Środkowej — nomadowie, jurty, konie i pasma górskie, którymi wciąż biegnie dawny Jedwabny Szlak.', activities:['Nocleg w jurcie nomadów nad jeziorem Song-Kul','Konna wyprawa dawnym odcinkiem Jedwabnego Szlaku','Kąpiel w gorących źródłach doliny Ala-Arcza'] },
+      { slug:'pekin', name:'Pekin', country:'Chiny', vec:{K:.1,A:1,L:0,Lurb:1,B:.1,S:.9,Aout:.2}, tags:['Zabytki','Wielki Mur','Metropolia'], img:'quiz-dest-pekin', blurb:'Miasto, w którym Zakazane Miasto sąsiaduje z drapaczami chmur, a jednodniowa wycieczka na Wielki Mur zmienia perspektywę na to, czym w ogóle jest historia.', activities:['Wschód słońca na dzikim, nieodrestaurowanym odcinku Wielkiego Muru','Poranny tai-chi razem z mieszkańcami w parku Jingshan','Kolacja z pekińską kaczką w hutongu z tradycją sprzed stu lat'] },
+      { slug:'rabat', name:'Rabat', country:'Maroko', vec:{K:.6,A:.8,L:.4,Lurb:.6,B:-.1,S:.3,Aout:.1}, tags:['Architektura','Kasba','Atlantyk'], img:'quiz-dest-rabat', blurb:'Stolica, w której XII-wieczna Kasba de Oudaya sąsiaduje z Teatrem Królewskim projektu Zaha Hadid — kultura, wybrzeże Atlantyku i architektura w jednym mieście.', activities:['Spacer po niebiesko-białej dzielnicy Kasby de Oudaya o świcie','Kawa w medynie i targowanie się na suku przypraw','Zachód słońca na plaży Oudayas z widokiem na ujście Bou Regreg'] },
+      { slug:'banff', name:'Banff / Mount Rundle', country:'Kanada', vec:{K:-.7,A:.4,L:-.9,Lurb:-.6,B:.6,S:-.4,Aout:.9}, tags:['Zorza polarna','Jeziora','Góry Skaliste'], img:'quiz-dest-banff', blurb:'Park Narodowy Banff to turkusowe jeziora lodowcowe otoczone Górami Skalistymi — i jedno z niewielu miejsc w Ameryce Północnej, gdzie w sezonie można złapać zorzę polarną.', activities:['Kajak o świcie po turkusowym jeziorze Moraine, zanim zjadą autokary','Obserwacja zorzy polarnej znad jeziora Vermilion','Wjazd gondolą na Sulphur Mountain na panoramę pasma Rundle'] },
+      { slug:'okinawa', name:'Okinawa', country:'Japonia', vec:{K:.7,A:-.2,L:.9,Lurb:.1,B:.5,S:-.1,Aout:.5}, tags:['Subtropik','Palmy','Nurkowanie'], img:'quiz-dest-okinawa', blurb:'Subtropikalny archipelag Japonii z jednym z najczystszych mórz w Azji — inny rytm niż Tokio, więcej plaż, koralowców i długowieczności niż neonów.', activities:['Nurkowanie z rekinami wielorybimi u wybrzeży Churaumi','Nocleg w tradycyjnej wiosce Taketomi bez samochodów','Degustacja awamori — lokalnego trunku ryżowego z destylarni na wyspie'] },
+      { slug:'phu-quoc', name:'Phu Quoc', country:'Wietnam', vec:{K:.9,A:-.7,L:1,Lurb:-.2,B:-.5,S:.4,Aout:.3}, tags:['Tropik','Plaże','Street food'], img:'quiz-dest-phuquoc', blurb:'Tropikalna wyspa na Zatoce Tajlandzkiej — palmowe plaże, wioski rybackie i ceny, przy których europejskie kurorty wypadają blado.', activities:['Rejs łodzią rybacką po zachodzie słońca na nocne łowienie kałamarnic','Kolacja na night markecie w Duong Dong z lokalnym owocem morza','Snorkeling przy rafach An Thoi z dala od głównych plaż'] },
+      { slug:'montana', name:'Big Sky, Montana', country:'USA', vec:{K:-.8,A:.1,L:-1,Lurb:-.9,B:.8,S:-.6,Aout:1}, tags:['Śnieg','Narciarstwo','Dzikie góry'], img:'quiz-dest-montana', blurb:'Jeden z największych obszarów narciarskich USA otoczony bezkresną, dziką Montaną — luksusowe schroniska bez tłumów typowych dla europejskich kurortów.', activities:['Zjazd poza wyznaczonymi trasami z lokalnym przewodnikiem','Kolacja w ranczu z widokiem na pasmo Spanish Peaks','Kąpiel w termalnych źródłach niedaleko Parku Yellowstone'] },
+      { slug:'oaxaca', name:'Oaxaca', country:'Meksyk', vec:{K:.5,A:.9,L:-.3,Lurb:.5,B:-.4,S:.5,Aout:.2}, tags:['Gastronomia','Kultura','Targi'], img:'quiz-dest-oaxaca', blurb:'Kolonialna stolica uznawana za kulinarną stolicę Meksyku — mole, mezcal i targi pełne barw, a w listopadzie jedne z najbardziej autentycznych obchodów Dnia Zmarłych.', activities:['Warsztaty mezcalu w rodzinnej palenque na przedmieściach','Targ Benito Juárez i degustacja siedmiu rodzajów mole','Wschód słońca wśród ruin Monte Albán przed otwarciem dla turystów'] },
+      { slug:'apulia', name:'Bari / Apulia', country:'Włochy', vec:{K:.7,A:.6,L:.7,Lurb:.4,B:.1,S:.4,Aout:.1}, tags:['Owoce morza','Stare miasto','Wybrzeże'], img:'quiz-dest-apulia', blurb:'Obcas włoskiego buta — surowe owoce morza prosto z portu, białe trulli i wybrzeże, które wciąż nie jest zatłoczone jak Amalfi czy Toskania.', activities:['Świeże owoce morza prosto z łodzi na targu rybnym w Bari Vecchia','Nocleg w kamiennym trullo w Alberobello','Rowerowa wycieczka wzdłuż klifów Polignano a Mare'] },
+      { slug:'santiago-de-compostela', name:'Santiago de Compostela', country:'Hiszpania', vec:{K:.2,A:.8,L:-.4,Lurb:.3,B:-.2,S:-.2,Aout:.6}, tags:['Camino','Historia','Zielona Galicja'], img:'quiz-dest-santiago', blurb:'Meta jednego z najsłynniejszych szlaków pielgrzymkowych świata — zielona Galicja, katedra spowita mgłą i tapas barowa kultura bez turystycznych cen.', activities:['Ostatni odcinek Camino Francés pieszo o świcie','Degustacja tapas i albariño w barach starówki','Wycieczka na przylądek Fisterra — dawny "koniec świata"'] },
+      { slug:'lagos', name:'Lagos', country:'Nigeria', vec:{K:.9,A:.3,L:.6,Lurb:1,B:.2,S:1,Aout:.1}, tags:['Moda','Afrobeats','Sztuka'], img:'quiz-dest-lagos', blurb:'Najdynamiczniejsza metropolia Afryki Zachodniej — stolica afrobeatów, mody i sceny artystycznej, z plażą Tarkwa Bay w zasięgu łodzi od centrum.', activities:['Koncert na żywo w klubie afrobeatowym w Victoria Island','Galerie sztuki współczesnej w dzielnicy Lekki','Rejs łodzią na plażę Tarkwa Bay z dala od zgiełku miasta'] },
+      { slug:'dominika', name:'Dominika', country:'Karaiby', vec:{K:.9,A:-.1,L:.8,Lurb:-.9,B:.4,S:-.7,Aout:.8}, tags:['Wulkany','Eko-resorty','Nurkowanie'], img:'quiz-dest-dominika', blurb:'"Wyspa natury" Karaibów bez masowej turystyki — wulkaniczne źródła, dziewicza dżungla i nurkowanie w bąbelkach gorącej wody Champagne Reef.', activities:['Trekking do wrzącego jeziora Boiling Lake','Nurkowanie w Champagne Reef wśród wulkanicznych bąbelków','Kąpiel w gorących źródłach Ti Kwen Glo Cho w środku dżungli'] },
+      { slug:'rio-de-janeiro', name:'Rio de Janeiro', country:'Brazylia', vec:{K:.9,A:-.4,L:.8,Lurb:.8,B:.2,S:.9,Aout:.4}, tags:['Copacabana','Samba','Nocne życie'], img:'quiz-dest-rio', blurb:'Miasto, które łączy plaże Copacabany i Ipanemy z górami wyrastającymi wprost z oceanu — samba, capoeira na plaży i życie nocne trwające do świtu.', activities:['Wschód słońca na szczycie Pao de Acucar przed kolejką','Lekcja samby w szkole tańca w Lapie','Piłka nożna na plaży z lokalnymi o zachodzie słońca'] },
+      { slug:'irlandia', name:'Killarney', country:'Irlandia', vec:{K:-.2,A:.5,L:-.5,Lurb:-.2,B:.3,S:.1,Aout:.6}, tags:['Zamki','Jeziora','Puby'], img:'quiz-dest-irlandia', blurb:'Brama do Ring of Kerry — zielone wzgórza, ruiny zamków i puby z muzyką na żywo każdego wieczoru, bez wielkomiejskiego pośpiechu.', activities:['Rowerowa pętla wokół jezior Killarney National Park','Wieczór z muzyką na żywo w pubie przy Plunkett Street','Wyprawa samochodem trasą Ring of Kerry o wschodzie słońca'] },
+      { slug:'tasmania', name:'Tasmania', country:'Australia', vec:{K:.1,A:.3,L:-.7,Lurb:-.7,B:.6,S:-.8,Aout:.9}, tags:['Unikalna fauna','Dzikie góry','Wina'], img:'quiz-dest-tasmania', blurb:'Odizolowana wyspa na końcu świata z unikalną fauną, dziewiczymi górami Cradle Mountain i winnicami klasy światowej — dzika przyroda w wersji premium.', activities:['Trekking wokół Cradle Mountain-Lake St Clair o świcie','Nocna wyprawa w poszukiwaniu diabłów tasmańskich','Degustacja win w dolinie Tamar Valley'] },
+      { slug:'samarkanda', name:'Samarkanda', country:'Uzbekistan', vec:{K:.4,A:.9,L:-.2,Lurb:.4,B:-.5,S:-.1,Aout:.2}, tags:['Jedwabny Szlak','Mozaiki','Medresy'], img:'quiz-dest-samarkanda', blurb:'Perła Jedwabnego Szlaku — turkusowe kopuły, mozaiki medres Registanu i historia, która w Europie zwykle kończy się na jednym akapicie w podręczniku.', activities:['Zachód słońca na placu Registan, gdy oświetlenie zmienia kolor mozaik','Warsztaty tradycyjnego wyrobu papieru w wiosce Konigil','Kolacja z pilawem samarkandzkim na lokalnym bazarze Siab'] },
+      { slug:'plitwice', name:'Park Plitwicki', country:'Chorwacja', vec:{K:.4,A:.2,L:-.4,Lurb:-.8,B:0,S:.2,Aout:.7}, tags:['Turkusowe jeziora','Wodospady','Przyroda'], img:'quiz-dest-plitwice', blurb:'Kaskadowe, turkusowe jeziora połączone wodospadami wpisane na listę UNESCO — najbardziej fotogeniczny park narodowy w tej części Europy.', activities:['Wczesnoranny spacer trasą C, zanim wjadą autokary z wybrzeża','Rejs drewnianą łódką po Jeziorze Kozjak','Piesza wyprawa do najwyższego wodospadu Wielki Slap'] },
+      { slug:'islandia', name:'Islandia (Ring Road)', country:'Islandia', vec:{K:-.6,A:.3,L:-.8,Lurb:-.8,B:.7,S:-.6,Aout:.8}, tags:['Gejzery','Wulkany','Road trip'], img:'quiz-dest-islandia', blurb:'Objazd całej wyspy jedną drogą wzdłuż gejzerów, wodospadów i czarnych plaż wulkanicznych — road trip, który wygląda jak z innej planety.', activities:['Kąpiel w naturalnym, geotermalnym źródle z dala od Blue Lagoon','Obserwacja zorzy polarnej z czarnej plaży Reynisfjara','Trekking po lodowcu z certyfikowanym przewodnikiem'] },
+      { slug:'hongkong', name:'Hongkong', country:'Chiny', vec:{K:.6,A:.7,L:.3,Lurb:1,B:.4,S:.9,Aout:.2}, tags:['Skyline','Street food','Mega-wydarzenia'], img:'quiz-dest-hongkong', blurb:'Gęsty las wieżowców nad Zatoką Wiktorii — street food z gwiazdką Michelin za kilka dolarów i kalendarz pełen wielkich wydarzeń kulturalnych i sportowych.', activities:['Kolacja w straganie z gwiazdką Michelin na Temple Street','Wjazd tramwajem Peak Tram na Victoria Peak o zmierzchu','Rejs tradycyjną dżonką po Victoria Harbour'] },
+      { slug:'savoie', name:'Savoie', country:'Francja', vec:{K:-.8,A:.2,L:-1,Lurb:-.5,B:.6,S:-.2,Aout:.9}, tags:['Alpy','Narciarstwo','Górskie jeziora'], img:'quiz-dest-savoie', blurb:'Francuskie Alpy w wersji kulinarnej — trasy narciarskie klasy światowej, serowe fondue po dniu na stoku i górskie jeziora, które latem zamieniają się w plaże.', activities:['Zjazd trasą olimpijską w Val d’Isère lub Courchevel','Degustacja fondue savoyardzkiego w górskim chalet','Kąpiel w lodowcowym jeziorze Lac d’Annecy latem'] },
+    ];
+
+    const stepLabelEl = document.getElementById('quizStepLabel');
+    const progressWrap = document.getElementById('quizProgress');
+    const backBtn = document.getElementById('quizBack');
+    const questionsPanel = document.getElementById('quizQuestions');
+    const questionTextEl = document.getElementById('quizQuestionText');
+    const optionsWrap = document.getElementById('quizOptions');
+    const resultPanel = document.getElementById('quizResult');
+    const backdrop = document.getElementById('quizBackdrop');
+
+    let step = 0;
+    const answers = new Array(QUESTIONS.length).fill(null);
+    let lastMatches = [];
+    let lastU = null;
+
+    // build the 10 progress segments once
+    QUESTIONS.forEach((_, i) => {
+      const seg = document.createElement('span');
+      seg.className = 'flex-1 h-1.5 rounded-full bg-white/15 overflow-hidden';
+      seg.dataset.step = i;
+      seg.innerHTML = '<span class="block h-full w-0 bg-accent-500 transition-all duration-300 ease-out"></span>';
+      progressWrap.appendChild(seg);
+    });
+    const progressSegs = Array.from(progressWrap.children);
+
+    function updateProgress() {
+      progressSegs.forEach((seg, i) => {
+        seg.querySelector('span').style.width = (i < step || (i === step && answers[i] !== null)) ? '100%' : '0%';
       });
-      result.classList.remove('active');
-      stepIndex = i;
+    }
+
+    function renderQuestion(i) {
+      const question = QUESTIONS[i];
+      stepLabelEl.textContent = `Pytanie ${i + 1} z ${QUESTIONS.length}`;
+      backBtn.classList.toggle('hidden', i === 0);
+      backBtn.classList.toggle('flex', i > 0);
+      questionTextEl.textContent = question.q;
+      optionsWrap.innerHTML = question.opts.map((opt, idx) => `
+        <button type="button" data-idx="${idx}" class="quiz-opt pressable text-left bg-ink-50 hover:bg-accent-50 border border-ink-900/10 hover:border-accent-500/30 rounded-2xl p-4 sm:p-5 text-[13.5px] sm:text-[14px] font-semibold text-ink-900 leading-snug transition-colors duration-160">${opt.t}</button>
+      `).join('');
+      optionsWrap.querySelectorAll('.quiz-opt').forEach(btn => {
+        btn.addEventListener('click', () => chooseAnswer(i, Number(btn.dataset.idx)));
+      });
+      updateProgress();
+    }
+
+    function chooseAnswer(qIndex, optIndex) {
+      answers[qIndex] = optIndex;
+      if (qIndex < QUESTIONS.length - 1) {
+        step = qIndex + 1;
+        renderQuestion(step);
+      } else {
+        finish();
+      }
+    }
+
+    function computeUserVector() {
+      const U = { K: 0, A: 0, L: 0, Lurb: 0, B: 0, S: 0, Aout: 0 };
+      answers.forEach((optIdx, qIdx) => {
+        if (optIdx === null) return;
+        const d = QUESTIONS[qIdx].opts[optIdx].d;
+        Object.keys(d).forEach(k => { U[k] += d[k]; });
+      });
+      AXES.forEach(k => {
+        const lo = k === 'Aout' ? 0 : -1;
+        U[k] = Math.max(lo, Math.min(1, U[k]));
+      });
+      return U;
+    }
+
+    function scoreAll(U) {
+      return DESTINATIONS.map(dest => {
+        const dist = Math.sqrt(AXES.reduce((sum, k) => sum + W[k] * Math.pow(U[k] - dest.vec[k], 2), 0));
+        const match = Math.max(0, Math.min(100, (1 - dist / DMAX) * 100));
+        return { dest, match };
+      }).sort((a, b) => b.match - a.match);
+    }
+
+    function topAxes(U, dest, n) {
+      return AXES
+        .map(k => ({ k, sign: U[k] >= 0 ? 1 : -1, w: Math.abs(U[k]) * (Math.sign(U[k]) === Math.sign(dest.vec[k]) || (U[k] === 0) ? 1 : 0.3) }))
+        .sort((a, b) => b.w - a.w)
+        .slice(0, n);
+    }
+
+    function imgUrl(seed, w, h) { return `https://picsum.photos/seed/${seed}/${w}/${h}`; }
+
+    function activityRow(text) {
+      return `<div class="flex items-start gap-2.5 text-[13px] text-ink-700 leading-relaxed"><i data-lucide="sparkle" class="w-3.5 h-3.5 text-accent-600 shrink-0 mt-0.5"></i><span>${text}</span></div>`;
+    }
+
+    function renderAlternatives(matches, activeSlug) {
+      const alts = matches.filter(m => m.dest.slug !== activeSlug).slice(0, 2);
+      document.getElementById('quizAlternatives').innerHTML = alts.map(m => `
+        <button type="button" data-slug="${m.dest.slug}" class="quiz-alt pressable w-full flex items-center gap-3 bg-ink-50 hover:bg-accent-50 border border-ink-900/10 hover:border-accent-500/30 rounded-2xl p-2.5 text-left transition-colors duration-160">
+          <span class="w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-ink-100"><img src="${imgUrl(m.dest.img, 160, 160)}" alt="" loading="lazy" onerror="this.remove()" class="w-full h-full object-cover"></span>
+          <span class="flex-1 min-w-0">
+            <span class="block text-[12.5px] font-bold text-ink-900 truncate">${m.dest.name}</span>
+            <span class="block text-[11px] text-ink-500">${m.dest.country} · ${Math.round(m.match)}% dopasowania</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-ink-400 shrink-0"></i>
+        </button>
+      `).join('');
+      document.querySelectorAll('.quiz-alt').forEach(btn => {
+        btn.addEventListener('click', () => renderResult(btn.dataset.slug, { fromAlt: true }));
+      });
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function renderResult(forceSlug, opts) {
+      opts = opts || {};
+      const shared = !!opts.shared;
+      let U = null, matches = lastMatches, entry;
+
+      if (shared) {
+        entry = DESTINATIONS.find(d => d.slug === forceSlug);
+        if (!entry) return;
+      } else {
+        if (!matches.length) { U = computeUserVector(); matches = scoreAll(U); lastMatches = matches; lastU = U; }
+        else { U = lastU; }
+        entry = forceSlug ? matches.find(m => m.dest.slug === forceSlug) : matches[0];
+        if (!entry) entry = matches[0];
+      }
+
+      const dest = shared ? entry : entry.dest;
+      const match = shared ? null : Math.round(entry.match);
+
+      questionsPanel.classList.add('hidden');
+      resultPanel.classList.remove('hidden');
+      backdrop.style.backgroundImage = `url('${imgUrl(dest.img, 1400, 1000)}')`;
+
+      document.getElementById('quizMatchBadge').textContent = shared ? '★' : `${match}%`;
+      document.getElementById('quizResultKicker').textContent = shared ? 'Poleca Ci znajomy' : 'Twoja rekomendacja';
+      document.getElementById('quizMatchLabel').textContent = shared ? 'ktoś podesłał Ci ten kierunek' : 'dopasowanie do Twoich odpowiedzi';
+      document.getElementById('quizResultTitle').textContent = `${dest.name}, ${dest.country}`;
+      document.getElementById('quizResultTags').textContent = dest.tags.join(' · ');
+      document.getElementById('quizResultMedia').innerHTML = `<img src="${imgUrl(dest.img, 900, 700)}" alt="${dest.name}" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover">`;
+      document.getElementById('quizActivities').innerHTML = dest.activities.map(activityRow).join('');
+
+      const introEl = document.getElementById('quizResultIntro');
+      if (shared) {
+        introEl.textContent = 'Zanim zrobisz własny quiz, zobacz, dokąd — zdaniem znajomego — powinniście jechać w tym roku.';
+      } else {
+        const [ax1, ax2] = topAxes(U, dest, 2);
+        const phrase = ax => TRAITS[ax.k][ax.sign > 0 ? 'pos' : 'neg'];
+        introEl.textContent = `Skoro cenisz ${phrase(ax1)} i ${phrase(ax2)}, ten kierunek trafia w Twoje potrzeby niemal idealnie.`;
+      }
+      document.getElementById('quizResultText').textContent = dest.blurb;
+
+      const altWrap = document.getElementById('quizAltWrap');
+      const sharedNotice = document.getElementById('quizSharedNotice');
+      if (shared) {
+        altWrap.innerHTML = '<a href="index.html#quiz" id="quizOwnBtn" class="pressable w-full inline-flex items-center justify-center gap-2 bg-ink-900 hover:bg-ink-950 text-white text-[13px] font-semibold px-4 py-3 rounded-full shadow-softer transition-colors duration-160">Zrób własny quiz <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>';
+        sharedNotice.classList.remove('hidden');
+        sharedNotice.innerHTML = `<i data-lucide="link-2" class="w-4 h-4 text-accent-600 shrink-0"></i><span class="text-[13px] text-ink-700">To wynik przesłany Ci przez znajomego. Zrób quiz sam, żeby sprawdzić, czy Wasze style podróżowania się zgadzają.</span>`;
+        const ownBtn = document.getElementById('quizOwnBtn');
+        if (ownBtn) ownBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const url = new URL(window.location.href);
+          url.searchParams.delete('kierunek');
+          window.history.replaceState({}, '', url);
+          sharedNotice.classList.add('hidden');
+          resultPanel.classList.add('hidden');
+          questionsPanel.classList.remove('hidden');
+          answers.fill(null); step = 0; lastMatches = []; lastU = null;
+          backdrop.style.backgroundImage = "url('https://images.pexels.com/photos/30447885/pexels-photo-30447885.jpeg?auto=compress&cs=tinysrgb&w=1600')";
+          renderQuestion(0);
+        });
+      } else {
+        sharedNotice.classList.add('hidden');
+        altWrap.innerHTML = '<span class="inline-flex bg-white/95 rounded-full shadow-soft px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-ink-500 mb-3">Warto też rozważyć</span><div id="quizAlternatives" class="flex flex-col gap-2.5"></div>';
+        renderAlternatives(matches, dest.slug);
+      }
+
+      // share wiring
+      const shareUrl = (() => {
+        const url = new URL(window.location.href.split('#')[0]);
+        url.searchParams.set('kierunek', dest.slug);
+        url.hash = 'quiz';
+        return url.toString();
+      })();
+      const shareText = match !== null
+        ? `${dest.name} — ${match}% dopasowania do mojego stylu podróżowania. Sprawdź, dokąd powinniśmy jechać w tym roku:`
+        : `${dest.name} — sprawdź ten kierunek na wakacje w tym roku:`;
+
+      const shareBtn = document.getElementById('quizShare');
+      const shareLabel = document.getElementById('quizShareLabel');
+      shareBtn.onclick = async () => {
+        if (navigator.share) {
+          try { await navigator.share({ title: dest.name, text: shareText, url: shareUrl }); return; } catch (e) { /* user cancelled */ }
+        }
+        try {
+          await navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
+          shareLabel.textContent = 'Skopiowano link!';
+          setTimeout(() => { shareLabel.textContent = 'Udostępnij'; }, 2200);
+        } catch (e) {
+          shareLabel.textContent = shareUrl;
+        }
+      };
+      document.getElementById('quizWhatsapp').href = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
+
+      if (window.lucide) lucide.createIcons();
     }
 
     function finish() {
-      steps.forEach(s => s.classList.remove('active'));
-      progressEls.forEach(p => { p.querySelector('span').style.width = '100%'; });
-      const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-      const outcome = OUTCOMES[winner];
-      document.getElementById('quizResultLabel').textContent = outcome.label;
-      document.getElementById('quizResultTitle').textContent = outcome.title;
-      document.getElementById('quizResultText').textContent = outcome.text;
-      document.getElementById('quizResultMedia').innerHTML = `<img src="${outcome.img}" alt="${outcome.title}" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover">`;
-      result.classList.add('active');
+      lastMatches = []; lastU = null;
+      renderResult(null, { shared: false });
     }
 
-    box.querySelectorAll('.quiz-opt').forEach(btn => {
-      btn.addEventListener('click', () => {
-        scores.plaza += Number(btn.dataset.plaza || 0);
-        scores.miasto += Number(btn.dataset.miasto || 0);
-        scores.gory += Number(btn.dataset.gory || 0);
-        if (stepIndex < steps.length - 1) showStep(stepIndex + 1); else finish();
-      });
+    backBtn.addEventListener('click', () => {
+      if (step > 0) { step -= 1; renderQuestion(step); }
     });
 
     const restartBtn = document.getElementById('quizRestart');
-    if (restartBtn) restartBtn.addEventListener('click', () => { scores.plaza = 0; scores.miasto = 0; scores.gory = 0; showStep(0); });
-    showStep(0);
+    if (restartBtn) restartBtn.addEventListener('click', () => {
+      answers.fill(null); step = 0; lastMatches = []; lastU = null;
+      resultPanel.classList.add('hidden');
+      questionsPanel.classList.remove('hidden');
+      backdrop.style.backgroundImage = "url('https://images.pexels.com/photos/30447885/pexels-photo-30447885.jpeg?auto=compress&cs=tinysrgb&w=1600')";
+      renderQuestion(0);
+    });
+
+    // entry point — either resume a shared recommendation or start the quiz
+    const sharedSlug = new URLSearchParams(window.location.search).get('kierunek');
+    if (sharedSlug && DESTINATIONS.some(d => d.slug === sharedSlug)) {
+      renderResult(sharedSlug, { shared: true });
+    } else {
+      renderQuestion(0);
+    }
   })();
 
   // app showcase auto-rotating tabs
