@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Parlament Europejski przegłosował darmowy bagaż podręczny. Ale wejdzie w życie dopiero za rok — OgarnijWakacje.pl</title>
+<meta name="description" content="646 głosów za, 12 przeciw. Po ponad dekadzie sporów Parlament Europejski zatwierdził reformę praw pasażerów lotniczych — darmowy bagaż podręczny i dłuższy czas na reklamacje. Efekty poczujemy jednak dopiero w 2027 roku." />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<meta name="impact-site-verification" content="eac70558-fdec-4e3d-9897-d2bd83044a36" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          display: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui'],
+        },
+        colors: {
+          ink: {
+            950: '#141310',
+            900: '#1c1a16',
+            800: '#2a2722',
+            700: '#3e3a32',
+            600: '#5c5648',
+            500: '#7a7364',
+            400: '#a39c8c',
+            300: '#c7c0b1',
+            200: '#e2ddd0',
+            100: '#efebe1',
+            50: '#faf8f3',
+          },
+          accent: {
+            50: '#fff4e9',
+            100: '#ffe2c4',
+            300: '#ffb570',
+            500: '#e8752e',
+            600: '#c85f1e',
+            700: '#a14a17',
+          },
+          leaf: {
+            500: '#3f6a52',
+            600: '#345a44',
+          },
+          teal: {
+            50: '#eaf7f6',
+            100: '#cdeeec',
+            500: '#4fb8b3',
+            600: '#3b9a95',
+          },
+        },
+        boxShadow: {
+          soft: '0 1px 2px rgba(20,19,16,0.04), 0 12px 28px -8px rgba(20,19,16,0.10)',
+          softer: '0 1px 1px rgba(20,19,16,0.03), 0 6px 16px -6px rgba(20,19,16,0.08)',
+          lifted: '0 30px 70px -20px rgba(20,19,16,0.35)',
+        },
+        transitionTimingFunction: {
+          out: 'cubic-bezier(0.23, 1, 0.32, 1)',
+          inout: 'cubic-bezier(0.77, 0, 0.175, 1)',
+        },
+        borderRadius: {
+          '4xl': '2rem',
+        },
+      },
+    },
+  };
+</script>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+<style>
+  :root{
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  html{ scroll-behavior: smooth; }
+  body{ font-family:'Inter', sans-serif; background:#faf8f3; }
+  h1,h2,h3,h4,h5,.font-display{ font-family:'Plus Jakarta Sans', sans-serif; }
+
+  ::selection{ background:#ffb570; color:#1c1a16; }
+
+  /* focus ring — visible, calm */
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline: 2px solid #e8752e;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* reveal-on-scroll */
+  .reveal{ opacity:0; transform: translateY(14px); transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out); }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  /* cookie consent banner */
+  #cookieBanner{ opacity:0; transform: translateY(16px); transition: opacity 260ms var(--ease-out), transform 260ms var(--ease-out); }
+  #cookieBanner.in{ opacity:1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ transition: opacity 200ms ease !important; transform:none !important; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  /* press feedback for interactive controls */
+  .pressable{ transition: transform 160ms var(--ease-out); }
+  .pressable:active{ transform: scale(0.97); }
+
+  /* range slider */
+  input[type="range"]{ -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:99px; background:#e2ddd0; outline:none; }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%;
+    background:#e8752e; border:3px solid #fff; box-shadow:0 1px 4px rgba(20,19,16,0.35);
+    cursor:pointer; transition: transform 160ms var(--ease-out);
+  }
+  input[type="range"]:active::-webkit-slider-thumb{ transform: scale(1.15); }
+  input[type="range"]::-moz-range-thumb{
+    width:16px; height:16px; border-radius:50%; background:#e8752e; border:3px solid #fff;
+    box-shadow:0 1px 4px rgba(20,19,16,0.35); cursor:pointer;
+  }
+
+  /* ranking bars */
+
+  /* quiz */
+  .quiz-step{ display:none; }
+  .quiz-step.active{ display:block; }
+  .quiz-result-panel{ display:none; }
+  .quiz-result-panel.active{ display:grid; }
+
+  /* showcase tabs */
+  .app-screen{ position:absolute; inset:0; opacity:0; transform: scale(1.02); filter: blur(6px); transition: opacity 480ms var(--ease-in-out), transform 480ms var(--ease-in-out), filter 480ms var(--ease-in-out); pointer-events:none; }
+  .app-screen.active{ opacity:1; transform: scale(1); filter: blur(0); pointer-events:auto; }
+  .showcase-progress > div{ height:100%; width:0%; background:#ffb570; }
+  .showcase-progress > div.filling{ animation: fillbar 5000ms linear forwards; }
+  .showcase-progress > div.filled{ width:100%; }
+  @keyframes fillbar{ from{ width:0%; } to{ width:100%; } }
+
+  /* mobile menu */
+  #mobileMenu{ transform: translateY(-8px); opacity:0; pointer-events:none; transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out); }
+  #mobileMenu.open{ transform: translateY(0); opacity:1; pointer-events:auto; }
+
+  .trip-card{ background-size:cover; background-position:center; }
+  .glass-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+  /* subtle float animation for hero decorative chips */
+  @keyframes floaty{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
+  .float-slow{ animation: floaty 6s var(--ease-in-out) infinite; }
+  .float-slower{ animation: floaty 8s var(--ease-in-out) infinite; animation-delay: .8s; }
+
+  /* "Poznaj aplikację" nav item — tiny phone + palm duo that wakes up on hover */
+  .app-nav-icons{ transform-origin: bottom left; }
+  .app-nav-phone, .app-nav-palm{
+    transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine){
+    .app-nav-link:hover .app-nav-phone{ transform: translateY(-3px) rotate(-8deg); box-shadow: 0 3px 8px rgba(232,117,46,0.22); }
+    .app-nav-link:hover .app-nav-palm{ transform: translateY(-4px) rotate(10deg); }
+    .app-nav-link:active .app-nav-phone{ transform: translateY(-1px) rotate(-4deg) scale(0.95); }
+    .app-nav-link:active .app-nav-palm{ transform: translateY(-2px) rotate(6deg) scale(0.95); }
+  }
+
+  /* flying parrot decoration in the hero background */
+  .parrot-fly{ position:absolute; left:-10%; top:58%; filter: drop-shadow(0 6px 10px rgba(20,19,16,0.18)); animation: parrotFly 22s var(--ease-in-out) infinite; }
+  @keyframes parrotFly{
+    0%   { left:-10%; top:60%; transform: translateY(0) rotate(-4deg); }
+    20%  { left:18%;  top:38%; transform: translateY(-14px) rotate(2deg); }
+    45%  { left:50%;  top:20%; transform: translateY(8px) rotate(-3deg); }
+    70%  { left:80%;  top:34%; transform: translateY(-10px) rotate(3deg); }
+    100% { left:112%; top:18%; transform: translateY(0) rotate(-4deg); }
+  }
+
+  /* animated weather badge icon */
+  #weatherBadgeIcon svg{ overflow: visible; }
+  .wx-sun{ transform-origin: 16px 16px; animation: wxSpin 26s linear infinite; }
+  @keyframes wxSpin{ to{ transform: rotate(360deg); } }
+  .wx-glow{ animation: wxGlow 3.2s var(--ease-in-out) infinite; transform-origin: 16px 16px; }
+  @keyframes wxGlow{ 0%,100%{ opacity:.55; transform: scale(1); } 50%{ opacity:.9; transform: scale(1.12); } }
+  .wx-cloud{ animation: wxSway 6s var(--ease-in-out) infinite; transform-origin: 16px 20px; }
+  @keyframes wxSway{ 0%,100%{ transform: translateX(-1.5px); } 50%{ transform: translateX(1.5px); } }
+  .wx-drop{ animation: wxDrop 1.3s linear infinite; }
+  @keyframes wxDrop{ 0%{ transform: translateY(-2px); opacity:0; } 25%{ opacity:1; } 90%{ opacity:0; } 100%{ transform: translateY(7px); opacity:0; } }
+  .wx-flake{ animation: wxFlake 2.6s linear infinite; }
+  @keyframes wxFlake{ 0%{ transform: translate(0,-2px); opacity:0; } 20%{ opacity:1; } 90%{ opacity:0; } 100%{ transform: translate(2px,8px); opacity:0; } }
+  .wx-fog-line{ animation: wxFog 3.4s var(--ease-in-out) infinite; }
+  @keyframes wxFog{ 0%,100%{ transform: translateX(-1.5px); opacity:.55; } 50%{ transform: translateX(1.5px); opacity:1; } }
+  .wx-bolt{ animation: wxBolt 2s ease-in-out infinite; }
+  @keyframes wxBolt{ 0%,45%,100%{ opacity:.35; } 50%,58%{ opacity:1; } 65%{ opacity:.35; } }
+
+  /* vintage postcard treatment for the hero card */
+  .postcard-card{
+    position:relative;
+    background:
+      radial-gradient(ellipse at center, transparent 60%, rgba(120,86,38,.05) 100%),
+      radial-gradient(circle at 18% 28%, rgba(120,86,38,.035) 0, transparent 3px) 0 0/150px 150px,
+      radial-gradient(circle at 66% 74%, rgba(120,86,38,.03) 0, transparent 3px) 0 0/170px 170px,
+      radial-gradient(circle at 82% 18%, rgba(120,86,38,.035) 0, transparent 3px) 0 0/130px 130px,
+      radial-gradient(circle at 30% 88%, rgba(120,86,38,.03) 0, transparent 3px) 0 0/190px 190px,
+      #ffffff;
+    box-shadow: 0 0 0 2px #b8863f, 0 0 0 8px #ffffff, 0 0 0 10px #b8863f, 0 25px 70px -20px rgba(20,19,16,.35);
+  }
+  .postcard-corner{ position:absolute; width:30px; height:30px; opacity:.85; z-index:1; }
+  .postcard-watermark{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:.06; z-index:-1; }
+  .postcard-stamp{
+    position:absolute; top:18px; right:18px; width:78px; z-index:2;
+    background:#ffffff; border:2px dashed #b8863f; border-radius:2px;
+    padding:8px 6px 7px; text-align:center; transform:rotate(6deg);
+    box-shadow: 2px 3px 6px rgba(70,45,15,.25);
+  }
+  .postcard-postmark{
+    position:absolute; top:40px; right:66px; z-index:3; width:82px; height:82px;
+    opacity:.8; transform:rotate(-12deg); mix-blend-mode:multiply; pointer-events:none;
+  }
+
+  /* WINTER 2026 destinations — bento grid */
+  .winter-card{ position:relative; border-radius:1.75rem; overflow:hidden; background:#0b1830; box-shadow: 0 1px 1px rgba(20,19,16,0.03), 0 6px 16px -6px rgba(20,19,16,0.08); transition: transform 420ms var(--ease-out), box-shadow 420ms var(--ease-out), opacity 380ms var(--ease-out); }
+  .winter-card:hover{ transform: translateY(-6px); box-shadow: 0 25px 60px -20px rgba(11,24,48,0.45); }
+  .winter-card img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition: transform 700ms var(--ease-out); }
+  .winter-card:hover img{ transform: scale(1.07); }
+  .winter-card .winter-scrim{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(11,20,38,0.05) 0%, rgba(11,20,38,0.18) 42%, rgba(8,15,30,0.92) 100%); }
+  .winter-card .winter-ring{ position:absolute; inset:0; border-radius:1.75rem; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); transition: box-shadow 420ms var(--ease-out); pointer-events:none; }
+  .winter-card:hover .winter-ring{ box-shadow: inset 0 0 0 1.5px rgba(255,181,112,0.55); }
+  .winter-card.is-hidden{ opacity:0; transform: scale(0.94); pointer-events:none; }
+  .winter-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22); }
+  .winter-cta{ transition: transform 280ms var(--ease-out); }
+  .winter-card:hover .winter-cta{ transform: translateX(3px); }
+</style>
+<script type="text/javascript">(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7669115-a968-452d-a9ac-d18ff8067e651.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');</script>
+</head>
+<body class="text-ink-900 antialiased bg-[#faf8f3]">
+<!-- Metadane tego artykułu — czyta je build.js na Netlify przy każdym
+     wdrożeniu, żeby automatycznie zbudować data/articles.json (karty na
+     stronie głównej). Nie edytuj tego bloku ręcznie. -->
+<script type="application/json" id="article-meta">{"slug": "darmowy-bagaz-podreczny-nowe-prawa-pasazerow-ue", "title": "Parlament Europejski przegłosował darmowy bagaż podręczny. Ale wejdzie w życie dopiero za rok", "excerpt": "646 głosów za, 12 przeciw. Po ponad dekadzie sporów Parlament Europejski zatwierdził reformę praw pasażerów lotniczych — darmowy bagaż podręczny i dłuższy czas na reklamacje. Efekty poczujemy jednak dopiero w 2027 roku.", "tag": "Loty", "tagColor": "#345a44", "image": "https://images.pexels.com/photos/2646521/pexels-photo-2646521.jpeg?auto=compress&cs=tinysrgb&w=1200", "gradient": "linear-gradient(160deg,#1f3d2c,#345a44 55%,#bcd4c3)", "date": "2026-08-22", "dateLabel": "22 sierpnia 2026", "readTime": "15 min", "url": "artykuly/darmowy-bagaz-podreczny-nowe-prawa-pasazerow-ue.html", "category": "newsy"}</script>
+<header id="site-header" class="sticky top-0 z-50 bg-[#faf8f3]/80 backdrop-blur-md border-b border-ink-900/[0.06]">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <nav class="flex items-center justify-between h-16 sm:h-[72px]">
+      <a href="../index.html" class="flex items-center gap-2.5 shrink-0">
+        <img src="../logo.svg" alt="OgarnijWakacje.pl" class="h-12 sm:h-14 w-auto" />
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-[13.5px] font-medium text-ink-600">
+        <a href="../newsy.html" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="../miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
+        <a href="../ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="../poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="../poznaj-aplikacje.html" class="app-nav-link group relative inline-flex items-center gap-2 hover:text-ink-900 transition-colors duration-160">
+          Poznaj aplikację
+          <span class="app-nav-icons relative inline-flex items-center w-[30px] h-[20px] shrink-0" aria-hidden="true">
+            <span class="app-nav-phone absolute left-0 top-0 grid place-items-center w-[18px] h-[18px] rounded-[6px] bg-accent-50 text-accent-600 ring-1 ring-accent-500/15">
+              <i data-lucide="smartphone" class="w-2.5 h-2.5"></i>
+            </span>
+            <span class="app-nav-palm absolute left-[13px] top-[2px] grid place-items-center w-[15px] h-[15px] rounded-full bg-leaf-500/10 text-leaf-500">
+              <i data-lucide="palmtree" class="w-2.5 h-2.5"></i>
+            </span>
+          </span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="../index.html#pobierz" class="pressable hidden sm:inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white text-[13.5px] font-semibold px-4 py-2.5 rounded-full shadow-softer transition-colors duration-160">
+          Zapisz się do beta
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+        <button id="menuBtn" aria-label="Otwórz menu" aria-expanded="false" class="pressable md:hidden grid place-items-center w-10 h-10 rounded-full border border-ink-900/10">
+          <i data-lucide="menu" class="w-4.5 h-4.5"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden absolute inset-x-0 top-full bg-[#faf8f3]/95 backdrop-blur-md border-b border-ink-900/[0.06] shadow-soft">
+    <div class="max-w-7xl mx-auto px-5 py-5 flex flex-col gap-1 text-[15px] font-medium">
+      <a href="../newsy.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Newsy</a>
+      <a href="../miejsca.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Miejsca</a>
+      <a href="../ciekawostki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Ciekawostki</a>
+      <a href="../poradniki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poradniki</a>
+      <a href="../poznaj-aplikacje.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5 flex items-center gap-2">
+        Poznaj aplikację
+        <span class="relative inline-flex items-center w-[26px] h-[18px] shrink-0" aria-hidden="true">
+          <span class="absolute left-0 top-0 grid place-items-center w-4 h-4 rounded-[5px] bg-accent-50 text-accent-600 ring-1 ring-accent-500/15">
+            <i data-lucide="smartphone" class="w-2.5 h-2.5"></i>
+          </span>
+          <span class="absolute left-[11px] top-[1px] grid place-items-center w-3.5 h-3.5 rounded-full bg-leaf-500/10 text-leaf-500">
+            <i data-lucide="palmtree" class="w-2.5 h-2.5"></i>
+          </span>
+        </span>
+      </a>
+      <a href="../index.html#pobierz" class="mt-2 text-center bg-ink-900 text-white px-3 py-3 rounded-full font-semibold">Zapisz się do beta</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <article class="py-14 sm:py-20">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      <a href="../newsy.html" class="flex w-fit items-center gap-2 text-[13px] font-semibold text-ink-500 hover:text-ink-900 transition-colors duration-160 mb-8">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Wróć do newsów
+      </a>
+
+      <span class="inline-block text-[11.5px] font-bold uppercase tracking-wide mb-3" style="color:#345a44">Loty</span>
+      <h1 class="font-display font-extrabold tracking-tight text-[clamp(1.7rem,4.2vw,2.6rem)] leading-[1.12] text-ink-950 mb-4">Parlament Europejski przegłosował darmowy bagaż podręczny. Ale wejdzie w życie dopiero za rok</h1>
+      <div class="text-[12.5px] text-ink-400 uppercase tracking-wide mb-8">15 min · 22 sierpnia 2026 · Redakcja OW</div>
+
+      <div class="relative aspect-[16/9] rounded-3xl overflow-hidden border border-ink-900/[0.07] mb-10" style="background-image:linear-gradient(160deg,#1f3d2c,#345a44 55%,#bcd4c3);background-size:cover;">
+        <img src="https://images.pexels.com/photos/2646521/pexels-photo-2646521.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover">
+      </div>
+
+      <div class="prose-article text-[16px] leading-[1.75] text-ink-700 space-y-5">
+        <p>646 głosów za, 12 przeciw, trzy wstrzymujące się — 7 lipca 2026 roku Parlament Europejski przyjął reformę praw pasażerów lotniczych, nad którą negocjacje z krajami członkowskimi ciągnęły się od ponad dekady. Najgłośniejszy punkt to koniec dopłat za bagaż podręczny: każdy pasażer, także w liniach niskokosztowych, ma prawo zabrać na pokład jedną sztukę bagażu podręcznego bez dodatkowej opłaty.</p>
+        <p>Chodzi konkretnie o bagaż mieszczący się w wymiarach 40 na 30 na 15 centymetrów — czyli w praktyce niewielką torbę pod siedzenie, a nie walizkę kabinową na kółkach wrzucaną do schowka nad głową. Ryanair, Wizz Air i easyJet od lat pobierały za taki bagaż osobne opłaty, sięgające na niektórych trasach nawet kilkudziesięciu złotych w jedną stronę, jeśli pasażer nie wykupił wcześniej pakietu z bagażem w cenie biletu.</p>
+        <p>Reforma nie zmienia natomiast zasad dotyczących większej walizki kabinowej wkładanej do schowka nad głową — ta nadal może być płatna osobno, zależnie od taryfy biletu. Nowość dotyczy jedynie najmniejszej kategorii bagażu, tej, którą pasażer trzyma przy nogach. Linie lotnicze będą też zobowiązane do pokazywania ceny biletu z uwzględnionym tym elementem od razu w wyszukiwarce, bez dopisywania go dopiero na etapie płatności — to ma ukrócić praktykę doliczania kosztów po fakcie, na którą od lat skarżyli się pasażerowie linii budżetowych.</p>
+        <p>Drugi filar reformy dotyczy odszkodowań za opóźnienia i odwołania lotów. Same kwoty pozostają bez zmian względem obowiązujących od 2004 roku zasad — 250 euro za krótkie trasy, 400 euro za trasy średniego dystansu i 600 euro, jeśli lot przekracza 3500 kilometrów, a opóźnienie sięga czterech godzin lub lot został odwołany. To, co się zmienia, to procedura: linie lotnicze mają teraz 30 dni na wypłatę odszkodowania albo formalne powołanie się na okoliczności nadzwyczajne, zamiast ciągnącego się miesiącami milczenia, na które skarżyła się większość pasażerów dochodzących swoich praw.</p>
+        <p>Czas na złożenie samej reklamacji też się wydłużył — z krótszych, zróżnicowanych między krajami terminów do jednolitych dziewięciu miesięcy w całej Unii. To praktyczna zmiana dla osób, które dowiadują się o możliwości odszkodowania dopiero po powrocie z wakacji, czasem tygodnie po locie, kiedy w niektórych krajach termin na reklamację już dawno by minął. Wcześniej różnice między krajami członkowskimi w tym zakresie potrafiły wynosić nawet kilka miesięcy, co samo w sobie było źródłem zamieszania przy lotach łączonych, obsługiwanych przez przewoźników zarejestrowanych w różnych jurysdykcjach.</p>
+        <p>Wśród dodatkowych ustaleń znalazły się też cyfrowe karty pokładowe bez wymogu instalowania osobnej aplikacji linii lotniczej oraz zniesienie opłat za poprawienie błędnie wpisanego nazwiska pasażera przy rezerwacji — drobna, ale uciążliwa opłata, która na niektórych liniach sięgała nawet 100 euro za literówkę poprawianą po fakcie. Parlament przyjął też zapis zobowiązujący linie do informowania pasażerów o przyczynie opóźnienia w czasie rzeczywistym, zamiast ogólnikowego komunikatu na tablicy odlotów.</p>
+        <p>Najważniejsza informacja dla podróżnych planujących wakacje w najbliższych miesiącach: nic z tego nie obowiązuje jeszcze dzisiaj. Przepisy wchodzą w życie dopiero w 2027 roku, po formalnym opublikowaniu w Dzienniku Urzędowym UE i okresie wdrożeniowym dla linii lotniczych. Do tego czasu Ryanair, Wizz Air i pozostałe linie niskokosztowe nadal będą pobierać opłaty za bagaż podręczny na dotychczasowych zasadach — kupując bilet jesienią 2026 roku, trzeba wciąż liczyć się ze starym cennikiem.</p>
+        <p>Linie lotnicze zrzeszone w organizacji branżowej Airlines for Europe zareagowały na decyzję Parlamentu ostrożnie, wskazując, że koszt darmowego bagażu i tak zostanie w jakiejś formie przeniesiony na ceny biletów — mechanizm znany z rynku lotniczego od dekad, gdzie każda regulacja obniżająca jedną opłatę zwykle podnosi inną. Eksperci rynkowi cytowani w europejskich mediach branżowych spodziewają się niewielkiego wzrostu bazowych cen biletów na trasach niskokosztowych już od momentu wejścia przepisów w życie.</p>
+        <p>Dla porównania: obecnie różnica w cenie między biletem bez bagażu a biletem z bagażem podręcznym na tej samej trasie potrafi wynosić 15–40 złotych w jedną stronę u przewoźników budżetowych, w zależności od kierunku i pory roku. Po wejściu reformy ta różnica zniknie z widoku pasażera, ale prawdopodobnie zostanie wliczona w cenę bazową — więc realna oszczędność dla podróżnego może być mniejsza, niż sugeruje sam nagłówek darmowy bagaż.</p>
+        <p>Reforma to część szerszego pakietu praw pasażerskich, nad którym Komisja Europejska pracowała od 2013 roku — poprzednie próby aktualizacji rozporządzenia 261/2004 utykały wielokrotnie w Radzie UE, głównie z powodu sprzeciwu krajów, w których siedziby mają duże linie lotnicze, obawiających się kosztów nowych zobowiązań. Tym razem kompromis udało się wypracować dzięki jednoczesnemu ustępstwu w kwestii kwot odszkodowań, które lobby lotnicze od lat chciało obniżyć, a które finalnie pozostały na niezmienionym poziomie. Trzynaście lat negocjacji to dla porównania dłużej, niż trwały rozmowy nad niejednym traktatem międzynarodowym.</p>
+        <p>Organizacje konsumenckie, w tym europejska federacja BEUC, chwalą reformę jako krok we właściwym kierunku, ale zwracają uwagę na lukę czasową między głosowaniem a wejściem w życie — pasażerowie kupujący bilety w sezonie 2026/2027 wciąż będą podlegać starym zasadom, mimo że nagłówki w mediach mogą sugerować natychmiastową zmianę. To realne ryzyko nieporozumienia: część linii niskokosztowych już teraz zgłasza wzmożoną liczbę pytań od klientów pytających, dlaczego nadal muszą płacić za bagaż podręczny, skoro w telewizji ogłoszono, że będzie darmowy.</p>
+        <p>Różnice między przewoźnikami w obecnym stanie prawnym są zresztą spore i warto je znać, zanim reforma zacznie obowiązywać. Ryanair dopuszcza bezpłatnie bagaż o wymiarach 40x20x25 centymetrów, Wizz Air 40x30x20 centymetrów, a easyJet 45x36x20 centymetrów — każda linia liczy limit inaczej, a przekroczenie go nawet o kilka centymetrów na lotnisku kończy się opłatą znacznie wyższą niż ta, którą można było dopłacić wcześniej przy rezerwacji, często sięgającą równowartości 200–300 złotych pobieranych przy samej bramce.</p>
+        <p>Dla pasażerów lecących liniami sieciowymi, jak LOT, Lufthansa czy Air France, praktyczna zmiana będzie jeszcze mniej odczuwalna, bo te linie już teraz w większości taryf oferują bagaż podręczny bez dodatkowej opłaty — problem dopłat dotyczył niemal wyłącznie segmentu budżetowego. Reforma wyrównuje więc przede wszystkim pole gry między tanimi liniami a przewoźnikami tradycyjnymi, zamiast wprowadzać całkowicie nową jakość na całym rynku.</p>
+        <p>Zanim europejscy prawodawcy w ogóle zajęli się tym tematem na poziomie Parlamentu, front walki o darmowy bagaż podręczny toczył się w hiszpańskich sądach. W sierpniu 2024 roku sąd gospodarczy w Granadzie nakazał Ryanairowi zwrot 66 euro pasażerowi lecącemu z Polski do Malagi, uznając bagaż podręczny za integralny element usługi przewozu, którego nie można dodatkowo obciążać opłatą. W kolejnych miesiącach podobne wyroki zapadły w Salamance — 147 euro zwrotu za pięć lotów odbytych w latach 2019–2024 — oraz w Valladolid, gdzie para podróżnych odzyskała niespełna 45 euro.</p>
+        <p>Skala sporu w samej Hiszpanii była znacznie większa niż pojedyncze pozwy pasażerów. Rok wcześniej hiszpańskie władze nałożyły na pięć linii budżetowych łączną karę w wysokości 179 milionów euro za pobieranie opłat za bagaż podręczny i rezerwację miejsc — z czego na sam Ryanair przypadło ponad 107 milionów euro. Linia odwołała się od decyzji, a Komisja Europejska wszczęła równolegle postępowanie przeciwko samej Hiszpanii, kwestionując, czy krajowy zakaz tych opłat nie narusza unijnej zasady swobody ustalania cen przez przewoźników — spór, który może ostatecznie trafić przed Trybunał Sprawiedliwości UE.</p>
+        <p>To pokazuje, dlaczego reforma na poziomie całej Unii miała sens z punktu widzenia zarówno pasażerów, jak i samych linii lotniczych: bez jednolitych przepisów obowiązujących we wszystkich 27 krajach członkowskich, przewoźnicy międzynarodowi musieli dostosowywać politykę bagażową do lokalnych regulacji poszczególnych rynków, co samo w sobie generowało chaos i niepewność prawną, wykorzystywaną potem przez kancelarie odszkodowawcze do masowego składania pozwów zbiorowych.</p>
+        <div class="not-prose my-8 bg-white border border-[#7cbf3f]/25 rounded-3xl p-6 sm:p-8">
+          <p class="text-[11.5px] font-bold uppercase tracking-wide text-[#5a9a2e] mb-3">Partner: Rankomat.pl</p>
+          <h3 class="font-display font-bold text-[18px] text-ink-950 mb-2">A co z ryzykiem, którego przepisy nie regulują?</h3>
+          <p class="text-[14.5px] text-ink-600 leading-relaxed mb-5">Nowe prawa pasażerskie nie obejmują kosztów leczenia za granicą ani zwrotu za odwołany nocleg, gdy lot się przesunie o dzień. To wciąż zadanie dla osobnego ubezpieczenia podróżnego, kupionego przed wylotem, a nie doczytanego dopiero po powrocie.</p>
+          <a href="https://partner.rankomat.pl/tracking/click/fc6c6083173406e55e047a048b1a23a8" target="_blank" rel="sponsored noopener" class="pressable inline-flex items-center gap-2 bg-[#7cbf3f] hover:bg-[#6da936] text-white font-bold text-[14px] px-6 py-3 rounded-full shadow-softer transition-colors duration-160">
+            Sprawdź oferty ubezpieczeń na Rankomat.pl
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+          <img src="https://partner.rankomat.pl/tracking/media/fc6c6083173406e55e047a048b1a23a8" width="1" height="1" border="0" alt="" style="position:absolute;width:1px;height:1px;overflow:hidden;" />
+          <p class="text-[11px] text-ink-400 mt-4">Link afiliacyjny — korzystając z niego, wspierasz rozwój OgarnijWakacje.pl. Cena ubezpieczenia się nie zmienia.</p>
+        </div>
+        <p>Reforma nie ogranicza się do bagażu i odszkodowań za opóźnienia — obejmuje też zasady dotyczące odmowy przyjęcia na pokład przy overbookingu, czyli sytuacji, gdy linia sprzeda więcej biletów, niż ma miejsc w samolocie. Pasażerowie odsunięci od lotu wbrew swojej woli w takiej sytuacji zachowują prawo do tych samych kwot odszkodowania co przy odwołanym locie, a dodatkowo linia musi zaproponować alternatywny transport w rozsądnym terminie albo pełny zwrot kosztów biletu, jeśli podróżny zrezygnuje z dalszej podróży.</p>
+        <p>Wciąż nierozwiązaną kwestią, która budziła najwięcej kontrowersji podczas trzynastu lat negocjacji, pozostaje definicja tak zwanych okoliczności nadzwyczajnych — sytuacji zwalniających linię z obowiązku wypłaty odszkodowania, takich jak ekstremalna pogoda, strajki kontrolerów ruchu lotniczego czy zagrożenia bezpieczeństwa. Linie lotnicze notorycznie powoływały się na tę klauzulę nawet przy opóźnieniach wynikających z własnych problemów technicznych czy złego planowania załóg, co organizacje konsumenckie od lat nazywały nadużywaniem przepisu. Nowa reforma nie zmienia samej definicji, ale nakłada na przewoźników obowiązek udokumentowania powołania się na nią w ciągu wspomnianych 30 dni, zamiast nieograniczonego czasowo sporu.</p>
+        <p>Dla pasażerów kupujących bilety na trasy łączone z przesiadką u dwóch różnych tanich linii — praktyka coraz popularniejsza dzięki wyszukiwarkom łączącym oddzielne rezerwacje w jedną podróż — reforma nie wprowadza dodatkowej ochrony w przypadku utraty połączenia z winy pierwszego przewoźnika. Taka konstrukcja podróży, tańsza niż bilet łączony sprzedawany przez jedną linię, nadal oznacza, że każdy odcinek trasy rozliczany jest osobno, a odpowiedzialność za koszt przepadniętego drugiego lotu w praktyce spada na samego pasażera, chyba że wykupił dodatkowe ubezpieczenie od utraconej przesiadki.</p>
+        <p>Praktyczna wskazówka przy pakowaniu bagażu podręcznego pod obecne, wciąż obowiązujące zasady: różnice wymiarowe między liniami bywają na tyle małe, że jedna i ta sama torba, mieszcząca się bez problemu u jednego przewoźnika, może zostać odrzucona u innego. Osoby latające regularnie różnymi liniami budżetowymi często decydują się na bagaż podręczny o wymiarach dopasowanych do najbardziej restrykcyjnego przewoźnika, z jakim się spotykają, żeby uniknąć niespodzianek przy bramce, gdzie personel dysponuje specjalnymi metalowymi ramami do szybkiego sprawdzania rozmiaru.</p>
+        <p>Same linie budżetowe w oficjalnych komunikatach po głosowaniu w Parlamencie zachowały ostrożny, wyważony ton. Ryanair, który przez lata bronił swojego modelu opłat jako sposobu na utrzymanie niskich cen biletów bazowych dla pasażerów podróżujących bez bagażu, zapowiedział dostosowanie się do nowych przepisów po ich wejściu w życie, jednocześnie sugerując publicznie, że efektem będzie ogólny wzrost cen biletów dla wszystkich klientów, niezależnie od tego, czy bagaż faktycznie zabierają.</p>
+        <p>Do czasu wejścia nowych przepisów w życie najbardziej praktyczna rada dla podróżnych pozostaje bez zmian: przed zakupem biletu u przewoźnika niskokosztowego warto dokładnie sprawdzić, jaki bagaż faktycznie obejmuje wybrana taryfa, bo różnice między liniami bywają spore, a przekroczenie limitu na lotnisku kończy się opłatą znacznie wyższą niż ta, którą można było dopłacić wcześniej przy rezerwacji.</p>
+        <p>Odszkodowania za opóźnione czy odwołane loty w obecnym stanie prawnym też wciąż warto egzekwować — mimo że kwoty się nie zmieniają, wielu pasażerów po prostu nie składa wniosku, zakładając błędnie, że linia lotnicza i tak odmówi wypłaty. Statystyki organizacji konsumenckich pokazują, że w praktyce znaczna część uzasadnionych roszczeń w ogóle nie trafia do rozpatrzenia, bo pasażerowie rezygnują z formalności, zanim jeszcze je rozpoczną, mimo że sam formularz reklamacyjny u większości przewoźników zajmuje nie więcej niż kilkanaście minut.</p>
+        <p>Osobna rada dotyczy lotów łączonych, obsługiwanych przez dwóch różnych przewoźników w ramach jednej rezerwacji — w takim przypadku obowiązek wypłaty odszkodowania spoczywa na linii, która faktycznie spowodowała opóźnienie skutkujące utratą połączenia, a nie na tej, u której kupiono cały bilet. Ustalenie, który przewoźnik ponosi odpowiedzialność, bywa czasochłonne, dlatego eksperci radzą zachowywać wszystkie potwierdzenia, karty pokładowe i komunikaty o opóźnieniu z obu etapów podróży, zanim jeszcze dojdzie do składania reklamacji.</p>
+        <p>Organizacje branżowe reprezentujące lotniska, w odróżnieniu od samych linii, oceniły reformę raczej pozytywnie — argumentując, że jasne, jednolite zasady dotyczące bagażu ułatwią planowanie przepustowości punktów kontroli bezpieczeństwa, gdzie rozmiar i liczba sztuk bagażu podręcznego bezpośrednio wpływają na tempo obsługi pasażerów. Chaotyczne, zróżnicowane zasady bagażowe między liniami od lat utrudniały personelowi ochrony szybkie rozstrzyganie sporów o to, czy dana sztuka bagażu w ogóle kwalifikuje się do wniesienia na pokład.</p>
+        <p>Firmy specjalizujące się w dochodzeniu odszkodowań lotniczych w imieniu pasażerów, pobierające zwykle 25–30 procent prowizji od uzyskanej kwoty, odnotowały w ostatnich latach rosnącą liczbę zgłoszeń — sam fakt istnienia takiego rynku usług pokazuje, jak wielu podróżnych rezygnuje z samodzielnego dochodzenia swoich praw, mimo że nowe przepisy mają w założeniu tę procedurę uprościć, a nie skomplikować.</p>
+        <p>Dla polskich pasażerów najbliższy sezon zimowy 2026/2027 będzie więc ostatnim, w którym stare zasady bagażowe obowiązują w pełni na wszystkich trasach z Polski. Urząd Lotnictwa Cywilnego, krajowy regulator odpowiedzialny za wdrożenie unijnych przepisów na polskim rynku, nie ogłosił jeszcze harmonogramu dostosowania krajowych regulacji do nowej dyrektywy, ale zgodnie z unijną procedurą kraje członkowskie mają zwykle kilkanaście miesięcy na transpozycję przepisów do prawa krajowego od momentu ich formalnej publikacji — co przy obecnym tempie prac oznacza, że pierwsi pasażerowie realnie skorzystają z darmowego bagażu podręcznego najwcześniej pod koniec 2027 roku, a nie od razu po ogłoszeniu wyniku głosowania.</p>
+      </div>
+
+      <div class="mt-14 pt-8 border-t border-ink-900/[0.08] flex flex-wrap items-center justify-between gap-4">
+        <a href="../newsy.html" class="pressable inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white font-semibold text-[13.5px] px-5 py-3 rounded-full transition-colors duration-160">
+          Zobacz więcej newsów
+        </a>
+        <a href="../index.html#pobierz" class="pressable inline-flex items-center gap-2 bg-white hover:bg-ink-50 border border-ink-900/12 text-ink-900 font-semibold text-[13.5px] px-5 py-3 rounded-full transition-colors duration-160">
+          Pobierz aplikację
+        </a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="border-t border-ink-900/[0.07] py-12">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex flex-wrap items-center justify-between gap-6 mb-8">
+      <a href="../index.html" class="flex items-center gap-2.5">
+        <img src="../logo.svg" alt="OgarnijWakacje.pl" class="h-11 w-auto" />
+      </a>
+      <div class="flex flex-wrap gap-x-7 gap-y-2 text-[12.5px] font-medium text-ink-500">
+        <a href="../newsy.html" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="../miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
+        <a href="../ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="../poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="../poznaj-aplikacje.html" class="hover:text-ink-900 transition-colors duration-160">Poznaj aplikację</a>
+        <a href="../index.html#pobierz" class="hover:text-ink-900 transition-colors duration-160">Beta</a>
+      </div>
+    </div>
+    <div class="flex flex-wrap items-center gap-2 mb-6 text-[12.5px] text-ink-500">
+      <i data-lucide="handshake" class="w-3.5 h-3.5 text-leaf-500"></i>
+      <span>Zaufany partner OgarnijWakacje.pl:</span>
+      <a href="https://partner.rankomat.pl/tracking/click/fc6c6083173406e55e047a048b1a23a8" target="_blank" rel="sponsored noopener" class="font-semibold text-ink-800 hover:text-ink-900 underline decoration-ink-300 underline-offset-2 transition-colors duration-160">Rankomat.pl</a>
+      <span class="text-ink-400">— porównywarka ubezpieczeń podróżnych</span>
+    </div>
+    <div class="pt-6 border-t border-ink-900/[0.07] flex flex-wrap justify-between gap-3 text-[12px] text-ink-400">
+      <span>© 2026 OgarnijWakacje.pl. Wszelkie prawa zastrzeżone.</span>
+      <span class="flex gap-4"><a href="#" class="hover:text-ink-700 transition-colors duration-160">Redakcja</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Reklama</a><a href="../regulamin.html" class="hover:text-ink-700 transition-colors duration-160">Regulamin</a><a href="../polityka-prywatnosci.html" class="hover:text-ink-700 transition-colors duration-160">RODO</a><a href="#" id="cookieSettingsLink" class="hover:text-ink-700 transition-colors duration-160">Ustawienia cookies</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+  window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.innerHTML = open ? '<i data-lucide="x" class="w-4.5 h-4.5"></i>' : '<i data-lucide="menu" class="w-4.5 h-4.5"></i>';
+      if (window.lucide) lucide.createIcons();
+    });
+  })();
+  document.querySelectorAll('.pressable').forEach(function (el) {
+    el.classList.add('transition-transform');
+  });
+</script>
+</body>
+</html>
