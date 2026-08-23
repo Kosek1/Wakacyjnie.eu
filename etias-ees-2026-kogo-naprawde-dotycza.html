@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ETIAS podrożał do 20 euro, zanim w ogóle ruszył. Sprawdzamy, kogo naprawdę dotyczy — OgarnijWakacje.pl</title>
+<meta name="description" content="Jesienią 2026 roku Unia Europejska uruchamia system ETIAS, a na lotniskach od miesięcy zdarzają się już pięciogodzinne kolejki do skanerów EES. Polaków opłata nie obejmie, ale kolejki i tak poczują na własnej skórze." />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<meta name="impact-site-verification" content="eac70558-fdec-4e3d-9897-d2bd83044a36" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          display: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui'],
+        },
+        colors: {
+          ink: {
+            950: '#141310',
+            900: '#1c1a16',
+            800: '#2a2722',
+            700: '#3e3a32',
+            600: '#5c5648',
+            500: '#7a7364',
+            400: '#a39c8c',
+            300: '#c7c0b1',
+            200: '#e2ddd0',
+            100: '#efebe1',
+            50: '#faf8f3',
+          },
+          accent: {
+            50: '#fff4e9',
+            100: '#ffe2c4',
+            300: '#ffb570',
+            500: '#e8752e',
+            600: '#c85f1e',
+            700: '#a14a17',
+          },
+          leaf: {
+            500: '#3f6a52',
+            600: '#345a44',
+          },
+          teal: {
+            50: '#eaf7f6',
+            100: '#cdeeec',
+            500: '#4fb8b3',
+            600: '#3b9a95',
+          },
+        },
+        boxShadow: {
+          soft: '0 1px 2px rgba(20,19,16,0.04), 0 12px 28px -8px rgba(20,19,16,0.10)',
+          softer: '0 1px 1px rgba(20,19,16,0.03), 0 6px 16px -6px rgba(20,19,16,0.08)',
+          lifted: '0 30px 70px -20px rgba(20,19,16,0.35)',
+        },
+        transitionTimingFunction: {
+          out: 'cubic-bezier(0.23, 1, 0.32, 1)',
+          inout: 'cubic-bezier(0.77, 0, 0.175, 1)',
+        },
+        borderRadius: {
+          '4xl': '2rem',
+        },
+      },
+    },
+  };
+</script>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+<style>
+  :root{
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  html{ scroll-behavior: smooth; }
+  body{ font-family:'Inter', sans-serif; background:#faf8f3; }
+  h1,h2,h3,h4,h5,.font-display{ font-family:'Plus Jakarta Sans', sans-serif; }
+
+  ::selection{ background:#ffb570; color:#1c1a16; }
+
+  /* focus ring — visible, calm */
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline: 2px solid #e8752e;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* reveal-on-scroll */
+  .reveal{ opacity:0; transform: translateY(14px); transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out); }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  /* cookie consent banner */
+  #cookieBanner{ opacity:0; transform: translateY(16px); transition: opacity 260ms var(--ease-out), transform 260ms var(--ease-out); }
+  #cookieBanner.in{ opacity:1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ transition: opacity 200ms ease !important; transform:none !important; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  /* press feedback for interactive controls */
+  .pressable{ transition: transform 160ms var(--ease-out); }
+  .pressable:active{ transform: scale(0.97); }
+
+  /* range slider */
+  input[type="range"]{ -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:99px; background:#e2ddd0; outline:none; }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%;
+    background:#e8752e; border:3px solid #fff; box-shadow:0 1px 4px rgba(20,19,16,0.35);
+    cursor:pointer; transition: transform 160ms var(--ease-out);
+  }
+  input[type="range"]:active::-webkit-slider-thumb{ transform: scale(1.15); }
+  input[type="range"]::-moz-range-thumb{
+    width:16px; height:16px; border-radius:50%; background:#e8752e; border:3px solid #fff;
+    box-shadow:0 1px 4px rgba(20,19,16,0.35); cursor:pointer;
+  }
+
+  /* ranking bars */
+
+  /* quiz */
+  .quiz-step{ display:none; }
+  .quiz-step.active{ display:block; }
+  .quiz-result-panel{ display:none; }
+  .quiz-result-panel.active{ display:grid; }
+
+  /* showcase tabs */
+  .app-screen{ position:absolute; inset:0; opacity:0; transform: scale(1.02); filter: blur(6px); transition: opacity 480ms var(--ease-in-out), transform 480ms var(--ease-in-out), filter 480ms var(--ease-in-out); pointer-events:none; }
+  .app-screen.active{ opacity:1; transform: scale(1); filter: blur(0); pointer-events:auto; }
+  .showcase-progress > div{ height:100%; width:0%; background:#ffb570; }
+  .showcase-progress > div.filling{ animation: fillbar 5000ms linear forwards; }
+  .showcase-progress > div.filled{ width:100%; }
+  @keyframes fillbar{ from{ width:0%; } to{ width:100%; } }
+
+  /* mobile menu */
+  #mobileMenu{ transform: translateY(-8px); opacity:0; pointer-events:none; transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out); }
+  #mobileMenu.open{ transform: translateY(0); opacity:1; pointer-events:auto; }
+
+  .trip-card{ background-size:cover; background-position:center; }
+  .glass-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+  /* subtle float animation for hero decorative chips */
+  @keyframes floaty{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
+  .float-slow{ animation: floaty 6s var(--ease-in-out) infinite; }
+  .float-slower{ animation: floaty 8s var(--ease-in-out) infinite; animation-delay: .8s; }
+
+  /* "Poznaj aplikację" nav item — tiny phone + palm duo that wakes up on hover */
+  .app-nav-icons{ transform-origin: bottom left; }
+  .app-nav-phone, .app-nav-palm{
+    transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine){
+    .app-nav-link:hover .app-nav-phone{ transform: translateY(-3px) rotate(-8deg); box-shadow: 0 3px 8px rgba(232,117,46,0.22); }
+    .app-nav-link:hover .app-nav-palm{ transform: translateY(-4px) rotate(10deg); }
+    .app-nav-link:active .app-nav-phone{ transform: translateY(-1px) rotate(-4deg) scale(0.95); }
+    .app-nav-link:active .app-nav-palm{ transform: translateY(-2px) rotate(6deg) scale(0.95); }
+  }
+
+  /* flying parrot decoration in the hero background */
+  .parrot-fly{ position:absolute; left:-10%; top:58%; filter: drop-shadow(0 6px 10px rgba(20,19,16,0.18)); animation: parrotFly 22s var(--ease-in-out) infinite; }
+  @keyframes parrotFly{
+    0%   { left:-10%; top:60%; transform: translateY(0) rotate(-4deg); }
+    20%  { left:18%;  top:38%; transform: translateY(-14px) rotate(2deg); }
+    45%  { left:50%;  top:20%; transform: translateY(8px) rotate(-3deg); }
+    70%  { left:80%;  top:34%; transform: translateY(-10px) rotate(3deg); }
+    100% { left:112%; top:18%; transform: translateY(0) rotate(-4deg); }
+  }
+
+  /* animated weather badge icon */
+  #weatherBadgeIcon svg{ overflow: visible; }
+  .wx-sun{ transform-origin: 16px 16px; animation: wxSpin 26s linear infinite; }
+  @keyframes wxSpin{ to{ transform: rotate(360deg); } }
+  .wx-glow{ animation: wxGlow 3.2s var(--ease-in-out) infinite; transform-origin: 16px 16px; }
+  @keyframes wxGlow{ 0%,100%{ opacity:.55; transform: scale(1); } 50%{ opacity:.9; transform: scale(1.12); } }
+  .wx-cloud{ animation: wxSway 6s var(--ease-in-out) infinite; transform-origin: 16px 20px; }
+  @keyframes wxSway{ 0%,100%{ transform: translateX(-1.5px); } 50%{ transform: translateX(1.5px); } }
+  .wx-drop{ animation: wxDrop 1.3s linear infinite; }
+  @keyframes wxDrop{ 0%{ transform: translateY(-2px); opacity:0; } 25%{ opacity:1; } 90%{ opacity:0; } 100%{ transform: translateY(7px); opacity:0; } }
+  .wx-flake{ animation: wxFlake 2.6s linear infinite; }
+  @keyframes wxFlake{ 0%{ transform: translate(0,-2px); opacity:0; } 20%{ opacity:1; } 90%{ opacity:0; } 100%{ transform: translate(2px,8px); opacity:0; } }
+  .wx-fog-line{ animation: wxFog 3.4s var(--ease-in-out) infinite; }
+  @keyframes wxFog{ 0%,100%{ transform: translateX(-1.5px); opacity:.55; } 50%{ transform: translateX(1.5px); opacity:1; } }
+  .wx-bolt{ animation: wxBolt 2s ease-in-out infinite; }
+  @keyframes wxBolt{ 0%,45%,100%{ opacity:.35; } 50%,58%{ opacity:1; } 65%{ opacity:.35; } }
+
+  /* vintage postcard treatment for the hero card */
+  .postcard-card{
+    position:relative;
+    background:
+      radial-gradient(ellipse at center, transparent 60%, rgba(120,86,38,.05) 100%),
+      radial-gradient(circle at 18% 28%, rgba(120,86,38,.035) 0, transparent 3px) 0 0/150px 150px,
+      radial-gradient(circle at 66% 74%, rgba(120,86,38,.03) 0, transparent 3px) 0 0/170px 170px,
+      radial-gradient(circle at 82% 18%, rgba(120,86,38,.035) 0, transparent 3px) 0 0/130px 130px,
+      radial-gradient(circle at 30% 88%, rgba(120,86,38,.03) 0, transparent 3px) 0 0/190px 190px,
+      #ffffff;
+    box-shadow: 0 0 0 2px #b8863f, 0 0 0 8px #ffffff, 0 0 0 10px #b8863f, 0 25px 70px -20px rgba(20,19,16,.35);
+  }
+  .postcard-corner{ position:absolute; width:30px; height:30px; opacity:.85; z-index:1; }
+  .postcard-watermark{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:.06; z-index:-1; }
+  .postcard-stamp{
+    position:absolute; top:18px; right:18px; width:78px; z-index:2;
+    background:#ffffff; border:2px dashed #b8863f; border-radius:2px;
+    padding:8px 6px 7px; text-align:center; transform:rotate(6deg);
+    box-shadow: 2px 3px 6px rgba(70,45,15,.25);
+  }
+  .postcard-postmark{
+    position:absolute; top:40px; right:66px; z-index:3; width:82px; height:82px;
+    opacity:.8; transform:rotate(-12deg); mix-blend-mode:multiply; pointer-events:none;
+  }
+
+  /* WINTER 2026 destinations — bento grid */
+  .winter-card{ position:relative; border-radius:1.75rem; overflow:hidden; background:#0b1830; box-shadow: 0 1px 1px rgba(20,19,16,0.03), 0 6px 16px -6px rgba(20,19,16,0.08); transition: transform 420ms var(--ease-out), box-shadow 420ms var(--ease-out), opacity 380ms var(--ease-out); }
+  .winter-card:hover{ transform: translateY(-6px); box-shadow: 0 25px 60px -20px rgba(11,24,48,0.45); }
+  .winter-card img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition: transform 700ms var(--ease-out); }
+  .winter-card:hover img{ transform: scale(1.07); }
+  .winter-card .winter-scrim{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(11,20,38,0.05) 0%, rgba(11,20,38,0.18) 42%, rgba(8,15,30,0.92) 100%); }
+  .winter-card .winter-ring{ position:absolute; inset:0; border-radius:1.75rem; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); transition: box-shadow 420ms var(--ease-out); pointer-events:none; }
+  .winter-card:hover .winter-ring{ box-shadow: inset 0 0 0 1.5px rgba(255,181,112,0.55); }
+  .winter-card.is-hidden{ opacity:0; transform: scale(0.94); pointer-events:none; }
+  .winter-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22); }
+  .winter-cta{ transition: transform 280ms var(--ease-out); }
+  .winter-card:hover .winter-cta{ transform: translateX(3px); }
+</style>
+<script type="text/javascript">(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7669115-a968-452d-a9ac-d18ff8067e651.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');</script>
+</head>
+<body class="text-ink-900 antialiased bg-[#faf8f3]">
+<!-- Metadane tego artykułu — czyta je build.js na Netlify przy każdym
+     wdrożeniu, żeby automatycznie zbudować data/articles.json (karty na
+     stronie głównej). Nie edytuj tego bloku ręcznie. -->
+<script type="application/json" id="article-meta">{"slug": "etias-ees-2026-kogo-naprawde-dotycza", "title": "ETIAS podrożał do 20 euro, zanim w ogóle ruszył. Sprawdzamy, kogo naprawdę dotyczy", "excerpt": "Jesienią 2026 roku Unia Europejska uruchamia system ETIAS, a na lotniskach od miesięcy zdarzają się już pięciogodzinne kolejki do skanerów EES. Polaków opłata nie obejmie, ale kolejki i tak poczują na własnej skórze.", "tag": "Formalności", "tagColor": "#6d3fc9", "image": "https://images.pexels.com/photos/13404727/pexels-photo-13404727.jpeg?auto=compress&cs=tinysrgb&w=1200", "gradient": "linear-gradient(160deg,#2f2a52,#6d3fc9 55%,#c9b8f0)", "date": "2026-08-23", "dateLabel": "23 sierpnia 2026", "readTime": "15 min", "url": "artykuly/etias-ees-2026-kogo-naprawde-dotycza.html", "category": "newsy"}</script>
+<header id="site-header" class="sticky top-0 z-50 bg-[#faf8f3]/80 backdrop-blur-md border-b border-ink-900/[0.06]">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <nav class="flex items-center justify-between h-16 sm:h-[72px]">
+      <a href="../index.html" class="flex items-center gap-2.5 shrink-0">
+        <img src="../logo.svg" alt="OgarnijWakacje.pl" class="h-12 sm:h-14 w-auto" />
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-[13.5px] font-medium text-ink-600">
+        <a href="../newsy.html" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="../miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
+        <a href="../ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="../poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="../poznaj-aplikacje.html" class="app-nav-link group relative inline-flex items-center gap-2 hover:text-ink-900 transition-colors duration-160">
+          Poznaj aplikację
+          <span class="app-nav-icons relative inline-flex items-center w-[30px] h-[20px] shrink-0" aria-hidden="true">
+            <span class="app-nav-phone absolute left-0 top-0 grid place-items-center w-[18px] h-[18px] rounded-[6px] bg-accent-50 text-accent-600 ring-1 ring-accent-500/15">
+              <i data-lucide="smartphone" class="w-2.5 h-2.5"></i>
+            </span>
+            <span class="app-nav-palm absolute left-[13px] top-[2px] grid place-items-center w-[15px] h-[15px] rounded-full bg-leaf-500/10 text-leaf-500">
+              <i data-lucide="palmtree" class="w-2.5 h-2.5"></i>
+            </span>
+          </span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="../index.html#pobierz" class="pressable hidden sm:inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white text-[13.5px] font-semibold px-4 py-2.5 rounded-full shadow-softer transition-colors duration-160">
+          Zapisz się do beta
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+        <button id="menuBtn" aria-label="Otwórz menu" aria-expanded="false" class="pressable md:hidden grid place-items-center w-10 h-10 rounded-full border border-ink-900/10">
+          <i data-lucide="menu" class="w-4.5 h-4.5"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden absolute inset-x-0 top-full bg-[#faf8f3]/95 backdrop-blur-md border-b border-ink-900/[0.06] shadow-soft">
+    <div class="max-w-7xl mx-auto px-5 py-5 flex flex-col gap-1 text-[15px] font-medium">
+      <a href="../newsy.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Newsy</a>
+      <a href="../miejsca.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Miejsca</a>
+      <a href="../ciekawostki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Ciekawostki</a>
+      <a href="../poradniki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poradniki</a>
+      <a href="../poznaj-aplikacje.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5 flex items-center gap-2">
+        Poznaj aplikację
+        <span class="relative inline-flex items-center w-[26px] h-[18px] shrink-0" aria-hidden="true">
+          <span class="absolute left-0 top-0 grid place-items-center w-4 h-4 rounded-[5px] bg-accent-50 text-accent-600 ring-1 ring-accent-500/15">
+            <i data-lucide="smartphone" class="w-2.5 h-2.5"></i>
+          </span>
+          <span class="absolute left-[11px] top-[1px] grid place-items-center w-3.5 h-3.5 rounded-full bg-leaf-500/10 text-leaf-500">
+            <i data-lucide="palmtree" class="w-2.5 h-2.5"></i>
+          </span>
+        </span>
+      </a>
+      <a href="../index.html#pobierz" class="mt-2 text-center bg-ink-900 text-white px-3 py-3 rounded-full font-semibold">Zapisz się do beta</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <article class="py-14 sm:py-20">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      <a href="../newsy.html" class="flex w-fit items-center gap-2 text-[13px] font-semibold text-ink-500 hover:text-ink-900 transition-colors duration-160 mb-8">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Wróć do newsów
+      </a>
+
+      <span class="inline-block text-[11.5px] font-bold uppercase tracking-wide mb-3" style="color:#6d3fc9">Formalności</span>
+      <h1 class="font-display font-extrabold tracking-tight text-[clamp(1.7rem,4.2vw,2.6rem)] leading-[1.12] text-ink-950 mb-4">ETIAS podrożał do 20 euro, zanim w ogóle ruszył. Sprawdzamy, kogo naprawdę dotyczy</h1>
+      <div class="text-[12.5px] text-ink-400 uppercase tracking-wide mb-8">15 min · 23 sierpnia 2026 · Redakcja OW</div>
+
+      <div class="relative aspect-[16/9] rounded-3xl overflow-hidden border border-ink-900/[0.07] mb-10" style="background-image:linear-gradient(160deg,#2f2a52,#6d3fc9 55%,#c9b8f0);background-size:cover;">
+        <img src="https://images.pexels.com/photos/13404727/pexels-photo-13404727.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover">
+      </div>
+
+      <div class="prose-article text-[16px] leading-[1.75] text-ink-700 space-y-5">
+        <p>Opłata za ETIAS, europejski system zezwoleń na podróż, skoczyła w trakcie prac legislacyjnych z zapowiadanych 7 euro do 20 euro za osobę. System ma ruszyć pod koniec 2026 roku i obejmie miliony podróżnych spoza Unii, którzy dziś wjeżdżają do strefy Schengen bez wizy — Amerykanów, Brytyjczyków, Kanadyjczyków, Australijczyków, Japończyków. Dla nich to koniec epoki, w której wystarczał sam paszport przyłożony do bramki, a początek epoki formularza wypełnianego jeszcze przed rezerwacją hotelu.</p>
+        <p>Zezwolenie będzie ważne trzy lata albo do wygaśnięcia paszportu, w zależności co nastąpi pierwsze. Z opłaty zwolnione są dzieci do 18. roku życia, osoby powyżej 70. roku życia oraz członkowie rodzin obywateli UE korzystający z prawa do swobodnego przemieszczania się. Cała reszta płaci pełną stawkę niezależnie od tego, ile razy w ciągu tych trzech lat faktycznie przekroczy granicę Schengen — raz zaakceptowany wniosek pokrywa dowolną liczbę wjazdów i wyjazdów, aż do wygaśnięcia ważności.</p>
+        <p>Dla porównania warto spojrzeć za ocean, na amerykański system ESTA, który działa od 2009 roku i posłużył Brukseli za wzór przy projektowaniu ETIAS. Od 30 września 2025 roku administracja Trumpa niemal podwoiła opłatę za ESTA — z 21 do 40 dolarów, w ramach ustawy budżetowej OBBBA, przy niezmienionej dwuletniej ważności dokumentu. Z ESTA korzysta rocznie 15–18 milionów podróżnych, co przy nowej stawce oznacza dla amerykańskiego budżetu dodatkowe 300–360 milionów dolarów wpływów rocznie. ETIAS, tańszy i ważny rok dłużej, wpisuje się w ten sam trend: system pomyślany pierwotnie jako formalność bezpieczeństwa z czasem staje się też źródłem realnych wpływów budżetowych.</p>
+        <p>Sam formularz ETIAS wypełnia się przez internet, z dowolnego miejsca na świecie, i zajmuje zwykle kilkanaście minut. Pyta o dane biometryczne, historię podróży po krajach objętych podwyższonym ryzykiem, podstawowe pytania bezpieczeństwa oraz dane kontaktowe na wypadek konieczności doprecyzowania wniosku. Większość decyzji zapada automatycznie w ciągu godziny, bez udziału urzędnika — system porównuje dane wnioskodawcy z bazami Interpolu, Europolu i krajowymi rejestrami osób, którym odmówiono wjazdu w przeszłości.</p>
+        <p>Jeśli algorytm oznaczy kogoś do dodatkowej weryfikacji — co dotyczy, według szacunków Komisji Europejskiej, niewielkiego odsetka wniosków — czas oczekiwania wydłuża się do 96 godzin, a w niektórych przypadkach wymaga to kontaktu z konsulatem kraju docelowego. To właśnie ten scenariusz ma być głównym argumentem za rezygnacją z rezerwowania lotów na ostatnią chwilę przez osoby spoza Unii Europejskiej.</p>
+        <p>Polaków ta opłata nie dotyczy — jako obywatele Unii Europejskiej wjeżdżają do innych krajów Schengen bez żadnego dodatkowego zezwolenia, tak jak dotychczas. To źródło sporego zamieszania w polskich mediach, bo część nagłówków w ostatnich miesiącach sugerowała, że ETIAS obejmie także obywateli Polski, myląc go z brytyjskim systemem ETA, który rzeczywiście od 2025 roku wymaga rejestracji od Polaków lecących do Wielkiej Brytanii. Te dwa systemy działają niezależnie od siebie i dotyczą zupełnie innych kierunków.</p>
+        <p>Problem w tym, że sam system ETIAS i tak wpłynie na to, jak wygląda wylot i przylot na europejskie lotniska, niezależnie od tego, czyj paszport trzymasz w ręku. Powód jest prozaiczny: ETIAS to tylko jeden z dwóch elementów reformy granicznej UE. Drugi, system EES (Entry/Exit System), rusza stopniowo od października 2025 roku i wymaga od każdego obywatela kraju spoza Unii wjeżdżającego do Schengen rejestracji odcisków palców i zdjęcia twarzy przy pierwszym przekroczeniu granicy.</p>
+        <p>To właśnie EES, nie ETIAS, odpowiada za wydłużające się kolejki, o których coraz częściej piszą polscy podróżni wracający z Londynu, Stambułu czy Nowego Jorku. Rejestracja biometryczna zajmuje dłużej niż tradycyjne przyłożenie paszportu do skanera — trzeba zdjąć okulary, zdjąć czapkę, przyłożyć po kolei cztery palce do czytnika, a przy pierwszym wjeździe do danego kraju cała procedura bywa powtarzana ręcznie przez funkcjonariusza, jeśli automat zgłosi błąd odczytu.</p>
+        <p>Skala problemu okazała się większa, niż zakładano. Euronews donosił w grudniu 2025 roku o kolejkach sięgających trzech godzin na pierwszych lotniskach objętych systemem, a latem 2026 roku, w szczycie sezonu wakacyjnego, część relacji mówiła już o czasie oczekiwania dochodzącym do pięciu godzin. Komisja Europejska przekonuje, że problem dotyczy mniejszości portów lotniczych, a rzeczniczka instytucji podkreślała aktywne wsparcie dla państw członkowskich i branży lotniczej. Z kolei zastępca dyrektora Frontexu, Uku Särekanno, przyznał wprost, że sytuacja ustabilizuje się dopiero za rok lub dwa, bo najtrudniejszym etapem jest właśnie początkowe zbieranie danych biometrycznych od milionów osób przekraczających granicę po raz pierwszy.</p>
+        <p>W samej Grecji zanotowano tak duże spiętrzenie, że władze rozważały specjalne uproszczenia dla brytyjskich turystów — jednej z największych grup odwiedzających greckie wyspy — ale Komisja Europejska odrzuciła ten pomysł jako niezgodny z jednolitymi zasadami obowiązującymi w całej strefie Schengen. Skala ruchu, z jaką mierzą się teraz lotniska, jest ogromna: same tylko miesiące lipiec i sierpień 2026 roku miały przynieść około 40 milionów pasażerów więcej niż okres maj–czerwiec, a system musiał obsłużyć ten skok przy jednoczesnym wdrażaniu zupełnie nowej procedury kontrolnej.</p>
+        <p>Efekty uboczne bywały dotkliwe operacyjnie, nie tylko dla samych podróżnych. Relacje z kilku lotnisk opisywały samoloty odlatujące w połowie puste, mimo skompletowanej listy pasażerów — bo część osób wciąż tkwiła w kolejce do kontroli granicznej, gdy bramki się zamykały. Po stronie bezpieczeństwa system odnotował też ponad 40 tysięcy przypadków odmowy wjazdu z powodu przeterminowanych lub sfałszowanych dokumentów oraz ponad tysiąc osób zidentyfikowanych jako zagrożenie bezpieczeństwa — liczby, których wcześniejszy, mniej zautomatyzowany system kontroli granicznej praktycznie nie był w stanie wychwycić na taką skalę.</p>
+        <p>Na dużych węzłach przesiadkowych — Frankfurcie, Amsterdamie, Paryżu — pasażerowie lecący dalej poza Schengen zgłaszają, że przejście przez kontrolę biometryczną zajmuje teraz wyraźnie więcej czasu niż jeszcze rok temu, w zależności od pory dnia i obłożenia terminala. Polscy podróżni korzystający z tych samych terminali, nawet jeśli ich własna ścieżka kontroli jest odrębna, i tak stoją w tym samym labiryncie sznurów odgradzających, tym samym tłoku przy bramkach i tej samej frustracji obsługi lotniska, która nie nadąża z tempem.</p>
+        <p>Praktyczna rada na już: jeśli masz przesiadkę krótszą niż 90 minut przez duży węzeł spoza Schengen albo z dużym ruchem pozaunijnym, licz się z tym, że bufor czasowy, który wystarczał w 2023 czy 2024 roku, dziś może być za ciasny. Linie lotnicze na razie nie zmieniły minimalnych czasów przesiadek w rozkładach, mimo że rzeczywistość odprawy się wydłużyła — to podróżni muszą sami skorygować własne oczekiwania i, jeśli to możliwe, wybierać połączenia z dłuższym marginesem, zwłaszcza w lipcu i sierpniu.</p>
+        <p>Drugi scenariusz, o którym warto pomyśleć już teraz: jeśli planujesz zaprosić do Polski znajomego czy partnera z kraju spoza Unii — Amerykanina, Brytyjczyka, Kanadyjczyka — od końca 2026 roku będzie on musiał wcześniej wypełnić wniosek o ETIAS i zapłacić 20 euro, zanim w ogóle kupi bilet. Sam proces trwa zwykle godzinę, ale przy pechu, gdy system poprosi o dodatkową weryfikację tożsamości, może się rozciągnąć na cztery doby. Rezerwacja lotu na ostatnią chwilę przestanie być bezpieczną opcją dla osoby spoza UE, a spontaniczny weekendowy wypad przyjaciela zza oceanu będzie wymagał choćby minimalnego planowania z wyprzedzeniem.</p>
+        <p>Rządy krajów Schengen tłumaczą całą reformę potrzebą uszczelnienia granic zewnętrznych i lepszego namierzania osób, którym cofnięto prawo wjazdu albo które przekroczyły dozwolony czas pobytu. Krytycy, w tym część linii lotniczych zrzeszonych w IATA, ostrzegają od miesięcy, że infrastruktura na wielu lotniskach — liczba stanowisk, przepustowość skanerów, przeszkolenie personelu — nie jest gotowa na skok ruchu, jaki przyniesie jednoczesne uruchomienie EES i ETIAS na kilkuset przejściach granicznych naraz. Statystyki z pierwszych miesięcy wdrożenia EES zdają się te obawy potwierdzać.</p>
+        <p>Te obawy nie są zresztą nowe. Pierwsza planowana data startu ETIAS to był rok 2024. Potem system przesunięto na maj 2025, następnie na koniec 2025, a teraz oficjalnym terminem jest czwarty kwartał 2026 — co czyni to już czwartym ogłoszonym terminem z rzędu. Komisja Europejska za każdym razem tłumaczyła opóźnienia problemami technicznymi po stronie krajów członkowskich, głównie z integracją krajowych systemów granicznych z centralną bazą danych, za którą odpowiada unijna agencja eu-LISA koordynująca cały projekt.</p>
+        <p>Dla polskiego podróżnego lecącego czy jadącego wyłącznie w obrębie Schengen — Hiszpania, Włochy, Grecja, Chorwacja — praktyczna zmiana w najbliższych miesiącach będzie niewielka. Kontrola graniczna między krajami strefy pozostaje w dużej mierze formalnością, a Polacy nie muszą wypełniać żadnych nowych formularzy. Inaczej wygląda sytuacja przy podróżach poza strefę: Wielka Brytania z własnym, już działającym systemem ETA kosztującym 16 funtów, Turcja, Egipt czy kraje pozaeuropejskie, gdzie kolejki na granicy rosną niezależnie od unijnej reformy i mają zupełnie inne, lokalne przyczyny.</p>
+        <div class="not-prose my-8 bg-white border border-[#7cbf3f]/25 rounded-3xl p-6 sm:p-8">
+          <p class="text-[11.5px] font-bold uppercase tracking-wide text-[#5a9a2e] mb-3">Partner: Rankomat.pl</p>
+          <h3 class="font-display font-bold text-[18px] text-ink-950 mb-2">Zabezpiecz się, zanim system zawiedzie</h3>
+          <p class="text-[14.5px] text-ink-600 leading-relaxed mb-5">Kolejki, opóźnienia i coraz bardziej zautomatyzowane kontrole graniczne to dziś realne ryzyko dla planu podróży, nie tylko teoria. Dobra polisa podróżna pokrywa koszty, gdy z powodu przesiadki straconej na granicy trzeba dokupić nowy bilet albo przenocować dodatkową noc w hotelu przy lotnisku.</p>
+          <a href="https://partner.rankomat.pl/tracking/click/fc6c6083173406e55e047a048b1a23a8" target="_blank" rel="sponsored noopener" class="pressable inline-flex items-center gap-2 bg-[#7cbf3f] hover:bg-[#6da936] text-white font-bold text-[14px] px-6 py-3 rounded-full shadow-softer transition-colors duration-160">
+            Porównaj oferty ubezpieczeń na Rankomat.pl
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+          <img src="https://partner.rankomat.pl/tracking/media/fc6c6083173406e55e047a048b1a23a8" width="1" height="1" border="0" alt="" style="position:absolute;width:1px;height:1px;overflow:hidden;" />
+          <p class="text-[11px] text-ink-400 mt-4">Link afiliacyjny — korzystając z niego, wspierasz rozwój OgarnijWakacje.pl. Cena ubezpieczenia się nie zmienia.</p>
+        </div>
+        <p>Zmiany graniczne to też dobry moment, żeby zweryfikować, co faktycznie pokrywa polisa, z którą się podróżuje. Klasyczne ubezpieczenie turystyczne kupione na wszelki wypadek bardzo często w ogóle nie obejmuje kosztów wynikających z opóźnień odprawy granicznej czy przesiadek straconych z powodu kolejek na kontroli — a to właśnie ten scenariusz zyskuje na prawdopodobieństwie wraz z uruchomieniem EES i ETIAS. Sprawdzenie zakresu ochrony przed wyjazdem, a nie po powrocie z pytaniem do infolinii, oszczędza nerwów dokładnie wtedy, gdy najbardziej się ich potrzebuje.</p>
+        <p>Osobom podróżującym z dziećmi eksperci od prawa lotniczego radzą dodatkowy margines: rejestracja biometryczna w systemie EES obejmuje też dzieci powyżej 12. roku życia — młodsze są zwolnione z pobierania odcisków palców, ale nadal przechodzą przez skanowanie twarzy — a stanowiska nie zawsze są przystosowane do obsługi rodzin z wózkami czy bagażem podręcznym w rękach. To dodatkowe kilka minut na każde dziecko w kolejce, które przy większej rodzinie potrafi się zsumować do kwadransa czy więcej.</p>
+        <p>Osobny problem dotyczy osób podróżujących z niepełnosprawnością albo trudnościami w poruszaniu się — część nowo instalowanych stanowisk EES wymaga samodzielnego przyłożenia dłoni do czytnika na określonej wysokości, co dla niektórych pasażerów oznacza konieczność poproszenia o pomoc funkcjonariusza, a to z kolei wydłuża kolejkę dla wszystkich stojących za nimi. Lotniska deklarują dedykowane stanowiska obsługi, ale w praktyce ich liczba bywa niewystarczająca w godzinach szczytu, szczególnie na mniejszych portach turystycznych, które nie doczekały się jeszcze pełnej modernizacji.</p>
+        <p>Wpływ nowych systemów na rynek turystyczny jako całość jest trudny do jednoznacznej oceny, dopóki nie miną przynajmniej dwa pełne sezony wakacyjne od pełnego wdrożenia. Część biur podróży i linii lotniczych obawia się, że dłuższe kolejki i dodatkowa opłata zniechęcą część amerykańskich czy brytyjskich turystów do wyboru Europy na rzecz kierunków pozaunijnych — Turcji, Egiptu czy krajów Bałkanów niebędących w strefie Schengen, gdzie formalności wjazdowe pozostają prostsze. Inni argumentują, że doświadczenie z ESTA pokazuje, że po początkowym okresie adaptacji podróżni po prostu wliczają nową opłatę w koszt wyjazdu i nie rezygnują z popularnych kierunków.</p>
+        <p>Warto też pamiętać, że odpowiedzialność za sprawdzenie ważności ETIAS spoczywa nie tylko na podróżnym, ale też na przewoźniku. Linie lotnicze i operatorzy promów mają obowiązek zweryfikować status zezwolenia jeszcze przed odprawą, pod groźbą kar finansowych nakładanych przez poszczególne kraje Schengen za wpuszczenie na pokład pasażera bez ważnego dokumentu. To dodatkowy powód, dla którego linie budżetowe, obsługujące ogromny wolumen pasażerów przy minimalnym personelu na lotnisku, już teraz inwestują w automatyczne systemy weryfikacji integrowane bezpośrednio z bazą ETIAS, żeby nie blokować odprawy ręcznym sprawdzaniem każdego dokumentu.</p>
+        <p>Historycznie strefa Schengen powstała właśnie po to, żeby zlikwidować kontrole graniczne między krajami członkowskimi — pierwsze porozumienie podpisano w 1985 roku, a swobodny przepływ osób bez kontroli paszportowej stał się jednym z najbardziej namacalnych symboli integracji europejskiej. ETIAS i EES nie cofają tej zasady w relacjach między krajami Schengen, ale zaostrzają kontrolę na granicy zewnętrznej strefy — czyli tam, gdzie ktoś wjeżdża do Unii z kraju trzeciego. Dla podróżnego oznacza to paradoks: wewnątrz Europy nadal nie ma kontroli granicznej, ale próg wejścia do tej strefy z zewnątrz staje się wyraźnie wyższy niż jeszcze pięć lat temu.</p>
+        <p>Osobna wątpliwość, która regularnie wraca w pytaniach czytelników, dotyczy rodzin mieszanych narodowościowo — na przykład polsko-amerykańskich. Jeśli jedno z rodziców ma polski paszport, a drugie amerykański, dziecko podróżujące na paszporcie unijnym nie potrzebuje ETIAS, ale rodzic z paszportem spoza UE już tak, chyba że formalnie posiada prawo pobytu w Unii jako członek rodziny obywatela UE — wtedy korzysta ze zwolnienia opisanego wcześniej. W praktyce oznacza to, że przy planowaniu wspólnego wyjazdu warto sprawdzić status każdego dokumentu osobno, zamiast zakładać, że cała rodzina podlega tym samym zasadom.</p>
+        <p>Sam proces złożenia wniosku krok po kroku wygląda podobnie niezależnie od narodowości wnioskodawcy: wejście na oficjalną stronę lub do aplikacji ETIAS, podanie danych paszportowych, adresu zamieszkania, celu podróży i pierwszego kraju Schengen, do którego się wjeżdża, odpowiedzi na kilka pytań dotyczących przeszłości karnej i pobytu w strefach konfliktu, a na końcu płatność kartą. System ostrzega wprost przed korzystaniem z pośredniczących stron internetowych, które pobierają wielokrotnie wyższe opłaty za "pomoc" w wypełnieniu prostego formularza — to samo zjawisko, które od lat towarzyszy amerykańskiemu ESTA i przy którym europejscy regulatorzy zapowiadają aktywne ściganie fałszywych pośredników.</p>
+        <p>Pytanie, które pojawia się niemal równie często, dotyczy tranzytu — czy obywatel USA przesiadający się na lotnisku we Frankfurcie, bez opuszczania strefy międzynarodowej, też potrzebuje ETIAS. Odpowiedź zależy od tego, czy przesiadka odbywa się w obrębie strefy Schengen bez przekraczania granicy zewnętrznej: w większości przypadków czysty tranzyt lotniskowy bez odprawy paszportowej nie wymaga zezwolenia, ale moment, w którym trzeba odebrać bagaż i ponownie się odprawić na kolejny lot, już tak. Linie lotnicze zapowiadają, że będą to sprawdzać na etapie odprawy w mieście wylotu, nie dopiero na miejscu w Europie.</p>
+        <p>Organizacje zajmujące się prawami cyfrowymi, w tym europejska sieć EDRi, od lat krytykują skalę gromadzonych danych biometrycznych w obu systemach — odciski palców, zdjęcia twarzy i historia podróży trafiają do centralnej bazy przechowywanej przez pięć lat od ostatniego wjazdu, co w ich ocenie stwarza ryzyko nadużyć przy ewentualnym wycieku albo niewłaściwym udostępnieniu danych służbom spoza Unii. Komisja Europejska odpowiada, że dane są szyfrowane, dostęp mają wyłącznie uprawnione służby graniczne, a system podlega tym samym unijnym regułom ochrony danych osobowych co RODO.</p>
+        <p>Dla osób planujących pierwszy kontakt z nowymi systemami dobrą praktyką będzie sprawdzenie statusu wdrożenia na oficjalnej stronie Komisji Europejskiej poświęconej ETIAS i EES bezpośrednio przed samą podróżą — nie tydzień czy miesiąc wcześniej. Harmonogram wdrażania różni się nieznacznie między poszczególnymi krajami Schengen, a niektóre lotniska otrzymały więcej czasu na modernizację infrastruktury niż inne, więc to, co dotyczy Frankfurtu, niekoniecznie musi dotyczyć w tym samym tempie na przykład lotniska w Warszawie czy Krakowie.</p>
+        <p>Ostateczny test tego, czy infrastruktura faktycznie wytrzyma, przyjdzie dopiero po realnym starcie systemu — dotychczasowe opóźnienia dawały krajom członkowskim więcej czasu na przygotowanie, ale też więcej okazji, by termin przesunąć po raz kolejny. Do tego czasu najbezpieczniejszą strategią dla podróżnych, i unijnych, i spoza Unii, pozostaje sprawdzanie aktualnego statusu wdrożenia bezpośrednio przed wylotem, zamiast planowania na podstawie informacji sprzed kilku miesięcy — w tym temacie zmienia się naprawdę wiele, i to szybko, a kolejna zmiana terminu nie byłaby żadnym zaskoczeniem.</p>
+      </div>
+
+      <div class="mt-14 pt-8 border-t border-ink-900/[0.08] flex flex-wrap items-center justify-between gap-4">
+        <a href="../newsy.html" class="pressable inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white font-semibold text-[13.5px] px-5 py-3 rounded-full transition-colors duration-160">
+          Zobacz więcej newsów
+        </a>
+        <a href="../index.html#pobierz" class="pressable inline-flex items-center gap-2 bg-white hover:bg-ink-50 border border-ink-900/12 text-ink-900 font-semibold text-[13.5px] px-5 py-3 rounded-full transition-colors duration-160">
+          Pobierz aplikację
+        </a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="border-t border-ink-900/[0.07] py-12">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex flex-wrap items-center justify-between gap-6 mb-8">
+      <a href="../index.html" class="flex items-center gap-2.5">
+        <img src="../logo.svg" alt="OgarnijWakacje.pl" class="h-11 w-auto" />
+      </a>
+      <div class="flex flex-wrap gap-x-7 gap-y-2 text-[12.5px] font-medium text-ink-500">
+        <a href="../newsy.html" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="../miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
+        <a href="../ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="../poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="../poznaj-aplikacje.html" class="hover:text-ink-900 transition-colors duration-160">Poznaj aplikację</a>
+        <a href="../index.html#pobierz" class="hover:text-ink-900 transition-colors duration-160">Beta</a>
+      </div>
+    </div>
+    <div class="flex flex-wrap items-center gap-2 mb-6 text-[12.5px] text-ink-500">
+      <i data-lucide="handshake" class="w-3.5 h-3.5 text-leaf-500"></i>
+      <span>Zaufany partner OgarnijWakacje.pl:</span>
+      <a href="https://partner.rankomat.pl/tracking/click/fc6c6083173406e55e047a048b1a23a8" target="_blank" rel="sponsored noopener" class="font-semibold text-ink-800 hover:text-ink-900 underline decoration-ink-300 underline-offset-2 transition-colors duration-160">Rankomat.pl</a>
+      <span class="text-ink-400">— porównywarka ubezpieczeń podróżnych</span>
+    </div>
+    <div class="pt-6 border-t border-ink-900/[0.07] flex flex-wrap justify-between gap-3 text-[12px] text-ink-400">
+      <span>© 2026 OgarnijWakacje.pl. Wszelkie prawa zastrzeżone.</span>
+      <span class="flex gap-4"><a href="#" class="hover:text-ink-700 transition-colors duration-160">Redakcja</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Reklama</a><a href="../regulamin.html" class="hover:text-ink-700 transition-colors duration-160">Regulamin</a><a href="../polityka-prywatnosci.html" class="hover:text-ink-700 transition-colors duration-160">RODO</a><a href="#" id="cookieSettingsLink" class="hover:text-ink-700 transition-colors duration-160">Ustawienia cookies</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+  window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.innerHTML = open ? '<i data-lucide="x" class="w-4.5 h-4.5"></i>' : '<i data-lucide="menu" class="w-4.5 h-4.5"></i>';
+      if (window.lucide) lucide.createIcons();
+    });
+  })();
+  document.querySelectorAll('.pressable').forEach(function (el) {
+    el.classList.add('transition-transform');
+  });
+</script>
+</body>
+</html>
