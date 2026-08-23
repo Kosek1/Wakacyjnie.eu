@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Regulamin Serwisu — OgarnijWakacje.pl</title>
+<meta name="description" content="Regulamin świadczenia usług drogą elektroniczną serwisu OgarnijWakacje.pl — zasady korzystania z serwisu, prawa autorskie, moderacja komentarzy, reklamacje." />
+<meta name="robots" content="noindex, follow" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          display: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui'],
+        },
+        colors: {
+          ink: {
+            950: '#141310', 900: '#1c1a16', 800: '#2a2722', 700: '#3e3a32',
+            600: '#5c5648', 500: '#7a7364', 400: '#a39c8c', 300: '#c7c0b1',
+            200: '#e2ddd0', 100: '#efebe1', 50: '#faf8f3',
+          },
+          accent: { 50: '#fff4e9', 100: '#ffe2c4', 300: '#ffb570', 500: '#e8752e', 600: '#c85f1e', 700: '#a14a17' },
+          leaf: { 500: '#3f6a52', 600: '#345a44' },
+          teal: { 50: '#eaf7f6', 100: '#cdeeec', 500: '#4fb8b3', 600: '#3b9a95' },
+        },
+        boxShadow: {
+          soft: '0 1px 2px rgba(20,19,16,0.04), 0 12px 28px -8px rgba(20,19,16,0.10)',
+          softer: '0 1px 1px rgba(20,19,16,0.03), 0 6px 16px -6px rgba(20,19,16,0.08)',
+          lifted: '0 30px 70px -20px rgba(20,19,16,0.35)',
+        },
+        transitionTimingFunction: {
+          out: 'cubic-bezier(0.23, 1, 0.32, 1)',
+          inout: 'cubic-bezier(0.77, 0, 0.175, 1)',
+        },
+        borderRadius: { '4xl': '2rem' },
+      },
+    },
+  };
+</script>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+<style>
+  :root{ --ease-out: cubic-bezier(0.23, 1, 0.32, 1); --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1); }
+  html{ scroll-behavior: smooth; }
+  body{ font-family:'Inter', sans-serif; background:#faf8f3; }
+  h1,h2,h3,h4,h5,.font-display{ font-family:'Plus Jakarta Sans', sans-serif; }
+  ::selection{ background:#ffb570; color:#1c1a16; }
+  a:focus-visible, button:focus-visible, input:focus-visible{ outline: 2px solid #e8752e; outline-offset: 2px; border-radius: 4px; }
+  .reveal{ opacity:0; transform: translateY(14px); transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out); }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ transition: opacity 200ms ease !important; transform:none !important; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+  .pressable{ transition: transform 160ms var(--ease-out); }
+  .pressable:active{ transform: scale(0.97); }
+  #mobileMenu{ transform: translateY(-8px); opacity:0; pointer-events:none; transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out); }
+  #mobileMenu.open{ transform: translateY(0); opacity:1; pointer-events:auto; }
+  .app-nav-icons{ transform-origin: bottom left; }
+  .app-nav-phone, .app-nav-palm{ transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out); }
+  @media (hover: hover) and (pointer: fine){
+    .app-nav-link:hover .app-nav-phone{ transform: translateY(-3px) rotate(-8deg); box-shadow: 0 3px 8px rgba(232,117,46,0.22); }
+    .app-nav-link:hover .app-nav-palm{ transform: translateY(-4px) rotate(10deg); }
+  }
+  .legal-content h2{ scroll-margin-top: 110px; }
+  .legal-content h3{ scroll-margin-top: 110px; }
+  .placeholder-fill{ background: #fff4e9; color:#a14a17; padding: 0 4px; border-radius: 4px; font-weight: 600; }
+  .toc-link.active{ color:#1c1a16; font-weight:700; }
+  .toc-link.active .toc-dot{ background:#e8752e; }
+</style>
+</head>
+<body class="text-ink-900 antialiased">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-ink-900 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">Przejdź do treści</a>
+
+<!-- NAV -->
+<header id="site-header" class="sticky top-0 z-50 bg-[#faf8f3]/80 backdrop-blur-md border-b border-ink-900/[0.06]">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <nav class="flex items-center justify-between h-16 sm:h-[72px]">
+      <a href="index.html#top" class="flex items-center gap-2.5 shrink-0">
+        <img src="logo.svg" alt="OgarnijWakacje.pl" class="h-12 sm:h-14 w-auto" />
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-[13.5px] font-medium text-ink-600">
+        <a href="newsy.html" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
+        <a href="ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="poznaj-aplikacje.html" class="app-nav-link group relative inline-flex items-center gap-2 hover:text-ink-900 transition-colors duration-160">
+          Poznaj aplikację
+          <span class="app-nav-icons relative inline-flex items-center w-[30px] h-[20px] shrink-0" aria-hidden="true">
+            <span class="app-nav-phone absolute left-0 top-0 grid place-items-center w-[18px] h-[18px] rounded-[6px] bg-accent-50 text-accent-600 ring-1 ring-accent-500/15">
+              <i data-lucide="smartphone" class="w-2.5 h-2.5"></i>
+            </span>
+            <span class="app-nav-palm absolute left-[13px] top-[2px] grid place-items-center w-[15px] h-[15px] rounded-full bg-leaf-500/10 text-leaf-500">
+              <i data-lucide="palmtree" class="w-2.5 h-2.5"></i>
+            </span>
+          </span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="index.html#pobierz" class="pressable hidden sm:inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white text-[13.5px] font-semibold px-4 py-2.5 rounded-full shadow-softer transition-colors duration-160">
+          Zapisz się do beta
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+        <button id="menuBtn" aria-label="Otwórz menu" aria-expanded="false" class="pressable md:hidden grid place-items-center w-10 h-10 rounded-full border border-ink-900/10">
+          <i data-lucide="menu" class="w-4.5 h-4.5"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden absolute inset-x-0 top-full bg-[#faf8f3]/95 backdrop-blur-md border-b border-ink-900/[0.06] shadow-soft">
+    <div class="max-w-7xl mx-auto px-5 py-5 flex flex-col gap-1 text-[15px] font-medium">
+      <a href="newsy.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Newsy</a>
+      <a href="miejsca.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Miejsca</a>
+      <a href="ciekawostki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Ciekawostki</a>
+      <a href="poradniki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poradniki</a>
+      <a href="poznaj-aplikacje.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poznaj aplikację</a>
+      <a href="index.html#pobierz" class="mt-2 text-center bg-ink-900 text-white px-3 py-3 rounded-full font-semibold">Zapisz się do beta</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="pt-14 sm:pt-20 pb-10 sm:pb-14">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8">
+      <nav aria-label="breadcrumb" class="text-[12.5px] text-ink-500 mb-5 flex items-center gap-2">
+        <a href="index.html#top" class="hover:text-ink-900 transition-colors duration-160">Strona główna</a>
+        <i data-lucide="chevron-right" class="w-3 h-3"></i>
+        <span class="text-ink-700">Regulamin</span>
+      </nav>
+      <span class="inline-flex items-center gap-2 bg-ink-100/70 text-ink-600 text-[12.5px] font-semibold px-3 py-1.5 rounded-full mb-4">
+        <i data-lucide="scale" class="w-3.5 h-3.5"></i> Dokument prawny
+      </span>
+      <h1 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-ink-950 mb-4">Regulamin Serwisu OgarnijWakacje.pl</h1>
+      <p class="text-[15px] sm:text-base text-ink-600 leading-relaxed max-w-2xl">
+        Niniejszy Regulamin określa zasady korzystania z serwisu internetowego OgarnijWakacje.pl, rodzaje i zakres świadczonych usług elektronicznych, zasady zamieszczania i moderacji komentarzy oraz warunki odpowiedzialności Usługodawcy.
+      </p>
+      <p class="text-[12.5px] text-ink-400 mt-4">Data ostatniej aktualizacji: <span id="updateDate">23 sierpnia 2026 r.</span> · Wersja 1.0</p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="pb-20 sm:pb-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-[240px_1fr] gap-10">
+
+      <!-- TOC -->
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <p class="text-[11px] font-bold uppercase tracking-wider text-ink-400 mb-3">Spis treści</p>
+          <nav class="flex flex-col gap-1 text-[13px] text-ink-500">
+            <a href="#par1" class="toc-link flex items-center gap-2 py-1.5 hover:text-ink-900 transition-colors duration-160"><span class="toc-dot w-1.5 h-1.5 rounded-full bg-ink-300 shrink-0"></span>§1 Postanowienia ogólne</a>
+            <a href="#par2" class="toc-link flex items-center gap-2 py-1.5 hover:text-ink-900 transition-colors duration-160"><span class="toc-dot w-1.5 h-1.5 rounded-full bg-ink-300 shrink-0"></span>§2 Definicje</a>
+            <a href="#par3" class="toc-link flex items-center gap-2 py-1.5 hover:text-ink-900 transition-colors duration-160"><span class="toc-dot w-1.5 h-1.5 rounded-full bg-ink-300 shrink-0"></span>§3 Charakter Serwisu</a>
+            <a href="#par4" class="toc-link flex items-center gap-2 py-1.5 hover:text-ink-900 transition-colors duration-160"><span class="toc-dot w-1.5 h-1.5 rounded-full bg-ink-300 shrink-0"></span>§4 Usługi elektroniczne</a>
+            <a href="#par5" class="toc-link flex items-center gap-2 py-1.5 hover:text-ink-900 transition-colors duration-160"><span class="toc-dot w-1.5 h-1.5 rounded-full bg-ink-300 shrink-0"></span>§5 Wymogi techniczne</a>
+            <a href="#par6" class="toc-link flex items-center gap-2 py-1.5 hover:text-ink-900 transition-colors duration-160"><span class="toc-dot w-1.5 h-1.5 rounded-full bg-ink-300 shrink-0"></span>§6 Prawa autorskie</a>
+            <a href="#par7" class="toc-link flex items-center gap-2 py-1.5 hover:text-ink-900 transition-colors duration-160"><span class="toc-dot w-1.5 h-1.5 rounded-full bg-ink-300 shrink-0"></span>§7 Odpowiedzialność</a>
+            <a href="#par8" class="toc-link flex items-center gap-2 py-1.5 hover:text-ink-900 transition-colors duration-160"><span class="toc-dot w-1.5 h-1.5 rounded-full bg-ink-300 shrink-0"></span>§8 Komentarze i moderacja (DSA)</a>
+            <a href="#par9" class="toc-link flex items-center gap-2 py-1.5 hover:text-ink-900 transition-colors duration-160"><span class="toc-dot w-1.5 h-1.5 rounded-full bg-ink-300 shrink-0"></span>§9 Punkt Kontaktowy i odwołania</a>
+            <a href="#par10" class="toc-link flex items-center gap-2 py-1.5 hover:text-ink-900 transition-colors duration-160"><span class="toc-dot w-1.5 h-1.5 rounded-full bg-ink-300 shrink-0"></span>§10 Treści komercyjne</a>
+            <a href="#par11" class="toc-link flex items-center gap-2 py-1.5 hover:text-ink-900 transition-colors duration-160"><span class="toc-dot w-1.5 h-1.5 rounded-full bg-ink-300 shrink-0"></span>§11 Reklamacje</a>
+            <a href="#par12" class="toc-link flex items-center gap-2 py-1.5 hover:text-ink-900 transition-colors duration-160"><span class="toc-dot w-1.5 h-1.5 rounded-full bg-ink-300 shrink-0"></span>§12 Dane osobowe</a>
+            <a href="#par13" class="toc-link flex items-center gap-2 py-1.5 hover:text-ink-900 transition-colors duration-160"><span class="toc-dot w-1.5 h-1.5 rounded-full bg-ink-300 shrink-0"></span>§13 Postanowienia końcowe</a>
+          </nav>
+          <a href="polityka-prywatnosci.html" class="mt-6 flex items-center gap-2 text-[13px] font-semibold text-accent-600 hover:text-accent-700 transition-colors duration-160">
+            <i data-lucide="shield-check" class="w-4 h-4"></i> Polityka Prywatności (RODO)
+          </a>
+        </div>
+      </aside>
+
+      <!-- ARTICLE -->
+      <article class="legal-content bg-white rounded-3xl shadow-soft border border-ink-900/[0.06] p-6 sm:p-10 max-w-3xl">
+        <div class="prose-legal text-[14.5px] leading-[1.75] text-ink-700 space-y-10">
+
+          <div id="par1">
+            <h2 class="font-display text-xl font-bold text-ink-950 mb-3">§1. Postanowienia ogólne</h2>
+            <ol class="list-decimal list-outside pl-5 space-y-2">
+              <li>Niniejszy Regulamin określa zasady korzystania z serwisu internetowego dostępnego pod adresem <strong>www.ogarnijwakacje.pl</strong> (dalej: „Serwis”), w tym rodzaje, zakres i warunki świadczenia usług drogą elektroniczną, warunki zawierania i rozwiązywania umów o świadczenie takich usług, tryb postępowania reklamacyjnego oraz zasady odpowiedzialności.</li>
+              <li>Regulamin jest udostępniany nieodpłatnie za pośrednictwem Serwisu w formie umożliwiającej jego pozyskanie, odtwarzanie, utrwalanie i wydrukowanie, zgodnie z art. 8 ustawy z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną (dalej: „u.ś.u.d.e.”).</li>
+              <li>Podmiotem prowadzącym Serwis i świadczącym usługi drogą elektroniczną jest <strong>Wojciech Samuś</strong>, zamieszkały przy ul. Jagodowej, 30-427 Kraków, adres e-mail do kontaktu: <strong>wojciechsamus@gmail.com</strong> (dalej: „Usługodawca”). Serwis jest prowadzony przez osobę fizyczną w ramach działalności o charakterze blogu hobbystycznego/informacyjnego, niebędącej zarejestrowaną działalnością gospodarczą.</li>
+              <li>Rozpoczęcie korzystania z Serwisu (w tym samo jego przeglądanie) jest równoznaczne z zawarciem umowy o świadczenie usług drogą elektroniczną na warunkach określonych w niniejszym Regulaminie oraz z akceptacją jego postanowień. Korzystanie z niektórych funkcjonalności Serwisu (np. dodawanie komentarzy, zapis do newslettera) wymaga dodatkowo akceptacji odrębnych zgód wskazanych przy danej funkcjonalności.</li>
+            </ol>
+          </div>
+
+          <div id="par2">
+            <h2 class="font-display text-xl font-bold text-ink-950 mb-3">§2. Definicje</h2>
+            <ol class="list-decimal list-outside pl-5 space-y-2">
+              <li><strong>Serwis</strong> — portal internetowy OgarnijWakacje.pl dostępny pod adresem www.ogarnijwakacje.pl wraz ze wszystkimi jego podstronami.</li>
+              <li><strong>Usługodawca</strong> — podmiot wskazany w §1 ust. 3, administrujący Serwisem i świadczący za jego pośrednictwem Usługi Elektroniczne.</li>
+              <li><strong>Użytkownik</strong> — każda osoba fizyczna korzystająca z Serwisu, w tym przeglądająca jego treści, korzystająca z formularzy lub zamieszczająca komentarze.</li>
+              <li><strong>Usługa Elektroniczna</strong> — usługa świadczona drogą elektroniczną przez Usługodawcę na rzecz Użytkownika za pośrednictwem Serwisu, bez jednoczesnej obecności stron, w rozumieniu u.ś.u.d.e.</li>
+              <li><strong>Treści</strong> — artykuły, poradniki, zestawienia, materiały graficzne, zdjęcia i wideo publikowane w Serwisie przez Usługodawcę.</li>
+              <li><strong>Komentarz</strong> — treść tekstowa dobrowolnie zamieszczana przez Użytkownika pod publikacją w Serwisie.</li>
+              <li><strong>DSA</strong> — Rozporządzenie Parlamentu Europejskiego i Rady (UE) 2022/2065 z dnia 19 października 2022 r. w sprawie jednolitego rynku usług cyfrowych.</li>
+            </ol>
+          </div>
+
+          <div id="par3">
+            <h2 class="font-display text-xl font-bold text-ink-950 mb-3">§3. Charakter Serwisu — wyłączenie statusu organizatora turystyki</h2>
+            <ol class="list-decimal list-outside pl-5 space-y-2">
+              <li>Serwis ma charakter wyłącznie informacyjny, redakcyjny, opiniotwórczy i inspiracyjny. Publikowane w Serwisie artykuły, poradniki, zestawienia, rankingi oraz opisy kierunków, obiektów noclegowych, połączeń lotniczych czy atrakcji turystycznych stanowią wyłącznie subiektywne opinie redakcji, zbiorcze zestawienia ogólnodostępnych danych lub materiały o charakterze publicystycznym.</li>
+              <li>Usługodawca nie jest organizatorem turystyki, agentem turystycznym ani podmiotem oferującym powiązane usługi turystyczne w rozumieniu ustawy z dnia 24 listopada 2017 r. o imprezach turystycznych i powiązanych usługach turystycznych. Serwis nie umożliwia zawierania umów o udział w imprezie turystycznej ani umów o świadczenie pojedynczych usług turystycznych.</li>
+              <li>Treści publikowane w Serwisie nie stanowią oferty w rozumieniu art. 66 Kodeksu cywilnego, zaproszenia do zawarcia umowy ani pośrednictwa w zawieraniu umów z podmiotami trzecimi (liniami lotniczymi, obiektami noclegowymi, biurami podróży, ubezpieczycielami).</li>
+              <li>Jeżeli Serwis zawiera odnośniki (linki) do serwisów zewnętrznych umożliwiających dokonanie rezerwacji lub zakupu usług turystycznych, umowa dotycząca takiej usługi zawierana jest wyłącznie pomiędzy Użytkownikiem a danym podmiotem trzecim, na zasadach określonych przez ten podmiot — Usługodawca nie jest stroną takiej umowy.</li>
+            </ol>
+          </div>
+
+          <div id="par4">
+            <h2 class="font-display text-xl font-bold text-ink-950 mb-3">§4. Rodzaj i zakres Usług Elektronicznych</h2>
+            <p>Usługodawca świadczy za pośrednictwem Serwisu nieodpłatnie następujące Usługi Elektroniczne:</p>
+            <ol class="list-decimal list-outside pl-5 space-y-2 mt-2">
+              <li>udostępnianie treści redakcyjnych — przeglądanie artykułów, poradników i ciekawostek;</li>
+              <li>wyszukiwarkę i filtry umożliwiające przeszukiwanie i filtrowanie publikowanych treści;</li>
+              <li>możliwość zamieszczania Komentarzy pod publikacjami, na zasadach opisanych w §8;</li>
+              <li>formularz kontaktowy umożliwiający przesłanie zapytania do Usługodawcy;</li>
+              <li>usługę newslettera — subskrypcję biuletynu informacyjnego, po wyrażeniu odrębnej, dobrowolnej zgody, o czym mowa w §12 oraz w Polityce Prywatności;</li>
+              <li>interaktywne narzędzia poglądowe (np. quiz, kalkulator budżetu podróży, ranking kierunków), mające charakter wyłącznie informacyjny i pomocniczy, niestanowiące porady finansowej, prawnej ani wiążącej rekomendacji.</li>
+            </ol>
+            <p class="mt-3">Umowa o świadczenie danej Usługi Elektronicznej zostaje zawarta z chwilą rozpoczęcia korzystania z niej przez Użytkownika i ulega rozwiązaniu z chwilą zaprzestania korzystania (np. zamknięcia karty przeglądarki) lub — w przypadku newslettera — z chwilą wypisania się z subskrypcji.</p>
+          </div>
+
+          <div id="par5">
+            <h2 class="font-display text-xl font-bold text-ink-950 mb-3">§5. Wymogi techniczne</h2>
+            <p>Do prawidłowego korzystania z Serwisu niezbędne jest posiadanie przez Użytkownika:</p>
+            <ol class="list-decimal list-outside pl-5 space-y-2 mt-2">
+              <li>urządzenia końcowego z dostępem do sieci Internet;</li>
+              <li>aktualnej wersji przeglądarki internetowej z włączoną obsługą plików cookies oraz JavaScript;</li>
+              <li>aktywnego konta poczty elektronicznej — w przypadku korzystania z formularza kontaktowego, newslettera lub zamieszczania Komentarzy.</li>
+            </ol>
+            <p class="mt-3">Usługodawca zastrzega, że korzystanie z sieci Internet oraz usług świadczonych drogą elektroniczną wiąże się z typowym ryzykiem, w tym ryzykiem uzyskania dostępu do systemu przez osoby nieuprawnione, i zaleca Użytkownikom stosowanie aktualnego oprogramowania zabezpieczającego.</p>
+          </div>
+
+          <div id="par6">
+            <h2 class="font-display text-xl font-bold text-ink-950 mb-3">§6. Prawa autorskie i własność intelektualna</h2>
+            <ol class="list-decimal list-outside pl-5 space-y-2">
+              <li>Wszelkie Treści publikowane w Serwisie — w tym artykuły, poradniki, zdjęcia, grafiki, materiały wideo, układ graficzny i baza danych Serwisu — stanowią utwory w rozumieniu ustawy z dnia 4 lutego 1994 r. o prawie autorskim i prawach pokrewnych i podlegają ochronie prawnej, chyba że co innego wynika wyraźnie z opisu danej Treści.</li>
+              <li>Zabronione jest kopiowanie, zwielokrotnianie, rozpowszechnianie, wprowadzanie do obrotu, publiczne udostępnianie oraz jakiekolwiek inne wykorzystywanie Treści, w całości lub w części, w celach komercyjnych, bez uprzedniej pisemnej zgody Usługodawcy.</li>
+              <li>Zabronione jest zautomatyzowane pobieranie danych z Serwisu (scraping, indeksowanie przez boty i crawlery inne niż wyszukiwarki internetowe działające w celu indeksowania Serwisu) bez uprzedniej pisemnej zgody Usługodawcy.</li>
+              <li>Użytkownikowi przysługuje niewyłączna, nieprzenoszalna, nieodpłatna licencja na przeglądanie i wykorzystywanie Treści wyłącznie w celach osobistych i niekomercyjnych, z zachowaniem prawa do cytowania fragmentów Treści na zasadach określonych w art. 29 ustawy o prawie autorskim i prawach pokrewnych, pod warunkiem wskazania źródła (nazwy Serwisu) oraz zamieszczenia aktywnego odnośnika do strony źródłowej.</li>
+            </ol>
+          </div>
+
+          <div id="par7">
+            <h2 class="font-display text-xl font-bold text-ink-950 mb-3">§7. Odpowiedzialność Usługodawcy</h2>
+            <ol class="list-decimal list-outside pl-5 space-y-2">
+              <li>Usługodawca dokłada należytej staranności w celu zapewnienia aktualności i rzetelności publikowanych Treści, jednak nie gwarantuje ich pełnej aktualności ani kompletności.</li>
+              <li>Usługodawca nie ponosi odpowiedzialności za zmiany cen biletów, opłat, taryf, rozkładów jazdy lub lotów, wymogów wizowych, przepisów sanitarnych, warunków wjazdu ani warunków pogodowych, które nastąpiły po dacie publikacji danej Treści.</li>
+              <li>Usługodawca nie ponosi odpowiedzialności za nienależyte wykonanie lub niewykonanie usług przez podmioty trzecie (przewoźników, obiekty noclegowe, biura podróży, ubezpieczycieli, platformy rezerwacyjne), z których usług Użytkownik skorzystał na podstawie informacji zawartych w Serwisie.</li>
+              <li>Wszelkie decyzje wyjazdowe, rezerwacyjne i finansowe podejmowane przez Użytkownika na podstawie Treści zawartych w Serwisie Użytkownik podejmuje na własne ryzyko i odpowiedzialność.</li>
+              <li>Usługodawca nie ponosi odpowiedzialności za przerwy w dostępności Serwisu wynikające z przyczyn technicznych, w tym prac konserwacyjnych, awarii lub działania siły wyższej, oraz dokłada starań, aby przerwy takie były możliwie krótkie.</li>
+              <li>Ograniczenia odpowiedzialności określone w niniejszym paragrafie nie dotyczą przypadków, w których odpowiedzialności nie można wyłączyć lub ograniczyć na mocy bezwzględnie obowiązujących przepisów prawa, w szczególności wobec konsumentów.</li>
+            </ol>
+          </div>
+
+          <div id="par8">
+            <h2 class="font-display text-xl font-bold text-ink-950 mb-3">§8. Komentarze i zasady moderacji treści (zgodność z DSA)</h2>
+            <ol class="list-decimal list-outside pl-5 space-y-2">
+              <li>Serwis umożliwia Użytkownikom zamieszczanie Komentarzy pod publikacjami. W zakresie funkcji hostingu Komentarzy Usługodawca pełni funkcję dostawcy usługi pośredniej w rozumieniu DSA.</li>
+              <li>Zamieszczając Komentarz, Użytkownik oświadcza, że jego treść jest zgodna z prawem, nie narusza praw osób trzecich i ponosi wyłączną odpowiedzialność za jego treść.</li>
+              <li>W Serwisie zabronione jest zamieszczanie Komentarzy, które:
+                <ol class="list-[lower-alpha] list-outside pl-5 space-y-1.5 mt-2">
+                  <li>są sprzeczne z obowiązującym prawem lub nawołują do popełnienia przestępstwa;</li>
+                  <li>zawierają treści wulgarne, obraźliwe lub nawołujące do nienawiści na tle rasowym, etnicznym, religijnym lub innym;</li>
+                  <li>naruszają dobra osobiste, w tym dobre imię, osób trzecich;</li>
+                  <li>zawierają dezinformację, w tym nieprawdziwe ostrzeżenia o zagrożeniach w kurortach lub miejscach turystycznych;</li>
+                  <li>stanowią niezamówioną informację handlową (SPAM) lub reklamę niebędącą przedmiotem współpracy z Usługodawcą;</li>
+                  <li>naruszają prawa autorskie lub inne prawa własności intelektualnej osób trzecich.</li>
+                </ol>
+              </li>
+              <li>W związku z prowadzeniem sekcji Komentarzy Usługodawca przetwarza nazwę użytkownika (nick), adres e-mail oraz adres IP osoby komentującej — zasady tego przetwarzania opisuje Polityka Prywatności.</li>
+              <li>Usługodawca zastrzega sobie prawo do moderacji Komentarzy, w tym do niepublikowania, edycji, ukrycia lub usunięcia Komentarza naruszającego niniejszy Regulamin lub przepisy prawa, zgodnie z procedurą opisaną w §9.</li>
+            </ol>
+          </div>
+
+          <div id="par9">
+            <h2 class="font-display text-xl font-bold text-ink-950 mb-3">§9. Cyfrowy Punkt Kontaktowy, zgłaszanie treści nielegalnych i tryb odwoławczy</h2>
+            <ol class="list-decimal list-outside pl-5 space-y-2">
+              <li>Zgodnie z art. 11 i art. 12 DSA Usługodawca wyznacza Cyfrowy Punkt Kontaktowy dla organów państw członkowskich, Komisji Europejskiej, Rady Usług Cyfrowych oraz odbiorców usługi. Kontakt z Punktem Kontaktowym jest możliwy pod adresem e-mail: <strong>wojciechsamus@gmail.com</strong>. Językiem komunikacji jest język polski.</li>
+              <li><strong>Zgłoszenie treści nielegalnej (Notice and Action).</strong> Każdy Użytkownik oraz każda osoba trzecia może zgłosić Usługodawcy Komentarz, który w jej ocenie stanowi treść nielegalną, za pośrednictwem Punktu Kontaktowego, wskazując: (a) uzasadnienie, dlaczego dana treść jest nielegalna, (b) lokalizację treści (adres URL), (c) dane kontaktowe zgłaszającego (chyba że zgłoszenie dotyczy treści związanych z wykorzystywaniem seksualnym małoletnich) oraz (d) oświadczenie o działaniu w dobrej wierze.</li>
+              <li>Usługodawca rozpatruje zgłoszenie w sposób terminowy, niearbitralny i obiektywny. W przypadku uzyskania wiarygodnej wiadomości o bezprawnym charakterze Komentarza, Usługodawca niezwłocznie blokuje do niego dostęp lub go usuwa.</li>
+              <li>O podjętej decyzji Usługodawca informuje zarówno zgłaszającego, jak i autora Komentarza (o ile dane kontaktowe autora są znane), wraz ze zwięzłym uzasadnieniem faktycznym i prawnym decyzji, zgodnie z art. 17 DSA.</li>
+              <li><strong>Tryb odwoławczy.</strong> Autorowi usuniętego lub zablokowanego Komentarza oraz osobie zgłaszającej przysługuje prawo do złożenia odwołania od decyzji Usługodawcy w terminie 30 dni od dnia poinformowania o rozstrzygnięciu, za pośrednictwem Punktu Kontaktowego. Odwołanie podlega ponownemu, bezstronnemu rozpatrzeniu przez Usługodawcę, o wyniku którego zainteresowany zostaje poinformowany bez zbędnej zwłoki.</li>
+              <li>Niezależnie od trybu odwoławczego opisanego powyżej, zainteresowanemu przysługuje prawo do skorzystania z pozasądowego rozstrzygania sporów przed certyfikowanym podmiotem, o którym mowa w art. 21 DSA, oraz prawo do dochodzenia roszczeń na drodze sądowej.</li>
+            </ol>
+          </div>
+
+          <div id="par10">
+            <h2 class="font-display text-xl font-bold text-ink-950 mb-3">§10. Oznaczanie treści komercyjnych, afiliacyjnych i sponsorowanych</h2>
+            <ol class="list-decimal list-outside pl-5 space-y-2">
+              <li>Serwis może zawierać treści komercyjne, w tym: odnośniki afiliacyjne do systemów rezerwacyjnych, wyszukiwarek lotów i ubezpieczeń, artykuły sponsorowane, materiały powstałe w ramach współpracy barterowej lub testów sprzętu (press trips, paczki PR) oraz materiały promujące produkty własne Usługodawcy (e-booki, przewodniki).</li>
+              <li>Zgodnie z art. 6 ustawy o przeciwdziałaniu nieuczciwym praktykom rynkowym oraz art. 16 ustawy o zwalczaniu nieuczciwej konkurencji, a także wytycznymi Prezesa UOKiK, każda Treść, w związku z którą Usługodawca lub autor uzyskuje korzyść majątkową lub inną (prowizję, wynagrodzenie, świadczenie rzeczowe), jest oznaczana w sposób jednoznaczny, czytelny i widoczny na każdym urządzeniu, przy użyciu odpowiednich oznaczeń, w szczególności: <strong>[REKLAMA]</strong>, <strong>[MATERIAŁ REKLAMOWY]</strong>, <strong>[WSPÓŁPRACA REKLAMOWA]</strong>, <strong>[LINK AFILIACYJNY]</strong>, <strong>[PREZENT]</strong> lub <strong>[AUTOPROMOCJA]</strong> / <strong>[MARKA WŁASNA]</strong>.</li>
+              <li>Przy odnośnikach afiliacyjnych umieszczana jest informacja, że kliknięcie w link i dokonanie zakupu może skutkować uzyskaniem przez Usługodawcę prowizji, bez wpływu na cenę płaconą przez Użytkownika.</li>
+              <li>Oznaczenia komercyjne nie są ukrywane, umieszczane wyłącznie na końcu długich publikacji ani prezentowane przy użyciu czcionki lub kolorystyki utrudniającej ich odczytanie.</li>
+            </ol>
+          </div>
+
+          <div id="par11">
+            <h2 class="font-display text-xl font-bold text-ink-950 mb-3">§11. Tryb reklamacyjny</h2>
+            <ol class="list-decimal list-outside pl-5 space-y-2">
+              <li>Użytkownik ma prawo złożyć reklamację dotyczącą nieprawidłowego funkcjonowania Serwisu lub świadczenia Usług Elektronicznych niezgodnie z Regulaminem.</li>
+              <li>Reklamację należy zgłosić na adres e-mail: <strong>wojciechsamus@gmail.com</strong>, podając: opis nieprawidłowości, okoliczności jej wystąpienia oraz dane kontaktowe umożliwiające udzielenie odpowiedzi.</li>
+              <li>Usługodawca ustosunkuje się do reklamacji w terminie 14 dni od dnia jej otrzymania, przesyłając odpowiedź na adres e-mail wskazany przez Użytkownika.</li>
+              <li>Postanowienia niniejszego paragrafu nie ograniczają uprawnień Użytkownika będącego konsumentem, przysługujących mu na podstawie powszechnie obowiązujących przepisów prawa.</li>
+            </ol>
+          </div>
+
+          <div id="par12">
+            <h2 class="font-display text-xl font-bold text-ink-950 mb-3">§12. Dane osobowe</h2>
+            <p>Zasady przetwarzania danych osobowych Użytkowników, w tym cele, podstawy prawne, okresy przechowywania oraz przysługujące Użytkownikom prawa, zostały szczegółowo opisane w odrębnym dokumencie — <a href="polityka-prywatnosci.html" class="text-accent-600 font-semibold hover:text-accent-700">Polityce Prywatności i Plików Cookies</a>, stanowiącej integralne uzupełnienie niniejszego Regulaminu.</p>
+          </div>
+
+          <div id="par13">
+            <h2 class="font-display text-xl font-bold text-ink-950 mb-3">§13. Postanowienia końcowe</h2>
+            <ol class="list-decimal list-outside pl-5 space-y-2">
+              <li>Usługodawca zastrzega sobie prawo do zmiany Regulaminu z ważnych przyczyn, w tym w związku ze zmianą przepisów prawa, zakresu świadczonych usług lub w celu przeciwdziałania nadużyciom. Informacja o zmianie Regulaminu wraz z jego nową treścią zostanie opublikowana w Serwisie z odpowiednim wyprzedzeniem przed jej wejściem w życie.</li>
+              <li>W sprawach nieuregulowanych niniejszym Regulaminem zastosowanie mają powszechnie obowiązujące przepisy prawa polskiego, w szczególności Kodeksu cywilnego, ustawy o świadczeniu usług drogą elektroniczną, ustawy o prawach konsumenta, Rozporządzenia (UE) 2022/2065 (DSA) oraz RODO.</li>
+              <li>Ewentualne spory wynikłe w związku ze świadczeniem usług na podstawie niniejszego Regulaminu będą rozstrzygane w pierwszej kolejności w drodze polubownej, a w przypadku braku porozumienia — przez sąd właściwy zgodnie z powszechnie obowiązującymi przepisami prawa.</li>
+              <li>Regulamin wchodzi w życie z dniem publikacji w Serwisie.</li>
+            </ol>
+          </div>
+
+        </div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="border-t border-ink-900/[0.07] py-12">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex flex-wrap items-center justify-between gap-6 mb-8">
+      <a href="index.html#top" class="flex items-center gap-2.5">
+        <img src="logo.svg" alt="OgarnijWakacje.pl" class="h-11 w-auto" />
+      </a>
+      <div class="flex flex-wrap gap-x-7 gap-y-2 text-[12.5px] font-medium text-ink-500">
+        <a href="newsy.html" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
+        <a href="ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="poznaj-aplikacje.html" class="hover:text-ink-900 transition-colors duration-160">Poznaj aplikację</a>
+        <a href="index.html#pobierz" class="hover:text-ink-900 transition-colors duration-160">Beta</a>
+      </div>
+    </div>
+    <div class="pt-6 border-t border-ink-900/[0.07] flex flex-wrap justify-between gap-3 text-[12px] text-ink-400">
+      <span>© 2026 OgarnijWakacje.pl. Wszelkie prawa zastrzeżone.</span>
+      <span class="flex gap-4"><a href="#" class="hover:text-ink-700 transition-colors duration-160">Redakcja</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Reklama</a><a href="regulamin.html" class="hover:text-ink-700 transition-colors duration-160">Regulamin</a><a href="polityka-prywatnosci.html" class="hover:text-ink-700 transition-colors duration-160">RODO</a><a href="#" id="cookieSettingsLink" class="hover:text-ink-700 transition-colors duration-160">Ustawienia cookies</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+  window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });
+
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.innerHTML = open ? '<i data-lucide="x" class="w-4.5 h-4.5"></i>' : '<i data-lucide="menu" class="w-4.5 h-4.5"></i>';
+      if (window.lucide) lucide.createIcons();
+    });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.innerHTML = '<i data-lucide="menu" class="w-4.5 h-4.5"></i>';
+      if (window.lucide) lucide.createIcons();
+    }));
+  })();
+
+  // scrollspy for TOC
+  (function () {
+    const links = document.querySelectorAll('.toc-link');
+    if (!links.length) return;
+    const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href')));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = '#' + entry.target.id;
+          links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === id));
+        }
+      });
+    }, { rootMargin: '-120px 0px -70% 0px' });
+    sections.forEach(s => s && io.observe(s));
+  })();
+</script>
+
+</body>
+</html>
