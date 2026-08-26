@@ -1,0 +1,12 @@
+{
+  "getyourguide": {
+    "partnerId": "WCVDVJO",
+    "attributionScript": "https://widget.getyourguide.com/dist/pa.umd.production.min.js",
+    "note": "Skrypt Partner Attribution jest wklejony raz w <head> index.html (i propaguje się do nowych artykułów, bo generator kopiuje head z index.html). Dzięki niemu KAŻDY zwykły link do getyourguide.com na stronie liczy się jako polecenie — nie trzeba doklejać partner_id do pojedynczych linków. Link do wyszukiwania danego miasta buduje się jako https://www.getyourguide.com/s/?q=<Miasto>.",
+    "searchUrlTemplate": "https://www.getyourguide.com/s/?q={destination}"
+  },
+  "airalo": {
+    "link": "https://airalo.pxf.io/B5YQKW",
+    "note": "Jeden uniwersalny link afiliacyjny (Impact) — używaj go wszędzie tam, gdzie artykuł dotyczy wyjazdu zagranicznego / internetu w podróży / eSIM. Nie generuje się per kraj."
+  }
+}
