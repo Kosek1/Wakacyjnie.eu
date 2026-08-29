@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Japonia w 2026 roku podnosi niemal wszystko: Fuji, Kioto, wizy i podatek wylotowy — OgarnijWakacje.pl</title>
+<meta name="description" content="Rekordowe 42,7 miliona turystów w ciągu roku sprawiło, że Japonia w 2026 roku niemal jednocześnie podniosła opłatę za wejście na Fuji, podatek hotelowy w Kioto, cenę wizy i podatek wylotowy z kraju." />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<meta name="impact-site-verification" content="eac70558-fdec-4e3d-9897-d2bd83044a36" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          display: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui'],
+        },
+        colors: {
+          ink: {
+            950: '#141310',
+            900: '#1c1a16',
+            800: '#2a2722',
+            700: '#3e3a32',
+            600: '#5c5648',
+            500: '#7a7364',
+            400: '#a39c8c',
+            300: '#c7c0b1',
+            200: '#e2ddd0',
+            100: '#efebe1',
+            50: '#faf8f3',
+          },
+          accent: {
+            50: '#fff4e9',
+            100: '#ffe2c4',
+            300: '#ffb570',
+            500: '#e8752e',
+            600: '#c85f1e',
+            700: '#a14a17',
+          },
+          leaf: {
+            500: '#3f6a52',
+            600: '#345a44',
+          },
+          teal: {
+            50: '#eaf7f6',
+            100: '#cdeeec',
+            500: '#4fb8b3',
+            600: '#3b9a95',
+          },
+        },
+        boxShadow: {
+          soft: '0 1px 2px rgba(20,19,16,0.04), 0 12px 28px -8px rgba(20,19,16,0.10)',
+          softer: '0 1px 1px rgba(20,19,16,0.03), 0 6px 16px -6px rgba(20,19,16,0.08)',
+          lifted: '0 30px 70px -20px rgba(20,19,16,0.35)',
+        },
+        transitionTimingFunction: {
+          out: 'cubic-bezier(0.23, 1, 0.32, 1)',
+          inout: 'cubic-bezier(0.77, 0, 0.175, 1)',
+        },
+        borderRadius: {
+          '4xl': '2rem',
+        },
+      },
+    },
+  };
+</script>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+<style>
+  :root{
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  html{ scroll-behavior: smooth; }
+  body{ font-family:'Inter', sans-serif; background:#faf8f3; }
+  h1,h2,h3,h4,h5,.font-display{ font-family:'Plus Jakarta Sans', sans-serif; }
+
+  ::selection{ background:#ffb570; color:#1c1a16; }
+
+  /* focus ring — visible, calm */
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline: 2px solid #e8752e;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* reveal-on-scroll */
+  .reveal{ opacity:0; transform: translateY(14px); transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out); }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  /* cookie consent banner */
+  #cookieBanner{ opacity:0; transform: translateY(16px); transition: opacity 260ms var(--ease-out), transform 260ms var(--ease-out); }
+  #cookieBanner.in{ opacity:1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ transition: opacity 200ms ease !important; transform:none !important; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  /* press feedback for interactive controls */
+  .pressable{ transition: transform 160ms var(--ease-out); }
+  .pressable:active{ transform: scale(0.97); }
+
+  /* range slider */
+  input[type="range"]{ -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:99px; background:#e2ddd0; outline:none; }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%;
+    background:#e8752e; border:3px solid #fff; box-shadow:0 1px 4px rgba(20,19,16,0.35);
+    cursor:pointer; transition: transform 160ms var(--ease-out);
+  }
+  input[type="range"]:active::-webkit-slider-thumb{ transform: scale(1.15); }
+  input[type="range"]::-moz-range-thumb{
+    width:16px; height:16px; border-radius:50%; background:#e8752e; border:3px solid #fff;
+    box-shadow:0 1px 4px rgba(20,19,16,0.35); cursor:pointer;
+  }
+
+  /* ranking bars */
+
+  /* quiz */
+  .quiz-step{ display:none; }
+  .quiz-step.active{ display:block; }
+  .quiz-result-panel{ display:none; }
+  .quiz-result-panel.active{ display:grid; }
+
+  /* showcase tabs */
+  .app-screen{ position:absolute; inset:0; opacity:0; transform: scale(1.02); filter: blur(6px); transition: opacity 480ms var(--ease-in-out), transform 480ms var(--ease-in-out), filter 480ms var(--ease-in-out); pointer-events:none; }
+  .app-screen.active{ opacity:1; transform: scale(1); filter: blur(0); pointer-events:auto; }
+  .showcase-progress > div{ height:100%; width:0%; background:#ffb570; }
+  .showcase-progress > div.filling{ animation: fillbar 5000ms linear forwards; }
+  .showcase-progress > div.filled{ width:100%; }
+  @keyframes fillbar{ from{ width:0%; } to{ width:100%; } }
+
+  /* mobile menu */
+  #mobileMenu{ transform: translateY(-8px); opacity:0; pointer-events:none; transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out); }
+  #mobileMenu.open{ transform: translateY(0); opacity:1; pointer-events:auto; }
+
+  .trip-card{ background-size:cover; background-position:center; }
+  .glass-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+  /* subtle float animation for hero decorative chips */
+  @keyframes floaty{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
+  .float-slow{ animation: floaty 6s var(--ease-in-out) infinite; }
+  .float-slower{ animation: floaty 8s var(--ease-in-out) infinite; animation-delay: .8s; }
+
+  /* "Poznaj aplikację" nav item — tiny phone + palm duo that wakes up on hover */
+  .app-nav-icons{ transform-origin: bottom left; }
+  .app-nav-phone, .app-nav-palm{
+    transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine){
+    .app-nav-link:hover .app-nav-phone{ transform: translateY(-3px) rotate(-8deg); box-shadow: 0 3px 8px rgba(232,117,46,0.22); }
+    .app-nav-link:hover .app-nav-palm{ transform: translateY(-4px) rotate(10deg); }
+    .app-nav-link:active .app-nav-phone{ transform: translateY(-1px) rotate(-4deg) scale(0.95); }
+    .app-nav-link:active .app-nav-palm{ transform: translateY(-2px) rotate(6deg) scale(0.95); }
+  }
+
+  /* flying parrot decoration in the hero background */
+  .parrot-fly{ position:absolute; left:-10%; top:58%; filter: drop-shadow(0 6px 10px rgba(20,19,16,0.18)); animation: parrotFly 22s var(--ease-in-out) infinite; }
+  @keyframes parrotFly{
+    0%   { left:-10%; top:60%; transform: translateY(0) rotate(-4deg); }
+    20%  { left:18%;  top:38%; transform: translateY(-14px) rotate(2deg); }
+    45%  { left:50%;  top:20%; transform: translateY(8px) rotate(-3deg); }
+    70%  { left:80%;  top:34%; transform: translateY(-10px) rotate(3deg); }
+    100% { left:112%; top:18%; transform: translateY(0) rotate(-4deg); }
+  }
+
+  /* animated weather badge icon */
+  #weatherBadgeIcon svg{ overflow: visible; }
+  .wx-sun{ transform-origin: 16px 16px; animation: wxSpin 26s linear infinite; }
+  @keyframes wxSpin{ to{ transform: rotate(360deg); } }
+  .wx-glow{ animation: wxGlow 3.2s var(--ease-in-out) infinite; transform-origin: 16px 16px; }
+  @keyframes wxGlow{ 0%,100%{ opacity:.55; transform: scale(1); } 50%{ opacity:.9; transform: scale(1.12); } }
+  .wx-cloud{ animation: wxSway 6s var(--ease-in-out) infinite; transform-origin: 16px 20px; }
+  @keyframes wxSway{ 0%,100%{ transform: translateX(-1.5px); } 50%{ transform: translateX(1.5px); } }
+  .wx-drop{ animation: wxDrop 1.3s linear infinite; }
+  @keyframes wxDrop{ 0%{ transform: translateY(-2px); opacity:0; } 25%{ opacity:1; } 90%{ opacity:0; } 100%{ transform: translateY(7px); opacity:0; } }
+  .wx-flake{ animation: wxFlake 2.6s linear infinite; }
+  @keyframes wxFlake{ 0%{ transform: translate(0,-2px); opacity:0; } 20%{ opacity:1; } 90%{ opacity:0; } 100%{ transform: translate(2px,8px); opacity:0; } }
+  .wx-fog-line{ animation: wxFog 3.4s var(--ease-in-out) infinite; }
+  @keyframes wxFog{ 0%,100%{ transform: translateX(-1.5px); opacity:.55; } 50%{ transform: translateX(1.5px); opacity:1; } }
+  .wx-bolt{ animation: wxBolt 2s ease-in-out infinite; }
+  @keyframes wxBolt{ 0%,45%,100%{ opacity:.35; } 50%,58%{ opacity:1; } 65%{ opacity:.35; } }
+
+  /* vintage postcard treatment for the hero card */
+  .postcard-card{
+    position:relative;
+    background:
+      radial-gradient(ellipse at center, transparent 60%, rgba(120,86,38,.05) 100%),
+      radial-gradient(circle at 18% 28%, rgba(120,86,38,.035) 0, transparent 3px) 0 0/150px 150px,
+      radial-gradient(circle at 66% 74%, rgba(120,86,38,.03) 0, transparent 3px) 0 0/170px 170px,
+      radial-gradient(circle at 82% 18%, rgba(120,86,38,.035) 0, transparent 3px) 0 0/130px 130px,
+      radial-gradient(circle at 30% 88%, rgba(120,86,38,.03) 0, transparent 3px) 0 0/190px 190px,
+      #ffffff;
+    box-shadow: 0 0 0 2px #b8863f, 0 0 0 8px #ffffff, 0 0 0 10px #b8863f, 0 25px 70px -20px rgba(20,19,16,.35);
+  }
+  .postcard-corner{ position:absolute; width:30px; height:30px; opacity:.85; z-index:1; }
+  .postcard-watermark{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:.06; z-index:-1; }
+  .postcard-stamp{
+    position:absolute; top:18px; right:18px; width:78px; z-index:2;
+    background:#ffffff; border:2px dashed #b8863f; border-radius:2px;
+    padding:8px 6px 7px; text-align:center; transform:rotate(6deg);
+    box-shadow: 2px 3px 6px rgba(70,45,15,.25);
+  }
+  .postcard-postmark{
+    position:absolute; top:40px; right:66px; z-index:3; width:82px; height:82px;
+    opacity:.8; transform:rotate(-12deg); mix-blend-mode:multiply; pointer-events:none;
+  }
+
+  /* WINTER 2026 destinations — bento grid */
+  .winter-card{ position:relative; border-radius:1.75rem; overflow:hidden; background:#0b1830; box-shadow: 0 1px 1px rgba(20,19,16,0.03), 0 6px 16px -6px rgba(20,19,16,0.08); transition: transform 420ms var(--ease-out), box-shadow 420ms var(--ease-out), opacity 380ms var(--ease-out); }
+  .winter-card:hover{ transform: translateY(-6px); box-shadow: 0 25px 60px -20px rgba(11,24,48,0.45); }
+  .winter-card img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition: transform 700ms var(--ease-out); }
+  .winter-card:hover img{ transform: scale(1.07); }
+  .winter-card .winter-scrim{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(11,20,38,0.05) 0%, rgba(11,20,38,0.18) 42%, rgba(8,15,30,0.92) 100%); }
+  .winter-card .winter-ring{ position:absolute; inset:0; border-radius:1.75rem; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); transition: box-shadow 420ms var(--ease-out); pointer-events:none; }
+  .winter-card:hover .winter-ring{ box-shadow: inset 0 0 0 1.5px rgba(255,181,112,0.55); }
+  .winter-card.is-hidden{ opacity:0; transform: scale(0.94); pointer-events:none; }
+  .winter-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22); }
+  .winter-cta{ transition: transform 280ms var(--ease-out); }
+  .winter-card:hover .winter-cta{ transform: translateX(3px); }
+</style>
+<script type="text/javascript">(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7669115-a968-452d-a9ac-d18ff8067e651.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');</script>
+</head>
+<body class="text-ink-900 antialiased bg-[#faf8f3]">
+<!-- Metadane tego artykułu — czyta je build.js na Netlify przy każdym
+     wdrożeniu, żeby automatycznie zbudować data/articles.json (karty na
+     stronie głównej). Nie edytuj tego bloku ręcznie. -->
+<script type="application/json" id="article-meta">{"slug": "japonia-fala-oplat-turystycznych-2026", "title": "Japonia w 2026 roku podnosi niemal wszystko: Fuji, Kioto, wizy i podatek wylotowy", "excerpt": "Rekordowe 42,7 miliona turystów w ciągu roku sprawiło, że Japonia w 2026 roku niemal jednocześnie podniosła opłatę za wejście na Fuji, podatek hotelowy w Kioto, cenę wizy i podatek wylotowy z kraju.", "tag": "Formalności", "tagColor": "#6d3fc9", "image": "https://images.pexels.com/photos/27831328/pexels-photo-27831328.jpeg?auto=compress&cs=tinysrgb&w=1200", "gradient": "linear-gradient(160deg,#4a5d7a,#c9b896 55%,#eef0e8)", "date": "2026-08-28", "dateLabel": "28 sierpnia 2026", "readTime": "8 min", "url": "artykuly/japonia-fala-oplat-turystycznych-2026.html", "category": "newsy"}</script>
+<header id="site-header" class="sticky top-0 z-50 bg-[#faf8f3]/80 backdrop-blur-md border-b border-ink-900/[0.06]">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <nav class="flex items-center justify-between h-16 sm:h-[72px]">
+      <a href="../index.html" class="flex items-center gap-2.5 shrink-0">
+        <img src="../logo.svg" alt="OgarnijWakacje.pl" class="h-12 sm:h-14 w-auto" />
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-[13.5px] font-medium text-ink-600">
+        <a href="../newsy.html" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="../miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
+        <a href="../ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="../poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="../poznaj-aplikacje.html" class="app-nav-link group relative inline-flex items-center gap-2 hover:text-ink-900 transition-colors duration-160">
+          Poznaj aplikację
+          <span class="app-nav-icons relative inline-flex items-center w-[30px] h-[20px] shrink-0" aria-hidden="true">
+            <span class="app-nav-phone absolute left-0 top-0 grid place-items-center w-[18px] h-[18px] rounded-[6px] bg-accent-50 text-accent-600 ring-1 ring-accent-500/15">
+              <i data-lucide="smartphone" class="w-2.5 h-2.5"></i>
+            </span>
+            <span class="app-nav-palm absolute left-[13px] top-[2px] grid place-items-center w-[15px] h-[15px] rounded-full bg-leaf-500/10 text-leaf-500">
+              <i data-lucide="palmtree" class="w-2.5 h-2.5"></i>
+            </span>
+          </span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="../index.html#pobierz" class="pressable hidden sm:inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white text-[13.5px] font-semibold px-4 py-2.5 rounded-full shadow-softer transition-colors duration-160">
+          Zapisz się do beta
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+        <button id="menuBtn" aria-label="Otwórz menu" aria-expanded="false" class="pressable md:hidden grid place-items-center w-10 h-10 rounded-full border border-ink-900/10">
+          <i data-lucide="menu" class="w-4.5 h-4.5"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden absolute inset-x-0 top-full bg-[#faf8f3]/95 backdrop-blur-md border-b border-ink-900/[0.06] shadow-soft">
+    <div class="max-w-7xl mx-auto px-5 py-5 flex flex-col gap-1 text-[15px] font-medium">
+      <a href="../newsy.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Newsy</a>
+      <a href="../miejsca.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Miejsca</a>
+      <a href="../ciekawostki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Ciekawostki</a>
+      <a href="../poradniki.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5">Poradniki</a>
+      <a href="../poznaj-aplikacje.html" class="px-3 py-2.5 rounded-lg hover:bg-ink-900/5 flex items-center gap-2">
+        Poznaj aplikację
+        <span class="relative inline-flex items-center w-[26px] h-[18px] shrink-0" aria-hidden="true">
+          <span class="absolute left-0 top-0 grid place-items-center w-4 h-4 rounded-[5px] bg-accent-50 text-accent-600 ring-1 ring-accent-500/15">
+            <i data-lucide="smartphone" class="w-2.5 h-2.5"></i>
+          </span>
+          <span class="absolute left-[11px] top-[1px] grid place-items-center w-3.5 h-3.5 rounded-full bg-leaf-500/10 text-leaf-500">
+            <i data-lucide="palmtree" class="w-2.5 h-2.5"></i>
+          </span>
+        </span>
+      </a>
+      <a href="../index.html#pobierz" class="mt-2 text-center bg-ink-900 text-white px-3 py-3 rounded-full font-semibold">Zapisz się do beta</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <article class="py-14 sm:py-20">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      <a href="../newsy.html" class="flex w-fit items-center gap-2 text-[13px] font-semibold text-ink-500 hover:text-ink-900 transition-colors duration-160 mb-8">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Wróć do newsów
+      </a>
+
+      <span class="inline-block text-[11.5px] font-bold uppercase tracking-wide mb-3" style="color:#6d3fc9">Formalności</span>
+      <h1 class="font-display font-extrabold tracking-tight text-[clamp(1.7rem,4.2vw,2.6rem)] leading-[1.12] text-ink-950 mb-4">Japonia w 2026 roku podnosi niemal wszystko: Fuji, Kioto, wizy i podatek wylotowy</h1>
+      <div class="text-[12.5px] text-ink-400 uppercase tracking-wide mb-8">8 min · 28 sierpnia 2026 · Redakcja OW</div>
+
+      <div class="relative aspect-[16/9] rounded-3xl overflow-hidden border border-ink-900/[0.07] mb-10" style="background-image:linear-gradient(160deg,#4a5d7a,#c9b896 55%,#eef0e8);background-size:cover;">
+        <img src="https://images.pexels.com/photos/27831328/pexels-photo-27831328.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover">
+      </div>
+
+      <div class="prose-article text-[16px] leading-[1.75] text-ink-700 space-y-5">
+        <p>Japonia od kilku lat notuje kolejne rekordy odwiedzin, a rok 2026 przyniósł liczbę, której jeszcze niedawno nikt się nie spodziewał — 42,7 miliona turystów zagranicznych w ciągu dwunastu miesięcy. To więcej, niż mieszka w samej Tokio z całą aglomeracją. Skutek jest taki, że praktycznie każda instytucja odpowiedzialna za popularne miejsca w kraju — od władz Kioto po zarządcę Fudżi — w tym samym roku sięgnęła po ten sam instrument: podwyżkę opłat dla zagranicznych gości.</p>
+        <p>Najbardziej symboliczna zmiana dotyczy samej góry Fuji. Od sezonu wspinaczkowego lipiec–wrzesień 2026 opłata za wejście na którykolwiek z czterech szlaków prowadzących na szczyt wynosi 4000 jenów, czyli około 27 dolarów. To dwukrotność stawki, która do 2024 roku obowiązywała wyłącznie na najpopularniejszym szlaku Yoshida — tam wstęp kosztował 2000 jenów. Teraz jednolita, wyższa opłata objęła wszystkie cztery trasy, a na Yoshida doszło dodatkowe ograniczenie: maksymalnie 4000 wspinaczy dziennie i obowiązkowa wcześniejsza rezerwacja online. Władze prefektury Yamanashi tłumaczą to wprost — przy szczycie sezonu na wąskich górskich ścieżkach dochodziło do korków, a część turystów próbowała zdobyć szczyt bez odpowiedniego przygotowania, licząc na nocny, jednorazowy "szturm" bez noclegu w schronisku.</p>
+        <p><div class="my-8"><img src="https://images.pexels.com/photos/29537651/pexels-photo-29537651.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="Rząd czerwonych bram torii w Fushimi Inari w Kioto" loading="lazy" onerror="this.parentElement.remove()" class="w-full aspect-[16/9] object-cover rounded-2xl"><p class="text-[12px] text-ink-400 mt-2 text-center">Fushimi Inari w Kioto — jedna z atrakcji, przez które miasto od marca 2026 roku pobiera znacznie wyższy podatek hotelowy.</p></div></p>
+        <p>Kioto poszło w zupełnie innym kierunku niż Fuji — zamiast limitować liczbę gości, radykalnie przebudowało system podatku hotelowego, który płaci się za każdą noc pobytu. Od 1 marca 2026 roku obowiązuje pięciostopniowa skala zamiast dotychczasowej trzystopniowej, a górny próg wzrósł dziesięciokrotnie. Kto zarezerwuje pokój za 100 000 jenów za dobę i więcej — a to standardowa cena w kilku luksusowych hotelach w centrum miasta — zapłaci 10 000 jenów podatku od osoby za noc, czyli około 66 dolarów. Dla porównania, jeszcze w 2025 roku najwyższa stawka wynosiła 1000 jenów niezależnie od tego, ile kosztował pokój.</p>
+        <p><div class="my-2"><p class="text-center text-[10.5px] font-bold uppercase tracking-[0.2em] text-ink-300 mb-1">Reklama</p>  <!-- PARTNER: RANKOMAT INSURANCE PROMO -->
+  <section id="rankomatAd" class="py-10 sm:py-14">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="bg-gradient-to-br from-[#eaf6e1] via-[#fdf7ea] to-[#e7f4f5] rounded-4xl p-7 sm:p-14 relative overflow-hidden border border-leaf-500/10 shadow-lifted">
+        <div class="pointer-events-none absolute -top-24 -right-16 w-80 h-80 rounded-full bg-leaf-500/10 blur-3xl"></div>
+        <div class="pointer-events-none absolute -bottom-24 -left-16 w-72 h-72 rounded-full bg-teal-400/10 blur-3xl"></div>
+
+        <div class="relative grid lg:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
+          <div>
+            <div class="inline-flex items-center gap-2.5 mb-6 bg-white/80 backdrop-blur border border-ink-900/[0.06] rounded-full pl-4 pr-2 py-1.5 shadow-softer">
+              <span class="font-display font-extrabold text-[13.5px] text-ink-950 tracking-tight">OgarnijWakacje.pl</span>
+              <span class="text-ink-300 text-[13px]">×</span>
+              <span class="inline-flex items-center bg-[#7cbf3f] text-white font-bold text-[12.5px] px-3 py-1 rounded-full">rankomat.pl</span>
+            </div>
+
+            <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-600 mb-2">Partner podróży</div>
+            <h2 class="font-display font-extrabold text-[clamp(1.6rem,3vw,2.3rem)] text-ink-950 tracking-tight mb-4">Zanim spakujesz walizkę, zabezpiecz to, co najważniejsze</h2>
+            <p class="text-[14.5px] text-ink-500 leading-relaxed max-w-lg mb-8">NFZ nie pokrywa leczenia za granicą, a wizyta w zagranicznym szpitalu potrafi kosztować równowartość kilku wakacji. Dobre ubezpieczenie podróżne to nie formalność — to jedyna rzecz, dzięki której nagły katar, skręcona kostka albo odwołany lot zostają tylko wspomnieniem, a nie problemem finansowym. Z Rankomat.pl porównasz oferty kilkunastu ubezpieczycieli i wybierzesz taką, która pasuje do Twojej trasy w mniej niż 5 minut.</p>
+
+            <div class="space-y-4 mb-9">
+              <div class="flex items-start gap-3">
+                <span class="grid place-items-center w-7 h-7 rounded-full bg-leaf-500/15 text-leaf-600 shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></span>
+                <p class="text-[13.5px] text-ink-700 leading-relaxed"><span class="font-semibold text-ink-950">Koszty leczenia za granicą</span> — bez zamartwiania się rachunkiem ze szpitala.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="grid place-items-center w-7 h-7 rounded-full bg-leaf-500/15 text-leaf-600 shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></span>
+                <p class="text-[13.5px] text-ink-700 leading-relaxed"><span class="font-semibold text-ink-950">Odwołanie wyjazdu</span> — zwrot kosztów, gdy plany zmienią się w ostatniej chwili.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="grid place-items-center w-7 h-7 rounded-full bg-leaf-500/15 text-leaf-600 shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></span>
+                <p class="text-[13.5px] text-ink-700 leading-relaxed"><span class="font-semibold text-ink-950">Bagaż i sprzęt</span> — ochrona na wypadek zgubienia lub uszkodzenia w podróży.</p>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-4">
+              <a href="https://partner.rankomat.pl/tracking/click/fc6c6083173406e55e047a048b1a23a8" target="_blank" rel="sponsored noopener" class="pressable inline-flex items-center gap-2 bg-[#7cbf3f] hover:bg-[#6da936] text-white font-bold text-[14px] px-6 py-3 rounded-full shadow-softer transition-colors duration-160">
+                Porównaj ceny na Rankomat.pl
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+              <img src="https://partner.rankomat.pl/tracking/media/fc6c6083173406e55e047a048b1a23a8" width="1" height="1" border="0" alt="" style="position:absolute;width:1px;height:1px;overflow:hidden;" />
+            </div>
+            <p class="text-[11.5px] text-ink-400 mt-4 max-w-md">Link afiliacyjny — korzystając z niego, wspierasz rozwój OgarnijWakacje.pl. Cena ubezpieczenia się nie zmienia.</p>
+          </div>
+
+          <div class="relative">
+            <div class="relative rounded-3xl overflow-hidden shadow-lifted -rotate-1">
+              <img src="https://images.pexels.com/photos/26107496/pexels-photo-26107496.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Szczęśliwa rodzina na wakacjach nad morzem" class="w-full h-[340px] sm:h-[400px] object-cover" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-ink-950/0 to-ink-950/0"></div>
+              <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between gap-3">
+                <div class="inline-flex items-center gap-2 bg-white/95 backdrop-blur rounded-full pl-2.5 pr-4 py-2 shadow-softer">
+                  <span class="grid place-items-center w-8 h-8 rounded-full bg-leaf-500/15 text-leaf-600"><i data-lucide="shield-check" class="w-4 h-4"></i></span>
+                  <span class="text-[13px] font-bold text-ink-950">Bezpieczne wakacje bez stresu</span>
+                </div>
+              </div>
+            </div>
+            <div class="absolute -top-4 -right-4 w-20 h-20 rounded-2xl bg-white shadow-lifted grid place-items-center rotate-6">
+              <i data-lucide="heart-handshake" class="w-8 h-8 text-[#7cbf3f]"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<p class="text-center text-[12.5px] font-semibold text-ink-400 -mt-4 mb-2">↓ Reszta artykułu znajdziesz poniżej</p></div></p>
+        <p>Te dwie zmiany — Fuji i Kioto — to tylko część znacznie szerszego pakietu, który wszedł w życie w różnych miesiącach 2026 roku. Poniższa tabela zestawia najważniejsze z nich w jednym miejscu, żeby łatwiej było ocenić skalę i moment wejścia w życie każdej z nich.</p>
+        <p><div class="my-8 overflow-hidden rounded-2xl border border-ink-900/10"><table class="w-full text-[13px] sm:text-[14px] border-collapse"><thead><tr class="bg-ink-50 text-left"><th class="py-3 px-4 font-bold text-ink-900">Opłata</th><th class="py-3 px-4 font-bold text-ink-900">Wcześniej</th><th class="py-3 px-4 font-bold text-ink-900">Od 2026</th><th class="py-3 px-4 font-bold text-ink-900">Od kiedy</th></tr></thead><tbody><tr class="border-t border-ink-900/10"><td class="py-3 px-4 text-ink-700">Wejście na Fuji (szlak Yoshida)</td><td class="py-3 px-4 text-ink-500">2000 JPY</td><td class="py-3 px-4 font-semibold text-ink-900">4000 JPY (~27 USD)</td><td class="py-3 px-4 text-ink-500">lipiec 2026</td></tr><tr class="border-t border-ink-900/10 bg-ink-50/50"><td class="py-3 px-4 text-ink-700">Podatek hotelowy w Kioto (pokój 100 000+ JPY)</td><td class="py-3 px-4 text-ink-500">1000 JPY</td><td class="py-3 px-4 font-semibold text-ink-900">10 000 JPY (~66 USD)</td><td class="py-3 px-4 text-ink-500">1 marca 2026</td></tr><tr class="border-t border-ink-900/10"><td class="py-3 px-4 text-ink-700">Wstęp na Zamek Himeji (obcokrajowcy)</td><td class="py-3 px-4 text-ink-500">1000 JPY</td><td class="py-3 px-4 font-semibold text-ink-900">2500 JPY (~17 USD)</td><td class="py-3 px-4 text-ink-500">1 marca 2026</td></tr><tr class="border-t border-ink-900/10 bg-ink-50/50"><td class="py-3 px-4 text-ink-700">Wiza jednorazowa</td><td class="py-3 px-4 text-ink-500">3000 JPY</td><td class="py-3 px-4 font-semibold text-ink-900">15 000 JPY (~102 USD)</td><td class="py-3 px-4 text-ink-500">1 kwietnia 2026</td></tr><tr class="border-t border-ink-900/10"><td class="py-3 px-4 text-ink-700">Podatek wylotowy z Japonii</td><td class="py-3 px-4 text-ink-500">1000 JPY</td><td class="py-3 px-4 font-semibold text-ink-900">3000 JPY (~20 USD)</td><td class="py-3 px-4 text-ink-500">1 lipca 2026</td></tr></tbody></table></div></p>
+        <p>Warto zwrócić uwagę na dwa detale, które łatwo przeoczyć. Po pierwsze, podwyżka wizy jednorazowej z 3000 do 15 000 jenów to pierwsza zmiana tej opłaty od 1978 roku — a więc od blisko pół wieku — i dotyczy wyłącznie obywateli krajów, które nie mają z Japonią ruchu bezwizowego dla krótkich pobytów turystycznych (Polska, dzięki umowie wizowej, do tej grupy nie należy). Po drugie, w Himeji stawka 2500 jenów obowiązuje wyłącznie osoby niebędące mieszkańcami Japonii — rezydenci nadal płacą 1000 jenów, co japońskie władze samorządowe coraz częściej stosują jako model: niższa cena dla lokalnej społeczności, wyższa dla gości z zagranicy.</p>
+        <p>Do tego dochodzi zmiana, która może zaskoczyć osoby przyzwyczajone do zakupów tax-free w Japonii. Od 1 listopada 2026 roku system zwolnienia z podatku konsumpcyjnego przy kasie przestaje działać w dotychczasowej formie — zamiast natychmiastowego rabatu turysta płaci pełną cenę, a zwrot podatku odbiera dopiero na lotnisku przy wylocie, po okazaniu wszystkich zakupionych towarów kontroli celnej. To rozwiązanie ma ograniczyć nadużycia, w których towary kupione rzekomo na wywóz w rzeczywistości trafiały do dalszej odsprzedaży w Japonii.</p>
+        <p>Japońskie władze konsekwentnie tłumaczą całą serię podwyżek tym samym argumentem: rekordowy ruch turystyczny obciąża infrastrukturę, transport publiczny i codzienne życie mieszkańców w miejscach takich jak Kioto czy okolice Fuji szybciej, niż rosną budżety samorządów na jej utrzymanie. Dla podróżnych z Polski, którzy najczęściej odwiedzają Japonię raz w życiu i planują dwu-trzytygodniowy objazd, łączny efekt wszystkich tych zmian to zwykle dodatkowe kilkaset złotych na całą podróż — zauważalne, ale wciąż niewielkie w porównaniu z kosztem samego przelotu.</p>
+      </div>
+
+      <div class="mt-14 pt-8 border-t border-ink-900/[0.08] flex flex-wrap items-center justify-between gap-4">
+        <a href="../newsy.html" class="pressable inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-950 text-white font-semibold text-[13.5px] px-5 py-3 rounded-full transition-colors duration-160">
+          Zobacz więcej newsów
+        </a>
+        <a href="../index.html#pobierz" class="pressable inline-flex items-center gap-2 bg-white hover:bg-ink-50 border border-ink-900/12 text-ink-900 font-semibold text-[13.5px] px-5 py-3 rounded-full transition-colors duration-160">
+          Pobierz aplikację
+        </a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="border-t border-ink-900/[0.07] py-12">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex flex-wrap items-center justify-between gap-6 mb-8">
+      <a href="../index.html" class="flex items-center gap-2.5">
+        <img src="../logo.svg" alt="OgarnijWakacje.pl" class="h-11 w-auto" />
+      </a>
+      <div class="flex flex-wrap gap-x-7 gap-y-2 text-[12.5px] font-medium text-ink-500">
+        <a href="../newsy.html" class="hover:text-ink-900 transition-colors duration-160">Newsy</a>
+        <a href="../miejsca.html" class="hover:text-ink-900 transition-colors duration-160">Miejsca</a>
+        <a href="../ciekawostki.html" class="hover:text-ink-900 transition-colors duration-160">Ciekawostki</a>
+        <a href="../poradniki.html" class="hover:text-ink-900 transition-colors duration-160">Poradniki</a>
+        <a href="../poznaj-aplikacje.html" class="hover:text-ink-900 transition-colors duration-160">Poznaj aplikację</a>
+        <a href="../index.html#pobierz" class="hover:text-ink-900 transition-colors duration-160">Beta</a>
+      </div>
+    </div>
+    <div class="flex flex-wrap items-center gap-2 mb-6 text-[12.5px] text-ink-500">
+      <i data-lucide="handshake" class="w-3.5 h-3.5 text-leaf-500"></i>
+      <span>Zaufany partner OgarnijWakacje.pl:</span>
+      <a href="https://partner.rankomat.pl/tracking/click/fc6c6083173406e55e047a048b1a23a8" target="_blank" rel="sponsored noopener" class="font-semibold text-ink-800 hover:text-ink-900 underline decoration-ink-300 underline-offset-2 transition-colors duration-160">Rankomat.pl</a>
+      <span class="text-ink-400">— porównywarka ubezpieczeń podróżnych</span>
+    </div>
+    <div class="pt-6 border-t border-ink-900/[0.07] flex flex-wrap justify-between gap-3 text-[12px] text-ink-400">
+      <span>© 2026 OgarnijWakacje.pl. Wszelkie prawa zastrzeżone.</span>
+      <span class="flex gap-4"><a href="#" class="hover:text-ink-700 transition-colors duration-160">Redakcja</a><a href="#" class="hover:text-ink-700 transition-colors duration-160">Reklama</a><a href="../regulamin.html" class="hover:text-ink-700 transition-colors duration-160">Regulamin</a><a href="../polityka-prywatnosci.html" class="hover:text-ink-700 transition-colors duration-160">RODO</a><a href="#" id="cookieSettingsLink" class="hover:text-ink-700 transition-colors duration-160">Ustawienia cookies</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+  window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.innerHTML = open ? '<i data-lucide="x" class="w-4.5 h-4.5"></i>' : '<i data-lucide="menu" class="w-4.5 h-4.5"></i>';
+      if (window.lucide) lucide.createIcons();
+    });
+  })();
+  document.querySelectorAll('.pressable').forEach(function (el) {
+    el.classList.add('transition-transform');
+  });
+</script>
+</body>
+</html>
