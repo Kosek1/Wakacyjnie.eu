@@ -6,3 +6,46 @@
   for = "/data/articles.json"
   [headers.values]
     Cache-Control = "public, max-age=60"
+
+# Duplikaty artykułów zostały kiedyś wgrane też do katalogu głównego
+# (identyczna treść pod dwoma adresami = duplicate content dla Google).
+# Docelowe pliki żyją w /artykuly/ — te trafiają tam przez stałe 301,
+# żeby nie zgubić linków, które już mogły zaindeksować starą lokalizację.
+[[redirects]]
+  from = "/darmowy-bagaz-podreczny-nowe-prawa-pasazerow-ue.html"
+  to = "/artykuly/darmowy-bagaz-podreczny-nowe-prawa-pasazerow-ue.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/egipt-nowa-e-wiza-zasady-wjazdu-2026.html"
+  to = "/artykuly/egipt-nowa-e-wiza-zasady-wjazdu-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/etias-ees-2026-kogo-naprawde-dotycza.html"
+  to = "/artykuly/etias-ees-2026-kogo-naprawde-dotycza.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/najtansze-kierunki-lotnicze-jesien-2026.html"
+  to = "/artykuly/najtansze-kierunki-lotnicze-jesien-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/podatek-turystyczny-barcelona-hiszpania-2026.html"
+  to = "/artykuly/podatek-turystyczny-barcelona-hiszpania-2026.html"
+  status = 301
+  force = true
+
+# Stara domena Netlify — jeśli zostanie skasowana/przekierowana ręcznie
+# w ustawieniach Netlify, ta reguła jest nieużywana; zostawiona jako
+# siatka bezpieczeństwa, gdyby wakacyjnie.netlify.app nadal trafiał na ten sam projekt.
+[[redirects]]
+  from = "https://wakacyjnie.netlify.app/*"
+  to = "https://www.ogarnijwakacje.pl/:splat"
+  status = 301
+  force = true

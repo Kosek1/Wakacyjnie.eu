@@ -118,13 +118,30 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
 """
 
 
-def make_head(title, description):
+SITE_URL = "https://www.ogarnijwakacje.pl"
+
+
+def make_head(title, description, canonical_url=None):
     h = HEAD
-    h = h.replace(
-        "<title>Wakacyjny Organizer — Zaplanuj wyjazd bez chaosu</title>",
-        f"<title>{html.escape(title)} — Wakacyjny Organizer</title>",
+    # Podmienia CAŁY tytuł strony głównej (niezależnie od jej aktualnej treści)
+    # na tytuł artykułu + brand — poprzednia wersja szukała dosłownego,
+    # zahardkodowanego tytułu strony głównej i po każdej zmianie tego tytułu
+    # (np. przy rebrandingu) po cichu przestawała działać, zostawiając w
+    # artykułach tytuł strony głównej zamiast właściwego tytułu artykułu.
+    h = re.sub(
+        r"<title>.*?</title>",
+        f"<title>{html.escape(title)} — OgarnijWakacje.pl</title>",
+        h,
+        count=1,
+        flags=re.S,
     )
     h = re.sub(r'<meta name="description"[^>]*/>', f'<meta name="description" content="{html.escape(description)}" />', h)
+    if canonical_url:
+        canonical_tag = f'<link rel="canonical" href="{canonical_url}" />\n'
+        if re.search(r'<link rel="icon"', h):
+            h = re.sub(r'(<link rel="icon"[^>]*/>\n)', r"\1" + canonical_tag, h, count=1)
+        else:
+            h = h.replace("</head>", canonical_tag + "</head>", 1) if "</head>" in h else h + canonical_tag
     return h
 
 
@@ -159,8 +176,33 @@ def build_article(a):
         "url": f"artykuly/{a['slug']}.html",
     }
 
+    canonical_url = f"{SITE_URL}/artykuly/{a['slug']}.html"
+    jsonld = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": a["title"],
+        "description": a["excerpt"],
+        "image": [a["image"]] if a.get("image") else [],
+        "datePublished": a["date"],
+        "dateModified": a["date"],
+        "inLanguage": "pl-PL",
+        "author": {"@type": "Organization", "name": "OgarnijWakacje.pl", "url": SITE_URL + "/"},
+        "publisher": {
+            "@type": "Organization",
+            "name": "OgarnijWakacje.pl",
+            "logo": {"@type": "ImageObject", "url": f"{SITE_URL}/logo.svg"},
+        },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": canonical_url},
+    }
+    head = make_head(a["title"], a["excerpt"], canonical_url=canonical_url)
+    head = head.replace(
+        "</head>",
+        f'<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>\n</head>',
+        1,
+    )
+
     out = ARTICLE_TEMPLATE.format(
-        head=make_head(a["title"], a["excerpt"]),
+        head=head,
         meta_json=json.dumps(meta, ensure_ascii=False),
         header=HEADER,
         footer=FOOTER,
