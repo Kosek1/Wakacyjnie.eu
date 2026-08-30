@@ -27,7 +27,7 @@ const ARTICLES_DIR = path.join(ROOT, "artykuly");
 const GUIDES_DIR = path.join(ROOT, "poradniki");
 const OUTPUT_FILE = path.join(ROOT, "data", "articles.json");
 const SITEMAP_FILE = path.join(ROOT, "sitemap.xml");
-const SITE_URL = "https://www.ogarnijwakacje.pl";
+const SITE_URL = "https://ogarnijwakacje.pl";
 
 // Statyczne podstrony, które nie mają własnych metadanych do wyciągnięcia —
 // dopisz tu nową pozycję, jeśli w repo pojawi się kolejna samodzielna strona.
