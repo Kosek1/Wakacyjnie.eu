@@ -67,6 +67,15 @@
 # siatka bezpieczeństwa, gdyby wakacyjnie.netlify.app nadal trafiał na ten sam projekt.
 [[redirects]]
   from = "https://wakacyjnie.netlify.app/*"
-  to = "https://www.ogarnijwakacje.pl/:splat"
+  to = "https://ogarnijwakacje.pl/:splat"
+  status = 301
+  force = true
+
+# Wymuszenie jednej kanonicznej domeny — strona ma działać wyłącznie pod
+# ogarnijwakacje.pl (bez www). Netlify i tak robi to automatycznie dla
+# domeny głównej, ale reguła zostaje jako jawna siatka bezpieczeństwa.
+[[redirects]]
+  from = "https://www.ogarnijwakacje.pl/*"
+  to = "https://ogarnijwakacje.pl/:splat"
   status = 301
   force = true
