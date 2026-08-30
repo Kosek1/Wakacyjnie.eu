@@ -735,7 +735,7 @@
   </div>
 </section>
 <script>
-  fetch('data/partners.json').then(function (r) { return r.ok ? r.json() : []; }).then(function (partners) {
+  fetch('partners.json').then(function (r) { return r.ok ? r.json() : []; }).then(function (partners) {
     var el = document.getElementById('homePartnersLogos');
     var section = document.getElementById('partnersSection');
     if (!el || !partners || !partners.length) { if (section) section.remove(); return; }
