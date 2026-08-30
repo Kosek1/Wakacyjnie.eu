@@ -118,7 +118,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
 """
 
 
-SITE_URL = "https://www.ogarnijwakacje.pl"
+SITE_URL = "https://ogarnijwakacje.pl"
 
 
 def make_head(title, description, canonical_url=None):
