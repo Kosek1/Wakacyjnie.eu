@@ -1,11 +1,32 @@
 [build]
   publish = "."
-  command = "node build.js"
+  command = "npm run build"
 
 [[headers]]
   for = "/data/articles.json"
   [headers.values]
     Cache-Control = "public, max-age=60"
+
+# Statyczne zasoby (skompilowany CSS, ikony, obrazki, logo, favicon) —
+# zawartość zmienia się tylko wtedy, gdy sami je podmienimy przy kolejnym
+# wdrożeniu, więc mogą być cache'owane długo u odwiedzającego. Netlify samo
+# dodaje "immutable" tylko dla plików z hashem w nazwie — te nazwy są stałe,
+# więc immutable pominięte celowo (żeby zmiana pliku po nowym deployu była
+# widoczna po odświeżeniu, a nie dopiero po tygodniu).
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
 
 # Duplikaty artykułów zostały kiedyś wgrane też do katalogu głównego
 # (identyczna treść pod dwoma adresami = duplicate content dla Google).
