@@ -4,4 +4,7 @@
   "description": "Build skrypty dla ogarnijwakacje.pl — generuje data/articles.json + sitemap.xml. Uruchamiane automatycznie przez Netlify przy każdym deployu (patrz netlify.toml). Tailwind ładowany jest przez CDN w index.html, więc lokalny build CSS nie jest tu potrzebny.",
   "scripts": {
     "build:css": "tailwindcss -i ./styles/tailwind.css -o ./assets/css/tailwind.css --minify",
-    "build": "npm run build:css && node build.js"}
+    "build": "npm run build:css && node build.js"},
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
