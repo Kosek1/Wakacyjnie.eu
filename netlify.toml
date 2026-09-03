@@ -10,7 +10,7 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com https://utt.impactcdn.com https://widget.getyourguide.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://images.pexels.com https://partner.rankomat.pl https://utt.impactcdn.com; connect-src 'self' https://utt.impactcdn.com https://api.open-meteo.com; frame-src https://widget.getyourguide.com https://www.getyourguide.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com https://utt.impactcdn.com https://widget.getyourguide.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://images.pexels.com https://partner.rankomat.pl https://utt.impactcdn.com https://flagcdn.com; connect-src 'self' https://utt.impactcdn.com https://api.open-meteo.com; frame-src https://widget.getyourguide.com https://www.getyourguide.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
