@@ -702,30 +702,43 @@
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section id="jak-to-dziala" class="py-20 sm:py-28 bg-ink-100/50">
+  <!-- CIEKAWOSTKA -->
+  <section id="ciekawostka-wakacje" class="py-20 sm:py-28 bg-ink-100/50">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
       <div class="reveal text-center max-w-2xl mx-auto mb-14">
-        <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-600 mb-2">Instrukcja</div>
-        <h2 class="font-display font-extrabold text-[clamp(1.6rem,3vw,2.3rem)] text-ink-950 tracking-tight">Od pomysłu do walizki w trzech krokach</h2>
+        <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-600 mb-2">Ciekawostka</div>
+        <h2 class="font-display font-extrabold text-[clamp(1.6rem,3vw,2.3rem)] text-ink-950 tracking-tight">Podczas gdy Ty to czytasz&hellip;</h2>
+        <p class="text-[13.5px] text-ink-500 leading-relaxed mt-3">Co roku badacze pytają Polaków o wakacyjne plany. Odpowiedzi dzielą nas na dwie grupy.</p>
       </div>
 
-      <div class="grid sm:grid-cols-3 gap-10">
-        <div class="reveal">
-          <div class="grid place-items-center w-10 h-10 rounded-full bg-ink-950 text-white font-display font-bold text-[14px] mb-5">1</div>
-          <h3 class="font-display font-bold text-[15.5px] text-ink-950 mb-2">Dodaj podróż</h3>
-          <p class="text-[13.5px] text-ink-500 leading-relaxed">Wpisz kierunek i daty — aplikacja sama zaproponuje listę pakowania i checklistę formalności.</p>
+      <div class="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <div class="reveal rounded-3xl bg-accent-50 border border-accent-100 p-8 sm:p-10 shadow-softer">
+          <div class="grid place-items-center w-10 h-10 rounded-full bg-accent-500 text-white mb-5">
+            <i data-lucide="plane-takeoff" class="w-4.5 h-4.5"></i>
+          </div>
+          <div class="font-display font-extrabold text-[clamp(2.4rem,6vw,3.2rem)] text-accent-600 tracking-tight tabular-nums">
+            <span class="stat-count" data-target="76">0</span><span>%</span>
+          </div>
+          <p class="text-[13.5px] text-ink-600 leading-relaxed mt-3">Polaków wyjedzie w tym roku na wakacje — najczęściej nad polskie morze albo w góry.</p>
         </div>
-        <div class="reveal">
-          <div class="grid place-items-center w-10 h-10 rounded-full bg-ink-950 text-white font-display font-bold text-[14px] mb-5">2</div>
-          <h3 class="font-display font-bold text-[15.5px] text-ink-950 mb-2">Zaplanuj szczegóły</h3>
-          <p class="text-[13.5px] text-ink-500 leading-relaxed">Dodawaj rezerwacje, atrakcje i budżet — wszystko trzyma się w jednym, uporządkowanym miejscu.</p>
+        <div class="reveal rounded-3xl bg-ink-950 p-8 sm:p-10 shadow-softer">
+          <div class="grid place-items-center w-10 h-10 rounded-full bg-ink-800 text-ink-100 mb-5">
+            <i data-lucide="clock" class="w-4.5 h-4.5"></i>
+          </div>
+          <div class="font-display font-extrabold text-[clamp(2.4rem,6vw,3.2rem)] text-ink-50 tracking-tight tabular-nums">
+            <span class="stat-count" data-target="17">0</span><span>%</span>
+          </div>
+          <p class="text-[13.5px] text-ink-300 leading-relaxed mt-3">planuje wakacje last minute — bez wcześniejszego planu, na ostatnią chwilę.</p>
         </div>
-        <div class="reveal">
-          <div class="grid place-items-center w-10 h-10 rounded-full bg-ink-950 text-white font-display font-bold text-[14px] mb-5">3</div>
-          <h3 class="font-display font-bold text-[15.5px] text-ink-950 mb-2">Pakuj się i jedź</h3>
-          <p class="text-[13.5px] text-ink-500 leading-relaxed">Odhaczaj listę, sprawdzaj plan offline i skup się na tym, co najważniejsze — na podróży.</p>
-        </div>
+      </div>
+
+      <div class="reveal text-center mt-12">
+        <p class="text-ink-800 text-[15.5px] font-display font-semibold mb-6">Nie zostawiaj wyjazdu na ostatnią chwilę — zaplanuj go spokojnie, bez chaosu.</p>
+        <a href="poradniki.html" class="pressable inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold text-[14.5px] px-6 py-3.5 rounded-full shadow-soft transition-colors duration-160">
+          Przejdź do poradników, jeśli to Twój pierwszy raz
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+        <p class="text-[11px] text-ink-400 mt-6">Źródła: badanie „Polacy na wakacjach 2026" (Allianz Partners); raport „Wakacyjne plany Polaków 2026" (Grupa Pingwina, Triverna.pl, Małopolska Organizacja Turystyczna).</p>
       </div>
     </div>
   </section>
@@ -1903,6 +1916,48 @@
         e.preventDefault();
         show();
       });
+    }
+  })();
+
+  // ciekawostka — animowane odliczanie liczb w kartach 76% / 17%
+  (function () {
+    const counters = document.querySelectorAll('#ciekawostka-wakacje .stat-count');
+    if (!counters.length) return;
+
+    const animated = new WeakSet();
+
+    function animateCount(el) {
+      if (animated.has(el)) return;
+      animated.add(el);
+
+      const target = parseInt(el.getAttribute('data-target'), 10) || 0;
+      if (reducedMotion) { el.textContent = target; return; }
+
+      const duration = 1200;
+      let start = null;
+      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+      function step(timestamp) {
+        if (start === null) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        el.textContent = Math.round(easeOutCubic(progress) * target);
+        if (progress < 1) window.requestAnimationFrame(step);
+        else el.textContent = target;
+      }
+      window.requestAnimationFrame(step);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCount(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      counters.forEach((el) => observer.observe(el));
+    } else {
+      counters.forEach(animateCount);
     }
   })();
 </script>
