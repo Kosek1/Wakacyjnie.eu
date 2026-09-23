@@ -779,7 +779,13 @@
 </footer>
 
 <script>
-  lucide.createIcons();
+  // ZABEZPIECZONE wywołanie — jeśli lucide.js (ładowany z defer) jeszcze nie
+  // zdążył się wykonać w tym momencie, gołe `lucide.createIcons()` rzuca
+  // ReferenceError i ubija resztę tego bloku <script> (łącznie z animacją
+  // odsłaniania treści niżej) — to był realny, potwierdzony błąd na tej stronie.
+  if (window.lucide) lucide.createIcons();
+  window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+  window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });
 
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
