@@ -255,11 +255,15 @@
   .offline-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
   .pdf-card{ transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out); }
   .pdf-card:hover{ transform: translateY(-4px); box-shadow: 0 25px 60px -20px rgba(20,19,16,0.25); }
+  .article-card{ transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out); }
+  .article-card:hover{ transform: translateY(-4px); box-shadow: 0 25px 60px -20px rgba(20,19,16,0.25); }
   @media (prefers-reduced-motion: reduce){
     .starfield{ animation:none; }
     .plane-icon-fly{ animation:none; }
     .pdf-card{ transition:none; }
     .pdf-card:hover{ transform:none; }
+    .article-card{ transition:none; }
+    .article-card:hover{ transform:none; }
   }
 </style>
 </head>
@@ -354,7 +358,7 @@
             Pobierz przed wyjazdem,<br /> czytaj będąc offline
           </h1>
           <p class="text-ink-300 text-[16px] sm:text-[17px] leading-relaxed max-w-xl mx-auto mb-8">
-            Cztery gotowe pliki PDF — checklisty i ściągawki, które pobierasz jeszcze w domu, a potem masz pod ręką bez internetu: w trybie samolotowym, bez zasięgu w górach albo z wyłączonym roamingiem za granicą.
+            Checklisty, ściągawki i jedenaście historii na 15 minut czytania każda — pobierasz jeszcze w domu, a potem masz pod ręką bez internetu: w trybie samolotowym, bez zasięgu w górach albo z wyłączonym roamingiem za granicą.
           </p>
           <a href="#pliki-do-pobrania" class="pressable inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold text-[14.5px] px-6 py-3.5 rounded-full shadow-softer transition-colors duration-160">
             Zobacz pliki do pobrania
@@ -426,6 +430,195 @@
             </a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIEKAWOSTKI I HISTORIE DO CZYTANIA W LOCIE -->
+  <section id="ciekawostki-w-locie" class="py-4 sm:py-6 pb-20 sm:pb-24">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="reveal text-center max-w-2xl mx-auto mb-12">
+        <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-500 mb-3">Zabij czas w locie</div>
+        <h2 class="font-display font-extrabold text-[clamp(1.5rem,2.6vw,2.1rem)] tracking-tight text-ink-900">11 historii na 15 minut czytania każda</h2>
+        <p class="text-ink-600 text-[14px] leading-relaxed mt-3">Zaginione miasta, rozbitkowie na Pacyfiku, hotele w celach więziennych i lotniska, na których pilot nie ma prawa się pomylić — pobierz PDF-y i czytaj bez internetu, choćby 10 tysięcy metrów nad ziemią.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <a href="do-pobrania/ciekawostki/hotele.pdf" download class="pressable article-card reveal group block bg-white rounded-3xl overflow-hidden border border-ink-900/[0.06] shadow-softer">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.pexels.com/photos/35775291/pexels-photo-35775291.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur text-ink-900 text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full"><i data-lucide="sparkles" class="w-3 h-3 text-accent-500"></i> Ciekawostki</span>
+            <span class="absolute bottom-3 right-3 inline-flex items-center gap-1 bg-ink-950/70 backdrop-blur text-white text-[10.5px] font-semibold px-2.5 py-1 rounded-full"><i data-lucide="clock" class="w-3 h-3"></i> 15 min</span>
+          </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="font-display font-bold text-[15px] text-ink-900 mb-2 leading-snug">Spać w celi, na dnie oceanu albo w Boeingu — najdziwniejsze hotele świata</h3>
+            <p class="text-ink-600 text-[13px] leading-relaxed mb-4">Od lodowego apartamentu w Szwecji po prawdziwą celę w Holandii i kabinę Boeinga 727 w Kostaryce — osiem hoteli, w których można się realnie zameldować.</p>
+            <span class="inline-flex items-center gap-1.5 text-accent-600 text-[12.5px] font-semibold">
+              Pobierz PDF <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            </span>
+          </div>
+        </a>
+
+        <a href="do-pobrania/ciekawostki/rozbitkowie.pdf" download class="pressable article-card reveal group block bg-white rounded-3xl overflow-hidden border border-ink-900/[0.06] shadow-softer">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.pexels.com/photos/30016739/pexels-photo-30016739.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur text-ink-900 text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full"><i data-lucide="sparkles" class="w-3 h-3 text-accent-500"></i> Ciekawostki</span>
+            <span class="absolute bottom-3 right-3 inline-flex items-center gap-1 bg-ink-950/70 backdrop-blur text-white text-[10.5px] font-semibold px-2.5 py-1 rounded-full"><i data-lucide="clock" class="w-3 h-3"></i> 15 min</span>
+          </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="font-display font-bold text-[15px] text-ink-900 mb-2 leading-snug">438 dni na Pacyfiku i inne prawdziwe historie rozbitków</h3>
+            <p class="text-ink-600 text-[13px] leading-relaxed mb-4">José Salvador Alvarenga dryfował 9000 kilometrów przez Pacyfik, a Poon Lim pobił rekord samotnego przetrwania na tratwie. Sześć historii, które naprawdę się wydarzyły.</p>
+            <span class="inline-flex items-center gap-1.5 text-accent-600 text-[12.5px] font-semibold">
+              Pobierz PDF <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            </span>
+          </div>
+        </a>
+
+        <a href="do-pobrania/ciekawostki/lotniska.pdf" download class="pressable article-card reveal group block bg-white rounded-3xl overflow-hidden border border-ink-900/[0.06] shadow-softer">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.pexels.com/photos/8063749/pexels-photo-8063749.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur text-ink-900 text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full"><i data-lucide="sparkles" class="w-3 h-3 text-accent-500"></i> Ciekawostki</span>
+            <span class="absolute bottom-3 right-3 inline-flex items-center gap-1 bg-ink-950/70 backdrop-blur text-white text-[10.5px] font-semibold px-2.5 py-1 rounded-full"><i data-lucide="clock" class="w-3 h-3"></i> 15 min</span>
+          </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="font-display font-bold text-[15px] text-ink-900 mb-2 leading-snug">Lądowanie na krawędzi: siedem lotnisk, na których pilot nie ma prawa się pomylić</h3>
+            <p class="text-ink-600 text-[13px] leading-relaxed mb-4">Pas w Paro otacza osiem tysięcznych szczytów, w Lukli kończy się murem. Lotniska, na których lądowanie samo w sobie jest atrakcją turystyczną.</p>
+            <span class="inline-flex items-center gap-1.5 text-accent-600 text-[12.5px] font-semibold">
+              Pobierz PDF <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            </span>
+          </div>
+        </a>
+
+        <a href="do-pobrania/ciekawostki/miasta-widma.pdf" download class="pressable article-card reveal group block bg-white rounded-3xl overflow-hidden border border-ink-900/[0.06] shadow-softer">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.pexels.com/photos/31481049/pexels-photo-31481049.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur text-ink-900 text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full"><i data-lucide="sparkles" class="w-3 h-3 text-accent-500"></i> Ciekawostki</span>
+            <span class="absolute bottom-3 right-3 inline-flex items-center gap-1 bg-ink-950/70 backdrop-blur text-white text-[10.5px] font-semibold px-2.5 py-1 rounded-full"><i data-lucide="clock" class="w-3 h-3"></i> 15 min</span>
+          </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="font-display font-bold text-[15px] text-ink-900 mb-2 leading-snug">Miasta, które ludzie zostawili z dnia na dzień</h3>
+            <p class="text-ink-600 text-[13px] leading-relaxed mb-4">Zabawki na podłodze przedszkola w Prypeci, złoto zasypane piaskiem w Namibii i ogień płonący pod ziemią od 1962 roku — osiem opuszczonych miast.</p>
+            <span class="inline-flex items-center gap-1.5 text-accent-600 text-[12.5px] font-semibold">
+              Pobierz PDF <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            </span>
+          </div>
+        </a>
+
+        <a href="do-pobrania/ciekawostki/dlugie-loty.pdf" download class="pressable article-card reveal group block bg-white rounded-3xl overflow-hidden border border-ink-900/[0.06] shadow-softer">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.pexels.com/photos/20336502/pexels-photo-20336502.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur text-ink-900 text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full"><i data-lucide="sparkles" class="w-3 h-3 text-accent-500"></i> Ciekawostki</span>
+            <span class="absolute bottom-3 right-3 inline-flex items-center gap-1 bg-ink-950/70 backdrop-blur text-white text-[10.5px] font-semibold px-2.5 py-1 rounded-full"><i data-lucide="clock" class="w-3 h-3"></i> 15 min</span>
+          </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="font-display font-bold text-[15px] text-ink-900 mb-2 leading-snug">22 godziny w powietrzu bez lądowania: najdłuższe loty świata</h3>
+            <p class="text-ink-600 text-[13px] leading-relaxed mb-4">Od testowego lotu dookoła świata Boeinga 777 po 64 dni non-stop małej cessny nad Las Vegas — rekordy wytrzymałości zapisane w historii lotnictwa.</p>
+            <span class="inline-flex items-center gap-1.5 text-accent-600 text-[12.5px] font-semibold">
+              Pobierz PDF <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            </span>
+          </div>
+        </a>
+
+        <a href="do-pobrania/ciekawostki/sekrety-linii.pdf" download class="pressable article-card reveal group block bg-white rounded-3xl overflow-hidden border border-ink-900/[0.06] shadow-softer">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.pexels.com/photos/14630706/pexels-photo-14630706.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur text-ink-900 text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full"><i data-lucide="sparkles" class="w-3 h-3 text-accent-500"></i> Ciekawostki</span>
+            <span class="absolute bottom-3 right-3 inline-flex items-center gap-1 bg-ink-950/70 backdrop-blur text-white text-[10.5px] font-semibold px-2.5 py-1 rounded-full"><i data-lucide="clock" class="w-3 h-3"></i> 15 min</span>
+          </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="font-display font-bold text-[15px] text-ink-900 mb-2 leading-snug">Squawk 7500 i zimna kabina: czego stewardesa nie powie ci sama</h3>
+            <p class="text-ink-600 text-[13px] leading-relaxed mb-4">Dlaczego światła gasną przed startem, czemu w kabinie jest zimno jak w lodówce i co oznacza kod 7500 na radarze — dziesięć faktów prosto z kokpitu.</p>
+            <span class="inline-flex items-center gap-1.5 text-accent-600 text-[12.5px] font-semibold">
+              Pobierz PDF <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            </span>
+          </div>
+        </a>
+
+        <a href="do-pobrania/ciekawostki/muzea.pdf" download class="pressable article-card reveal group block bg-white rounded-3xl overflow-hidden border border-ink-900/[0.06] shadow-softer">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.pexels.com/photos/26424646/pexels-photo-26424646.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur text-ink-900 text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full"><i data-lucide="sparkles" class="w-3 h-3 text-accent-500"></i> Ciekawostki</span>
+            <span class="absolute bottom-3 right-3 inline-flex items-center gap-1 bg-ink-950/70 backdrop-blur text-white text-[10.5px] font-semibold px-2.5 py-1 rounded-full"><i data-lucide="clock" class="w-3 h-3"></i> 15 min</span>
+          </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="font-display font-bold text-[15px] text-ink-900 mb-2 leading-snug">Muzea, które istnieją naprawdę: rozbite związki i słoik ketchupu sprzed stu lat</h3>
+            <p class="text-ink-600 text-[13px] leading-relaxed mb-4">Od chorwackiego Muzeum Rozpadów po amerykańską kolekcję zdjęć psów w kostiumach — dziewięć placówek, które udowadniają, że wszystko da się zamienić w wystawę.</p>
+            <span class="inline-flex items-center gap-1.5 text-accent-600 text-[12.5px] font-semibold">
+              Pobierz PDF <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            </span>
+          </div>
+        </a>
+
+        <a href="do-pobrania/ciekawostki/tonace-wyspy.pdf" download class="pressable article-card reveal group block bg-white rounded-3xl overflow-hidden border border-ink-900/[0.06] shadow-softer">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.pexels.com/photos/33243110/pexels-photo-33243110.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur text-ink-900 text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full"><i data-lucide="sparkles" class="w-3 h-3 text-accent-500"></i> Ciekawostki</span>
+            <span class="absolute bottom-3 right-3 inline-flex items-center gap-1 bg-ink-950/70 backdrop-blur text-white text-[10.5px] font-semibold px-2.5 py-1 rounded-full"><i data-lucide="clock" class="w-3 h-3"></i> 15 min</span>
+          </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="font-display font-bold text-[15px] text-ink-900 mb-2 leading-snug">Kraje, które planują własny koniec: jak rządy szykują się na zniknięcie pod wodą</h3>
+            <p class="text-ink-600 text-[13px] leading-relaxed mb-4">Tuvalu buduje cyfrową kopię siebie, Kiribati kupiło ziemię na Fidżi, a Dżakarta traci grunt w tempie 25 cm rocznie. Miejsca, które już dziś planują życie po zniknięciu lądu.</p>
+            <span class="inline-flex items-center gap-1.5 text-accent-600 text-[12.5px] font-semibold">
+              Pobierz PDF <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            </span>
+          </div>
+        </a>
+
+        <a href="do-pobrania/ciekawostki/strzezone-miejsca.pdf" download class="pressable article-card reveal group block bg-white rounded-3xl overflow-hidden border border-ink-900/[0.06] shadow-softer">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.pexels.com/photos/32570273/pexels-photo-32570273.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur text-ink-900 text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full"><i data-lucide="sparkles" class="w-3 h-3 text-accent-500"></i> Ciekawostki</span>
+            <span class="absolute bottom-3 right-3 inline-flex items-center gap-1 bg-ink-950/70 backdrop-blur text-white text-[10.5px] font-semibold px-2.5 py-1 rounded-full"><i data-lucide="clock" class="w-3 h-3"></i> 15 min</span>
+          </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="font-display font-bold text-[15px] text-ink-900 mb-2 leading-snug">Miejsca na Ziemi, których nie zwiedzisz nawet za milion dolarów</h3>
+            <p class="text-ink-600 text-[13px] leading-relaxed mb-4">Skarbiec z 90 procentami światowego złota, wyspa, na której obcych wita się strzałami, i archiwum węższe niż tajne plany wojskowe USA.</p>
+            <span class="inline-flex items-center gap-1.5 text-accent-600 text-[12.5px] font-semibold">
+              Pobierz PDF <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            </span>
+          </div>
+        </a>
+
+        <a href="do-pobrania/ciekawostki/dziwne-prawa.pdf" download class="pressable article-card reveal group block bg-white rounded-3xl overflow-hidden border border-ink-900/[0.06] shadow-softer">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.pexels.com/photos/20499440/pexels-photo-20499440.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur text-ink-900 text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full"><i data-lucide="sparkles" class="w-3 h-3 text-accent-500"></i> Ciekawostki</span>
+            <span class="absolute bottom-3 right-3 inline-flex items-center gap-1 bg-ink-950/70 backdrop-blur text-white text-[10.5px] font-semibold px-2.5 py-1 rounded-full"><i data-lucide="clock" class="w-3 h-3"></i> 15 min</span>
+          </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="font-display font-bold text-[15px] text-ink-900 mb-2 leading-snug">Gumy nie żuj, gołębi nie karm: prawa, które mogą zepsuć ci wakacje</h3>
+            <p class="text-ink-600 text-[13px] leading-relaxed mb-4">Grzywna 500 dolarów za gumę w Singapurze, 700 euro za karmienie gołębi w Wenecji — turystyczne prawo świata bywa bardziej egzotyczne niż plaże, na które lecicie.</p>
+            <span class="inline-flex items-center gap-1.5 text-accent-600 text-[12.5px] font-semibold">
+              Pobierz PDF <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            </span>
+          </div>
+        </a>
+
+        <a href="do-pobrania/ciekawostki/zaginione-miasta.pdf" download class="pressable article-card reveal group block bg-white rounded-3xl overflow-hidden border border-ink-900/[0.06] shadow-softer">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.pexels.com/photos/15684889/pexels-photo-15684889.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur text-ink-900 text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full"><i data-lucide="sparkles" class="w-3 h-3 text-accent-500"></i> Ciekawostki</span>
+            <span class="absolute bottom-3 right-3 inline-flex items-center gap-1 bg-ink-950/70 backdrop-blur text-white text-[10.5px] font-semibold px-2.5 py-1 rounded-full"><i data-lucide="clock" class="w-3 h-3"></i> 15 min</span>
+          </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="font-display font-bold text-[15px] text-ink-900 mb-2 leading-snug">Miasta, które zjadła dżungla, piasek i ocean</h3>
+            <p class="text-ink-600 text-[13px] leading-relaxed mb-4">Niektóre z najsłynniejszych ruin świata odkryto dzięki lokalnemu przewodnikowi, pijanemu żołnierzowi albo zwykłemu błądzeniu po dżungli. Siedem zaginionych cywilizacji.</p>
+            <span class="inline-flex items-center gap-1.5 text-accent-600 text-[12.5px] font-semibold">
+              Pobierz PDF <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            </span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
