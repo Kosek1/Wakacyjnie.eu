@@ -226,6 +226,37 @@
   .winter-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22); }
   .winter-cta{ transition: transform 280ms var(--ease-out); }
   .winter-card:hover .winter-cta{ transform: translateX(3px); }
+
+  /* --- baner "Pobierz przed wyjazdem, czytaj offline": gwiezdne tło i mikroanimacje --- */
+  .starfield{
+    position:absolute; inset:0; overflow:hidden; pointer-events:none;
+    background-image:
+      radial-gradient(1.6px 1.6px at 12% 22%, rgba(255,255,255,.55) 0, transparent 60%),
+      radial-gradient(1.2px 1.2px at 28% 68%, rgba(255,255,255,.4) 0, transparent 60%),
+      radial-gradient(1.8px 1.8px at 42% 15%, rgba(255,255,255,.6) 0, transparent 60%),
+      radial-gradient(1.3px 1.3px at 58% 78%, rgba(255,255,255,.4) 0, transparent 60%),
+      radial-gradient(1.5px 1.5px at 73% 34%, rgba(255,255,255,.55) 0, transparent 60%),
+      radial-gradient(1.2px 1.2px at 85% 58%, rgba(255,255,255,.4) 0, transparent 60%),
+      radial-gradient(1.8px 1.8px at 92% 20%, rgba(255,255,255,.55) 0, transparent 60%),
+      radial-gradient(1.3px 1.3px at 6% 82%, rgba(255,255,255,.4) 0, transparent 60%),
+      radial-gradient(1.4px 1.4px at 65% 6%, rgba(255,255,255,.5) 0, transparent 60%),
+      radial-gradient(1.3px 1.3px at 20% 45%, rgba(255,255,255,.4) 0, transparent 60%);
+    animation: twinkle 5s ease-in-out infinite;
+  }
+  @keyframes twinkle{ 0%,100%{ opacity:.7; } 50%{ opacity:1; } }
+  .flight-path{ position:absolute; inset:0; pointer-events:none; opacity:.5; }
+  .flight-dot{ animation: flightDash 7s linear infinite; }
+  @keyframes flightDash{ to{ stroke-dashoffset:-1000; } }
+  .plane-icon-fly{ animation: planeFloat 4.5s ease-in-out infinite; }
+  @keyframes planeFloat{ 0%,100%{ transform: translate(0,0) rotate(-8deg); } 50%{ transform: translate(4px,-6px) rotate(-8deg); } }
+  .download-bar > div{ animation: dlFill 2.6s var(--ease-in-out) infinite; }
+  @keyframes dlFill{ 0%{ width:8%; } 55%{ width:100%; } 100%{ width:100%; } }
+  .offline-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  @media (prefers-reduced-motion: reduce){
+    .starfield{ animation:none; }
+    .plane-icon-fly{ animation:none; }
+    .download-bar > div{ animation:none; width:70%; }
+  }
 </style>
 <script type="text/javascript">(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7669115-a968-452d-a9ac-d18ff8067e651.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');</script>
 </head>
@@ -482,6 +513,79 @@
           Zobacz wszystkie newsy
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- OFFLINE READING FEATURE BANNER -->
+  <section id="czytaj-offline-banner" class="py-10 sm:py-14">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="reveal relative overflow-hidden rounded-4xl bg-gradient-to-br from-ink-950 via-[#141a30] to-ink-950 text-white shadow-lifted">
+        <div class="starfield"></div>
+        <svg class="flight-path hidden sm:block" viewBox="0 0 800 260" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M -20 210 Q 200 40 420 120 T 820 40" fill="none" stroke="rgba(255,181,112,0.35)" stroke-width="1.5" stroke-dasharray="2 10" stroke-linecap="round" class="flight-dot"></path>
+        </svg>
+        <div class="pointer-events-none absolute -top-24 -left-16 w-80 h-80 rounded-full bg-accent-500/20 blur-3xl"></div>
+        <div class="pointer-events-none absolute -bottom-24 -right-10 w-72 h-72 rounded-full bg-teal-500/15 blur-3xl"></div>
+
+        <div class="relative grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-center p-7 sm:p-12 lg:p-14">
+          <div>
+            <div class="inline-flex items-center gap-2 bg-white/10 border border-white/15 offline-chip text-accent-300 text-[11.5px] font-bold uppercase tracking-wide px-3.5 py-1.5 rounded-full mb-5">
+              <i data-lucide="file-down" class="w-3.5 h-3.5"></i>
+              Nowość na stronie
+            </div>
+            <h2 class="font-display font-extrabold text-[clamp(1.6rem,3vw,2.4rem)] tracking-tight mb-4 leading-tight">
+              Pobierz przed wyjazdem,<br class="hidden sm:block" /> czytaj będąc offline
+            </h2>
+            <p class="text-ink-300 text-[15px] sm:text-[15.5px] leading-relaxed max-w-lg mb-7">
+              Checklisty pakowania, dokumentów i lotniska w gotowych plikach PDF — pobierz je jeszcze w domu i miej pod ręką w trybie samolotowym, bez zasięgu w górach czy z wyłączonym roamingiem.
+            </p>
+            <div class="flex flex-wrap gap-2.5 mb-8">
+              <span class="offline-chip inline-flex items-center gap-1.5 bg-white/10 border border-white/10 text-white/85 text-[12.5px] font-medium px-3 py-1.5 rounded-full">
+                <i data-lucide="wifi-off" class="w-3.5 h-3.5 text-accent-300"></i> Zero internetu
+              </span>
+              <span class="offline-chip inline-flex items-center gap-1.5 bg-white/10 border border-white/10 text-white/85 text-[12.5px] font-medium px-3 py-1.5 rounded-full">
+                <i data-lucide="download" class="w-3.5 h-3.5 text-accent-300"></i> Gotowe pliki PDF
+              </span>
+              <span class="offline-chip inline-flex items-center gap-1.5 bg-white/10 border border-white/10 text-white/85 text-[12.5px] font-medium px-3 py-1.5 rounded-full">
+                <i data-lucide="plane" class="w-3.5 h-3.5 text-accent-300"></i> Idealne na długi lot
+              </span>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+              <a href="czytaj-offline.html" class="pressable inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold text-[14px] px-6 py-3.5 rounded-full shadow-softer transition-colors duration-160">
+                Zobacz pliki do pobrania
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="relative hidden lg:flex justify-center">
+            <div class="relative w-[250px]">
+              <div class="absolute -inset-6 rounded-[2.4rem] bg-white/[0.03] border border-white/10"></div>
+              <div class="relative space-y-3">
+                <div class="offline-chip bg-white/[0.07] border border-white/10 rounded-2xl p-3.5 flex items-center gap-3 shadow-lifted -rotate-2">
+                  <div class="w-10 h-10 rounded-xl bg-accent-500/20 grid place-items-center shrink-0"><i data-lucide="file-text" class="w-4.5 h-4.5 text-accent-300"></i></div>
+                  <div class="min-w-0 flex-1"><div class="h-1.5 w-24 bg-white/25 rounded-full mb-1.5"></div><div class="h-1.5 w-14 bg-white/15 rounded-full"></div></div>
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-leaf-500 shrink-0"></i>
+                </div>
+                <div class="offline-chip bg-white/[0.07] border border-white/10 rounded-2xl p-3.5 flex items-center gap-3 shadow-lifted rotate-1 ml-4">
+                  <div class="w-10 h-10 rounded-xl bg-teal-500/20 grid place-items-center shrink-0"><i data-lucide="file-text" class="w-4.5 h-4.5 text-teal-500"></i></div>
+                  <div class="min-w-0 flex-1"><div class="h-1.5 w-28 bg-white/25 rounded-full mb-1.5"></div><div class="h-1.5 w-16 bg-white/15 rounded-full"></div></div>
+                  <div class="download-bar w-8 h-1 bg-white/15 rounded-full overflow-hidden shrink-0"><div class="h-full bg-accent-500 rounded-full"></div></div>
+                </div>
+                <div class="offline-chip bg-white/[0.07] border border-white/10 rounded-2xl p-3.5 flex items-center gap-3 shadow-lifted -rotate-1">
+                  <div class="w-10 h-10 rounded-xl bg-leaf-500/20 grid place-items-center shrink-0"><i data-lucide="file-text" class="w-4.5 h-4.5 text-leaf-500"></i></div>
+                  <div class="min-w-0 flex-1"><div class="h-1.5 w-20 bg-white/25 rounded-full mb-1.5"></div><div class="h-1.5 w-12 bg-white/15 rounded-full"></div></div>
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-leaf-500 shrink-0"></i>
+                </div>
+              </div>
+              <div class="plane-icon-fly absolute -top-6 -right-6 w-12 h-12 rounded-2xl bg-accent-500 shadow-lifted grid place-items-center">
+                <i data-lucide="plane-takeoff" class="w-5.5 h-5.5 text-white"></i>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
