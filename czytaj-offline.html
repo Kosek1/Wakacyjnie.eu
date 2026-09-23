@@ -801,6 +801,13 @@
   }, { threshold: 0.12 });
   revealEls.forEach(el => revealObserver.observe(el));
   window.observeReveal = (el) => revealObserver.observe(el);
+
+  // zabezpieczenie awaryjne: jeśli IntersectionObserver z jakiegoś powodu nie
+  // zadziała (wolne ładowanie, ukryta karta, nietypowa geometria elementu),
+  // treść nie może zostać niewidoczna na zawsze.
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in'));
+  }, 1200);
 </script>
 
 </body>
