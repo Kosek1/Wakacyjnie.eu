@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Pobierz przed wyjazdem, czytaj offline — OgarnijWakacje.pl</title>
-<meta name="description" content="Checklisty pakowania, dokumentów podróżnych i lotniskowa ściągawka do pobrania jako PDF — czytaj je offline, bez internetu, w trybie samolotowym." />
+<meta name="description" content="Jedenaście ciekawostek i historii podróżniczych do pobrania jako PDF — czytaj je offline, bez internetu, w trybie samolotowym." />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <meta name="impact-site-verification" content="eac70558-fdec-4e3d-9897-d2bd83044a36" />
 
@@ -253,15 +253,11 @@
   .plane-icon-fly{ animation: planeFloat 4.5s ease-in-out infinite; }
   @keyframes planeFloat{ 0%,100%{ transform: translate(0,0) rotate(-8deg); } 50%{ transform: translate(4px,-6px) rotate(-8deg); } }
   .offline-chip{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-  .pdf-card{ transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out); }
-  .pdf-card:hover{ transform: translateY(-4px); box-shadow: 0 25px 60px -20px rgba(20,19,16,0.25); }
   .article-card{ transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out); }
   .article-card:hover{ transform: translateY(-4px); box-shadow: 0 25px 60px -20px rgba(20,19,16,0.25); }
   @media (prefers-reduced-motion: reduce){
     .starfield{ animation:none; }
     .plane-icon-fly{ animation:none; }
-    .pdf-card{ transition:none; }
-    .pdf-card:hover{ transform:none; }
     .article-card{ transition:none; }
     .article-card:hover{ transform:none; }
   }
@@ -358,77 +354,12 @@
             Pobierz przed wyjazdem,<br /> czytaj będąc offline
           </h1>
           <p class="text-ink-300 text-[16px] sm:text-[17px] leading-relaxed max-w-xl mx-auto mb-8">
-            Checklisty, ściągawki i jedenaście historii na 15 minut czytania każda — pobierasz jeszcze w domu, a potem masz pod ręką bez internetu: w trybie samolotowym, bez zasięgu w górach albo z wyłączonym roamingiem za granicą.
+            Jedenaście historii na 15 minut czytania każda — pobierasz jeszcze w domu, a potem masz pod ręką bez internetu: w trybie samolotowym, bez zasięgu w górach albo z wyłączonym roamingiem za granicą.
           </p>
-          <a href="#pliki-do-pobrania" class="pressable inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold text-[14.5px] px-6 py-3.5 rounded-full shadow-softer transition-colors duration-160">
+          <a href="#ciekawostki-w-locie" class="pressable inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold text-[14.5px] px-6 py-3.5 rounded-full shadow-softer transition-colors duration-160">
             Zobacz pliki do pobrania
             <i data-lucide="arrow-down" class="w-4 h-4"></i>
           </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PLIKI DO POBRANIA -->
-  <section id="pliki-do-pobrania" class="py-4 sm:py-6 pb-20 sm:pb-24">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8">
-      <div class="reveal text-center max-w-2xl mx-auto mb-12">
-        <div class="text-[11.5px] font-bold uppercase tracking-wide text-accent-500 mb-3">Do pobrania</div>
-        <h2 class="font-display font-extrabold text-[clamp(1.5rem,2.6vw,2.1rem)] tracking-tight text-ink-900">Cztery pliki, zero internetu</h2>
-        <p class="text-ink-600 text-[14px] leading-relaxed mt-3">Każdy plik to gotowy PDF — pobierz na telefon lub wydrukuj, zanim wyjedziesz z domu.</p>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-
-        <div class="pdf-card reveal bg-white rounded-3xl p-6 sm:p-7 border border-ink-900/[0.06] shadow-softer flex flex-col">
-          <div class="w-12 h-12 rounded-2xl bg-accent-50 text-accent-600 grid place-items-center mb-5"><i data-lucide="shirt" class="w-5.5 h-5.5"></i></div>
-          <h3 class="font-display font-bold text-[16px] text-ink-900 mb-2">Checklista pakowania</h3>
-          <p class="text-ink-600 text-[13.5px] leading-relaxed mb-5 flex-1">Dokumenty, elektronika, ubrania, kosmetyczka i apteczka — wszystko w jednym miejscu, do odhaczenia offline.</p>
-          <div class="flex items-center justify-between gap-3">
-            <span class="text-ink-400 text-[11.5px] font-medium inline-flex items-center gap-1.5"><i data-lucide="file-text" class="w-3.5 h-3.5"></i> PDF · 2 strony</span>
-            <a href="do-pobrania/checklista-pakowania.pdf" download class="pressable inline-flex items-center gap-1.5 bg-ink-900 hover:bg-ink-950 text-white text-[12.5px] font-semibold px-4 py-2.5 rounded-full transition-colors duration-160">
-              Pobierz
-              <i data-lucide="download" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="pdf-card reveal bg-white rounded-3xl p-6 sm:p-7 border border-ink-900/[0.06] shadow-softer flex flex-col">
-          <div class="w-12 h-12 rounded-2xl bg-leaf-500/10 text-leaf-600 grid place-items-center mb-5"><i data-lucide="file-check-2" class="w-5.5 h-5.5"></i></div>
-          <h3 class="font-display font-bold text-[16px] text-ink-900 mb-2">Checklista dokumentów</h3>
-          <p class="text-ink-600 text-[13.5px] leading-relaxed mb-5 flex-1">Paszport, ubezpieczenie, wiza, kopie zapasowe — sprawdź dzień przed wylotem i jeszcze raz rano.</p>
-          <div class="flex items-center justify-between gap-3">
-            <span class="text-ink-400 text-[11.5px] font-medium inline-flex items-center gap-1.5"><i data-lucide="file-text" class="w-3.5 h-3.5"></i> PDF · 1 strona</span>
-            <a href="do-pobrania/checklista-dokumentow-podroznych.pdf" download class="pressable inline-flex items-center gap-1.5 bg-ink-900 hover:bg-ink-950 text-white text-[12.5px] font-semibold px-4 py-2.5 rounded-full transition-colors duration-160">
-              Pobierz
-              <i data-lucide="download" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="pdf-card reveal bg-white rounded-3xl p-6 sm:p-7 border border-ink-900/[0.06] shadow-softer flex flex-col">
-          <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-600 grid place-items-center mb-5"><i data-lucide="plane-takeoff" class="w-5.5 h-5.5"></i></div>
-          <h3 class="font-display font-bold text-[16px] text-ink-900 mb-2">Ściągawka lotniskowa</h3>
-          <p class="text-ink-600 text-[13.5px] leading-relaxed mb-5 flex-1">Ile czasu przyjechać wcześniej, zasady bagażu podręcznego i co przygotować do kontroli bezpieczeństwa.</p>
-          <div class="flex items-center justify-between gap-3">
-            <span class="text-ink-400 text-[11.5px] font-medium inline-flex items-center gap-1.5"><i data-lucide="file-text" class="w-3.5 h-3.5"></i> PDF · 1 strona</span>
-            <a href="do-pobrania/sciagawka-lotniskowa.pdf" download class="pressable inline-flex items-center gap-1.5 bg-ink-900 hover:bg-ink-950 text-white text-[12.5px] font-semibold px-4 py-2.5 rounded-full transition-colors duration-160">
-              Pobierz
-              <i data-lucide="download" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="pdf-card reveal bg-white rounded-3xl p-6 sm:p-7 border border-ink-900/[0.06] shadow-softer flex flex-col">
-          <div class="w-12 h-12 rounded-2xl bg-accent-50 text-accent-600 grid place-items-center mb-5"><i data-lucide="wallet" class="w-5.5 h-5.5"></i></div>
-          <h3 class="font-display font-bold text-[16px] text-ink-900 mb-2">Arkusz budżetu podróży</h3>
-          <p class="text-ink-600 text-[13.5px] leading-relaxed mb-5 flex-1">Odręczna tabela wydatków na każdy dzień wyjazdu — zero internetu, zero aplikacji do liczenia.</p>
-          <div class="flex items-center justify-between gap-3">
-            <span class="text-ink-400 text-[11.5px] font-medium inline-flex items-center gap-1.5"><i data-lucide="file-text" class="w-3.5 h-3.5"></i> PDF · 1 strona</span>
-            <a href="do-pobrania/arkusz-budzetu-podrozy.pdf" download class="pressable inline-flex items-center gap-1.5 bg-ink-900 hover:bg-ink-950 text-white text-[12.5px] font-semibold px-4 py-2.5 rounded-full transition-colors duration-160">
-              Pobierz
-              <i data-lucide="download" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
         </div>
       </div>
     </div>
